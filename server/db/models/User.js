@@ -1,33 +1,36 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const Sequelize = require("sequelize");
+const db = require("../db");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 const SALT_ROUNDS = 5;
 
-const User = db.define('user', {
-  fullName: {
+const User = db.define("user", {
+  firstName: {
     type: Sequelize.STRING,
+    unique: true,
     allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false,
   },
   username: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   password: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   email: {
     type: Sequelize.STRING,
@@ -35,16 +38,17 @@ const User = db.define('user', {
     allowNull: false,
     validate: {
       notEmpty: true,
-      isEmail: true
-    }
+      isEmail: true,
+    },
   },
   bio: {
     type: Sequelize.TEXT,
   },
   image: {
     type: Sequelize.STRING,
-    defaultValue: 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'
-  } 
+    defaultValue:
+      "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg",
+  },
 });
 
 module.exports = User;
@@ -67,7 +71,7 @@ User.prototype.generateToken = function () {
 User.authenticate = async function ({ username, password }) {
   const user = await this.findOne({ where: { username } });
   if (!user || !(await user.correctPassword(password))) {
-    const error = Error('Incorrect username/password');
+    const error = Error("Incorrect username/password");
     error.status = 401;
     throw error;
   }
@@ -79,11 +83,11 @@ User.findByToken = async function (token) {
     const { id } = await jwt.verify(token, process.env.JWT);
     const user = User.findByPk(id);
     if (!user) {
-      throw 'nooo';
+      throw "nooo";
     }
     return user;
   } catch (ex) {
-    const error = Error('bad token');
+    const error = Error("bad token");
     error.status = 401;
     throw error;
   }
@@ -94,7 +98,7 @@ User.findByToken = async function (token) {
  */
 const hashPassword = async (user) => {
   //in case the password has been changed, we want to encrypt it with bcrypt
-  if (user.changed('password')) {
+  if (user.changed("password")) {
     user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
   }
 };
