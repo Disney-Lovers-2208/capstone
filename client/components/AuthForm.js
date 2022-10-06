@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { authenticate } from "../store";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 
 /**
  * COMPONENT
@@ -12,58 +12,117 @@ const AuthForm = (props) => {
   const dispatch = useDispatch();
   const error = useSelector((state) => state.auth.error);
 
-  const handleSubmit = (evt) => {
+  const handleLoginSubmit = (evt) => {
     evt.preventDefault();
-    const formName = evt.target.name;
+    const formName = "login";
     const username = evt.target.username.value;
     const password = evt.target.password.value;
     dispatch(authenticate(username, password, formName));
   };
 
-  return (
-    <div className="auth">
-      <form
-        className="authForm"
-        onSubmit={handleSubmit}
-        name={location?.slice(1)}
-      >
-        {location === "/login" ? <h1>Login</h1> : <h1>Sign Up</h1>}
-        {location === "/signup" ? (
-          <div>
-            <label htmlFor="email"></label>
-            <input
-              className="signup"
-              name="email"
-              placeholder="email"
-              type="email"
-            />
-          </div>
-        ) : null}
-        <div>
-          <label htmlFor="username"></label>
-          <input name="username" placeholder="Username" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password"></label>
-          <input name="password" placeholder="Password" type="password" />
-        </div>
+  const handleSignupSubmit = (evt) => {
+    evt.preventDefault();
+    const formName = "signup";
+    const username = evt.target.username.value;
+    const password = evt.target.password.value;
+    const email = evt.target.email.value;
+    const firstName = evt.target.firstname.value;
+    const lastName = evt.target.lastname.value;
+    dispatch(
+      authenticate(username, password, formName, email, firstName, lastName)
+    );
+  };
 
-        <div>
-          <button className="sameAsLocation" type="submit">
-            {location === "/login" ? "Login" : "Sign Up"}
-          </button>
-        </div>
+  if (location === "/signup") {
+    return (
+      <Container className="auth">
+        <Row>
+          <Col className="sideDesign">
+            <h2>Application</h2>
+            <h2>Sign Up Page</h2>
+            <p>Sign Up from here to access.</p>
+          </Col>
+          <Col className="formDesign" lg={6} sm={12}>
+            <div>
+              <form onSubmit={handleSignupSubmit} name={location?.slice(1)}>
+                <div>
+                  <label htmlFor="email"></label>
+                  <input name="email" placeholder="email" type="text" />
+                </div>
+                <div>
+                  <label htmlFor="firstname"></label>
+                  <input
+                    name="firstname"
+                    placeholder="First Name"
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="lastname"></label>
+                  <input name="lastname" placeholder="Last Name" type="text" />
+                </div>
+                <div>
+                  <label htmlFor="username"></label>
+                  <input name="username" placeholder="Username" type="text" />
+                </div>
+                <div>
+                  <label htmlFor="password"></label>
+                  <input
+                    name="password"
+                    placeholder="Password"
+                    type="password"
+                  />
+                </div>
+                <br />
+                <div>
+                  <button type="submit">Sign Up</button>
+                  {/* <button type="submit">Register</button> */}
+                </div>
+                {error && error.response && <div> {error.response.data} </div>}
+              </form>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    );
+  } else {
+    return (
+      <Container className="auth">
+        <Row>
+          <Col>
+            <h2>Application</h2>
+            <h2>Login Page</h2>
+            <p>Login or register from here to access.</p>
+          </Col>
+          <Col lg={6} sm={12}>
+            <div>
+              <form onSubmit={handleLoginSubmit} name={location?.slice(1)}>
+                <div>
+                  <label htmlFor="username"></label>
+                  <input name="username" placeholder="Username" type="text" />
+                </div>
+                <div>
+                  <label htmlFor="password"></label>
+                  <input
+                    name="password"
+                    placeholder="Password"
+                    type="password"
+                  />
+                </div>
 
-        <div>
-          <button className="opposite" type="submit">
-            {location === "/login" ? "Sign Up" : "LogIn"}
-          </button>
-        </div>
-
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-    </div>
-  );
+                <br />
+                <div>
+                  <button type="submit">Login</button>
+                  {/* <button type="submit">Register</button> */}
+                </div>
+                {error && error.response && <div> {error.response.data} </div>}
+              </form>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 };
 
 export default AuthForm;
