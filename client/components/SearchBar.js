@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import SearchTabs from './SearchTabs';
 import { Container, Col, Row } from 'react-bootstrap';
 // import { GiMagnifyingGlass } from 'react-icons/gi';
 
@@ -24,7 +24,6 @@ export const SearchBar = () => {
                     onChange={handleChange}
                     value={searchInput}
                 />
-                
                 </Col>
             {/* <Col>
                 <Button className='btn' variant='FFFFFF'><GiMagnifyingGlass/></Button>
