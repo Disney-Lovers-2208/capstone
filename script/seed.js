@@ -1,8 +1,15 @@
 "use strict";
+const {
+  randMovie,
+  randBook,
+  randPhrase,
+  randQuote,
+  randUser,
+} = require("@ngneat/falso");
 
 const {
   db,
-  models: { User },
+  models: { User, Movie, Book, Tv, Post },
 } = require("../server/db");
 
 /**
@@ -43,7 +50,49 @@ async function seed() {
     }),
   ]);
 
-  console.log(`seeded ${users.length} users`);
+  let movies = [];
+  for (let i = 0; i < 100; i++) {
+    movies[i] = await Movie.create({
+      title: randMovie(),
+      description: randQuote(),
+    });
+  }
+
+  let books = [];
+  for (let i = 0; i < 100; i++) {
+    books[i] = await Book.create({
+      title: randBook().title,
+      author: randBook().author,
+      description: randQuote(),
+    });
+  }
+
+  let tv = [];
+  for (let i = 0; i < 100; i++) {
+    tv[i] = await Tv.create({
+      title: randMovie(),
+      description: randQuote(),
+    });
+  }
+
+  const posts = await Promise.all([
+    Post.create({
+      userId: 1,
+      content: randQuote(),
+      movieId: 3,
+    }),
+    Post.create({
+      userId: 2,
+      content: randQuote(),
+      bookId: 54,
+    }),
+    Post.create({
+      userId: 3,
+      content: randQuote(),
+      tvId: 17,
+    }),
+  ]);
+
   console.log(`seeded successfully`);
 }
 

@@ -4,7 +4,6 @@ const db = require("../db");
 const Book = db.define("book", {
   title: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false,
   },
   author: {
@@ -19,8 +18,7 @@ const Book = db.define("book", {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue:
-      "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
+    defaultValue: "",
   },
 });
 
