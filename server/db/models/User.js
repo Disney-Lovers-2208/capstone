@@ -20,23 +20,34 @@ const User = db.define("user", {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
   password: {
     type: Sequelize.STRING,
+    unique: true,
     allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
   email: {
     type: Sequelize.STRING,
-    allowNull: false,
     unique: true,
+    allowNull: false,
     validate: {
+      notEmpty: true,
       isEmail: true,
     },
-    imageUrl: {
-      type: Sequelize.STRING,
-      defaultValue:
-        "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
-    },
+  },
+  bio: {
+    type: Sequelize.TEXT,
+  },
+  image: {
+    type: Sequelize.STRING,
+    defaultValue:
+      "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg",
   },
 });
 
