@@ -16,9 +16,8 @@ export const SearchBar = () => {
 
 
     return (
-        <Container className="center">
+        <Container className="flex-row">
             <Row>
-            <SearchTabs />
                 <Col>
                 <input
                     type='search'
@@ -27,6 +26,7 @@ export const SearchBar = () => {
                     value={searchInput}
                 />
                 </Col>
+                <SearchTabs />
             {/* <Col>
                 <Button className='btn' variant='FFFFFF'><GiMagnifyingGlass/></Button>
             </Col> */}
