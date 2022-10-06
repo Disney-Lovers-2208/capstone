@@ -4,7 +4,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import AuthForm from "./components/AuthForm";
 import Home from "./components/Home";
 import { me, logout } from "./store";
-import Navbar from "./components/Navbar";
+import NavigationBar from "./components/NavigationBar";
 
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);
@@ -21,12 +21,14 @@ const App = () => {
 
   return (
     <div>
-      <Navbar handleClick={handleClick} isLoggedIn={isLoggedIn} />
+      <NavigationBar handleClick={handleClick} isLoggedIn={isLoggedIn} />
       <Routes>
         <Route exact path="/" element={isLoggedIn ? <Home /> : <AuthForm />} />
         <Route path="/login" element={isLoggedIn ? <Home /> : <AuthForm />} />
         <Route path="/signup" element={isLoggedIn ? <Home /> : <AuthForm />} />
         <Route path="/home" element={isLoggedIn ? <Home /> : <AuthForm />} />
+        <Route path="/profile" />
+        <Route path="/recommendations" />
       </Routes>
     </div>
   );
