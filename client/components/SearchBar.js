@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import SearchTabs from './SearchTabs';
 import { Container, Col, Row } from 'react-bootstrap';
+import SearchTabs from './SearchTabs'
+
 // import { GiMagnifyingGlass } from 'react-icons/gi';
 
 
@@ -15,8 +16,9 @@ export const SearchBar = () => {
 
 
     return (
-        <Container className="search-bar">
+        <Container className="center">
             <Row>
+            <SearchTabs />
                 <Col>
                 <input
                     type='search'

@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
-import { Tabs, Tab } from 'react-bootstrap';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Tab, Row, Col, Nav } from 'react-bootstrap';
+
 
 export const SearchTabs = () => {
-    const [key, setKey] = useState('books')
     return (
-        <Tabs
-            id='search-tabs'
-            activeKey={key}
-            onSelect={(k) => setKey(k)}
-            className='mb-3'
-        >
-            <Tab eventKey={'books'} title='Books'>
-                {/* books component will go here */}
-            </Tab>
-            <Tab eventKey={'tvshows'} title='TV Shows'>
-                {/* tvshows component will go here */}
-            </Tab>
-            <Tab>
-                {/* movies component will go here */}
-            </Tab>
-        </Tabs>
+        <Tab.Container id='search-tabs' defaultActiveKey='books'>
+            <Row>
+                <Col sm={8}>
+                    <Nav variant='pills' className='flex-row'>
+                        <Nav.Item>
+                            <Nav.Link as={Link} to='/books' eventKey='books'>Books</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link as={Link} to='/movies' eventKey='movies'>Movies</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link as={Link} to='/tvshows' eventKey='tvshows'>TV Shows</Nav.Link>
+                        </Nav.Item>
+                    </Nav>
+                </Col>
+            </Row>
+        </Tab.Container>
     )
 }
 

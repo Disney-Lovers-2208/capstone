@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
+// import SearchTabs from './SearchTabs';
 import { Navbar , Nav } from 'react-bootstrap';
 import { FiHome } from 'react-icons/fi';
 import { CgProfile } from 'react-icons/cg';

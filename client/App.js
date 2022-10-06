@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import { me, logout } from "./store";
 import NavigationBar from "./components/NavigationBar";
 
+
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);
   const dispatch = useDispatch();
@@ -29,6 +30,9 @@ const App = () => {
         <Route path="/home" element={isLoggedIn ? <Home /> : <AuthForm />} />
         <Route path="/profile" />
         <Route path="/recommendations" />
+        <Route path='/books' />
+        <Route path='/movies' />
+        <Route path='/tvshows' />
       </Routes>
     </div>
   );
