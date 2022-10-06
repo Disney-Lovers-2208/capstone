@@ -1,0 +1,56 @@
+.auth{
+    margin-top: 5rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.authForm{ 
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(56, 73, 239, 1) 0px 5px 15px;
+    background-color: #3849EF;
+    width: 500px;
+    height: 600px;
+    border-radius: 25px;
+    padding-top: 50px;
+    text-align: center;
+    margin: 0 auto;
+    
+}
+
+.auth h1{ 
+    color: white;
+}
+.auth .sameAsLocation{
+    background-color: #DDFF55;
+    border: none;
+    width: 200px;
+    height: 50px;
+    box-shadow: rgba(56, 73, 239, 1) 0px 5px 5px;
+    border-radius: 25px;
+  }
+
+  .auth input{
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 25px;
+    height: 50px;
+    width: 300px;
+    padding-left: 15px;
+  }
+
+ .opposite{
+  background-color: #3849EF;
+  border-style: solid;
+  border-color: white;
+
+  width: 200px;
+  height: 50px;
+  border-radius: 25px;
+  color: white;
+ }
+
+  @media screen and (min-width: 800) {
+    auth button{
+      background-color: rebeccapurple;
+    }
+  }

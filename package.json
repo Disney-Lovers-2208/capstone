@@ -28,7 +28,8 @@
     "morgan": "^1.9.1",
     "pg": "^8.5.1",
     "react-bootstrap": "^2.5.0",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

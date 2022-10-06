@@ -1,6 +1,6 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-
+import React from "react";
+import { useSelector } from "react-redux";
+import { Container, Row, Col } from "react-bootstrap";
 /**
  * COMPONENT
  */
@@ -9,7 +9,12 @@ export const Home = (props) => {
 
   return (
     <div>
-      <h3>Welcome, {username}</h3>
+      <Container>
+        <Row>
+          <Col lg={8}>Welcome, {username}</Col>
+          <Col lg={4}>2 of 2</Col>
+        </Row>
+      </Container>
     </div>
   );
 };
