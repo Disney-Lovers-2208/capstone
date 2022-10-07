@@ -15,14 +15,6 @@ const NavigationBar = ({ handleClick, isLoggedIn }) => (
     <nav>
       {isLoggedIn ? (
         <div>
-          {/* The navbar will show these links after you log in */}
-          <style type='text/css'>
-            {`
-            .navbar {
-              background-color: #C173F5;
-            }
-            `}
-          </style>
           <Navbar expand="sm">
             <SearchBar />
             <Nav.Link as={Link} to="/home"><FiHome /></Nav.Link>

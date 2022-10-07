@@ -20,7 +20,7 @@ export const SearchBar = () => {
             <Row>
                 <Col>
                     <input type='search' placeholder='Search' onChange={handleChange} value={searchInput} />
-                    {/* <Nav.Link as={Link} to='/search-results'><GoSearch /></Nav.Link> */}
+                    {/* <Nav.Link as={Link} to='/searchfor'><GoSearch /></Nav.Link> */}
                 </Col>
                 <SearchTabs />
             </Row>
