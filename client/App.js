@@ -23,20 +23,6 @@ const App = () => {
 
   return (
     <div>
-      {/* <NavigationBar handleClick={handleClick} isLoggedIn={isLoggedIn} />
-      <Routes>
-        <Route exact path="/" element={isLoggedIn ? <Home /> : <AuthForm />} />
-        <Route path="/login" element={isLoggedIn ? <Home /> : <AuthForm />} />
-        <Route path="/signup" element={isLoggedIn ? <Home /> : <AuthForm />} />
-        <Route path="/home" element={isLoggedIn ? <Home /> : <AuthForm />} />
-        <Route path="/profile" />
-        <Route path="/recommendations" />
-        <Route path='/books' />
-        <Route path='/movies' />
-        <Route path='/tvshows' />
-        <Route path='/users' />
-        <Route path='/search-results' />
-      </Routes> */}
       <NavigationBar handleClick={handleClick} isLoggedIn={isLoggedIn} />
       {isLoggedIn ? (
         <Routes>
