@@ -1,9 +1,11 @@
 "use strict";
 
+
 const {
   db,
   models: { User },
 } = require("../server/db");
+
 
 /**
  * seed - this function clears the database, updates tables to
@@ -12,6 +14,7 @@ const {
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
+
 
   // Creating Users
   const users = await Promise.all([

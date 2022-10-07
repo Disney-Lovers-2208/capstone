@@ -34,7 +34,7 @@ const App = () => {
         <Route path='/movies' />
         <Route path='/tvshows' />
         <Route path='/users' />
-        <Route path='/search-results' />
+        {/* <Route path='/search-results' /> */}
       </Routes>
     </div>
   );
