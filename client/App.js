@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import AuthForm from "./components/AuthForm";
+import PageNotFound from "./components/PageNotFound";
 import Home from "./components/Home";
 import { me, logout } from "./store";
 import NavigationBar from "./components/NavigationBar";
@@ -22,7 +23,7 @@ const App = () => {
 
   return (
     <div>
-      <NavigationBar handleClick={handleClick} isLoggedIn={isLoggedIn} />
+      {/* <NavigationBar handleClick={handleClick} isLoggedIn={isLoggedIn} />
       <Routes>
         <Route exact path="/" element={isLoggedIn ? <Home /> : <AuthForm />} />
         <Route path="/login" element={isLoggedIn ? <Home /> : <AuthForm />} />
@@ -34,8 +35,33 @@ const App = () => {
         <Route path='/movies' />
         <Route path='/tvshows' />
         <Route path='/users' />
-        {/* <Route path='/search-results' /> */}
-      </Routes>
+        <Route path='/search-results' />
+      </Routes> */}
+      <NavigationBar handleClick={handleClick} isLoggedIn={isLoggedIn} />
+      {isLoggedIn ? (
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/login" element={<Home />} />
+          <Route path="/signup" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="*" element={<PageNotFound />} />
+          <Route path="/profile" />
+          <Route path="/recommendations" />
+          <Route path='/books' />
+          <Route path='/movies' />
+          <Route path='/tvshows' />
+          <Route path='/users' />
+          <Route path='/searchfor' />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route exact path="/" element={<AuthForm />} />
+          <Route path="/login" element={<AuthForm />} />
+          <Route path="/signup" element={<AuthForm />} />
+          <Route path="/home" element={<AuthForm />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      )}
     </div>
   );
 };
