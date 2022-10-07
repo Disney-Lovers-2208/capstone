@@ -4,7 +4,7 @@ const db = require("../db");
 const Tv = db.define("tv", {
   title: {
     type: Sequelize.STRING,
-    unique: true,
+
     allowNull: false,
   },
   description: {
@@ -15,8 +15,7 @@ const Tv = db.define("tv", {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue:
-      "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
+    defaultValue: "",
   },
 });
 

@@ -6,9 +6,9 @@ const Tv = require("./models/Tv");
 const Book = require("./models/Book");
 const Post = require("./models/Post");
 const StarRating = require("./models/StarRating");
-const User_Movie = require("./models/userBook");
-const User_Book = require("./models/userBook");
-const User_TV = require("./models/userTv");
+const User_Movie = require("./models/UserBook");
+const User_Book = require("./models/UserBook");
+const User_TV = require("./models/UserTv");
 
 //associations could go here!
 //One-to-many
@@ -20,6 +20,9 @@ StarRating.belongsTo(Movie);
 
 Tv.hasMany(StarRating);
 StarRating.belongsTo(Tv);
+
+User.hasMany(Post);
+Post.belongsTo(User);
 
 Book.hasMany(Post);
 Post.belongsTo(Book);
