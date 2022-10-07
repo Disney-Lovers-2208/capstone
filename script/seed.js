@@ -162,23 +162,23 @@ async function seed() {
     });
   }
 
-  // const posts = await Promise.all([
-  //   Post.create({
-  //     userId: 1,
-  //     content: randQuote(),
-  //     movieId: 3,
-  //   }),
-  //   Post.create({
-  //     userId: 2,
-  //     content: randQuote(),
-  //     bookId: 54,
-  //   }),
-  //   Post.create({
-  //     userId: 3,
-  //     content: randQuote(),
-  //     tvId: 17,
-  //   }),
-  // ]);
+  const posts = await Promise.all([
+    Post.create({
+      userId: 1,
+      content: randQuote(),
+      movieId: 3,
+    }),
+    Post.create({
+      userId: 2,
+      content: randQuote(),
+      bookId: 54,
+    }),
+    Post.create({
+      userId: 3,
+      content: randQuote(),
+      tvId: 17,
+    }),
+  ]);
 
   console.log(`seeded successfully`);
 }
