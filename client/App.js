@@ -33,6 +33,8 @@ const App = () => {
         <Route path='/books' />
         <Route path='/movies' />
         <Route path='/tvshows' />
+        <Route path='/users' />
+        <Route path='/search-results' />
       </Routes>
     </div>
   );

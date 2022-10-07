@@ -7,7 +7,7 @@ export const SearchTabs = () => {
     return (
         <Tab.Container id='search-tabs' defaultActiveKey='books'>
             <Row>
-                <Col sm={8}>
+                <Col sm={9}>
                     <Nav variant='pills' className='flex-row'>
                         <Nav.Item>
                             <Nav.Link as={Link} to='/books' eventKey='books'>Books</Nav.Link>
@@ -17,6 +17,9 @@ export const SearchTabs = () => {
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link as={Link} to='/tvshows' eventKey='tvshows'>TV Shows</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link as={Link} to='/users' eventKey='users'>Users</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Col>

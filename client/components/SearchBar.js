@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
-import SearchTabs from './SearchTabs'
-
-// import { GiMagnifyingGlass } from 'react-icons/gi';
+import { Link } from 'react-router-dom'
+import { Container, Col, Row, Nav } from 'react-bootstrap';
+// import { GoSearch } from 'react-icons/go';
+import SearchTabs from './SearchTabs';
 
 
 export const SearchBar = () => {
@@ -19,17 +19,10 @@ export const SearchBar = () => {
         <Container className="flex-row">
             <Row>
                 <Col>
-                <input
-                    type='search'
-                    placeholder='Search'
-                    onChange={handleChange}
-                    value={searchInput}
-                />
+                    <input type='search' placeholder='Search' onChange={handleChange} value={searchInput} />
+                    {/* <Nav.Link as={Link} to='/search-results'><GoSearch /></Nav.Link> */}
                 </Col>
                 <SearchTabs />
-            {/* <Col>
-                <Button className='btn' variant='FFFFFF'><GiMagnifyingGlass/></Button>
-            </Col> */}
             </Row>
         </Container>
     )
