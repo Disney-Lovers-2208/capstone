@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import AuthForm from "./components/AuthForm";
+import PageNotFound from "./components/PageNotFound";
 import Home from "./components/Home";
 import { me, logout } from "./store";
 import Navbar from "./components/Navbar";
@@ -22,12 +23,23 @@ const App = () => {
   return (
     <div>
       <Navbar handleClick={handleClick} isLoggedIn={isLoggedIn} />
-      <Routes>
-        <Route exact path="/" element={isLoggedIn ? <Home /> : <AuthForm />} />
-        <Route path="/login" element={isLoggedIn ? <Home /> : <AuthForm />} />
-        <Route path="/signup" element={isLoggedIn ? <Home /> : <AuthForm />} />
-        <Route path="/home" element={isLoggedIn ? <Home /> : <AuthForm />} />
-      </Routes>
+      {isLoggedIn ? (
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/login" element={<Home />} />
+          <Route path="/signup" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route exact path="/" element={<AuthForm />} />
+          <Route path="/login" element={<AuthForm />} />
+          <Route path="/signup" element={<AuthForm />} />
+          <Route path="/home" element={<AuthForm />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      )}
     </div>
   );
 };
