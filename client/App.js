@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import AuthForm from "./components/AuthForm";
+import Profile from "./components/Profile";
 import PageNotFound from "./components/PageNotFound";
 import Home from "./components/Home";
 import { me, logout } from "./store";
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/login" element={<AuthForm />} />
           <Route path="/signup" element={<AuthForm />} />
           <Route path="/home" element={<AuthForm />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       )}
