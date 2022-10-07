@@ -1,9 +1,30 @@
 "use strict";
 
+const axios = require("axios");
+
 const {
   db,
-  models: { User },
+  models: { User, Tv },
 } = require("../server/db");
+
+async function fetchTvShows() {
+  const { data } = await axios.get("https://api.tvmaze.com/shows");
+  return data;
+}
+
+async function mapTvShows() {
+  const tvShowArr = await fetchTvShows();
+  for (let i = 0; i < tvShowArr.length; i++) {
+    await Promise.all([
+      Tv.create({
+        title: tvShowArr[i]["name"],
+        description: tvShowArr[i]["summary"],
+        // genre: tvShowArr[i]["genres"],
+        imageUrl: tvShowArr[i]["image"]["medium"],
+      }),
+    ]);
+  }
+}
 
 /**
  * seed - this function clears the database, updates tables to
@@ -14,6 +35,9 @@ async function seed() {
   console.log("db synced!");
 
   // Creating Users
+
+  await mapTvShows();
+
   const users = await Promise.all([
     User.create({
       firstName: "Wendy",
