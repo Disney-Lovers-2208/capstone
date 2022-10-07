@@ -13,10 +13,67 @@ const {
 } = require("../server/db");
 
 const axios = require("axios");
+
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
  */
+
+async function fetchMovies() {
+  const { data: dataOne } = await axios.get(
+    "https://api.themoviedb.org/3/movie/top_rated?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=1"
+  );
+  const { data: dataTwo } = await axios.get(
+    "https://api.themoviedb.org/3/movie/top_rated?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=2"
+  );
+  const { data: dataThree } = await axios.get(
+    "https://api.themoviedb.org/3/movie/top_rated?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=3"
+  );
+  const { data: dataFour } = await axios.get(
+    "https://api.themoviedb.org/3/movie/top_rated?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=4"
+  );
+  const { data: dataFive } = await axios.get(
+    "https://api.themoviedb.org/3/movie/top_rated?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=5"
+  );
+
+  const { data: genres } = await axios.get(
+    "https://api.themoviedb.org/3/genre/movie/list?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US"
+  );
+  const arrOne = dataOne.results;
+  const arrTwo = dataTwo.results;
+  const arrThree = dataThree.results;
+  const arrFour = dataFour.results;
+  const arrFive = dataFive.results;
+  const genreList = genres.genres;
+
+  const concatArr = arrOne.concat(arrTwo, arrThree, arrFour, arrFive);
+
+  for (let i = 0; i < concatArr.length; i++) {
+    let genreArr = concatArr[i]["genre_ids"];
+    for (let j = 0; j < genreArr.length; j++) {
+      for (let k = 0; k < genreList.length; k++) {
+        if (genreArr[j] === genreList[k]["id"]) {
+          genreArr[j] = genreList[k]["name"];
+        }
+      }
+    }
+  }
+
+  return concatArr;
+}
+
+async function mapMovies() {
+  const moviesArr = await fetchMovies();
+  for (let i = 0; i < moviesArr.length; i++) {
+    await Promise.all([
+      Movie.create({
+        title: moviesArr[i]["title"],
+        description: moviesArr[i]["overview"],
+        genre: moviesArr[i]["genre_ids"],
+      }),
+    ]);
+  }
+}
 
 async function fetchTvShows() {
   const { data } = await axios.get("https://api.tvmaze.com/shows");
@@ -35,19 +92,17 @@ async function mapTvShows() {
       }),
     ]);
   }
-
-  console.log(`Seeded ${tvShowArr.length} tv shows`);
 }
 
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
 
+  // creating tv shows
   await mapTvShows();
+  await mapMovies();
+
   // Creating Users
-
-  await mapTvShows();
-
   const users = await Promise.all([
     User.create({
       firstName: "Wendy",
@@ -77,14 +132,6 @@ async function seed() {
     }),
   ]);
 
-  let movies = [];
-  for (let i = 0; i < 100; i++) {
-    movies[i] = await Movie.create({
-      title: randMovie(),
-      description: randQuote(),
-    });
-  }
-
   let books = [];
   for (let i = 0; i < 100; i++) {
     books[i] = await Book.create({
@@ -94,23 +141,23 @@ async function seed() {
     });
   }
 
-  const posts = await Promise.all([
-    Post.create({
-      userId: 1,
-      content: randQuote(),
-      movieId: 3,
-    }),
-    Post.create({
-      userId: 2,
-      content: randQuote(),
-      bookId: 54,
-    }),
-    Post.create({
-      userId: 3,
-      content: randQuote(),
-      tvId: 17,
-    }),
-  ]);
+  // const posts = await Promise.all([
+  //   Post.create({
+  //     userId: 1,
+  //     content: randQuote(),
+  //     movieId: 3,
+  //   }),
+  //   Post.create({
+  //     userId: 2,
+  //     content: randQuote(),
+  //     bookId: 54,
+  //   }),
+  //   Post.create({
+  //     userId: 3,
+  //     content: randQuote(),
+  //     tvId: 17,
+  //   }),
+  // ]);
 
   console.log(`seeded successfully`);
 }

@@ -10,7 +10,7 @@ const Movie = db.define("movie", {
     type: Sequelize.TEXT,
   },
   genre: {
-    type: Sequelize.ENUM(["value", "another value"]),
+    type: Sequelize.ARRAY(Sequelize.TEXT),
   },
   imageUrl: {
     type: Sequelize.STRING,
