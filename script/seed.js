@@ -35,18 +35,39 @@ async function fetchMovies() {
   const { data: dataFive } = await axios.get(
     "https://api.themoviedb.org/3/movie/top_rated?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=5"
   );
+  const { data: dataSix } = await axios.get(
+    "https://api.themoviedb.org/3/movie/top_rated?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=6"
+  );
+  const { data: dataSeven } = await axios.get(
+    "https://api.themoviedb.org/3/movie/top_rated?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=7"
+  );
+  const { data: dataEight } = await axios.get(
+    "https://api.themoviedb.org/3/movie/top_rated?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=8"
+  );
 
   const { data: genres } = await axios.get(
     "https://api.themoviedb.org/3/genre/movie/list?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US"
   );
+
   const arrOne = dataOne.results;
   const arrTwo = dataTwo.results;
   const arrThree = dataThree.results;
   const arrFour = dataFour.results;
   const arrFive = dataFive.results;
+  const arrSix = dataSix.results;
+  const arrSeven = dataSeven.results;
+  const arrEight = dataEight.results;
   const genreList = genres.genres;
 
-  const concatArr = arrOne.concat(arrTwo, arrThree, arrFour, arrFive);
+  const concatArr = arrOne.concat(
+    arrTwo,
+    arrThree,
+    arrFour,
+    arrFive,
+    arrSix,
+    arrSeven,
+    arrEight
+  );
 
   for (let i = 0; i < concatArr.length; i++) {
     let genreArr = concatArr[i]["genre_ids"];
