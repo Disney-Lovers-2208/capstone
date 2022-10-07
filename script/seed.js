@@ -12,14 +12,38 @@ const {
   models: { User, Movie, Book, Tv, Post },
 } = require("../server/db");
 
+const axios = require("axios");
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
  */
+
+async function fetchTvShows() {
+  const { data } = await axios.get("https://api.tvmaze.com/shows");
+  return data;
+}
+
+async function mapTvShows() {
+  const tvShowArr = await fetchTvShows();
+  for (let i = 0; i < tvShowArr.length; i++) {
+    await Promise.all([
+      Tv.create({
+        title: tvShowArr[i]["name"],
+        description: tvShowArr[i]["summary"],
+        genre: tvShowArr[i]["genres"],
+        imageUrl: tvShowArr[i]["image"]["medium"],
+      }),
+    ]);
+  }
+
+  console.log(`Seeded ${tvShowArr.length} tv shows`);
+}
+
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
 
+  await mapTvShows();
   // Creating Users
   const users = await Promise.all([
     User.create({
@@ -63,14 +87,6 @@ async function seed() {
     books[i] = await Book.create({
       title: randBook().title,
       author: randBook().author,
-      description: randQuote(),
-    });
-  }
-
-  let tv = [];
-  for (let i = 0; i < 100; i++) {
-    tv[i] = await Tv.create({
-      title: randMovie(),
       description: randQuote(),
     });
   }
