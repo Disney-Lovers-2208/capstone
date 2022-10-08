@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { Container, Col, Row, Nav } from 'react-bootstrap';
 // import { GoSearch } from 'react-icons/go';
-import SearchTabs from './SearchTabs';
+// import SearchTabs from './SearchTabs';
 
 
 export const SearchBar = () => {
@@ -20,9 +20,8 @@ export const SearchBar = () => {
             <Row>
                 <Col>
                     <input type='search' placeholder='Search' onChange={handleChange} value={searchInput} />
-                    {/* <Nav.Link as={Link} to='/searchfor'><GoSearch /></Nav.Link> */}
+                    <Nav.Link as={Link} to='/searchfor'>View All</Nav.Link>
                 </Col>
-                <SearchTabs />
             </Row>
         </Container>
     )

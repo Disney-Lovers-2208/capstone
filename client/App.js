@@ -6,6 +6,7 @@ import PageNotFound from "./components/PageNotFound";
 import Home from "./components/Home";
 import { me, logout } from "./store";
 import NavigationBar from "./components/NavigationBar";
+import SearchFor from "./components/SearchFor";
 
 
 const App = () => {
@@ -37,7 +38,7 @@ const App = () => {
           <Route path='/movies' />
           <Route path='/tvshows' />
           <Route path='/users' />
-          <Route path='/searchfor' />
+          <Route path='/searchfor' element={<SearchFor />} />
         </Routes>
       ) : (
         <Routes>
