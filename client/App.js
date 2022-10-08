@@ -5,7 +5,8 @@ import AuthForm from "./components/AuthForm";
 import PageNotFound from "./components/PageNotFound";
 import Home from "./components/Home";
 import { me, logout } from "./store";
-import Navbar from "./components/Navbar";
+import NavigationBar from "./components/NavigationBar";
+
 
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);
@@ -22,7 +23,7 @@ const App = () => {
 
   return (
     <div>
-      <Navbar handleClick={handleClick} isLoggedIn={isLoggedIn} />
+      <NavigationBar handleClick={handleClick} isLoggedIn={isLoggedIn} />
       {isLoggedIn ? (
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -30,6 +31,13 @@ const App = () => {
           <Route path="/signup" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<PageNotFound />} />
+          <Route path="/profile" />
+          <Route path="/recommendations" />
+          <Route path='/books' />
+          <Route path='/movies' />
+          <Route path='/tvshows' />
+          <Route path='/users' />
+          <Route path='/searchfor' />
         </Routes>
       ) : (
         <Routes>

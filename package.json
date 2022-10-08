@@ -30,6 +30,7 @@
     "node-fetch": "^3.2.10",
     "pg": "^8.5.1",
     "react-bootstrap": "^2.5.0",
+    "react-icons": "^4.4.0",
     "sequelize": "^6.3.5",
     "styled-components": "^5.3.6"
   },
