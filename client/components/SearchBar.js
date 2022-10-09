@@ -19,7 +19,7 @@ export const SearchBar = () => {
         <Container className="flex-row">
             <Row>
                 <Col>
-                    <input type='search' placeholder='Search' onChange={handleChange} value={searchInput} />
+                    <input type='search' placeholder='Search for...' onChange={handleChange} value={searchInput} />
                     <Nav.Link as={Link} to='/searchfor'>View All</Nav.Link>
                 </Col>
             </Row>
