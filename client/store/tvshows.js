@@ -5,7 +5,7 @@ const GET_TV_SHOWS = "GET_TV_SHOWS";
 
 // action creators:
 const setTvShows = (tvs) => ({
-    type: GET_TV_SHOWS = "GET_TV_SHOWS",
+    type: GET_TV_SHOWS,
     tvs,
 });
 
