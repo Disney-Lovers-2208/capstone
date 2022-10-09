@@ -5,7 +5,7 @@ import { Tab, Row, Col, Nav } from 'react-bootstrap';
 
 export const SearchTabs = () => {
     return (
-        <Tab.Container id='search-tabs' defaultActiveKey='books'>
+        <Tab.Container id='search-tabs'>
             <Row>
                 <Col sm={8}>
                     <Nav variant='pills' className='flex-row'>

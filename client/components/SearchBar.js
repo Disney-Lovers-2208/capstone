@@ -5,27 +5,20 @@ import { Container, Col, Row, Nav } from 'react-bootstrap';
 // import SearchTabs from './SearchTabs';
 
 
-export const SearchBar = () => {
-    const [searchInput, setSearchInput] = useState("");
-
-
-    const handleChange = (evt) => {
-        evt.preventDefault();
-        setSearchInput(evt.target.value);
-    };
+export const SearchBar = ({keyword, setKeyword}) => {
 
 
     return (
         <Container className="flex-row">
             <Row>
                 <Col>
-                    <input type='search' placeholder='Search for...' onChange={handleChange} value={searchInput} />
+                    <input type='search' placeholder='Search for...' onChange={(evt) => setKeyword(evt.target.value)} value={keyword} />
                     <Nav.Link as={Link} to='/searchfor'>View All</Nav.Link>
                 </Col>
             </Row>
         </Container>
     )
-}
-// mapState and mapDispatch once products are up an running
+};
+
 
 export default SearchBar;
