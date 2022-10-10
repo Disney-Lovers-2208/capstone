@@ -28,7 +28,7 @@ export const me = () => async (dispatch) => {
 };
 
 export const authenticate =
-  (username, password, method, email, firstName, lastName) =>
+  (username, password, method, email, firstName, lastName, navigate) =>
   async (dispatch) => {
     try {
       let res;
@@ -45,6 +45,7 @@ export const authenticate =
       }
       window.localStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
+      navigate("/home");
     } catch (authError) {
       return dispatch(setAuth({ error: authError }));
     }

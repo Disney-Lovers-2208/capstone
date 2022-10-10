@@ -7,7 +7,6 @@ import Home from "./components/Home";
 import { me, logout } from "./store";
 import NavigationBar from "./components/NavigationBar";
 
-
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);
   const dispatch = useDispatch();
@@ -27,17 +26,15 @@ const App = () => {
       {isLoggedIn ? (
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/login" element={<Home />} />
-          <Route path="/signup" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/profile" />
           <Route path="/recommendations" />
-          <Route path='/books' />
-          <Route path='/movies' />
-          <Route path='/tvshows' />
-          <Route path='/users' />
-          <Route path='/searchfor' />
+          <Route path="/books" />
+          <Route path="/movies" />
+          <Route path="/tvshows" />
+          <Route path="/users" />
+          <Route path="/searchfor" />
         </Routes>
       ) : (
         <Routes>
