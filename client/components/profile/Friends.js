@@ -4,20 +4,27 @@ import { fetchUser } from "../../redux/user";
 import Banner from "./Banner";
 
 export class Friends extends React.Component {
-  componentDidMount() {
-    const { auth } = this.props;
-    this.props.getUser(auth.id);
-  }
-
   render() {
-    const { user } = this.props;
-    const { books, tvs, movies } = user;
-    console.log(books);
+    const user = this.props.auth || {};
+    let friends = user?.friend || [];
+
+    console.log("friends", friends);
 
     return (
-      <div>
+      <div className="friends">
         <Banner user={user} />
-        <h1>In Friends </h1>
+        <div className="friends-list">
+          {friends
+            ? friends.map((friend) => {
+                return (
+                  <div className="friend-card" key={friend.id}>
+                    <img src={friend.image} alt="image" />
+                    {friend.firstName}
+                  </div>
+                );
+              })
+            : null}
+        </div>
       </div>
     );
   }
@@ -26,14 +33,11 @@ export class Friends extends React.Component {
 const mapState = (state) => {
   return {
     auth: state.auth,
-    user: state.user,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    getUser: (userId) => dispatch(fetchUser(userId)),
-  };
+  return {};
 };
 
 export default connect(mapState, mapDispatchToProps)(Friends);

@@ -5,21 +5,22 @@ const Banner = (props) => {
   const { user } = props;
 
   return (
-    <div className="profile">
+    <div className="banner">
       <div className="upper">
         <img src="https://i.imgur.com/Qtrsrk5.jpg" alt="image" />
       </div>
       <Link to="/profile/friends">
-        <button className="btn btn-sm btn-primary">Friends</button>
+        <button>Friends</button>
+        {/* btn btn-sm btn-primary */}
       </Link>
 
-      <div className="user text-center">
+      <div className="user">
         <div className="profileDetails">
           <img src={user.image} alt="image" />
         </div>
       </div>
 
-      <div className="Below mt-5 text-center">
+      <div className="below">
         <h4 className="name">
           {user.firstName} {user.lastName}
         </h4>

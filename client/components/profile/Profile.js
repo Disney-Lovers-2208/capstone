@@ -5,37 +5,42 @@ import { fetchUser } from "../../redux/user";
 import Banner from "./Banner";
 
 export class Profile extends React.Component {
-  componentDidMount() {
-    const { auth } = this.props;
-    this.props.getUser(auth.id);
-  }
-
   render() {
-    const { user } = this.props;
-    const { books, tvs, movies } = user;
+    const user = this.props.auth || [];
+    let tvs = user?.tvs || [];
 
-    console.log(" books", books);
+    console.log("tvs", tvs);
     return (
-      <div>
+      <div className="profile">
         <Banner user={user} />
         <h1>In profile home</h1>
+        <div>
+          <h2>Favorite Tv Shows:</h2>
+          <div className="favorites">
+            {tvs
+              ? tvs.map((tv) => {
+                  return (
+                    <div className="product-card" key={tv.id}>
+                      <img src={tv.imageUrl} alt="image" />
+                    </div>
+                  );
+                })
+              : null}
+          </div>
+        </div>
       </div>
     );
   }
 }
 
 const mapState = (state) => {
-  console.log("in map state", state);
   return {
     auth: state.auth,
-    user: state.user,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    getUser: (userId) => dispatch(fetchUser(userId)),
-  };
+  return {};
 };
 
 export default connect(mapState, mapDispatchToProps)(Profile);

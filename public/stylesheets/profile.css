@@ -1,33 +1,76 @@
-.profile .upper{
+/* .banner .upper{
     height: 100px;
-   }
+   } */
 
-.profile  .upper img{
+.banner  .upper img{
     width: 100%;
 
    }
 
-.profile .user{
+/* .banner .user{
     position: relative;
-   }
+   } */
 
-.profile .profileDetails img{
+.banner .profileDetails img{
+    /* margin-top: -50rem; */
     height: 100px;
     width: 100px;
     border-radius: 100%;
     border: none;
    }
 
-/*    
-   .profile .profileDetails{
 
-    position: absolute;
-    top:-50px;
-    left: 38%;
-    height: 90px;
-    width: 90px;
-    border:3px solid #fff;
 
-    border-radius: 50%;
+.profile .featured { 
+    margin-top: 200px;
+    background-color: blue;
+    height: 200px;
+    width: 100%;
+    z-index: 100;
+}
 
-   } */
+.profile .favorites { 
+    display: flex;
+    padding: 2%;
+    flex-direction: row;
+    margin-top: 200px;
+    background-color: blue;
+    height: 200px;
+    width: 100%;
+    z-index: 100;
+}
+
+.profile .product-card{ 
+    margin: 1%
+}
+
+.friends {
+    background-color: rgb(215, 228, 228);
+}
+
+.friends .friends-list{ 
+    display: flex;
+    flex-direction: row;
+}
+
+.friends .friend-card{ 
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+    border-radius: 15px;
+    background-color: azure;
+    padding: 2%;
+    margin: 2%;
+    height: 200px;
+    width: 300px;
+}
+
+.friends .friend-card img{
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+}
