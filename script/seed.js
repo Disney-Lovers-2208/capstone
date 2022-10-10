@@ -44,7 +44,6 @@ async function fetchMovies() {
   const { data: dataEight } = await axios.get(
     "https://api.themoviedb.org/3/movie/top_rated?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=8"
   );
-
   const { data: genres } = await axios.get(
     "https://api.themoviedb.org/3/genre/movie/list?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US"
   );
