@@ -9,7 +9,7 @@ const {
 
 const {
   db,
-  models: { User, Movie, Book, Tv, Post },
+  models: { User, Movie, Book, Tv, Post, StarRating },
 } = require("../server/db");
 
 const axios = require("axios");
@@ -118,7 +118,7 @@ async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
 
-  // creating tv shows
+  // creating tv shows and movies
   await mapTvShows();
   await mapMovies();
 
@@ -176,6 +176,24 @@ async function seed() {
       userId: 3,
       content: randQuote(),
       tvId: 17,
+    }),
+  ]);
+
+  const starRatings = await Promise.all([
+    StarRating.create({
+      rating: 1,
+      userId: 1,
+      tvId: 1,
+    }),
+    StarRating.create({
+      rating: 3,
+      userId: 1,
+      tvId: 1,
+    }),
+    StarRating.create({
+      rating: 5,
+      userId: 1,
+      tvId: 1,
     }),
   ]);
 

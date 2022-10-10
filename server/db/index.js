@@ -10,8 +10,10 @@ const User_Movie = require("./models/UserMovie");
 const User_Book = require("./models/UserBook");
 const User_TV = require("./models/UserTv");
 
-//associations could go here!
 //One-to-many
+User.hasMany(StarRating);
+StarRating.belongsTo(User);
+
 Book.hasMany(StarRating);
 StarRating.belongsTo(Book);
 
