@@ -21,20 +21,22 @@ export const SearchFor = (props) => {
 
     return (
         <div>
-            <SearchTabs />
-            <SearchBar input={input} onChange={updateInput}/>
-
-            <br />
-
+            {/* <SearchTabs /> */}
+            {/* <SearchBar input={input} onChange={updateInput}/> */}
             <p>Don't see your fave?</p>
             <Button bg='info' as={Link} to={'/add'}>Add Your Fave!</Button>
-            <h2>Movies</h2>
+            
+            <br />
 
-            <h2>TV Shows
+            {/* <h2>Movies</h2> */}
+
+            {<TvCards tvlist={tvList} />}
+
+            {/* <h2>TV Shows
                 {<TvCards tvlist={tvList} />}
-            </h2>
+            </h2> */}
 
-            <h2>Books</h2>
+            {/* <h2>Books</h2> */}
 
         </div>
     )
