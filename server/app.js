@@ -2,6 +2,8 @@ const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
+const { db } = require('./db');
+const { pluralize } = require('inflection');
 module.exports = app
 
 // logging middleware
@@ -9,6 +11,26 @@ app.use(morgan('dev'))
 
 // body parsing middleware
 app.use(express.json())
+
+Object.entries(db.models).forEach( entry => {
+  const [key, model] = entry;
+  app.get(`/api2/${pluralize(key)}`, async(req, res, next)=> {
+    try {
+      res.send(await model.findAll());
+    }
+    catch(ex){
+      next(ex);
+    }
+  });
+  app.get(`/api2/${pluralize(key)}/:id`, async(req, res, next)=> {
+    try {
+      res.send(await model.findByPk(req.params.id));
+    }
+    catch(ex){
+      next(ex);
+    }
+  });
+});
 
 // auth and api routes
 app.use('/auth', require('./auth'))
