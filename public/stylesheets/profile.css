@@ -1,0 +1,33 @@
+.profile .upper{
+    height: 100px;
+   }
+
+.profile  .upper img{
+    width: 100%;
+
+   }
+
+.profile .user{
+    position: relative;
+   }
+
+.profile .profileDetails img{
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    border: none;
+   }
+
+/*    
+   .profile .profileDetails{
+
+    position: absolute;
+    top:-50px;
+    left: 38%;
+    height: 90px;
+    width: 90px;
+    border:3px solid #fff;
+
+    border-radius: 50%;
+
+   } */
