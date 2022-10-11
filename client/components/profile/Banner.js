@@ -7,7 +7,6 @@ const Banner = (props) => {
   const { user } = props;
   const location = useLocation().pathname;
 
-  console.log("location", location);
   return (
     <Container fluid>
       <Row>

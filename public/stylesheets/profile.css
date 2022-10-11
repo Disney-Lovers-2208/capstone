@@ -35,7 +35,6 @@ margin-left: 1rem;
 
 
 .profile .featured { 
-    margin-top: 200px;
     background-color: blue;
     height: 200px;
     width: 100%;
@@ -46,7 +45,7 @@ margin-left: 1rem;
     display: flex;
     padding: 2%;
     flex-direction: row;
-    background-color: blue;
+    background-color: pink;
     height: 200px;
     width: 100%;
     z-index: 100;
