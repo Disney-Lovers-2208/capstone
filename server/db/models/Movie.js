@@ -14,7 +14,8 @@ const Movie = db.define("movie", {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: "",
+    defaultValue:
+      "https://images.freecreatives.com/wp-content/uploads/2017/10/flat-clapperboard-icon_1063-38.jpg",
   },
 });
 

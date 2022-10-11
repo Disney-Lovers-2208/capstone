@@ -18,7 +18,8 @@ const Book = db.define("book", {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: "",
+    defaultValue:
+      "https://cdn.dribbble.com/users/201599/screenshots/1545461/media/015107b8ef3d1f8e465caf33572d663c.jpg?compress=1&resize=400x300&vertical=top",
   },
 });
 
