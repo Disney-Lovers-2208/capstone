@@ -61,45 +61,6 @@ export class Profile extends React.Component {
         </Row>
       </Container>
     );
-    // return (
-    //   <div className="profile">
-    //     <Banner user={user} />
-    //     <div className="featured"></div>
-    //     <div className="favorites">
-    //       {tvs
-    //         ? tvs.map((tv) => {
-    //             return (
-    //               <div className="product-card" key={tv.id}>
-    //                 <img src={tv.imageUrl} alt="image" />
-    //               </div>
-    //             );
-    //           })
-    //         : null}
-    //     </div>
-    //     <div className="favorites">
-    //       {movies
-    //         ? movies.map((movie) => {
-    //             return (
-    //               <div className="product-card" key={movie.id}>
-    //                 <img src={movie.imageUrl} alt="image" />
-    //               </div>
-    //             );
-    //           })
-    //         : null}
-    //     </div>
-    //     <div className="favorites">
-    //       {books
-    //         ? books.map((book) => {
-    //             return (
-    //               <div className="product-card" key={book.id}>
-    //                 <img src={book.imageUrl} alt="image" />
-    //               </div>
-    //             );
-    //           })
-    //         : null}
-    //     </div>
-    //   </div>
-    // );
   }
 }
 
