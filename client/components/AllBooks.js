@@ -1,18 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
-import TvCard from './TvCard';
+import BookCard from './BookCard';
 
-
-export const TvShows = () => {
-    const tvshows = useSelector((state) => state.tvs); 
+export const AllBooks = () => {
+    const books = useSelector((state) => state.books); 
 
     return (
         <div className="all-items">
             <Row xs={3} md={3}>
-                {tvshows.length ? tvshows.map((tvshow) => (
-                    <Col key={tvshow.id}>
-                        <TvCard tvShow={tvshow} />
+                {books.length ? books.map((book) => (
+                    <Col key={book.id}>
+                        <BookCard book={book} />
                     </Col>
                 )) : null}
             </Row>
@@ -21,4 +20,4 @@ export const TvShows = () => {
 
 };
 
-export default TvShows;
+export default AllBooks;

@@ -2,25 +2,24 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 
-export const TvCard = (props) => {
-    const { tvShow } = props;
-    const { id, imageUrl, title, description, genre } = tvShow;
-    // const { id } = useParams(); // for singleCard view
+export const MovieCard = (props) => {
+    const { movie } = props;
+    const { id, imageUrl, title, description, genre } = movie;
 
     return (
-        <Link to={`/tvshows/${id}`} style={{ color: 'inherit' }}>
+        <Link to={`/movies/${id}`} style={{ color: 'inherit' }}>
             <Card border='info' style={{ width: '15rem', backgroundColor: '#FF5454' }}>
                 <Card.Img variant='top' src={imageUrl} />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>{description}</Card.Text>
-                    <Card.Text>Genre:{genre}</Card.Text>
+                    <Card.Text>Genre: {genre}</Card.Text>
                 </Card.Body>
-            </Card>
+            </Card>        
         </Link>
     )
 
 };
 
 
-export default TvCard;
+export default MovieCard;
