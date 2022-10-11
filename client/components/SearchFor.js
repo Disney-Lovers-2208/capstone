@@ -9,13 +9,13 @@ import BookCard from './BookCard';
 
 export const SearchFor = () => {
     const { title } = useParams();
-    console.log("title:", title);
+    // console.log("title:", title);
     const tvshows = useSelector((state) => state.tvs);
     const movies = useSelector((state) => state.movies);
     const books = useSelector((state) => state.books);
-    console.log("tv:", tvshows);
-    console.log('movie:', movies);
-    console.log('book:', books);
+    // console.log("tv:", tvshows);
+    // console.log('movie:', movies);
+    // console.log('book:', books);
     const [tvList, setTvList] = useState([]);
     const [movieList, setMovieList] = useState([]);
     const [bookList, setBookList] = useState([]);
@@ -23,31 +23,31 @@ export const SearchFor = () => {
     // filters through tv shows    
     useEffect(() => {
         const filteredTitles = tvshows.filter(tvshow => {
-            console.log('tvshow:', tvshow.title);
+            // console.log('tvshow:', tvshow.title);
             return tvshow.title.toLowerCase().includes(title.toLowerCase())
         });
         setTvList(filteredTitles);
-        console.log('filtered tvs:', filteredTitles);
+        // console.log('filtered tvs:', filteredTitles);
     }, []);
 
     // filters through movies
     useEffect(() => {
         const filteredTitles = movies.filter(movie => {
-            console.log('movie:', movie.title)
+            // console.log('movie:', movie.title)
             return movie.title.toLowerCase().includes(title.toLowerCase());
         });
         setMovieList(filteredTitles);
-        console.log('filtered movies:', filteredTitles);
+        // console.log('filtered movies:', filteredTitles);
     }, []);
 
     // filters through books
     useEffect(() => {
         const filteredTitles = books.filter(book => {
-            console.log('movie:', book.title)
+            // console.log('movie:', book.title)
             return book.title.toLowerCase().includes(title.toLowerCase());
         });
         setBookList(filteredTitles);
-        console.log('filtered books:', filteredTitles);
+        // console.log('filtered books:', filteredTitles);
     }, []);
 
     return (
