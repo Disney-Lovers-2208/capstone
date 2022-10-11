@@ -62,6 +62,7 @@ export const SearchFor = () => {
             <Row xs={3} md={3}>
                 {movieList.length ? movieList.map((movie) => (
                     <Col key={movie.id}>
+                        <p>Movies:</p>
                         <MovieCard movie={movie}/>
                     </Col>
                 )) : null}
@@ -71,6 +72,7 @@ export const SearchFor = () => {
             <Row xs={3} md={3}>
                 {tvList.length ? tvList.map((tvshow) => (
                     <Col key={tvshow.id}>
+                        <p>Tv Shows:</p>
                         <TvCard tvShow={tvshow} />
                     </Col>
                 )) : null}
@@ -80,6 +82,7 @@ export const SearchFor = () => {
             <Row>
                 {bookList.length ? bookList.map((book) => (
                     <Col key={book.id}>
+                        <p>Books:</p>
                         <BookCard book={book} />
                     </Col>
                 )) : null}
