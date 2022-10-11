@@ -8,7 +8,7 @@ const Post = require("./models/Post");
 const StarRating = require("./models/StarRating");
 const User_Movie = require("./models/UserMovie");
 const User_Book = require("./models/UserBook");
-const User_TV = require("./models/UserTv");
+const User_Tv = require("./models/UserTv");
 
 //associations could go here!
 //One-to-many
@@ -34,7 +34,7 @@ Tv.hasMany(Post);
 Post.belongsTo(Tv);
 
 //Many-to-many Relationships
-User.belongsToMany(User, { through: "connection", as: "friends" });
+User.belongsToMany(User, { through: "connection", as: "friend" });
 
 User.belongsToMany(Movie, { through: User_Movie });
 Movie.belongsToMany(User, { through: User_Movie });
@@ -42,8 +42,8 @@ Movie.belongsToMany(User, { through: User_Movie });
 User.belongsToMany(Book, { through: User_Book });
 Book.belongsToMany(User, { through: User_Book });
 
-User.belongsToMany(Tv, { through: User_TV });
-Tv.belongsToMany(User, { through: User_TV });
+User.belongsToMany(Tv, { through: User_Tv });
+Tv.belongsToMany(User, { through: User_Tv });
 
 module.exports = {
   db,
@@ -56,6 +56,6 @@ module.exports = {
     StarRating,
     User_Movie,
     User_Book,
-    User_TV,
+    User_Tv,
   },
 };

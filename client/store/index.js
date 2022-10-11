@@ -6,17 +6,27 @@ import auth from './auth'
 import tvReducer from './tvshows';
 import movieReducer from './movies';
 import bookReducer from './books';
+import user from "../redux/user";
+import book from "../redux/book";
+import movie from "../redux/movie";
+import tv from "../redux/tv";
 
 const reducer = combineReducers({ 
   auth,
   tvs: tvReducer,
   movies: movieReducer,
   books: bookReducer,
+  user,
+  book,
+  movie, 
+  tv,
 });
-const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
-)
-const store = createStore(reducer, middleware)
 
-export default store
-export * from './auth'
+
+const middleware = composeWithDevTools(
+  applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+);
+const store = createStore(reducer, middleware);
+
+export default store;
+export * from "./auth";
