@@ -187,7 +187,13 @@ async function seed() {
     }
   }
 
-  // See magic methods : console.log("console of user magic", Object.keys(users[0].__proto__));
+  for (let i = 0; i < users.length; i++) {
+    for (let j = 0; j < 10; j++) {
+      await users[i].addBooks(books[Math.floor(Math.random() * books.length)]);
+    }
+  }
+
+  // console.log("console of user magic", Object.keys(users[0].__proto__));
   console.log(`seeded successfully`);
 }
 
