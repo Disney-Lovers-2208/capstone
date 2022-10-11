@@ -30,7 +30,7 @@ export const SearchFor = () => {
 
     useEffect(() => {
         dispatch(fetchTvShows());
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         const filteredTitles = tvshows.filter(tvshow => {
