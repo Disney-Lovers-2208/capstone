@@ -16,11 +16,11 @@ export const fetchBooks = () => async (dispatch) => {
 };
 
 // reducer
-export default function bookReducer(books = [], action) {
+export default function bookReducer(state = [], action) {
     switch (action.type) {
         case GET_BOOKS:
             return action.books;
         default:
-            return books;
+            return state;
     }
 }

@@ -1,14 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Container, Col, Row, Nav, Button } from 'react-bootstrap';
 import { GoSearch } from 'react-icons/go';
 import SearchTabs from './SearchTabs';
-
+import { fetchTvShows } from '../store/tvshows';
+import { fetchMovies } from '../store/movies';
 
 
 export const SearchBar = () => {
     const [title, setTitle] = useState('');
 
+    const dispatch = useDispatch();
+
+    // noticing an issue where it can only search once and can't search again
+    useEffect(() => {
+        dispatch(fetchTvShows());
+    }, [dispatch]);
+
+    // useEffect(() => {
+    //     dispatch(fetchMovies());
+    // }, [dispatch]);
 
     return (
         <Container id='search-bar' className="flex-row">
@@ -20,7 +32,7 @@ export const SearchBar = () => {
                         onChange={(evt) => setTitle(evt.target.value)} 
                         value={title} 
                     />
-                    <Button variant='light' as={Link} to={`/searchfor/tvshows/${title}`}><GoSearch /></Button>
+                    <Button variant='light' as={Link} to={`/searchfor/${title}`}><GoSearch /></Button>
                 </Col>
                 <SearchTabs />
             </Row>

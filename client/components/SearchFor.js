@@ -1,36 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import TvCards from './TvCards';
-import { Button } from 'react-bootstrap';
+import TvCard from './TvCard';
+import { Button, Row, Col, Card } from 'react-bootstrap';
 import MovieCards from './MovieCards';
 import BookCards from './BookCards';
-import { fetchTvShows } from '../store/tvshows';
 
 
 export const SearchFor = () => {
     const { title } = useParams();
     console.log("title:", title);
     const tvshows = useSelector((state) => state.tvs);
-    const dispatch = useDispatch();
+    // const movies = useSelector((state) => state.movies);
     console.log("shows:", tvshows);
-    const [tvList, setTvList] = useState();
-
-
-    // const updateInput = (input) => {
-    //     const filteredTitles = tvshows.filter(tvshow => {
-    //         console.log('tvshow:', tvshow.title);
-    //         // return tvshow.title.toLowerCase().includes(input.toLowerCase());
-    //         return tvshow.title === "Under the Down";
-    //     });
-    //     // setInput(input);
-    //     setTvList(filteredTitles);
-    //     console.log('filtered:', filteredTitles);
-    // }
-
-    useEffect(() => {
-        dispatch(fetchTvShows());
-    }, [dispatch]);
+    const [tvList, setTvList] = useState([]);
+    const [movieList, setMovieList] = useState([]);
 
     useEffect(() => {
         const filteredTitles = tvshows.filter(tvshow => {
@@ -38,18 +22,33 @@ export const SearchFor = () => {
             return tvshow.title.toLowerCase().includes(title.toLowerCase())
         });
         setTvList(filteredTitles);
-        console.log('filtered:', filteredTitles);
-    }, [])
+        console.log('filtered tvs:', filteredTitles);
+    }, []);
+
+    // useEffect(() => {
+    //     const filteredTitles = movies.filter(movie => {
+    //         console.log('movie:', movie.title)
+    //         return movie.title.toLowerCase().includes(title.toLowerCase());
+    //     });
+    //     setMovieList(filteredTitles);
+    //     console.log('filtered movies:', filteredTitles);
+    // }, []);
 
     return (
         <div className="search-results">
-            {/* <SearchTabs /> */}
-            {/* <SearchBar input={input} onChange={updateInput} /> */}
-            
-            <br />
-            {/* {<BookCards />} */}
-            {<TvCards tvlist={tvList} />} 
+            <p>Don't see your fave?</p>
+            <Button variant='info' as={Link} to={'/add'} style={{ align: 'center' }}>Add Your Fave!</Button>
 
+            <br />
+
+            {/* {<MovieCards movieList={movieList} />} */}
+            <Row xs={3} md={3}>
+                {tvList.length ? tvList.map((tvshow) => (
+                    <Col key={tvshow.id}>
+                        <TvCard tvShow={tvshow} />
+                    </Col>
+                )) : null}
+            </Row>
         </div>
     )
 };

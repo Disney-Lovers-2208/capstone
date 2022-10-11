@@ -9,7 +9,7 @@ export const MovieCards = (props) => {
 
     useEffect(() => {
         props.getMovies();
-    });
+    }, []);
 
     return (
         <Container>

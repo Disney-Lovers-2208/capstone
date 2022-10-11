@@ -7,7 +7,7 @@ import Home from "./components/Home";
 import { me, logout } from "./store";
 import NavigationBar from "./components/NavigationBar";
 import SearchFor from "./components/SearchFor";
-import TvCards from "./components/TvCards";
+import TvShows from "./components/TvShows";
 import MovieCards from "./components/MovieCards";
 import BookCards from "./components/BookCards";
 
@@ -40,11 +40,12 @@ const App = () => {
           {/* <Route path="/all" /> */}
           <Route path='/books' element={<BookCards />}/>
           <Route path='/movies' element={<MovieCards />}/>
-          <Route path='/tvshows' element={<TvCards />}/>
+          <Route path='/tvshows' element={<TvShows />} />
+          <Route path='/tvshows/:id' />
           <Route path='/users' />
-          <Route path='/searchfor/tvshows/:title' element={<SearchFor />} />
-          <Route path='/searchfor/books/:title' element={<SearchFor />} />
-          <Route path='/searchfor/movies/:title' element={<SearchFor />} />
+          <Route path='/searchfor/:title' element={<SearchFor />} />
+          {/* <Route path='/searchfor/books/:title' element={<SearchFor />} />
+          <Route path='/searchfor/movies/:title' element={<SearchFor />} /> */}
           <Route path='/add' />
         </Routes>
       ) : (
