@@ -16,11 +16,11 @@ export const fetchTvShows = () => async (dispatch) => {
 };
 
 // reducer
-export default function tvReducer(tvs = [], action) {
+export default function tvReducer(state = [], action) {
     switch (action.type) {
         case GET_TV_SHOWS:
             return action.tvs;
         default:
-            return tvs;
+            return state;
     }
 }

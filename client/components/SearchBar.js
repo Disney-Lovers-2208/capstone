@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
-import { Container, Col, Row, Nav } from 'react-bootstrap';
-// import { GoSearch } from 'react-icons/go';
-// import SearchTabs from './SearchTabs';
+import { Link } from 'react-router-dom';
+import { Container, Col, Row, Nav, Button } from 'react-bootstrap';
+import { GoSearch } from 'react-icons/go';
+import SearchTabs from './SearchTabs';
 
 
-export const SearchBar = ({keyword, setKeyword}) => {
+
+export const SearchBar = () => {
+    const [title, setTitle] = useState('');
 
 
     return (
-        <Container className="flex-row">
+        <Container id='search-bar' className="flex-row">
             <Row>
                 <Col>
-                    <input type='search' placeholder='Search for...' onChange={(evt) => setKeyword(evt.target.value)} value={keyword} />
-                    <Nav.Link as={Link} to='/searchfor'>View All</Nav.Link>
+                    <input 
+                        type='search' 
+                        placeholder='Search for...' 
+                        onChange={(evt) => setTitle(evt.target.value)} 
+                        value={title} 
+                    />
+                    <Button variant='light' as={Link} to={`/searchfor/tvshows/${title}`}><GoSearch /></Button>
                 </Col>
+                <SearchTabs />
             </Row>
         </Container>
     )

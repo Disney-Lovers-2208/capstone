@@ -1,46 +1,57 @@
 import React, { useState, useEffect } from 'react';
-import SearchTabs from './SearchTabs';
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import TvCards from './TvCards';
-import Button from 'react-bootstrap/Button';
-import SearchBar from './SearchBar';
+import { Button } from 'react-bootstrap';
+import MovieCards from './MovieCards';
+import BookCards from './BookCards';
+import { fetchTvShows } from '../store/tvshows';
 
-export const SearchFor = (props) => {
-    const [input, setInput] = useState('');
+
+export const SearchFor = () => {
+    const { title } = useParams();
+    console.log("title:", title);
+    const tvshows = useSelector((state) => state.tvs);
+    const dispatch = useDispatch();
+    console.log("shows:", tvshows);
     const [tvList, setTvList] = useState();
 
 
-    const updateInput = (input) => {
-        const filteredTvs = tvs.filter(tv => {
-            return tv.title.toLowerCase().includes(input.toLowerVase());
-        });
-        setInput(input);
-        setTvList(filteredTvs);
-    }
+    // const updateInput = (input) => {
+    //     const filteredTitles = tvshows.filter(tvshow => {
+    //         console.log('tvshow:', tvshow.title);
+    //         // return tvshow.title.toLowerCase().includes(input.toLowerCase());
+    //         return tvshow.title === "Under the Down";
+    //     });
+    //     // setInput(input);
+    //     setTvList(filteredTitles);
+    //     console.log('filtered:', filteredTitles);
+    // }
 
+    useEffect(() => {
+        dispatch(fetchTvShows());
+    }, []);
+
+    useEffect(() => {
+        const filteredTitles = tvshows.filter(tvshow => {
+            console.log('tvshow:', tvshow.title);
+            return tvshow.title.toLowerCase().includes(title.toLowerCase())
+        });
+        setTvList(filteredTitles);
+        console.log('filtered:', filteredTitles);
+    }, [])
 
     return (
-        <div>
+        <div className="search-results">
             {/* <SearchTabs /> */}
-            {/* <SearchBar input={input} onChange={updateInput}/> */}
-            <p>Don't see your fave?</p>
-            <Button bg='info' as={Link} to={'/add'}>Add Your Fave!</Button>
+            {/* <SearchBar input={input} onChange={updateInput} /> */}
             
             <br />
-
-            {/* <h2>Movies</h2> */}
-
-            {<TvCards tvlist={tvList} />}
-
-            {/* <h2>TV Shows
-                {<TvCards tvlist={tvList} />}
-            </h2> */}
-
-            {/* <h2>Books</h2> */}
+            {/* {<BookCards />} */}
+            {<TvCards tvlist={tvList} />} 
 
         </div>
     )
 };
 
-// need to use mapDispatch here as well as mapState?
 export default SearchFor;

@@ -8,7 +8,6 @@ import { MdOutlineRecommend } from 'react-icons/md';
 import { GrLogout } from 'react-icons/gr';
 
 
-
 const NavigationBar = ({ handleClick, isLoggedIn }) => (
   <div>
     {/* <h1>FS-App-Template</h1> */}

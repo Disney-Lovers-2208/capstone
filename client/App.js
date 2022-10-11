@@ -7,6 +7,9 @@ import Home from "./components/Home";
 import { me, logout } from "./store";
 import NavigationBar from "./components/NavigationBar";
 import SearchFor from "./components/SearchFor";
+import TvCards from "./components/TvCards";
+import MovieCards from "./components/MovieCards";
+import BookCards from "./components/BookCards";
 
 
 const App = () => {
@@ -34,11 +37,15 @@ const App = () => {
           <Route path="*" element={<PageNotFound />} />
           <Route path="/profile" />
           <Route path="/recommendations" />
-          <Route path='/books' />
-          <Route path='/movies' />
-          <Route path='/tvshows' />
+          {/* <Route path="/all" /> */}
+          <Route path='/books' element={<BookCards />}/>
+          <Route path='/movies' element={<MovieCards />}/>
+          <Route path='/tvshows' element={<TvCards />}/>
           <Route path='/users' />
-          <Route path='/searchfor' element={<SearchFor />} />
+          <Route path='/searchfor/tvshows/:title' element={<SearchFor />} />
+          <Route path='/searchfor/books/:title' element={<SearchFor />} />
+          <Route path='/searchfor/movies/:title' element={<SearchFor />} />
+          <Route path='/add' />
         </Routes>
       ) : (
         <Routes>
