@@ -31,16 +31,16 @@ export const MovieCards = (props) => {
 
 };
 
-const mapState = (state) => {
-    return {
-        movies: state.movies
-    }
-};
+// const mapState = (state) => {
+//     return {
+//         movies: state.movies
+//     }
+// };
 
-const mapDispatch = (dispatch) => {
-    return {
-        getMovies: () => dispatch(fetchMovies()),
-    }
-}
+// const mapDispatch = (dispatch) => {
+//     return {
+//         getMovies: () => dispatch(fetchMovies()),
+//     }
+// }
 
-export default connect (mapState, mapDispatch)(MovieCards);
+export default MovieCards;

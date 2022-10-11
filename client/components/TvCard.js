@@ -10,7 +10,7 @@ export const TvCard = (props) => {
     // const { id } = useParams(); // for singleCard view
 
     return (
-        <Link to={`/tvshows/${id}`}>
+        <Link to={`/tvshows/${id}`} style={{ color: 'inherit' }}>
             <Card border='info' style={{ width: '15rem', backgroundColor: '#FF5454' }}>
                 <Card.Img variant='top' src={imageUrl} />
                 <Card.Body>
