@@ -37,7 +37,7 @@ Tv.hasMany(Post);
 Post.belongsTo(Tv);
 
 //Many-to-many Relationships
-User.belongsToMany(User, { through: Connection, as: "friends" });
+User.belongsToMany(User, { through: Connection, as: "friend" });
 
 User.belongsToMany(Movie, { through: User_Movie });
 Movie.belongsToMany(User, { through: User_Movie });
