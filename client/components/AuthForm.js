@@ -29,7 +29,15 @@ const AuthForm = (props) => {
     const firstName = evt.target.firstname.value;
     const lastName = evt.target.lastname.value;
     dispatch(
-      authenticate(username, password, formName, email, firstName, lastName)
+      authenticate(
+        username,
+        password,
+        formName,
+        email,
+        firstName,
+        lastName,
+        navigate
+      )
     );
   };
 
@@ -76,7 +84,6 @@ const AuthForm = (props) => {
                 <br />
                 <div>
                   <button type="submit">Sign Up</button>
-                  {/* <button type="submit">Register</button> */}
                 </div>
                 {error && error.response && <div> {error.response.data} </div>}
               </form>
@@ -113,7 +120,6 @@ const AuthForm = (props) => {
                 <br />
                 <div>
                   <button type="submit">Login</button>
-                  {/* <button type="submit">Register</button> */}
                 </div>
                 {error && error.response && <div> {error.response.data} </div>}
               </form>

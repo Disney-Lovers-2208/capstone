@@ -9,7 +9,7 @@ const {
 
 const {
   db,
-  models: { User, Movie, Book, Tv, Post },
+  models: { User, Movie, Book, Tv, Post, StarRating, Connection },
 } = require("../server/db");
 
 const axios = require("axios");
@@ -118,7 +118,7 @@ async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
 
-  // creating tv shows
+  // creating tv shows and movies
   await mapTvShows();
   await mapMovies();
 
