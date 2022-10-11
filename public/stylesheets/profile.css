@@ -1,25 +1,67 @@
-/* .banner .upper{
-    height: 100px;
-   } */
-
-.banner  .upper img{
+.banner  {
     width: 100%;
-
-   }
-
-/* .banner .user{
+    height:400px;
     position: relative;
-   } */
+    background-image: url("https://i.imgur.com/Qtrsrk5.jpg");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat;
+    background-size: cover;
 
-.banner .profileDetails img{
-    /* margin-top: -50rem; */
-    height: 100px;
-    width: 100px;
+}
+  
+.banner .banner-info {
+  width: 100%;
+  height: 200px;
+  background-color: aliceblue;
+  position: absolute;
+  bottom: 0px;
+}
+
+.banner .name {
+  
+    position: absolute;
+    bottom: 15%;
+    left: 2%;
+  }
+  
+.banner .buttons{
+    right: 2%;
+    position: absolute;
+    width: 10%;
+}
+
+.banner .buttons button{  
+    margin: 2%;
+
+}
+
+
+
+.banner img {
+    width: 200px;
+    height: 200px;
     border-radius: 100%;
-    border: none;
-   }
+    z-index: 1;
+    position: absolute;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+    left: 75px;
+  }
+  
 
-
+.banner .overlay {
+    position:sticky;
+    top: 80px;
+    right: 15px;
+    font-weight: bold;
+    text-align: right;
+    font-size: 30px;
+}
 
 .profile .featured { 
     margin-top: 200px;

@@ -13,20 +13,16 @@ export class Profile extends React.Component {
     return (
       <div className="profile">
         <Banner user={user} />
-        <h1>In profile home</h1>
-        <div>
-          <h2>Favorite Tv Shows:</h2>
-          <div className="favorites">
-            {tvs
-              ? tvs.map((tv) => {
-                  return (
-                    <div className="product-card" key={tv.id}>
-                      <img src={tv.imageUrl} alt="image" />
-                    </div>
-                  );
-                })
-              : null}
-          </div>
+        <div className="favorites">
+          {tvs
+            ? tvs.map((tv) => {
+                return (
+                  <div className="product-card" key={tv.id}>
+                    <img src={tv.imageUrl} alt="image" />
+                  </div>
+                );
+              })
+            : null}
         </div>
       </div>
     );

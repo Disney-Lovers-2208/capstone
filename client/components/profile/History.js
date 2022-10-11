@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Banner = (props) => {
+const History = (props) => {
   const { user } = props;
 
   return (
@@ -28,4 +28,4 @@ const Banner = (props) => {
   );
 };
 
-export default Banner;
+export default History;
