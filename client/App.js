@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import AuthForm from "./components/AuthForm";
+import Profile from "./components/profile/Profile";
 import PageNotFound from "./components/PageNotFound";
 import Home from "./components/Home";
 import { me, logout } from "./store";
 import NavigationBar from "./components/NavigationBar";
-
+import Friends from "./components/profile/Friends";
+import History from "./components/profile/History";
 
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);
@@ -31,13 +33,15 @@ const App = () => {
           <Route path="/signup" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<PageNotFound />} />
-          <Route path="/profile" />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/friends" element={<Friends />} />
+          <Route path="/profile/history" element={<History />} />
           <Route path="/recommendations" />
-          <Route path='/books' />
-          <Route path='/movies' />
-          <Route path='/tvshows' />
-          <Route path='/users' />
-          <Route path='/searchfor' />
+          <Route path="/books" />
+          <Route path="/movies" />
+          <Route path="/tvshows" />
+          <Route path="/users" />
+          <Route path="/searchfor" />
         </Routes>
       ) : (
         <Routes>

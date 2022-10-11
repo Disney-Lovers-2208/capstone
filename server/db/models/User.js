@@ -8,12 +8,10 @@ const SALT_ROUNDS = 5;
 const User = db.define("user", {
   firstName: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false,
   },
   lastName: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false,
   },
   username: {
@@ -26,7 +24,6 @@ const User = db.define("user", {
   },
   password: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -52,7 +49,7 @@ const User = db.define("user", {
   bannerImage: {
     type: Sequelize.STRING,
     defaultValue:
-      "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/blogs/32518/images/YlQXxRJuQnKCBe7TyH4X_Real_Estate_Group_LinkedIn_Banner.png",
+      "https://images.squarespace-cdn.com/content/v1/5189811be4b01dba4e695740/1506188838413-JFFCUPAUQPEZ3ID4OO8C/Autumn-banner.png",
   },
 });
 
@@ -85,8 +82,16 @@ User.authenticate = async function ({ username, password }) {
 
 User.findByToken = async function (token) {
   try {
+    console.log("dbmodels ", db.models);
     const { id } = await jwt.verify(token, process.env.JWT);
-    const user = User.findByPk(id);
+    const user = User.findByPk(id, {
+      include: [
+        db.models.movie,
+        db.models.tv,
+        db.models.book,
+        { model: db.models.user, as: "friend" },
+      ],
+    });
     if (!user) {
       throw "nooo";
     }

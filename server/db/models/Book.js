@@ -18,7 +18,8 @@ const Book = db.define("book", {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: "",
+    defaultValue:
+      "https://thebookcoverdesigner.com/wp-content/uploads/2019/05/Book-Cover-11aa.jpg",
   },
 });
 

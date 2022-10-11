@@ -6,7 +6,8 @@ import { Container, Row, Col } from "react-bootstrap";
  */
 export const Home = (props) => {
   const username = useSelector((state) => state.auth.username);
-
+  let auth = useSelector((state) => state.auth);
+  console.log(auth);
   return (
     <div>
       <Container>
