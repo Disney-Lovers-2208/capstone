@@ -9,6 +9,8 @@ router.use("/posts", require("./posts"));
 router.use("/userBooks", require("./userBooks"));
 router.use("/userMovies", require("./userMovies"));
 router.use("/userTvs", require("./userTvs"));
+router.use("/starRatings", require("./starRatings"));
+router.use("/friends", require("./friends"));
 
 router.use((req, res, next) => {
   const error = new Error("Not Found");

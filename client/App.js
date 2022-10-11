@@ -29,8 +29,6 @@ const App = () => {
       {isLoggedIn ? (
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/login" element={<Home />} />
-          <Route path="/signup" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/profile" element={<Profile />} />
