@@ -179,24 +179,6 @@ async function seed() {
     }),
   ]);
 
-  const starRatings = await Promise.all([
-    StarRating.create({
-      rating: 1,
-      userId: 1,
-      tvId: 1,
-    }),
-    StarRating.create({
-      rating: 3,
-      userId: 1,
-      tvId: 1,
-    }),
-    StarRating.create({
-      rating: 5,
-      userId: 1,
-      tvId: 1,
-    }),
-  ]);
-
   for (let i = 0; i < users.length; i++) {
     for (let j = 0; j < users.length; j++) {
       if (i !== j) {
@@ -205,6 +187,13 @@ async function seed() {
     }
   }
 
+  for (let i = 0; i < users.length; i++) {
+    for (let j = 0; j < 10; j++) {
+      await users[i].addBooks(books[Math.floor(Math.random() * books.length)]);
+    }
+  }
+
+  // console.log("console of user magic", Object.keys(users[0].__proto__));
   console.log(`seeded successfully`);
 }
 
