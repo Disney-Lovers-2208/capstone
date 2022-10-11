@@ -7,12 +7,15 @@ const _getFriendsStars = (starRatings) => ({
   starRatings,
 });
 
-export const getFriendsStars = () => {
-  return async (dispatch) => {
-    try {
-      const { data: starRatings } = await axios.get("/api/starRatings");
-    } catch (error) {
-      console.log(error);
+export const getFriendsStars = (userId) => async (dispatch) => {
+  try {
+    const { data: starRatings } = await axios.get("/api/starRatings");
+    const { data: friends } = await axios.get(`/api/friends/${userId}`);
+    friendIdArray = [];
+    for (let i = 0; i < friends.length; i++) {
+      friendIdArray.push(friends[i][friendId]);
     }
-  };
+  } catch (error) {
+    console.log(error);
+  }
 };
