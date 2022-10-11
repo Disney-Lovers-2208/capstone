@@ -5,8 +5,10 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
 import user from "../redux/user";
 import book from "../redux/book";
+import movie from "../redux/movie";
+import tv from "../redux/tv";
 
-const reducer = combineReducers({ auth, user, book });
+const reducer = combineReducers({ auth, user, book, movie, tv });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );

@@ -1,17 +1,17 @@
 const router = require("express").Router();
 const {
-  models: { User_Book },
+  models: { User_Tv },
 } = require("../db");
 
-router.get("/favoriteBook/:userId", async (req, res, next) => {
+router.get("/favoriteTv/:userId", async (req, res, next) => {
   try {
-    const books = await User_Book.findOne({
+    const tvs = await User_Tv.findOne({
       where: {
         userId: req.params.userId,
         favorite: true,
       },
     });
-    res.json(books);
+    res.json(tvs);
   } catch (err) {
     next(err);
   }
