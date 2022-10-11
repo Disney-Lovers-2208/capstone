@@ -179,6 +179,15 @@ async function seed() {
     }),
   ]);
 
+  for (let i = 0; i < users.length; i++) {
+    for (let j = 0; j < users.length; j++) {
+      if (i !== j) {
+        await users[i].addFriend(users[j]);
+      }
+    }
+  }
+
+  // See magic methods : console.log("console of user magic", Object.keys(users[0].__proto__));
   console.log(`seeded successfully`);
 }
 
