@@ -9,7 +9,7 @@ const {
 
 const {
   db,
-  models: { User, Movie, Book, Tv, Post, StarRating },
+  models: { User, Movie, Book, Tv, Post, StarRating, Connection },
 } = require("../server/db");
 
 const axios = require("axios");
@@ -196,6 +196,14 @@ async function seed() {
       tvId: 1,
     }),
   ]);
+
+  for (let i = 0; i < users.length; i++) {
+    for (let j = 0; j < users.length; j++) {
+      if (i !== j) {
+        await users[i].addFriend(users[j]);
+      }
+    }
+  }
 
   console.log(`seeded successfully`);
 }

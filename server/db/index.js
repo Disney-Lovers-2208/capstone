@@ -9,6 +9,7 @@ const StarRating = require("./models/StarRating");
 const User_Movie = require("./models/UserMovie");
 const User_Book = require("./models/UserBook");
 const User_TV = require("./models/UserTv");
+const Connection = require("./models/Connection");
 
 //One-to-many
 User.hasMany(StarRating);
@@ -36,7 +37,7 @@ Tv.hasMany(Post);
 Post.belongsTo(Tv);
 
 //Many-to-many Relationships
-User.belongsToMany(User, { through: "connection", as: "friends" });
+User.belongsToMany(User, { through: Connection, as: "friends" });
 
 User.belongsToMany(Movie, { through: User_Movie });
 Movie.belongsToMany(User, { through: User_Movie });
@@ -59,5 +60,6 @@ module.exports = {
     User_Movie,
     User_Book,
     User_TV,
+    Connection,
   },
 };

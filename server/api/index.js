@@ -7,6 +7,7 @@ router.use("/tvs", require("./tvs"));
 router.use("/movies", require("./movies"));
 router.use("/posts", require("./posts"));
 router.use("/starRatings", require("./starRatings"));
+router.use("/friends", require("./friends"));
 
 router.use((req, res, next) => {
   const error = new Error("Not Found");
