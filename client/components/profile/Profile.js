@@ -44,19 +44,19 @@ export class Profile extends React.Component {
         </Row>
         <Row>
           <Col sm={4} className="featured">
-            <h2>favorite Book</h2>
+            <h2>Featured Book</h2>
             {favoriteBook ? (
               <img src={favoriteBook.imageUrl} alt="image" />
             ) : null}
           </Col>
           <Col sm={4} className="featured">
-            <h2>favorite Movie</h2>
+            <h2>Featured Movie</h2>
             {favoriteMovie ? (
               <img src={favoriteMovie.imageUrl} alt="image" />
             ) : null}
           </Col>
           <Col sm={4} className="featured">
-            <h2>favorite Show</h2>
+            <h2>Featured Show</h2>
             {favoriteTv ? <img src={favoriteTv.imageUrl} alt="image" /> : null}
           </Col>
         </Row>
