@@ -59,7 +59,7 @@ module.exports = {
     StarRating,
     User_Movie,
     User_Book,
-    User_TV,
+    User_Tv,
     Connection,
   },
 };
