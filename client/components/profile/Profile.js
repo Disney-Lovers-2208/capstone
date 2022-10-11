@@ -6,6 +6,7 @@ import Banner from "./Banner";
 import { fetchFavoriteBook } from "../../redux/book";
 import { fetchFavoriteMovie } from "../../redux/movie";
 import { fetchFavoriteTv } from "../../redux/tv";
+import SimpleSlider from "./SimpleSlider";
 
 export class Profile extends React.Component {
   componentDidMount() {
@@ -59,43 +60,19 @@ export class Profile extends React.Component {
             {favoriteTv ? <img src={favoriteTv.imageUrl} alt="image" /> : null}
           </Col>
         </Row>
-        <Row>
-          <div
-            id="carouselExampleControls"
-            class="carousel slide"
-            data-bs-ride="carousel"
-          >
-            <div class="carousel-inner">
-              <div class="carousel-item active">1</div>
-              <div class="carousel-item">2</div>
-              <div class="carousel-item">3</div>
-            </div>
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleControls"
-              data-bs-slide="prev"
-            >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleControls"
-              data-bs-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
+        <Row className="favorite">
+          <h2>Favorite Books</h2>
+          <SimpleSlider books={books} />
         </Row>
+        <Row className="favorite">
+          <h2>Favorite Shows</h2>
+          <SimpleSlider tvs={tvs} />
+        </Row>
+        <Row className="favorite">
+          <h2>Favorite Movies</h2>
+          <SimpleSlider movies={movies} />
+        </Row>
+        <br />
       </Container>
     );
   }
