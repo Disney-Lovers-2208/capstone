@@ -1,31 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import Banner from "./Banner";
 
-const History = (props) => {
-  const { user } = props;
+export class History extends React.Component {
+  render() {
+    const user = this.props.auth || {};
+    let friends = user?.friend || [];
 
-  return (
-    <div className="banner">
-      <div className="overlay">
-        Multi-line <br />
-        text
+    return (
+      <div className="history">
+        <Banner user={user} />
+        <div className="friends-list">History</div>
       </div>
-      <img src={user.image} alt="image" />
-      <div className="banner-info">
-        <h1 className="name">
-          {user.firstName} {user.lastName}
-        </h1>
-        <div className="bio"> {user.bio}</div>
-        <div className="buttons">
-          <button class="btn btn-sm btn-primary  ml-2">History</button>
-          <Link to="/profile/friends">
-            <button class="btn btn-sm btn-primary ">Friends</button>
-          </Link>
-          <button class="btn btn-sm btn-outline-primary  ml-2">Edit</button>
-        </div>
-      </div>
-    </div>
-  );
+    );
+  }
+}
+
+const mapState = (state) => {
+  return {
+    auth: state.auth,
+  };
 };
 
-export default History;
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+export default connect(mapState, mapDispatchToProps)(History);

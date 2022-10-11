@@ -14,7 +14,7 @@ export class Profile extends React.Component {
       <div className="profile">
         <Banner user={user} />
         <div className="favorites">
-          {tvs
+          {/* {tvs
             ? tvs.map((tv) => {
                 return (
                   <div className="product-card" key={tv.id}>
@@ -22,7 +22,7 @@ export class Profile extends React.Component {
                   </div>
                 );
               })
-            : null}
+            : null} */}
         </div>
       </div>
     );

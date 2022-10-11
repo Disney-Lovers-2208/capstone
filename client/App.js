@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import { me, logout } from "./store";
 import NavigationBar from "./components/NavigationBar";
 import Friends from "./components/profile/Friends";
+import History from "./components/profile/History";
 
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="*" element={<PageNotFound />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/friends" element={<Friends />} />
+          <Route path="/profile/history" element={<History />} />
           <Route path="/recommendations" />
           <Route path="/books" />
           <Route path="/movies" />

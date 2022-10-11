@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchUser } from "../../redux/user";
+import { Container, Row, Col } from "react-bootstrap";
 import Banner from "./Banner";
 
 export class Friends extends React.Component {
@@ -8,24 +8,29 @@ export class Friends extends React.Component {
     const user = this.props.auth || {};
     let friends = user?.friend || [];
 
-    console.log("friends", friends);
-
     return (
-      <div className="friends">
-        <Banner user={user} />
-        <div className="friends-list">
-          {friends
-            ? friends.map((friend) => {
-                return (
-                  <div className="friend-card" key={friend.id}>
-                    <img src={friend.image} alt="image" />
-                    {friend.firstName}
-                  </div>
-                );
-              })
-            : null}
-        </div>
-      </div>
+      <Container fluid className="friends">
+        <Row>
+          <Col>
+            <Banner user={user} />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col className="friends-list">
+            {friends
+              ? friends.map((friend) => {
+                  return (
+                    <div className="friend-card" key={friend.id}>
+                      <img src={friend.image} alt="image" />
+                      {friend.firstName}
+                    </div>
+                  );
+                })
+              : null}
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
