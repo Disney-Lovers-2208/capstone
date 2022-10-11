@@ -4,7 +4,7 @@ import { Col, Row } from 'react-bootstrap';
 import TvCard from './TvCard';
 
 
-export const TvShows = () => {
+export const AllTvShows = () => {
     const tvshows = useSelector((state) => state.tvs); 
 
     return (
@@ -21,4 +21,4 @@ export const TvShows = () => {
 
 };
 
-export default TvShows;
+export default AllTvShows;
