@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import Banner from "./Banner";
-import { fetchFavoriteBook } from "../../redux/book";
-import { fetchFavoriteMovie } from "../../redux/movie";
-import { fetchFavoriteTv } from "../../redux/tv";
+import { fetchFavoriteBook } from "../../store/book";
+import { fetchFavoriteMovie } from "../../store/movie";
+import { fetchFavoriteTv } from "../../store/tv";
 import SimpleSlider from "./SimpleSlider";
 
 export class Profile extends React.Component {
