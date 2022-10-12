@@ -76,24 +76,3 @@ const Banner = (props) => {
 };
 
 export default Banner;
-
-{
-  /* <Container fluid className="banner">
-<Row>
-  <img src={user.image} alt="image" />
-</Row>
-<Row className="banner-info">
-  <h1 className="name">
-    {user.firstName} {user.lastName}
-  </h1>
-  <div className="bio"> {user.bio}</div>
-  <div className="buttons">
-    <button class="btn btn-sm btn-primary  ml-2">History</button>
-    <Link to="/profile/friends">
-      <button class="btn btn-sm btn-primary ">Friends</button>
-    </Link>
-    <button class="btn btn-sm btn-outline-primary  ml-2">Edit</button>
-  </div>
-</Row>
-</Container> */
-}
