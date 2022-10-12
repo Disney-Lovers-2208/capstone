@@ -1,15 +1,20 @@
 "use strict";
-const {
-  randMovie,
-  randBook,
-  randPhrase,
-  randQuote,
-  randUser,
-} = require("@ngneat/falso");
+const { randPhrase, randQuote, randUser } = require("@ngneat/falso");
 
 const {
   db,
-  models: { User, Movie, Book, Tv, Post, StarRating, Connection },
+  models: {
+    User,
+    Movie,
+    Book,
+    Tv,
+    Post,
+    StarRating,
+    Connection,
+    User_Movie,
+    User_Book,
+    User_Tv,
+  },
 } = require("../server/db");
 
 const axios = require("axios");
@@ -90,6 +95,7 @@ async function mapMovies() {
         title: moviesArr[i]["title"],
         description: moviesArr[i]["overview"],
         genre: moviesArr[i]["genre_ids"],
+        imageUrl: `https://image.tmdb.org/t/p/original/${moviesArr[i]["poster_path"]}`,
       }),
     ]);
   }
@@ -131,7 +137,6 @@ async function mapBooks() {
   for (let i = 0; i < listList.length; i++) {
     let bookList = listList[i].books;
     for (let i = 0; i < bookList.length; i++) {
-      console.log("Book book book list", bookList[i]);
       await Promise.all([
         Book.create({
           title: bookList[i]["title"].toLowerCase(),
@@ -198,24 +203,25 @@ async function seed() {
     }),
   ]);
 
-  // const posts = await Promise.all([
-  //   Post.create({
-  //     userId: 1,
-  //     content: randQuote(),
-  //     movieId: 3,
-  //   }),
-  //   Post.create({
-  //     userId: 2,
-  //     content: randQuote(),
-  //     bookId: 5,
-  //   }),
-  //   Post.create({
-  //     userId: 3,
-  //     content: randQuote(),
-  //     tvId: 17,
-  //   }),
-  // ]);
+  const posts = await Promise.all([
+    Post.create({
+      userId: 1,
+      content: randQuote(),
+      movieId: 3,
+    }),
+    Post.create({
+      userId: 2,
+      content: randQuote(),
+      bookId: 5,
+    }),
+    Post.create({
+      userId: 3,
+      content: randQuote(),
+      tvId: 17,
+    }),
+  ]);
 
+  //make friend connections
   for (let i = 0; i < users.length; i++) {
     for (let j = 0; j < users.length; j++) {
       if (i !== j) {
@@ -224,11 +230,71 @@ async function seed() {
     }
   }
 
-  // for (let i = 0; i < users.length; i++) {
-  //   for (let j = 0; j < 10; j++) {
-  //     await users[i].addBooks(books[Math.floor(Math.random() * books.length)]);
-  //   }
-  // }
+  //user_movie connections
+  for (let i = 1; i <= 3; i++) {
+    let done = [];
+    for (let j = 0; j <= 15; j++) {
+      let movieIdNum = Math.floor(Math.random() * 159) + 1;
+      if (done.includes(movieIdNum)) {
+        while (done.includes(movieIdNum)) {
+          movieIdNum = Math.floor(Math.random() * 159);
+        }
+      } else {
+        done.push(movieIdNum);
+      }
+      await Promise.all([
+        User_Movie.create({
+          userId: i,
+          movieId: movieIdNum,
+          featured: true,
+        }),
+      ]);
+    }
+  }
+
+  //user_books connections
+  for (let i = 1; i <= 3; i++) {
+    let done = [];
+    for (let j = 0; j <= 15; j++) {
+      let bookIdNum = Math.floor(Math.random() * 229) + 1;
+      if (done.includes(bookIdNum)) {
+        do {
+          bookIdNum = Math.floor(Math.random() * 229);
+        } while (done.includes(bookIdNum));
+      } else {
+        done.push(bookIdNum);
+      }
+      await Promise.all([
+        User_Book.create({
+          userId: i,
+          bookId: bookIdNum,
+          featured: true,
+        }),
+      ]);
+    }
+  }
+
+  //user_tv connections
+  for (let i = 1; i <= 3; i++) {
+    let done = [];
+    for (let j = 0; j <= 15; j++) {
+      let tvIdNum = Math.floor(Math.random() * 239) + 1;
+      if (done.includes(tvIdNum)) {
+        while (done.includes(tvIdNum)) {
+          tvIdNum = Math.floor(Math.random() * 239);
+        }
+      } else {
+        done.push(tvIdNum);
+      }
+      await Promise.all([
+        User_Tv.create({
+          userId: i,
+          tvId: tvIdNum,
+          featured: true,
+        }),
+      ]);
+    }
+  }
 
   // console.log("console of user magic", Object.keys(users[0].__proto__));
   console.log(`seeded successfully`);
