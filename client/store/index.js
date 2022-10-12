@@ -6,7 +6,7 @@ import auth from "./auth";
 import tvReducer from "./tvshows";
 import movieReducer from "./movies";
 import bookReducer from "./books";
-import user from "../redux/user";
+import user from "./user";
 
 const reducer = combineReducers({
   auth,

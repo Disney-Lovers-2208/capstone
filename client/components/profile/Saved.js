@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Banner from "./Banner";
 import { Container, Row, Col } from "react-bootstrap";
+import { useEffect, useState } from "react";
 
 export class Saved extends React.Component {
   render() {
@@ -21,6 +22,9 @@ export class Saved extends React.Component {
     const savedTvs = tvs.filter((tv) => tv.user_tv.status === "Saved");
 
     console.log("savedTvs", savedTvs);
+    console.log("savedMovies", savedMovies);
+    console.log("savedBooks", savedBooks);
+
     return (
       <Container fluid className="profile">
         <Row>
@@ -29,7 +33,7 @@ export class Saved extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col>Saved movies will go here</Col>
+          <Col>{savedMovies.map((movie) => {})}</Col>
         </Row>
       </Container>
     );
