@@ -12,15 +12,9 @@ const setAllUsers = (users) => {
 };
 
 // THUNK:
-const fetchAllUsers = () => {
-    return async (dispatch) => {
-        try{
-            const { data } = await axios.get('/api/users');
-            dispatch(setAllUsers(data));
-        } catch (error) {
-            return error;
-        }
-    }
+export const fetchAllUsers = () => async (dispatch) => {
+    const { data } = await axios.get('/api/users');
+    dispatch(setAllUsers(data));
 };
 
 // REDUCER:

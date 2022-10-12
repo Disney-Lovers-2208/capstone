@@ -7,7 +7,7 @@ import SearchTabs from './SearchTabs';
 import { fetchTvShows } from '../store/tvshows';
 import { fetchMovies } from '../store/movies';
 import { fetchBooks } from '../store/books';
-
+import { fetchAllUsers } from '../store/users';
 
 export const SearchBar = () => {
     const [title, setTitle] = useState('');
@@ -25,6 +25,10 @@ export const SearchBar = () => {
 
     useEffect(() => {
         dispatch(fetchBooks());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(fetchAllUsers());
     }, [dispatch]);
 
     return (

@@ -11,6 +11,7 @@ import SearchFor from "./components/SearchFor";
 import AllTvShows from "./components/AllTvShows";
 import AllBooks from "./components/AllBooks";
 import AllMovies from "./components/AllMovies";
+import AllUsers from "./components/AllUsers";
 
 import Friends from "./components/profile/Friends";
 import History from "./components/profile/History";
@@ -46,8 +47,9 @@ const App = () => {
           <Route path='/tvshows/:id' />
           <Route path='/movies/:id' />
           <Route path='/books/:id' />
-          <Route path='/users' />
+          <Route path='/users' element={<AllUsers />} />
           <Route path='/searchfor/:title' element={<SearchFor />} />
+          <Route path='/searchfor/:name' element={<SearchFor />} />
           <Route path='/add' />
         </Routes>
       ) : (
