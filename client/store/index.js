@@ -7,12 +7,16 @@ import tvReducer from "./tvshows";
 import movieReducer from "./movies";
 import bookReducer from "./books";
 import user from "../redux/user";
+import tv from '../redux/tv';
 
 const reducer = combineReducers({
   auth,
   tvs: tvReducer,
   movies: movieReducer,
   books: bookReducer,
+  tv,
+  // book,
+  // movie,
   user,
 });
 
