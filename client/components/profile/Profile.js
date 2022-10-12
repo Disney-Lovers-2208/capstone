@@ -23,11 +23,9 @@ export class Profile extends React.Component {
     const favoriteBook = books.filter(
       (book) => book.user_book.favorite === true
     )[0];
-
     const favoriteMovie = movies.filter(
       (movie) => movie.user_movie.favorite === true
     )[0];
-
     const favoriteTv = tvs.filter((tv) => tv.user_tv.favorite === true)[0];
 
     //features
@@ -100,12 +98,8 @@ export class Profile extends React.Component {
 }
 
 const mapState = (state) => {
-  console.log("state:", state);
   return {
     auth: state.auth,
-    book: state.book,
-    movie: state.movie,
-    tv: state.tv,
   };
 };
 
