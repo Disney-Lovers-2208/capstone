@@ -6,11 +6,12 @@ import TvCard from './TvCard';
 import { fetchSingleTv } from '../redux/tv';
 
 export const SingleTvShow = () => {
-    // const tvshow = useSelector((state) => state.tv);
+    const tvshow = useSelector((state) => state.tv);
     // const tvshow = props.tvshow;
     // const { imageUrl, title, description, genre } = tvshow;
     const dispatch = useDispatch();
     const { id } = useParams();
+    console.log(id);
 
     useEffect(() => {
         dispatch(fetchSingleTv(id));
@@ -34,7 +35,7 @@ export const SingleTvShow = () => {
                             <Card.Text>Genre:{genre}</Card.Text>
                         </Card.Body>
                     </Card> */}
-                    <TvCard />
+                    {/* <TvCard /> */}
 
                 </Col>
             </Row>
