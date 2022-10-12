@@ -16,7 +16,7 @@ export const fetchMovies = () => async (dispatch) => {
 };
 
 // reducer
-export default function movieReducer(state = [], action) {
+export default function moviesReducer(state = [], action) {
     switch (action.type) {
         case GET_MOVIES:
             return action.movies;
