@@ -5,10 +5,10 @@ export const Filter = ({
   setActiveType,
   activeType,
   setFiltered,
-  savedMovies,
-  savedTvs,
-  savedBooks,
-  savedAll,
+  movies,
+  tvs,
+  books,
+  all,
 }) => {
   console.log("ActiveType", activeType);
   return (
@@ -17,7 +17,7 @@ export const Filter = ({
         className={activeType === "all" ? "active" : ""}
         onClick={() => {
           setActiveType("all");
-          setFiltered(savedAll);
+          setFiltered(all);
         }}
       >
         All
@@ -26,7 +26,7 @@ export const Filter = ({
         className={activeType === "movies" ? "active" : ""}
         onClick={() => {
           setActiveType("movies");
-          setFiltered(savedMovies);
+          setFiltered(movies);
         }}
       >
         Movies
@@ -35,7 +35,7 @@ export const Filter = ({
         className={activeType === "shows" ? "active" : ""}
         onClick={() => {
           setActiveType("shows");
-          setFiltered(savedTvs);
+          setFiltered(tvs);
         }}
       >
         Shows
@@ -44,7 +44,7 @@ export const Filter = ({
         className={activeType === "books" ? "active" : ""}
         onClick={() => {
           setActiveType("books");
-          setFiltered(savedBooks);
+          setFiltered(books);
         }}
       >
         Books
