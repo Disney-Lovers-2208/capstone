@@ -114,6 +114,51 @@ async function mapTvShows() {
   }
 }
 
+async function fetchBooks() {
+  // const { data } = await axios.get(
+  //   "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=9nt0bx3VGHAWcipI96xMV3ydjGcPMqEu"
+  // );
+  const { data } = await axios.get(
+    "https://api.nytimes.com/svc/books/v3//lists/full-overview.json?api-key=9nt0bx3VGHAWcipI96xMV3ydjGcPMqEu"
+  );
+
+  return data;
+}
+
+async function mapBooks() {
+  const bookArr = await fetchBooks();
+  let listList = bookArr.results.lists;
+  for (let i = 0; i < listList.length; i++) {
+    let bookList = listList[i].books;
+    for (let i = 0; i < bookList.length; i++) {
+      console.log("Book book book list", bookList[i]);
+      await Promise.all([
+        Book.create({
+          title: bookList[i]["title"].toLowerCase(),
+          author: bookList[i]["author"],
+          description: bookList[i]["description"],
+          imageUrl: bookList[i]["book_image"],
+        }),
+      ]);
+    }
+  }
+}
+
+// async function mapBooks() {
+//   const bookArr = await fetchBooks();
+//   let booksList = bookArr.results.books;
+//   for (let i = 0; i < booksList.length; i++) {
+//     await Promise.all([
+//       Book.create({
+//         title: booksList[i]["title"],
+//         author: booksList[i]["author"],
+//         description: booksList[i]["description"],
+//         imageUrl: booksList[i]["book_image"],
+//       }),
+//     ]);
+//   }
+// }
+
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
@@ -121,6 +166,7 @@ async function seed() {
   // creating tv shows and movies
   await mapTvShows();
   await mapMovies();
+  await mapBooks();
 
   // Creating Users
   const users = await Promise.all([
@@ -152,32 +198,23 @@ async function seed() {
     }),
   ]);
 
-  let books = [];
-  for (let i = 0; i < 100; i++) {
-    books[i] = await Book.create({
-      title: randBook().title,
-      author: randBook().author,
-      description: randQuote(),
-    });
-  }
-
-  const posts = await Promise.all([
-    Post.create({
-      userId: 1,
-      content: randQuote(),
-      movieId: 3,
-    }),
-    Post.create({
-      userId: 2,
-      content: randQuote(),
-      bookId: 54,
-    }),
-    Post.create({
-      userId: 3,
-      content: randQuote(),
-      tvId: 17,
-    }),
-  ]);
+  // const posts = await Promise.all([
+  //   Post.create({
+  //     userId: 1,
+  //     content: randQuote(),
+  //     movieId: 3,
+  //   }),
+  //   Post.create({
+  //     userId: 2,
+  //     content: randQuote(),
+  //     bookId: 5,
+  //   }),
+  //   Post.create({
+  //     userId: 3,
+  //     content: randQuote(),
+  //     tvId: 17,
+  //   }),
+  // ]);
 
   for (let i = 0; i < users.length; i++) {
     for (let j = 0; j < users.length; j++) {
@@ -187,11 +224,11 @@ async function seed() {
     }
   }
 
-  for (let i = 0; i < users.length; i++) {
-    for (let j = 0; j < 10; j++) {
-      await users[i].addBooks(books[Math.floor(Math.random() * books.length)]);
-    }
-  }
+  // for (let i = 0; i < users.length; i++) {
+  //   for (let j = 0; j < 10; j++) {
+  //     await users[i].addBooks(books[Math.floor(Math.random() * books.length)]);
+  //   }
+  // }
 
   // console.log("console of user magic", Object.keys(users[0].__proto__));
   console.log(`seeded successfully`);

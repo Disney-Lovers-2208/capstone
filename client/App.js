@@ -40,15 +40,15 @@ const App = () => {
           <Route path="/profile/friends" element={<Friends />} />
           <Route path="/profile/history" element={<History />} />
           <Route path="/recommendations" />
-          <Route path='/books' element={<AllBooks />} />
-          <Route path='/movies' element={<AllMovies />}/>
-          <Route path='/tvshows' element={<AllTvShows />} />
-          <Route path='/tvshows/:id' />
-          <Route path='/movies/:id' />
-          <Route path='/books/:id' />
-          <Route path='/users' />
-          <Route path='/searchfor/:title' element={<SearchFor />} />
-          <Route path='/add' />
+          <Route path="/books" element={<AllBooks />} />
+          <Route path="/movies" element={<AllMovies />} />
+          <Route path="/tvshows" element={<AllTvShows />} />
+          <Route path="/tvshows/:id" />
+          <Route path="/movies/:id" />
+          <Route path="/books/:id" />
+          <Route path="/users" />
+          <Route path="/searchfor/:title" element={<SearchFor />} />
+          <Route path="/add" />
         </Routes>
       ) : (
         <Routes>
