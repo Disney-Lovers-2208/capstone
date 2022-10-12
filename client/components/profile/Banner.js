@@ -28,13 +28,13 @@ const Banner = (props) => {
         </Col>
       </Row>
       <Row className="user-info">
-        <Col sm={10} className="">
+        <Col sm={9} className="">
           <h1>
             {user.firstName} {user.lastName}
           </h1>
           <p>{user.bio} Lorem ipsum</p>
         </Col>
-        <Col sm={2}>
+        <Col sm={3}>
           <Row className="buttons">
             {location !== "/profile" ? (
               <Col>

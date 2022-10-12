@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { authenticate } from "../store";
 import { Container, Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 /**
  * COMPONENT
@@ -85,8 +86,15 @@ const AuthForm = (props) => {
                 <div>
                   <button type="submit">Sign Up</button>
                 </div>
+
                 {error && error.response && <div> {error.response.data} </div>}
               </form>
+              <div>
+                Already have an Account?
+                <Link to="/login">
+                  <button>Login</button>
+                </Link>
+              </div>
             </div>
           </Col>
         </Row>
@@ -121,8 +129,15 @@ const AuthForm = (props) => {
                 <div>
                   <button type="submit">Login</button>
                 </div>
+
                 {error && error.response && <div> {error.response.data} </div>}
               </form>
+              <div>
+                Don't have an Account?
+                <Link to="/signup">
+                  <button>Sign Up</button>
+                </Link>
+              </div>
             </div>
           </Col>
         </Row>

@@ -28,6 +28,9 @@ export class Saved extends React.Component {
             <Banner user={user} />
           </Col>
         </Row>
+        <Row>
+          <Col>Saved movies will go here</Col>
+        </Row>
       </Container>
     );
   }
