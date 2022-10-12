@@ -4,8 +4,7 @@ import { Card, Container } from 'react-bootstrap';
 
 export const TvCard = (props) => {
     const { tvShow } = props;
-    const { id, imageUrl, title, description, genre } = tvShow;
-    // const { id } = useParams(); // for singleCard view
+    const { id, imageUrl, title, description } = tvShow;
 
     return (
         <Container className='card'>
@@ -16,7 +15,6 @@ export const TvCard = (props) => {
                         <Card.Title>{title}</Card.Title>
                     </Link>
                     <Card.Text>{description}</Card.Text>
-                    <Card.Text>Genre:{genre}</Card.Text>
                 </Card.Body>
             </Card>
         </Container>

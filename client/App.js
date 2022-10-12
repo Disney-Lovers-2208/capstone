@@ -9,12 +9,16 @@ import { me, logout } from "./store";
 import NavigationBar from "./components/NavigationBar";
 import SearchFor from "./components/SearchFor";
 import AllTvShows from "./components/AllTvShows";
+import SingleTvShow from "./components/SingleTvShow";
 import AllBooks from "./components/AllBooks";
+import SingleBook from "./components/SingleBook";
 import AllMovies from "./components/AllMovies";
 import AllUsers from "./components/AllUsers";
+import SingleMovie from "./components/SingleMovie";
 
 import Friends from "./components/profile/Friends";
 import History from "./components/profile/History";
+
 
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);

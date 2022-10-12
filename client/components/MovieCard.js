@@ -4,7 +4,7 @@ import { Card, Container } from 'react-bootstrap';
 
 export const MovieCard = (props) => {
     const { movie } = props;
-    const { id, imageUrl, title, description, genre } = movie;
+    const { id, imageUrl, title, description } = movie;
 
     return (
         <Container className='card'>
@@ -15,7 +15,6 @@ export const MovieCard = (props) => {
                         <Card.Title>{title}</Card.Title>
                     </Link>
                     <Card.Text>{description}</Card.Text>
-                    <Card.Text>Genre: {genre}</Card.Text>
                 </Card.Body>
             </Card>        
         </Container>

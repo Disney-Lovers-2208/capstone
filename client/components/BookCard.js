@@ -15,7 +15,6 @@ export const BookCard = (props) => {
                         <Card.Title>{title}</Card.Title>
                     </Link>
                     <Card.Text>{description}</Card.Text>
-                    <Card.Text>Genre: {genre}</Card.Text>
                 </Card.Body>
             </Card>
         </Container>
