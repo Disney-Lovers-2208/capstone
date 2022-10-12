@@ -2,12 +2,19 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 
 const SimpleSlider = (props) => {
-  console.log("props in slide", props);
-  let { books, tvs, movies } = props || [];
+  const { books, tvs, movies } = props || [];
+  let typeOfProduct;
+  if (books) {
+    typeOfProduct = "book";
+  }
+  if (movies) {
+    typeOfProduct = "movie";
+  }
+  if (tvs) {
+    typeOfProduct = "show";
+  }
 
-  let items = books || tvs || movies;
-
-  console.log("in simple slider. these are my ITTEMMM: ", items);
+  const items = books || tvs || movies || [];
 
   let settings = {
     dots: true,
@@ -59,13 +66,15 @@ const SimpleSlider = (props) => {
   return (
     <div className="slider">
       <Slider {...settings}>
-        {items
-          ? items.map((item) => (
-              <div key={item.id}>
-                <img src={item.imageUrl} alt="image" />
-              </div>
-            ))
-          : null}
+        {items.length !== 0 ? (
+          items.map((item) => (
+            <div key={item.id}>
+              <img src={item.imageUrl} alt="image" />
+            </div>
+          ))
+        ) : (
+          <div>No featured {typeOfProduct}s</div>
+        )}
       </Slider>
     </div>
   );
