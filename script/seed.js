@@ -95,6 +95,7 @@ async function mapMovies() {
         title: moviesArr[i]["title"],
         description: moviesArr[i]["overview"],
         genre: moviesArr[i]["genre_ids"],
+        imageUrl: `https://image.tmdb.org/t/p/original/${moviesArr[i]["poster_path"]}`,
       }),
     ]);
   }
