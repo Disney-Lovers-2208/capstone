@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
@@ -8,17 +7,8 @@ import tvsReducer from './tvshows';
 import moviesReducer from './movies';
 import booksReducer from './books';
 import usersReducer from './users';
-=======
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import { createLogger } from "redux-logger";
-import thunkMiddleware from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
-import auth from "./auth";
-import tvReducer from "./tvshows";
-import movieReducer from "./movies";
-import bookReducer from "./books";
->>>>>>> main
 import user from "../redux/user";
+import tv from '../redux/tv'
 
 const reducer = combineReducers({
   auth,
@@ -26,6 +16,7 @@ const reducer = combineReducers({
   movies: moviesReducer,
   books: booksReducer,
   users: usersReducer,
+  tv,
   user,
 });
 
