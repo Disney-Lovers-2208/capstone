@@ -22,7 +22,7 @@ export const Saved = () => {
   const savedTvs = tvs
     .filter((tv) => tv.user_tv.status === "Saved")
     .sort((a, b) => a.title.localeCompare(b.title));
-  let savedAll = [...savedMovies, ...savedTvs, ...savedBooks].sort((a, b) =>
+  const savedAll = [...savedMovies, ...savedTvs, ...savedBooks].sort((a, b) =>
     a.title.localeCompare(b.title)
   );
 
@@ -40,10 +40,10 @@ export const Saved = () => {
         activeType={activeType}
         setActiveType={setActiveType}
         setFiltered={setFiltered}
-        savedMovies={savedMovies}
-        savedTvs={savedTvs}
-        savedAll={savedAll}
-        savedBooks={savedBooks}
+        movies={savedMovies}
+        tvs={savedTvs}
+        books={savedBooks}
+        all={savedAll}
       />
       <Row style={{ marginTop: "2rem" }}>
         <motion.div layout className="popular-movies">
