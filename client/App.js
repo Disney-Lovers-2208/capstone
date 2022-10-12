@@ -9,11 +9,13 @@ import { me, logout } from "./store";
 import NavigationBar from "./components/NavigationBar";
 import SearchFor from "./components/SearchFor";
 import AllTvShows from "./components/AllTvShows";
+import SingleTvShow from "./components/SingleTvShow";
 import AllBooks from "./components/AllBooks";
 import AllMovies from "./components/AllMovies";
 
 import Friends from "./components/profile/Friends";
 import History from "./components/profile/History";
+
 
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);
@@ -43,7 +45,7 @@ const App = () => {
           <Route path="/books" element={<AllBooks />} />
           <Route path="/movies" element={<AllMovies />} />
           <Route path="/tvshows" element={<AllTvShows />} />
-          <Route path="/tvshows/:id" />
+          <Route path="/tvshows/:id" element={<SingleTvShow />} />
           <Route path="/movies/:id" />
           <Route path="/books/:id" />
           <Route path="/users" />
