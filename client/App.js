@@ -49,7 +49,7 @@ const App = () => {
           <Route path='/books/:id' />
           <Route path='/users' element={<AllUsers />} />
           <Route path='/searchfor/:title' element={<SearchFor />} />
-          <Route path='/searchfor/:name' element={<SearchFor />} />
+          {/* <Route path='/searchfor/:name' element={<SearchFor />} /> */}
           <Route path='/add' />
         </Routes>
       ) : (

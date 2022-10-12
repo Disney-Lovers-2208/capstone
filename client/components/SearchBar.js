@@ -11,7 +11,6 @@ import { fetchAllUsers } from '../store/users';
 
 export const SearchBar = () => {
     const [title, setTitle] = useState('');
-
     const dispatch = useDispatch();
 
     // noticing an issue where it can only search once and can't search again
@@ -27,9 +26,12 @@ export const SearchBar = () => {
         dispatch(fetchBooks());
     }, [dispatch]);
 
+
     useEffect(() => {
         dispatch(fetchAllUsers());
     }, [dispatch]);
+
+    
 
     return (
         <Container id='search-bar' className="flex-row">
