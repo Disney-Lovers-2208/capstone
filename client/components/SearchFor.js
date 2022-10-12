@@ -10,7 +10,7 @@ import UserCard from './UserCard';
 
 export const SearchFor = () => {
     const { title } = useParams();
-    const { name } = useParams();
+    const { firstName } = useParams();
     const tvshows = useSelector((state) => state.tvs);
     const movies = useSelector((state) => state.movies);
     const books = useSelector((state) => state.books);
@@ -18,7 +18,7 @@ export const SearchFor = () => {
     const [tvList, setTvList] = useState([]);
     const [movieList, setMovieList] = useState([]);
     const [bookList, setBookList] = useState([]);
-    const [nameList, setNameList] = useState([]);
+    const [userList, setUserList] = useState([]);
 
     // filters through tv shows    
     useEffect(() => {
@@ -45,10 +45,10 @@ export const SearchFor = () => {
     }, []);
 
     // useEffect(() => {
-    //     const filteredNames = users.filter(user => {
-    //         return user.name.toLowerCase().includes(name.toLowerCase());
+    //     const filteredUsers = users.filter(user => {
+    //         return user.firstName.toLowerCase().includes(firstName.toLowerCase());
     //     });
-    //     setNameList(filteredNames);
+    //     setUserList(filteredUsers);
     // }, []);
 
     return (
@@ -90,14 +90,14 @@ export const SearchFor = () => {
             </Row>
 
             {/* search for users */}
-            {/* <Row>
-                {nameList.length ? nameList.map((name) => (
-                    <Col>
+            <Row>
+                {userList.length ? userList.map((user) => (
+                    <Col key={user.id}>
                         <p>Users:</p>
-                        <UserCard user={name}/>
+                        <UserCard user={user}/>
                     </Col>
                 )) : null}
-            </Row> */}
+            </Row>
         </div>
     )
 };

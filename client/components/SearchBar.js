@@ -10,7 +10,8 @@ import { fetchBooks } from '../store/books';
 import { fetchAllUsers } from '../store/users';
 
 export const SearchBar = () => {
-    const [title, setTitle] = useState('');
+    // const [title, setTitle] = useState('');
+    const [search, setSearch] = useState('');
     const dispatch = useDispatch();
 
     // noticing an issue where it can only search once and can't search again
@@ -31,7 +32,6 @@ export const SearchBar = () => {
         dispatch(fetchAllUsers());
     }, [dispatch]);
 
-    
 
     return (
         <Container id='search-bar' className="flex-row">
@@ -40,10 +40,10 @@ export const SearchBar = () => {
                     <input 
                         type='search' 
                         placeholder='Search for...' 
-                        onChange={(evt) => setTitle(evt.target.value)} 
-                        value={title} 
+                        onChange={(evt) => setSearch(evt.target.value)} 
+                        value={search} 
                     />
-                    <Button variant='light' as={Link} to={`/searchfor/${title}`}><GoSearch /></Button>
+                    <Button variant='light' as={Link} to={`/searchfor/${search}`}><GoSearch /></Button>
                 </Col>
                 <SearchTabs />
             </Row>
