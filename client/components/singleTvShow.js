@@ -5,9 +5,9 @@ import { Card, Col, Row, Form } from 'react-bootstrap';
 import TvCard from './TvCard';
 import { fetchSingleTv } from '../redux/tv';
 
-export const SingleTvShow = (props) => {
+export const SingleTvShow = () => {
     // const tvshow = useSelector((state) => state.tv);
-    const tvshow = props;
+    // const tvshow = props.tvshow;
     // const { imageUrl, title, description, genre } = tvshow;
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -34,11 +34,7 @@ export const SingleTvShow = (props) => {
                             <Card.Text>Genre:{genre}</Card.Text>
                         </Card.Body>
                     </Card> */}
-                    <img src={tvshow.imageUrl} alt='tv-image' />
-                    <h2>{tvshow.title}</h2>
-                    <p>Summary: {tvshow.description}</p>
-                    <p>Genre: {tvshow.genre}</p>
-                    {/* <TvCard /> */}
+                    <TvCard />
 
                 </Col>
             </Row>
