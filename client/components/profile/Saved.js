@@ -1,53 +1,71 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Banner from "./Banner";
 import { Container, Row, Col } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import Filter from "./Filter";
+import { motion, AnimatePresence } from "framer-motion";
 
-export class Saved extends React.Component {
-  render() {
-    const user = this.props.auth || [];
-    const tvs = user?.tvs || [];
-    const books = user?.books || [];
-    const movies = user?.movies || [];
+export const Saved = () => {
+  const user = useSelector((state) => state.auth);
 
-    const savedBooks = books.filter(
-      (book) => book.user_book.status === "Saved"
-    );
+  const tvs = user?.tvs || [];
+  const books = user?.books || [];
+  const movies = user?.movies || [];
 
-    const savedMovies = movies.filter(
-      (movie) => movie.user_movie.status === "Saved"
-    );
+  //Sorted and filtered books, tv, movies
+  const savedBooks = books
+    .filter((book) => book.user_book.status === "Saved")
+    .sort((a, b) => a.title.localeCompare(b.title));
+  const savedMovies = movies
+    .filter((movie) => movie.user_movie.status === "Saved")
+    .sort((a, b) => a.title.localeCompare(b.title));
+  const savedTvs = tvs
+    .filter((tv) => tv.user_tv.status === "Saved")
+    .sort((a, b) => a.title.localeCompare(b.title));
+  let savedAll = [...savedMovies, ...savedTvs, ...savedBooks].sort((a, b) =>
+    a.title.localeCompare(b.title)
+  );
 
-    const savedTvs = tvs.filter((tv) => tv.user_tv.status === "Saved");
+  const [activeType, setActiveType] = useState("all");
+  const [filtered, setFiltered] = useState(savedAll);
 
-    console.log("savedTvs", savedTvs);
-    console.log("savedMovies", savedMovies);
-    console.log("savedBooks", savedBooks);
-
-    return (
-      <Container fluid className="profile">
-        <Row>
-          <Col>
-            <Banner user={user} />
-          </Col>
-        </Row>
-        <Row>
-          <Col>{savedMovies.map((movie) => {})}</Col>
-        </Row>
-      </Container>
-    );
-  }
-}
-
-const mapState = (state) => {
-  return {
-    auth: state.auth,
-  };
+  return (
+    <Container fluid>
+      <Row>
+        <Col>
+          <Banner user={user} />
+        </Col>
+      </Row>
+      <Filter
+        activeType={activeType}
+        setActiveType={setActiveType}
+        setFiltered={setFiltered}
+        savedMovies={savedMovies}
+        savedTvs={savedTvs}
+        savedAll={savedAll}
+        savedBooks={savedBooks}
+      />
+      <Row style={{ marginTop: "2rem" }}>
+        <motion.div layout className="popular-movies">
+          {filtered.map((item) => {
+            return (
+              <AnimatePresence key={item.id}>
+                <motion.div
+                  layout
+                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                >
+                  <h2>{item.title}</h2>
+                  <img src={item.imageUrl} alt="image" />
+                </motion.div>
+              </AnimatePresence>
+            );
+          })}
+        </motion.div>
+      </Row>
+    </Container>
+  );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(mapState, mapDispatchToProps)(Saved);
+export default Saved;
