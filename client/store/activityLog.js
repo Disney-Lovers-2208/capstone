@@ -4,7 +4,7 @@ import axios from "axios";
 function merge(left, right) {
   let arr = [];
   while (left.length && right.length) {
-    if (left[0] < right[0]) {
+    if (left[0]["updatedAt"] < right[0]["updatedAt"]) {
       arr.push(left.shift());
     } else {
       arr.push(right.shift());
@@ -28,26 +28,27 @@ export const getActivityLog = (userId) => async (dispatch) => {
     const { data: friends } = await axios.get(`/api/friends/${userId}`);
     let friendIdArray = [];
     for (let i = 0; i < friends.length; i++) {
-      friendIdArray.push(friends[i][friendId]);
+      friendIdArray.push(friends[i]["friendId"]);
     }
 
     const { data: allStarRatings } = await axios.get("/api/starRatings");
     let starRatings = [];
-    for (let j = 0; j < starRatings; j++) {
-      if (friendIdArray.includes(allStarRatings[j][userId])) {
+    for (let j = 0; j < allStarRatings.length; j++) {
+      if (friendIdArray.includes(allStarRatings[j]["userId"])) {
         starRatings.push(allStarRatings[j]);
       }
     }
 
     const { data: allPosts } = await axios.get("/api/Posts");
     let posts = [];
-    for (let k = 0; k < posts; k++) {
-      if (friendIdArray.includes(allPosts[k][userId])) {
+    for (let k = 0; k < allPosts.length; k++) {
+      if (friendIdArray.includes(allPosts[k]["userId"])) {
         posts.push(allPosts[k]);
       }
     }
 
-    return merge(posts, starRatings);
+    let activityLog = merge(posts, starRatings);
+    dispatch(_getActivityLog(activityLog));
   } catch (error) {
     console.log(error);
   }

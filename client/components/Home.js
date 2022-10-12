@@ -1,21 +1,20 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
-import { useDispatch } from "react-redux";
 import { getActivityLog } from "../store/activityLog";
 /**
  * COMPONENT
  */
-export const Home = (props) => {
+export const Home = () => {
   const username = useSelector((state) => state.auth.username);
   const userId = useSelector((state) => state.auth.id);
   let auth = useSelector((state) => state.auth);
+  let activityLog = useSelector((state) => state.activityLog);
+  const dispatch = useDispatch();
 
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatchEvent(getActivityLog(userId));
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getActivityLog(userId));
+  }, [dispatch]);
 
   return (
     <div>

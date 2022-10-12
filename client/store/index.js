@@ -7,9 +7,10 @@ import tvReducer from "./tvshows";
 import movieReducer from "./movies";
 import bookReducer from "./books";
 import user from "../redux/user";
-import tv from '../redux/tv';
-import book from '../redux/book';
-import movie from '../redux/movie';
+import tv from "../redux/tv";
+import book from "../redux/book";
+import movie from "../redux/movie";
+import activityLog from "./activityLog";
 
 const reducer = combineReducers({
   auth,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   book,
   movie,
   user,
+  activityLog,
 });
 
 const middleware = composeWithDevTools(
