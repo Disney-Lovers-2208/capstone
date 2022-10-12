@@ -16,9 +16,9 @@ const reducer = combineReducers({
   tvs: tvReducer,
   movies: movieReducer,
   books: bookReducer,
-  tv,
-  book,
-  movie,
+  tv: tv,
+  book: book,
+  movie: movie,
   user,
 });
 
