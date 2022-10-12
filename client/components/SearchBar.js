@@ -8,10 +8,8 @@ import { fetchTvShows } from '../store/tvshows';
 import { fetchMovies } from '../store/movies';
 import { fetchBooks } from '../store/books';
 
-
 export const SearchBar = () => {
     const [title, setTitle] = useState('');
-
     const dispatch = useDispatch();
 
     // noticing an issue where it can only search once and can't search again

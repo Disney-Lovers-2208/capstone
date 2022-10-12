@@ -7,12 +7,18 @@ import tvReducer from "./tvshows";
 import movieReducer from "./movies";
 import bookReducer from "./books";
 import user from "./user";
+import tv from "./tv";
+import book from "./book";
+import movie from "./movie";
 
 const reducer = combineReducers({
   auth,
   tvs: tvReducer,
   movies: movieReducer,
   books: bookReducer,
+  tv,
+  book,
+  movie,
   user,
 });
 
