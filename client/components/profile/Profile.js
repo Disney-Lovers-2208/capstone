@@ -48,7 +48,7 @@ export class Profile extends React.Component {
         </Row>
         <Row>
           <Col sm={4} className="featured">
-            <h2>Featured Book</h2>
+            <h2>Favorite Book</h2>
             {favoriteBook ? (
               <img src={favoriteBook.imageUrl} alt="image" />
             ) : (
@@ -59,7 +59,7 @@ export class Profile extends React.Component {
             )}
           </Col>
           <Col sm={4} className="featured">
-            <h2>Featured Movie</h2>
+            <h2>Favorite Movie</h2>
             {favoriteMovie ? (
               <img src={favoriteMovie.imageUrl} alt="image" />
             ) : (
@@ -70,7 +70,7 @@ export class Profile extends React.Component {
             )}
           </Col>
           <Col sm={4} className="featured">
-            <h2>Featured Show</h2>
+            <h2>Favorite Show</h2>
             {favoriteTv ? (
               <img src={favoriteTv.imageUrl} alt="image" />
             ) : (
@@ -82,15 +82,15 @@ export class Profile extends React.Component {
           </Col>
         </Row>
         <Row className="favorite">
-          <h2>Favorite Books</h2>
+          <h2>Featured Books</h2>
           <SimpleSlider books={featuredBooks} />
         </Row>
         <Row className="favorite">
-          <h2>Favorite Shows</h2>
+          <h2>Featured Shows</h2>
           <SimpleSlider tvs={featuredTvs} />
         </Row>
         <Row className="favorite">
-          <h2>Favorite Movies</h2>
+          <h2>Featured Movies</h2>
           <SimpleSlider movies={featuredMovies} />
         </Row>
         <br />
