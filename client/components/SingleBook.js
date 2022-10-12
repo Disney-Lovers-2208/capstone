@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
+import { fetchSingleBook } from '../redux/book';
 
 const SingleBook = () => {
     const book = useSelector((state) => state.book);
@@ -9,9 +10,9 @@ const SingleBook = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
 
-    // useEffect(() => {
-    //     dispatch(fetchSingleTv(id));
-    // }, [dispatch])   
+    useEffect(() => {
+        dispatch(fetchSingleBook(id));
+    }, [dispatch])   
     
     return (
         <div className='single-view'>
@@ -24,7 +25,7 @@ const SingleBook = () => {
 
             <div>
                 <h2>{title}</h2>
-                <img src={imageUrl} alt='book-image'/>
+                <img src={imageUrl} alt='book-image' style={{ width: '15rem' }} />
                 <p>{description}</p>
                 <p>{genre}</p>
             </div>

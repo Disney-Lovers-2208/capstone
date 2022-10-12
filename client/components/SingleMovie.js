@@ -2,18 +2,18 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
-import { fetchSingleTv } from '../redux/tv';
+import { fetchSingleMovie } from '../redux/movie';
 
-const SingleTvShow = () => {
-    const tvshow = useSelector((state) => state.tv);
-    const { imageUrl, title, description, genre } = tvshow;
+const SingleMovie = () => {
+    const movie = useSelector((state) => state.movie);
+    const { imageUrl, title, description, genre } = movie;
     const dispatch = useDispatch();
     const { id } = useParams();
 
     useEffect(() => {
-        dispatch(fetchSingleTv(id));
-    }, [dispatch])
-
+        dispatch(fetchSingleMovie(id));
+    }, [dispatch])   
+    
     return (
         <div className='single-view'>
             <Form>
@@ -25,7 +25,7 @@ const SingleTvShow = () => {
 
             <div>
                 <h2>{title}</h2>
-                <img src={imageUrl} alt='tvshow-image' style={{ width: '15rem' }} />
+                <img src={imageUrl} alt='movie-image' style={{ width: '15rem' }}/>
                 <p>{description}</p>
                 <p>{genre}</p>
             </div>
@@ -33,4 +33,4 @@ const SingleTvShow = () => {
     )
 };
 
-export default SingleTvShow;
+export default SingleMovie;
