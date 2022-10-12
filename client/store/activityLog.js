@@ -1,63 +1,63 @@
 import axios from "axios";
 
-const GET_ACTIVITY_LOG = GET_ACTIVITY_LOG;
+// helper functions
+function merge(left, right) {
+  let arr = [];
+  while (left.length && right.length) {
+    if (left[0] < right[0]) {
+      arr.push(left.shift());
+    } else {
+      arr.push(right.shift());
+    }
+  }
+  return [...arr, ...left, ...right];
+}
 
-const _getFriendsStars = (starRatings) => ({
-  type: GET_FRIENDS_STARS,
-  starRatings,
+// action types
+const GET_ACTIVITY_LOG = "GET_ACTIVITY_LOG";
+
+// action creators
+const _getActivityLog = (activityLog) => ({
+  type: GET_ACTIVITY_LOG,
+  activityLog,
 });
 
-const _getFriendsPosts = (posts) => ({
-  type: GET_FRIENDS_POSTS,
-  posts,
-});
-
-export const getFriendsStars = (userId) => async (dispatch) => {
+// thunks
+export const getActivityLog = (userId) => async (dispatch) => {
   try {
+    const { data: friends } = await axios.get(`/api/friends/${userId}`);
+    let friendIdArray = [];
+    for (let i = 0; i < friends.length; i++) {
+      friendIdArray.push(friends[i][friendId]);
+    }
+
     const { data: allStarRatings } = await axios.get("/api/starRatings");
-    const { data: friends } = await axios.get(`/api/friends/${userId}`);
-    let friendIdArray = [];
     let starRatings = [];
-    for (let i = 0; i < friends.length; i++) {
-      friendIdArray.push(friends[i][friendId]);
-    }
     for (let j = 0; j < starRatings; j++) {
-      if (friendIdArray.includes(allStarRatings[i][userId])) {
-        starRatings.push(allStarRatings[i]);
+      if (friendIdArray.includes(allStarRatings[j][userId])) {
+        starRatings.push(allStarRatings[j]);
       }
     }
-    return dispatch(_getFriendsStars(starRatings));
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-export const getFriendsPosts = (userId) => async (dispatch) => {
-  try {
     const { data: allPosts } = await axios.get("/api/Posts");
-    const { data: friends } = await axios.get(`/api/friends/${userId}`);
-    let friendIdArray = [];
     let posts = [];
-    for (let i = 0; i < friends.length; i++) {
-      friendIdArray.push(friends[i][friendId]);
-    }
-    for (let j = 0; j < starRatings; j++) {
-      if (friendIdArray.includes(allPosts[i][userId])) {
-        posts.push(allPosts[i]);
+    for (let k = 0; k < posts; k++) {
+      if (friendIdArray.includes(allPosts[k][userId])) {
+        posts.push(allPosts[k]);
       }
     }
-    return dispatch(_getFriendsPosts(posts));
+
+    return merge(posts, starRatings);
   } catch (error) {
     console.log(error);
   }
 };
 
+// reducer
 export default function (state = [], action) {
   switch (action.type) {
-    case GET_FRIENDS_STARS:
-      return action.starRatings;
-    case GET_FRIENDS_POSTS:
-      return action.posts;
+    case GET_ACTIVITY_LOG:
+      return action.activityLog;
     default:
       return state;
   }
