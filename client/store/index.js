@@ -8,6 +8,7 @@ import movieReducer from "./movies";
 import bookReducer from "./books";
 import user from "../redux/user";
 import tv from '../redux/tv';
+import book from '../redux/book';
 
 const reducer = combineReducers({
   auth,
@@ -15,7 +16,7 @@ const reducer = combineReducers({
   movies: movieReducer,
   books: bookReducer,
   tv,
-  // book,
+  book,
   // movie,
   user,
 });
