@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Container } from "react-bootstrap";
-import userReducer from "../store/user";
 
 export const ActivityCard = (props) => {
   const { activity } = props;
@@ -10,13 +9,42 @@ export const ActivityCard = (props) => {
     <Container>
       <Card>
         <Card.Body>
-          <Card.Title>
-            {activity.user.firstName} {activity.user.lastName} reviewed
-          </Card.Title>
-          {activity.content ? (
-            <Card.Text>{activity.content}</Card.Text>
+          {activity.book ? (
+            <div>
+              <Card.Title>
+                {activity.user.firstName} {activity.user.lastName} reviewed{" "}
+                {activity.book.title}
+              </Card.Title>
+              {activity.content ? (
+                <Card.Text>{activity.content}</Card.Text>
+              ) : (
+                <Card.Text>{activity.rating}</Card.Text>
+              )}
+            </div>
+          ) : activity.tv ? (
+            <div>
+              <Card.Title>
+                {activity.user.firstName} {activity.user.lastName} reviewed{" "}
+                {activity.tv.title}
+              </Card.Title>
+              {activity.content ? (
+                <Card.Text>{activity.content}</Card.Text>
+              ) : (
+                <Card.Text>{activity.rating}</Card.Text>
+              )}
+            </div>
           ) : (
-            <Card.Text>{activity.rating}</Card.Text>
+            <div>
+              <Card.Title>
+                {activity.user.firstName} {activity.user.lastName} reviewed{" "}
+                {activity.movie.title}
+              </Card.Title>
+              {activity.content ? (
+                <Card.Text>{activity.content}</Card.Text>
+              ) : (
+                <Card.Text>{activity.rating}</Card.Text>
+              )}
+            </div>
           )}
         </Card.Body>
       </Card>
