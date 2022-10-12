@@ -52,19 +52,23 @@ margin-left: 1rem;
 
 }
 
-.profile .favorites { 
-    display: flex;
-    padding: 2%;
-    flex-direction: row;
-    background-color: pink;
-    height: 200px;
-    width: 100%;
-    z-index: 100;
-}
-
 .profile .product-card{ 
     margin: 1%
 }
+
+.profile .favorite{
+    margin-top: 5%;
+   }
+
+
+.slider img{
+    height: 200px
+}
+
+.slider {
+ margin-left: 2%;
+}
+
 
 .friends {
     background-color: rgb(215, 228, 228);
