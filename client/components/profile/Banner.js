@@ -54,6 +54,15 @@ const Banner = (props) => {
                 </Link>
               </Col>
             ) : null}
+            {location !== "/profile/saved" ? (
+              <Col>
+                <Link to="/profile/saved">
+                  <button className="btn btn-sm btn-primary  ml-2">
+                    Saved
+                  </button>
+                </Link>
+              </Col>
+            ) : null}
             {location !== "/profile/friends" ? (
               <Col>
                 <Link to="/profile/friends">

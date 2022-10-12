@@ -11,7 +11,7 @@ import SearchFor from "./components/SearchFor";
 import AllTvShows from "./components/AllTvShows";
 import AllBooks from "./components/AllBooks";
 import AllMovies from "./components/AllMovies";
-
+import Saved from "./components/profile/Saved";
 import Friends from "./components/profile/Friends";
 import History from "./components/profile/History";
 
@@ -39,6 +39,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/friends" element={<Friends />} />
           <Route path="/profile/history" element={<History />} />
+          <Route path="/profile/saved" element={<Saved />} />
           <Route path="/recommendations" />
           <Route path="/books" element={<AllBooks />} />
           <Route path="/movies" element={<AllMovies />} />
