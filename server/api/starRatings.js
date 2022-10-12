@@ -2,11 +2,17 @@ const router = require("express").Router();
 const {
   models: { StarRating },
 } = require("../db");
+const User = require("../db/models/User");
+const Movie = require("../db/models/Movie");
+const Book = require("../db/models/Book");
+const Tv = require("../db/models/Tv");
 module.exports = router;
 
 router.get("/", async (req, res, next) => {
   try {
-    const starRatings = await StarRating.findAll();
+    const starRatings = await StarRating.findAll({
+      include: [User, Movie, Book, Tv],
+    });
     res.json(starRatings);
   } catch (err) {
     next(err);
