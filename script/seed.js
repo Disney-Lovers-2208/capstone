@@ -25,6 +25,9 @@ const axios = require("axios");
  */
 
 async function fetchMovies() {
+  const { data: dataZero } = await axios.get(
+    "https://api.themoviedb.org/4/list/1?api_key=4ef60b9d635f533695cbcaccb6603a57"
+  );
   const { data: dataOne } = await axios.get(
     "https://api.themoviedb.org/3/movie/top_rated?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=1"
   );
@@ -49,10 +52,25 @@ async function fetchMovies() {
   const { data: dataEight } = await axios.get(
     "https://api.themoviedb.org/3/movie/top_rated?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=8"
   );
+
+  const { data: dataNine } = await axios.get(
+    "https://api.themoviedb.org/3/movie/popular?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=1"
+  );
+  const { data: dataTen } = await axios.get(
+    "https://api.themoviedb.org/3/movie/popular?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=2"
+  );
+  const { data: dataEleven } = await axios.get(
+    "https://api.themoviedb.org/3/movie/popular?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=3"
+  );
+  const { data: dataTwelve } = await axios.get(
+    "https://api.themoviedb.org/3/movie/popular?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=4"
+  );
+
   const { data: genres } = await axios.get(
     "https://api.themoviedb.org/3/genre/movie/list?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US"
   );
 
+  const arrZero = dataZero.results;
   const arrOne = dataOne.results;
   const arrTwo = dataTwo.results;
   const arrThree = dataThree.results;
@@ -61,16 +79,26 @@ async function fetchMovies() {
   const arrSix = dataSix.results;
   const arrSeven = dataSeven.results;
   const arrEight = dataEight.results;
+  const arrNine = dataNine.results;
+  const arrTen = dataTen.results;
+  const arrEleven = dataEleven.results;
+  const arrTwelve = dataTwelve.results;
   const genreList = genres.genres;
 
   const concatArr = arrOne.concat(
+    arrZero,
+    arrOne,
     arrTwo,
     arrThree,
     arrFour,
     arrFive,
     arrSix,
     arrSeven,
-    arrEight
+    arrEight,
+    arrNine,
+    arrTen,
+    arrEleven,
+    arrTwelve
   );
 
   for (let i = 0; i < concatArr.length; i++) {
@@ -240,10 +268,10 @@ async function seed() {
   for (let i = 1; i <= 3; i++) {
     let done = [];
     for (let j = 0; j <= 15; j++) {
-      let movieIdNum = Math.floor(Math.random() * 159) + 1;
+      let movieIdNum = Math.floor(Math.random() * 279) + 1;
       if (done.includes(movieIdNum)) {
         while (done.includes(movieIdNum)) {
-          movieIdNum = Math.floor(Math.random() * 159);
+          movieIdNum = Math.floor(Math.random() * 279);
         }
       } else {
         done.push(movieIdNum);
