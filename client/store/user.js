@@ -16,6 +16,7 @@ export const fetchUser = (userId) => {
   return async (dispatch) => {
     try {
       const { data: user } = await axios.get(`/api/users/${userId}`);
+      console.log("in fetch user ", user);
       dispatch(setUser(user));
     } catch (error) {
       return error;
