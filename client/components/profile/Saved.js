@@ -2,30 +2,35 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Banner from "./Banner";
 import { Container, Row, Col } from "react-bootstrap";
-import { motion, AnimatePresence } from "framer-motion";
 import Filter from "./Filter";
+import { motion, AnimatePresence } from "framer-motion";
 
-export const History = () => {
+export const Saved = () => {
   const user = useSelector((state) => state.auth);
 
   const tvs = user?.tvs || [];
   const books = user?.books || [];
   const movies = user?.movies || [];
 
-  const readBooks = books.filter((book) => book.user_book.status === "Read");
-  const watchedMovies = movies.filter(
-    (movie) => movie.user_movie.status === "Watched"
-  );
-  const watchedTvs = tvs.filter((tv) => tv.user_tv.status === "Watched");
-  const seenAll = [...readBooks, ...watchedMovies, ...watchedTvs].sort((a, b) =>
+  //Sorted and filtered books, tv, movies
+  const savedBooks = books
+    .filter((book) => book.user_book.status === "Saved")
+    .sort((a, b) => a.title.localeCompare(b.title));
+  const savedMovies = movies
+    .filter((movie) => movie.user_movie.status === "Saved")
+    .sort((a, b) => a.title.localeCompare(b.title));
+  const savedTvs = tvs
+    .filter((tv) => tv.user_tv.status === "Saved")
+    .sort((a, b) => a.title.localeCompare(b.title));
+  const savedAll = [...savedMovies, ...savedTvs, ...savedBooks].sort((a, b) =>
     a.title.localeCompare(b.title)
   );
 
   const [activeType, setActiveType] = useState("all");
-  const [filtered, setFiltered] = useState(seenAll);
+  const [filtered, setFiltered] = useState(savedAll);
 
   return (
-    <Container fluid className="profile">
+    <Container fluid>
       <Row>
         <Col>
           <Banner user={user} />
@@ -35,10 +40,10 @@ export const History = () => {
         activeType={activeType}
         setActiveType={setActiveType}
         setFiltered={setFiltered}
-        movies={watchedMovies}
-        tvs={watchedTvs}
-        books={readBooks}
-        all={seenAll}
+        movies={savedMovies}
+        tvs={savedTvs}
+        books={savedBooks}
+        all={savedAll}
       />
       <Row style={{ marginTop: "2rem" }}>
         <motion.div layout className="popular-movies">
@@ -63,4 +68,4 @@ export const History = () => {
   );
 };
 
-export default History;
+export default Saved;

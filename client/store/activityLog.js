@@ -1,18 +1,65 @@
 import axios from "axios";
 
-const GET_FRIENDS_STARS = "GET_FRIENDS_STARS";
+// helper functions
+function merge(left, right) {
+  let arr = [];
+  while (left.length && right.length) {
+    if (left[0]["updatedAt"] < right[0]["updatedAt"]) {
+      arr.push(left.shift());
+    } else {
+      arr.push(right.shift());
+    }
+  }
+  return [...arr, ...left, ...right];
+}
 
-const _getFriendsStars = (starRatings) => ({
-  type: GET_FRIENDS_STARS,
-  starRatings,
+// action types
+const GET_ACTIVITY_LOG = "GET_ACTIVITY_LOG";
+
+// action creators
+const _getActivityLog = (activityLog) => ({
+  type: GET_ACTIVITY_LOG,
+  activityLog,
 });
 
-export const getFriendsStars = () => {
-  return async (dispatch) => {
-    try {
-      const { data: starRatings } = await axios.get("/api/starRatings");
-    } catch (error) {
-      console.log(error);
+// thunks
+export const getActivityLog = (userId) => async (dispatch) => {
+  try {
+    const { data: friends } = await axios.get(`/api/friends/${userId}`);
+    let friendIdArray = [];
+    for (let i = 0; i < friends.length; i++) {
+      friendIdArray.push(friends[i]["friendId"]);
     }
-  };
+
+    const { data: allStarRatings } = await axios.get("/api/starRatings");
+    let starRatings = [];
+    for (let j = 0; j < allStarRatings.length; j++) {
+      if (friendIdArray.includes(allStarRatings[j]["userId"])) {
+        starRatings.push(allStarRatings[j]);
+      }
+    }
+
+    const { data: allPosts } = await axios.get("/api/Posts");
+    let posts = [];
+    for (let k = 0; k < allPosts.length; k++) {
+      if (friendIdArray.includes(allPosts[k]["userId"])) {
+        posts.push(allPosts[k]);
+      }
+    }
+
+    let activityLog = merge(posts, starRatings);
+    dispatch(_getActivityLog(activityLog));
+  } catch (error) {
+    console.log(error);
+  }
 };
+
+// reducer
+export default function (state = [], action) {
+  switch (action.type) {
+    case GET_ACTIVITY_LOG:
+      return action.activityLog;
+    default:
+      return state;
+  }
+}
