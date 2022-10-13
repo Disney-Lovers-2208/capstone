@@ -28,6 +28,8 @@ const SingleBook = () => {
         <img src={imageUrl} alt="book-image" style={{ width: "15rem" }} />
         <p>{description}</p>
         <p>{genre}</p>
+
+        <button>Heart</button>
       </div>
     </div>
   );

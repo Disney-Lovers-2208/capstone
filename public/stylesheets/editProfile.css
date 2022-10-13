@@ -1,0 +1,23 @@
+
+
+.edit-profile{ 
+    margin-top:20px;
+}
+
+.edit-profile img{ 
+    margin-bottom:10px;
+}
+.edit-profile input{ 
+    padding:20px;
+    
+}
+
+
+.avatar{
+    width:200px;
+    height:200px;
+    border-radius: 50%;
+    left: 2px;
+    border: solid 1px black;
+    }		
+    

@@ -17,6 +17,10 @@ const Tv = db.define("tv", {
     type: Sequelize.STRING,
     defaultValue: "",
   },
+  productType: {
+    type: Sequelize.STRING,
+    defaultValue: "tvshow",
+  },
 });
 
 module.exports = Tv;

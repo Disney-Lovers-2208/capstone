@@ -72,9 +72,11 @@ const Banner = (props) => {
             ) : null}
             {location !== "/profile/edit" ? (
               <Col>
-                <button className="btn btn-sm btn-outline-primary  ml-2">
-                  Edit
-                </button>
+                <Link to="/profile/edit">
+                  <button className="btn btn-sm btn-outline-primary  ml-2">
+                    Edit
+                  </button>
+                </Link>
               </Col>
             ) : null}
           </Row>

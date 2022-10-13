@@ -315,7 +315,7 @@ async function seed() {
       let tvIdNum = Math.floor(Math.random() * 239) + 1;
       if (done.includes(tvIdNum)) {
         while (done.includes(tvIdNum)) {
-          tvIdNum = Math.floor(Math.random() * 239);
+          tvIdNum = Math.floor(Math.random() * 239) + 1;
         }
       } else {
         done.push(tvIdNum);

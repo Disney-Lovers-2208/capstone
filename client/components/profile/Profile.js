@@ -6,10 +6,6 @@ import Banner from "./Banner";
 import SimpleSlider from "./SimpleSlider";
 
 export class Profile extends React.Component {
-  componentDidMount() {
-    const authId = this.props.auth.id;
-  }
-
   render() {
     const user = this.props.auth || [];
     const tvs = user?.tvs || [];
@@ -45,7 +41,12 @@ export class Profile extends React.Component {
           <Col sm={4} className="featured">
             <h2>Favorite Book</h2>
             {favoriteBook ? (
-              <img src={favoriteBook.imageUrl} alt="image" />
+              <Link
+                to={`/books/${favoriteBook.id}`}
+                style={{ color: "inherit" }}
+              >
+                <img src={favoriteBook.imageUrl} alt="image" />
+              </Link>
             ) : (
               <div>
                 <h4>No favorite Book</h4>
@@ -56,7 +57,12 @@ export class Profile extends React.Component {
           <Col sm={4} className="featured">
             <h2>Favorite Movie</h2>
             {favoriteMovie ? (
-              <img src={favoriteMovie.imageUrl} alt="image" />
+              <Link
+                to={`/movies/${favoriteMovie.id}`}
+                style={{ color: "inherit" }}
+              >
+                <img src={favoriteMovie.imageUrl} alt="image" />
+              </Link>
             ) : (
               <div>
                 <h4>No favorite Movie</h4>
@@ -67,7 +73,12 @@ export class Profile extends React.Component {
           <Col sm={4} className="featured">
             <h2>Favorite Show</h2>
             {favoriteTv ? (
-              <img src={favoriteTv.imageUrl} alt="image" />
+              <Link
+                to={`/tvshows/${favoriteTv.id}`}
+                style={{ color: "inherit" }}
+              >
+                <img src={favoriteTv.imageUrl} alt="image" />
+              </Link>
             ) : (
               <div>
                 <h4>No favorite Show</h4>
