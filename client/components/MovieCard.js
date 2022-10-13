@@ -4,7 +4,7 @@ import { Card, Container } from "react-bootstrap";
 
 export const MovieCard = (props) => {
   const { movies, loading } = props;
-  console.log(loading);
+
   if (loading) {
     return <h2>Loading</h2>;
   }
@@ -12,6 +12,7 @@ export const MovieCard = (props) => {
     <Container fluid className="all-movies">
       {movies.map((movie) => (
         <Card
+          key={movie.id}
           border="info"
           style={{ width: "15rem", backgroundColor: "#FF5454", margin: "2rem" }}
         >
