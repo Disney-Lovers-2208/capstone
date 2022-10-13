@@ -8,7 +8,7 @@ import SimpleSlider from "./SimpleSlider";
 const FriendsProfilePage = (props) => {
   let location = useLocation();
 
-  console.log("location bitch", location);
+  console.log("location", location);
   React.useEffect(() => {}, []);
   return <Container fluid className="profile"></Container>;
 };
