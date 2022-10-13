@@ -52,7 +52,9 @@ export class Edit extends React.Component {
                 style={{ width: "100px" }}
                 alt="image"
               />
-              <h6>Upload a different photo...</h6>
+              <h6>Upload a different profile photo...</h6>
+              <input type="file" className="form-control" />
+              <h6>Upload a different banner photo...</h6>
               <input type="file" className="form-control" />
             </div>
           </Col>
