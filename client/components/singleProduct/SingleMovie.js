@@ -2,16 +2,16 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Form } from "react-bootstrap";
-import { fetchSingleBook } from "../store/book";
+import { fetchSingleMovie } from "../../store/movie";
 
-const SingleBook = () => {
-  const book = useSelector((state) => state.book);
-  const { imageUrl, title, description, genre } = book;
+const SingleMovie = () => {
+  const movie = useSelector((state) => state.movie);
+  const { imageUrl, title, description, genre } = movie;
   const dispatch = useDispatch();
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(fetchSingleBook(id));
+    dispatch(fetchSingleMovie(id));
   }, [dispatch]);
 
   return (
@@ -25,14 +25,12 @@ const SingleBook = () => {
 
       <div>
         <h2>{title}</h2>
-        <img src={imageUrl} alt="book-image" style={{ width: "15rem" }} />
+        <img src={imageUrl} alt="movie-image" style={{ width: "15rem" }} />
         <p>{description}</p>
         <p>{genre}</p>
-
-        <button>Heart</button>
       </div>
     </div>
   );
 };
 
-export default SingleBook;
+export default SingleMovie;
