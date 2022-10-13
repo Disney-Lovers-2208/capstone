@@ -149,9 +149,6 @@ async function mapTvShows() {
 }
 
 async function fetchBooks() {
-  // const { data } = await axios.get(
-  //   "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=9nt0bx3VGHAWcipI96xMV3ydjGcPMqEu"
-  // );
   const { data } = await axios.get(
     "https://api.nytimes.com/svc/books/v3//lists/full-overview.json?api-key=9nt0bx3VGHAWcipI96xMV3ydjGcPMqEu"
   );
@@ -176,21 +173,6 @@ async function mapBooks() {
     }
   }
 }
-
-// async function mapBooks() {
-//   const bookArr = await fetchBooks();
-//   let booksList = bookArr.results.books;
-//   for (let i = 0; i < booksList.length; i++) {
-//     await Promise.all([
-//       Book.create({
-//         title: booksList[i]["title"],
-//         author: booksList[i]["author"],
-//         description: booksList[i]["description"],
-//         imageUrl: booksList[i]["book_image"],
-//       }),
-//     ]);
-//   }
-// }
 
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
@@ -231,7 +213,7 @@ async function seed() {
     }),
   ]);
 
-  const posts = await Promise.all([
+  const postsOne = await Promise.all([
     Post.create({
       userId: 1,
       content: randQuote(),
@@ -242,10 +224,34 @@ async function seed() {
       content: randQuote(),
       bookId: 5,
     }),
+  ]);
+
+  const starRatingsOne = await Promise.all([
+    StarRating.create({
+      rating: 1,
+      userId: 3,
+      tvId: 1,
+    }),
+    StarRating.create({
+      rating: 5,
+      userId: 2,
+      tvId: 1,
+    }),
+  ]);
+
+  const postsTwo = await Promise.all([
     Post.create({
       userId: 3,
       content: randQuote(),
       tvId: 17,
+    }),
+  ]);
+
+  const starRatingsTwo = await Promise.all([
+    StarRating.create({
+      rating: 3,
+      userId: 3,
+      tvId: 2,
     }),
   ]);
 
