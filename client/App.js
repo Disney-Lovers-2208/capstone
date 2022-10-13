@@ -17,6 +17,7 @@ import Saved from "./components/profile/Saved";
 import SingleMovie from "./components/SingleMovie";
 import Friends from "./components/profile/Friends";
 import History from "./components/profile/History";
+import Edit from "./components/profile/Edit";
 
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/profile/friends" element={<Friends />} />
           <Route path="/profile/history" element={<History />} />
           <Route path="/profile/saved" element={<Saved />} />
+          <Route path="/profile/edit" element={<Edit />} />
           <Route path="/recommendations" />
           <Route path="/books" element={<AllBooks />} />
           <Route path="/movies" element={<AllMovies />} />
