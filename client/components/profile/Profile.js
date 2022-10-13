@@ -7,7 +7,7 @@ import SimpleSlider from "./SimpleSlider";
 
 export class Profile extends React.Component {
   render() {
-    const user = this.props.auth || [];
+    const user = this.props.user || [];
     const tvs = user?.tvs || [];
     const books = user?.books || [];
     const movies = user?.movies || [];
