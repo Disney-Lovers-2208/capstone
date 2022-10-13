@@ -59,7 +59,7 @@ const SimpleSlider = (props) => {
         {items.length !== 0 ? (
           items.map((item) => (
             <div key={item.id}>
-              <Link to={`/${item.productType}/${item.id}`}>
+              <Link to={`/${item.productType}s/${item.id}`}>
                 <img src={item.imageUrl} alt="image" />
               </Link>
             </div>
