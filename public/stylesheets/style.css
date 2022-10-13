@@ -19,4 +19,11 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-
+/* This has to do with pagination */
+.all-movies{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 2rem;
+justify-content: center;
+}
