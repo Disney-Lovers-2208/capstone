@@ -2,12 +2,18 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Card, Row, Col } from "react-bootstrap";
 import { fetchSingleTv } from "../../store/tv";
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
+
+TimeAgo.addLocale(en);
+const timeAgo = new TimeAgo('en-US');
 
 const SingleTvShow = () => {
   const tvshow = useSelector((state) => state.tv);
   const { imageUrl, title, description, genre } = tvshow;
+  const posts = tvshow.posts || [];
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -23,6 +29,23 @@ const SingleTvShow = () => {
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
       </div>
+
+      <div className="reviews">
+        <p>Reviews:</p>
+        <Card 
+          border="info" 
+          style={{ width: "15rem", backgroundColor: "#DDFF55" }}>
+        {posts.map((post) => (
+          <Row key={post.tvId}>
+            <p>{post.content}</p>
+            <p>{timeAgo.format(new Date(post.updatedAt))}</p>
+          </Row>
+        ))}
+        </Card>
+      </div>
+
+      <br />
+
       <Button variant='info' as={Link} to={`/posts/tvs/${id}`}>Write A Review</Button>
     </div>
   );

@@ -2,26 +2,21 @@ import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Button, Col } from "react-bootstrap";
+import { Button, Col, Card, Row } from "react-bootstrap";
 import { fetchSingleBook } from "../../store/book";
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
 
-// import TimeAgo from 'javascript-time-ago';
-// import en from 'javascript-time-ago/locale/en'
-
-// TimeAgo.addDefaultLocale(en);
-// const timeAgo = new TimeAgo('en-US')
-// timeAgo.format(new Date());
-
+TimeAgo.addLocale(en);
+const timeAgo = new TimeAgo('en-US');
 
 const SingleBook = () => {
   const book = useSelector((state) => state.book);
   const { imageUrl, title, description, genre } = book;
   const posts = book.posts || [];
-  // const { content, updatedAt, bookId } = posts;
-  console.log('reviews:', book);
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id);
+
 
   useEffect(() => {
     dispatch(fetchSingleBook(id));
@@ -42,16 +37,21 @@ const SingleBook = () => {
       <br />
 
       <div className="reviews">
-        <p>Current Reviews</p>
-        {/* <p>{content}</p>
-        <p>{updatedAt}</p> */}
+        <p>Reviews:</p>
+        <Card 
+          border="info" 
+          style={{ width: "15rem", backgroundColor: "#DDFF55" }}>
         {posts.map((post) => (
-          <Col key={post.bookId}>
+          <Row key={post.bookId}>
             <p>{post.content}</p>
-            <p>{timeAgo(post.updatedAt)}</p>
-          </Col>
+            <p>{timeAgo.format(new Date(post.updatedAt))}</p>
+          </Row>
         ))}
+        </Card>
       </div>
+
+      <br />
+
       <Button variant='info' as={Link} to={`/posts/books/${id}`}>Write A Review</Button>
     </div>
   );
