@@ -19,7 +19,7 @@ import Friends from "./components/profile/Friends";
 import History from "./components/profile/History";
 import Edit from "./components/profile/Edit";
 import FriendsProfilePage from "./components/profile/FriendsProfilePage";
-
+import UserProfilePage from "./components/profile/UserProfilePage";
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ const App = () => {
           <Route exact path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<PageNotFound />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<UserProfilePage />} />
           <Route path="/profile/friends" element={<Friends />} />
           <Route path="/profile/history" element={<History />} />
           <Route path="/profile/saved" element={<Saved />} />
