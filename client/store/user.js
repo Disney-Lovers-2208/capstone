@@ -29,10 +29,10 @@ export const fetchUser = (userId) => {
   };
 };
 
-export const updateUser = (userId, history) => {
+export const updateUser = (userId, userForm) => {
   return async (dispatch) => {
     try {
-      const { data: user } = await axios.put(`/api/users/${userId}`, user);
+      const { data: user } = await axios.put(`/api/users/${userId}`, userForm);
       dispatch(_updateUser(user));
     } catch (error) {
       console.log(error);
