@@ -1,16 +1,25 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
-import Banner from "./Banner";
-import SimpleSlider from "./SimpleSlider";
+import { fetchUser } from "../../store/user";
+import Profile from "./Profile";
 
-const FriendsProfilePage = (props) => {
-  let location = useLocation();
+const FriendsProfilePage = () => {
+  const { pathname } = useLocation();
+  const userId = pathname.split("/").pop();
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  console.log("location", location);
-  React.useEffect(() => {}, []);
-  return <Container fluid className="profile"></Container>;
+  useEffect(() => {
+    dispatch(fetchUser(userId));
+  }, [dispatch]);
+
+  return (
+    <Container fluid className="profile">
+      {Object.keys(user).length !== 0 ? <Profile user={user} /> : null}
+    </Container>
+  );
 };
 
 export default FriendsProfilePage;
