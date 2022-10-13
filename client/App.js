@@ -48,9 +48,9 @@ const App = () => {
           <Route path='/books' element={<AllBooks />} />
           <Route path='/movies' element={<AllMovies />}/>
           <Route path='/tvshows' element={<AllTvShows />} />
-          <Route path='/tvshows/:id' />
-          <Route path='/movies/:id' />
-          <Route path='/books/:id' />
+          <Route path='/tvshows/:id' element={<SingleTvShow />}/>
+          <Route path='/movies/:id' element={<SingleMovie/>}/>
+          <Route path='/books/:id' element={<SingleBook />}/>
           <Route path='/users' element={<AllUsers />} />
           <Route path='/searchfor/:search' element={<SearchFor />} />
           {/* <Route path='/searchfor/:name' element={<SearchFor />} /> */}
