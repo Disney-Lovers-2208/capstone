@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
+import { motion } from "framer-motion";
 
 const SimpleSlider = (props) => {
   const { books, tvs, movies } = props || [];
@@ -18,7 +19,7 @@ const SimpleSlider = (props) => {
 
   let settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 10,
     slidesToScroll: 10,
@@ -69,7 +70,12 @@ const SimpleSlider = (props) => {
         {items.length !== 0 ? (
           items.map((item) => (
             <div key={item.id}>
-              <img src={item.imageUrl} alt="image" />
+              <motion.img
+                whileHover={{ scale: 1 }}
+                whileTap={{ scale: 0.5 }}
+                src={item.imageUrl}
+                alt="image"
+              />
             </div>
           ))
         ) : (
