@@ -4,7 +4,7 @@ import { Card, Container } from "react-bootstrap";
 
 export const MovieCard = (props) => {
   const { movie } = props;
-  const { id, imageUrl, title, description } = movie;
+  const { id, imageUrl, title } = movie;
 
   return (
     <Container>
@@ -16,7 +16,6 @@ export const MovieCard = (props) => {
           <Card.Img variant="top" src={imageUrl} />
           <Card.Body>
             <Card.Title>{title}</Card.Title>
-            <Card.Text>{description}</Card.Text>
           </Card.Body>
         </Link>
       </Card>

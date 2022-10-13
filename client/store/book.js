@@ -16,7 +16,8 @@ const getSingleBook = (book) => {
     type: GET_SINGLE_BOOK,
     book,
   }
-}
+};
+
 
 // THUNK CREATOR
 export const fetchFavoriteBook = (userId) => {
@@ -42,6 +43,7 @@ export const fetchSingleBook = (id) => {
     }
   };
 };
+
 
 // REDUCER
 export default function bookReducer(state = {}, action) {

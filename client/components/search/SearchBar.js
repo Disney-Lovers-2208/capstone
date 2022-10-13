@@ -7,6 +7,7 @@ import SearchTabs from "./SearchTabs";
 import { fetchTvShows } from "../../store/tvshows";
 import { fetchMovies } from "../../store/movies";
 import { fetchBooks } from "../../store/books";
+import { fetchBookReviews } from "../../store/book";
 
 export const SearchBar = () => {
   const [title, setTitle] = useState("");
@@ -24,6 +25,7 @@ export const SearchBar = () => {
   useEffect(() => {
     dispatch(fetchBooks());
   }, [dispatch]);
+
 
   return (
     <Container id="search-bar" className="flex-row">

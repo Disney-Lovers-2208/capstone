@@ -3,11 +3,13 @@ import axios from "axios";
 // action type:
 const GET_BOOKS = "GET_BOOKS";
 
+
 // action creators:
 const setBooks = (books) => ({
   type: GET_BOOKS,
   books,
 });
+
 
 // thunks:
 export const fetchBooks = () => async (dispatch) => {
@@ -15,8 +17,9 @@ export const fetchBooks = () => async (dispatch) => {
   dispatch(setBooks(data));
 };
 
+
 // reducer
-export default function bookReducer(state = [], action) {
+export default function booksReducer(state = [], action) {
   switch (action.type) {
     case GET_BOOKS:
       return action.books;

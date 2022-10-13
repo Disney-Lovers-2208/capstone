@@ -4,7 +4,7 @@ import { Card, Container } from "react-bootstrap";
 
 export const BookCard = (props) => {
   const { book } = props;
-  const { id, imageUrl, title, description } = book;
+  const { id, imageUrl, title } = book;
 
   return (
     <Container>
@@ -16,7 +16,6 @@ export const BookCard = (props) => {
           <Card.Img variant="top" src={imageUrl} />
           <Card.Body>
             <Card.Title>{title}</Card.Title>
-            <Card.Text>{description}</Card.Text>
           </Card.Body>
         </Link>
       </Card>

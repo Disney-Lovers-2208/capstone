@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { fetchSingleTv } from "../../store/tv";
 
 const SingleTvShow = () => {
@@ -16,19 +17,13 @@ const SingleTvShow = () => {
 
   return (
     <div className="single-view">
-      <Form>
-        <Form.Group className="mb-3" style={{ width: "10rem" }}>
-          <Form.Label>Write A Review</Form.Label>
-          <Form.Control as="textarea" rows={4} />
-        </Form.Group>
-      </Form>
-
       <div>
         <h2>{title}</h2>
         <img src={imageUrl} alt="tvshow-image" style={{ width: "15rem" }} />
-        <p>{description}</p>
-        <p>{genre}</p>
+        <p>Summary: {description}</p>
+        <p>Genre: {genre}</p>
       </div>
+      <Button variant='info' as={Link} to={`/posts/tvs/${id}`}>Write A Review</Button>
     </div>
   );
 };
