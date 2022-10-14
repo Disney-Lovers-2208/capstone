@@ -14,6 +14,10 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
+img{
+  border-radius: 1rem;
+  border: none;
+}
 
 form div {
   margin: 1em;
