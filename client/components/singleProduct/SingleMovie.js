@@ -19,11 +19,11 @@ const SingleMovie = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  let average = starRatings.reduce((accumulator, current) => {
-    return accumulator + current.rating;
-  }, 0) / starRatings.length;
+  // let average = starRatings.reduce((accumulator, current) => {
+  //   return accumulator + current.rating;
+  // }, 0) / starRatings.length;
   
-  average = average.toFixed(1);
+  // average = average.toFixed(1);
 
   useEffect(() => {
     dispatch(fetchSingleMovie(id));
@@ -55,7 +55,7 @@ const SingleMovie = () => {
 
       <br />
 
-      <div className="star-rating">
+      {/* <div className="star-rating">
           <p>Star Rating:</p>
           <Card 
             border="info" 
@@ -67,15 +67,15 @@ const SingleMovie = () => {
           })}
           
           </Card>
-      </div>
+      </div> */}
 
       <br />
 
       <Row xs={3}>
         <Col>
-          <Button variant='info' as={Link} to={`/posts/tvs/${id}`}>Write A Review</Button>
-          <Button variant='secondary' as={Link} to={`/starRating/${id}`}>Add a Rating</Button>
-          <Button variant='success' as={Link} to={'/profile/saved'}>Add to Favorites</Button>
+          <Button variant='info' as={Link} to={`/review/movie/${id}`}>Write A Review</Button>
+          {/* <Button variant='secondary' as={Link} to={`/starRating/${id}`}>Add a Rating</Button> */}
+          <Button variant='success' as={Link} to={'/profile'}>Add to Favorites</Button>
         </Col>
       </Row>
     </div>

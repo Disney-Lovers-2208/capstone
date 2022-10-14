@@ -20,12 +20,12 @@ const SingleTvShow = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  let average = starRatings.reduce((accumulator, current) => {
-    return accumulator + current.rating;
-  }, 0) / starRatings.length;
+  // let average = starRatings.reduce((accumulator, current) => {
+  //   return accumulator + current.rating;
+  // }, 0) / starRatings.length;
   
-  average = average.toFixed(1);
-  console.log('average:', average);
+  // average = average.toFixed(1);
+  // console.log('average:', average);
 
   useEffect(() => {
     dispatch(fetchSingleTv(id));
@@ -41,14 +41,13 @@ const SingleTvShow = () => {
         <p>Genre: {genre}</p>
       </div>
 
-      {/* may need to conditionally render if there are no reviews */}
       <div className="reviews">
         <p>Reviews:</p>
         <Card 
           border="info" 
           style={{ width: "15rem", backgroundColor: "#FF5454" }}>
         {posts.map((post) => (
-          <Row key={post.tvId}>
+          <Row key={post.id}>
             <p>{post.content}</p>
             <p>{timeAgo.format(new Date(post.updatedAt))}</p>
           </Row>
@@ -63,11 +62,11 @@ const SingleTvShow = () => {
         <Card 
           border="info"
           style={{ width: "15rem", backgroundColor: "#DDFF55" }}>
+
         {starRatings.map((starRating) => (
-          <Row key={starRating.tvId}>
+          <Row key={starRating.id}>
             {/* <p>{starRating.rating}</p> */}
             {/* <p>{isNaN(average) ? 0 : average}</p> */}
-            <p>{average}</p>
           </Row>
         ))}
         </Card>
@@ -76,8 +75,8 @@ const SingleTvShow = () => {
       <br />
       <Row xs={3}>
         <Col>
-          <Button variant='info' as={Link} to={`/posts/tvs/${id}`}>Write A Review</Button>
-          <Button variant='secondary' as={Link} to={`/starRating/${id}`}>Add a Rating</Button>
+          <Button variant='info' as={Link} to={`/review/tv/${id}`}>Write A Review</Button>
+          {/* <Button variant='secondary' as={Link} to={`/starRating/${id}`}>Add a Rating</Button> */}
           <Button variant='dark' as={Link} to={'/profile'}><FaHeart />Add to Favorite</Button>
         </Col>
       </Row>

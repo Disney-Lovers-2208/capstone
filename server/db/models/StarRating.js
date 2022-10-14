@@ -8,4 +8,10 @@ const StarRating = db.define("starRating", {
   },
 });
 
+// findAvgRating
+
+// StarRating.findAvgRating = function(id) {
+//   let average = 
+// }
+
 module.exports = StarRating;

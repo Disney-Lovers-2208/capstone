@@ -23,12 +23,13 @@ router.post("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const tv = await Tv.findByPk(req.params.id, { include: [Post, StarRating] });
+    const tv = await Tv.findByPk(req.params.id, { include: [Post] });
     res.json(tv);
   } catch (err) {
     next(err);
   }
 });
+
 
 router.delete("/:id", async (req, res, next) => {
   try {
