@@ -34,8 +34,12 @@ router.get("/:id", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.id);
-    res.send(await user.update(req.body));
+    let user = await User.findByPk(req.params.id);
+    await user.update(req.body);
+    user = await User.findByPk(req.params.id, {
+      include: [Movie, Book, Tv],
+    });
+    res.send(user);
   } catch (error) {
     next(error);
   }

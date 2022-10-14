@@ -1,39 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
-import { updateUser, fetchUser } from "../../store/user";
+import { updateAuth } from "../../store/auth";
 import { useNavigate } from "react-router-dom";
 
 export function Edit(props) {
-  const user = useSelector((state) => state.user);
-  const userId = useSelector((state) => state.auth.id);
+  const auth = useSelector((state) => state.auth);
+  const authId = useSelector((state) => state.auth.id);
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(fetchUser(userId));
-  }, [dispatch]);
-
-  const [firstName, setFirstName] = useState(user.firstName);
-  const [lastName, setLastName] = useState(user.lastName);
-  const [email, setEmail] = useState(user.email);
-  const [username, setUsername] = useState(user.username);
-  const [bio, setBio] = useState(user.bio);
+  const [firstName, setFirstName] = useState(auth.firstName);
+  const [lastName, setLastName] = useState(auth.lastName);
+  const [email, setEmail] = useState(auth.email);
+  const [username, setUsername] = useState(auth.username);
+  const [bio, setBio] = useState(auth.bio);
 
   useEffect(() => {
-    setFirstName(user.firstName);
-    setLastName(user.lastName);
-    setEmail(user.email);
-    setUsername(user.username);
-    setBio(user.bio);
-  }, [user.firstName, user.lastName, user.email, user.username, user.bio]);
+    setFirstName(auth.firstName);
+    setLastName(auth.lastName);
+    setEmail(auth.email);
+    setUsername(auth.username);
+    setBio(auth.bio);
+  }, [auth.firstName, auth.lastName, auth.email, auth.username, auth.bio]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     alert("Submitting form");
     dispatch(
-      updateUser(
-        user.id,
+      updateAuth(
+        authId,
         { firstName, lastName, email, username, bio },
         navigate
       )
