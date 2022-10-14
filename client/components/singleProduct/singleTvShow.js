@@ -14,6 +14,7 @@ const SingleTvShow = () => {
   const tvshow = useSelector((state) => state.tv);
   const { imageUrl, title, description, genre } = tvshow;
   const posts = tvshow.posts || [];
+  const starRatings = tvshow.starRatings || [];
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -46,7 +47,27 @@ const SingleTvShow = () => {
 
       <br />
 
-      <Button variant='info' as={Link} to={`/posts/tvs/${id}`}>Write A Review</Button>
+      {/* may need conditional rendering if it's only 1 rating or if multiple ratings */}
+      <div className="star-rating">
+        <p>Star Rating:</p>
+        <Card 
+          border="info"
+          style={{ width: "15rem", backgroundColor: "#DDFF55" }}>
+        {starRatings.map((starRating => (
+          <Row key={starRating.tvId}>
+            <p>{starRating.rating}</p>
+          </Row>
+        )))}
+        </Card>
+      </div>
+
+      <br />
+      <Row xs={2}>
+        <Col>
+          <Button variant='info' as={Link} to={`/posts/tvs/${id}`}>Write A Review</Button>
+          <Button variant='secondary' as={Link} to={`/starRating/${id}`}>Add a Rating</Button>
+        </Col>
+      </Row>
     </div>
   );
 };
