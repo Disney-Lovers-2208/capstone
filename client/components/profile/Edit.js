@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { updateUser, fetchUser } from "../../store/user";
 import { useNavigate } from "react-router-dom";
 
-export function Edit(props) {
+export function Edit() {
   const user = useSelector((state) => state.user);
   const userId = useSelector((state) => state.auth.id);
   const dispatch = useDispatch();
@@ -48,11 +48,7 @@ export function Edit(props) {
         {/* Left side */}
         <Col lg={3}>
           <div className="text-center">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-              style={{ width: "100px" }}
-              alt="image"
-            />
+            <img src={user.image} style={{ width: "100px" }} alt="image" />
             <h6>Upload a different profile photo...</h6>
             <input type="file" className="form-control" />
             <h6>Upload a different banner photo...</h6>
