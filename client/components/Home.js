@@ -19,10 +19,6 @@ export const Home = () => {
     dispatch(getActivityLog(userId));
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch]);
-
   return (
     <div className="activity-log">
       <Row xs={3} md={3}>
