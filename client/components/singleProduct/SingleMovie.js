@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button, Card, Row, Col } from "react-bootstrap";
+import { FaHeart } from "react-icons/fa";
 import { fetchSingleMovie } from "../../store/movie";
 
 import TimeAgo from 'javascript-time-ago';
@@ -53,7 +54,7 @@ const SingleMovie = () => {
       <Row xs={3}>
         <Col>
           <Button variant='info' as={Link} to={`/review/movie/${id}`}>Write A Review</Button>
-          <Button variant='success' as={Link} to={'/profile'}>Add to Favorites</Button>
+          <Button variant='dark' as={Link} to={'/profile'}><FaHeart />Add to Favorite</Button>
           <Button variant='success' as={Link} to={'/profile/saved'}>Add to Saved</Button>
           <Button variant='success' as={Link} to={'/profile'}>Add to Featured</Button>
         </Col>

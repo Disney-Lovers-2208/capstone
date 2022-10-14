@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
 import { Button, Col, Card, Row } from "react-bootstrap";
 import { fetchSingleBook } from "../../store/book";
 import TimeAgo from 'javascript-time-ago';
@@ -53,7 +54,7 @@ const SingleBook = () => {
       <Row xs={3}>
         <Col>
           <Button variant='info' as={Link} to={`/review/book/${id}`}>Write A Review</Button>
-          <Button variant='success' as={Link} to={'/profile'}>Add to Favorites</Button>
+          <Button variant='dark' as={Link} to={'/profile'}><FaHeart />Add to Favorite</Button>
           <Button variant='success' as={Link} to={'/profile/saved'}>Add to Saved</Button>
           <Button variant='success' as={Link} to={'/profile'}>Add to Featured</Button>
         </Col>
