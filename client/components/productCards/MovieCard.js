@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { Card, Container } from "react-bootstrap";
 
 export const MovieCard = (props) => {
-  const { movie } = props;
-  const { id, imageUrl, title } = movie;
+  const { movies } = props;
+  const { id, imageUrl, title } = movies;
 
-  // return (
+  return (
     // <Container>
     //   <Card
     //     border="info"
@@ -14,15 +14,15 @@ export const MovieCard = (props) => {
     //   >
     //     <Link to={`/movies/${id}`} style={{ color: "inherit" }}>
     //       <Card.Img variant="top" src={imageUrl} />
-    //       <Card.Body>
+    //       {/* <Card.Body>
     //         <Card.Title>{title}</Card.Title>
-    //       </Card.Body>
+    //       </Card.Body> */}
     //     </Link>
     //   </Card>
+    // </Container>
 
-  return (
     <Container fluid className="all-movies">
-      {movie.map((movie) => (
+      {movies.map((movie) => (
         <Card key={movie.id} style={{ width: "15rem", margin: "2rem" }}>
           <Link to={`/movies/${movie.id}`} style={{ color: "inherit" }}>
             <Card.Img className="card-img" variant="top" src={movie.imageUrl} />

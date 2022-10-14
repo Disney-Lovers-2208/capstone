@@ -4,6 +4,7 @@ import { me } from "./auth";
 // ACTION TYPE
 const SET_USER = "SET_USER";
 const UPDATE_USER = "UPDATE_USER";
+const ADD_FAVORITE_TV = "ADD_FAVORITE_TV";
 
 // ACTION CREATOR
 const setUser = (user) => {
@@ -17,6 +18,11 @@ const _updateUser = (user) => ({
   type: UPDATE_USER,
   user,
 });
+
+const setFavoriteTv = (favorite) => ({
+  type: ADD_FAVORITE_TV,
+  favorite,
+})
 
 // THUNK CREATOR
 export const fetchUser = (userId) => {
@@ -43,6 +49,17 @@ export const updateUser = (userId, userForm, navigate) => {
   };
 };
 
+export const fetchFavoriteTv = (userId, tvId) => {
+  return async (dispatch) => {
+    try {
+      const { data: favorite } = await axios.get(`/api/users/${userId}/tvs/user_tv/${tvId}`);
+      dispatch(setFavoriteTv(favorite));
+    } catch (error) {
+      return error;
+    }
+  };
+};
+
 // REDUCER
 export default function userReducer(state = {}, action) {
   switch (action.type) {
@@ -50,6 +67,8 @@ export default function userReducer(state = {}, action) {
       return action.user;
     case UPDATE_USER:
       return action.user;
+    case ADD_FAVORITE_TV:
+      return 
     default:
       return state;
   }

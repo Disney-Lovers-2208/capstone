@@ -14,9 +14,15 @@ const SingleBook = () => {
   const book = useSelector((state) => state.book);
   const { imageUrl, title, description, genre } = book;
   const posts = book.posts || [];
+  const starRatings = book.starRatings || [];
   const dispatch = useDispatch();
   const { id } = useParams();
 
+  let average = starRatings.reduce((accumulator, current) => {
+    return accumulator + current.rating;
+  }, 0) / starRatings.length;
+  
+  average = average.toFixed(1);
 
   useEffect(() => {
     dispatch(fetchSingleBook(id));
@@ -30,8 +36,6 @@ const SingleBook = () => {
         <img src={imageUrl} alt="book-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
-
-        <button>Heart</button>
       </div>
 
       <br />
@@ -40,7 +44,7 @@ const SingleBook = () => {
         <p>Reviews:</p>
         <Card 
           border="info" 
-          style={{ width: "15rem", backgroundColor: "#DDFF55" }}>
+          style={{ width: "15rem", backgroundColor: "#FF5454" }}>
         {posts.map((post) => (
           <Row key={post.bookId}>
             <p>{post.content}</p>
@@ -52,7 +56,29 @@ const SingleBook = () => {
 
       <br />
 
-      <Button variant='info' as={Link} to={`/posts/books/${id}`}>Write A Review</Button>
+      <div className="star-rating">
+          <p>Star Rating:</p>
+          <Card 
+            border="info" 
+            style={{ width: "15rem", backgroundColor: "#DDFF55"}}>
+          {starRatings.map((starRating) => (
+            <Row key={starRating.bookId}>
+              <p>{average}</p>
+            </Row>
+          ))}
+          </Card>
+      </div>
+
+      <br />
+
+      <Row xs={3}>
+        <Col>
+          <Button variant='info' as={Link} to={`/posts/tv/${id}`}>Write A Review</Button>
+          <Button variant='secondary' as={Link} to={`/starRating/${id}`}>Add a Rating</Button>
+          <Button variant='success' as={Link} to={'/profile/saved'}>Add to Favorites</Button>
+        </Col>
+      </Row>
+
     </div>
   );
 };
