@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import { updateUser, fetchUser } from "../../store/user";
 import { useNavigate } from "react-router-dom";
-import { me } from "../../store/auth";
 
 export function Edit(props) {
   const user = useSelector((state) => state.user);
@@ -28,10 +27,6 @@ export function Edit(props) {
     setUsername(user.username);
     setBio(user.bio);
   }, [user.firstName, user.lastName, user.email, user.username, user.bio]);
-
-  function refreshPage() {
-    window.location.reload(false);
-  }
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
