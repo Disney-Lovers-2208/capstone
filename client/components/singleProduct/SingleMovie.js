@@ -1,34 +1,64 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Form } from "react-bootstrap";
+import { Button, Card, Row, Col } from "react-bootstrap";
+import { FaHeart } from "react-icons/fa";
 import { fetchSingleMovie } from "../../store/movie";
+
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en'
+
+TimeAgo.addDefaultLocale(en);
+const timeAgo = new TimeAgo('en-US');
 
 const SingleMovie = () => {
   const movie = useSelector((state) => state.movie);
   const { imageUrl, title, description, genre } = movie;
+  const posts = movie.posts || [];
+  const starRatings = movie.starRatings || [];
   const dispatch = useDispatch();
   const { id } = useParams();
+
 
   useEffect(() => {
     dispatch(fetchSingleMovie(id));
   }, [dispatch]);
 
+
   return (
     <div className="single-view">
-      <Form>
-        <Form.Group className="mb-3" style={{ width: "10rem" }}>
-          <Form.Label>Write A Review</Form.Label>
-          <Form.Control as="textarea" rows={4} />
-        </Form.Group>
-      </Form>
-
       <div>
         <h2>{title}</h2>
         <img src={imageUrl} alt="movie-image" style={{ width: "15rem" }} />
-        <p>{description}</p>
-        <p>{genre}</p>
+        <p>Summary: {description}</p>
+        <p>Genre: {genre}</p>
       </div>
+
+      <div className="reviews">
+        <p>Reviews:</p>
+        <Card 
+          border="info" 
+          style={{ width: "15rem", backgroundColor: "#FF5454" }}>
+        {posts.map((post) => (
+          <Row key={post.movieId}>
+            <p>{post.content}</p>
+            <p>{timeAgo.format(new Date(post.updatedAt))}</p>
+          </Row>
+        ))}
+        </Card>
+      </div>
+
+      <br />
+
+      <Row xs={3}>
+        <Col>
+          <Button variant='info' as={Link} to={`/review/movie/${id}`}>Write A Review</Button>
+          <Button variant='dark' as={Link} to={'/profile'}><FaHeart />Add to Favorite</Button>
+          <Button variant='success' as={Link} to={'/profile/saved'}>Add to Saved</Button>
+          <Button variant='success' as={Link} to={'/profile'}>Add to Featured</Button>
+        </Col>
+      </Row>
     </div>
   );
 };

@@ -13,13 +13,12 @@ import AllMovies from "./components/allProducts/AllMovies";
 import SingleTvShow from "./components/singleProduct/SingleTvShow";
 import SingleBook from "./components/singleProduct/SingleBook";
 import SingleMovie from "./components/singleProduct/SingleMovie";
-import Profile from "./components/profile/Profile";
+import UserProfilePage from "./components/profile/UserProfilePage";
 import Saved from "./components/profile/Saved";
 import Friends from "./components/profile/Friends";
 import History from "./components/profile/History";
 import Edit from "./components/profile/Edit";
 import FriendsProfilePage from "./components/profile/FriendsProfilePage";
-import UserProfilePage from "./components/profile/UserProfilePage";
 import AddProduct from "./components/search/AddProduct";
 
 const App = () => {
@@ -56,6 +55,12 @@ const App = () => {
           <Route path="/tvshows/:id" element={<SingleTvShow />} />
           <Route path="/movies/:id" element={<SingleMovie />} />
           <Route path="/books/:id" element={<SingleBook />} />
+          <Route path="/posts/book/:id" />
+          <Route path="/posts/tv/:id" />
+          <Route path="/posts/movie/:id" />
+          <Route path='/starRating/tv/:id' />
+          <Route path='/starRating/book/:id' />
+          <Route path='/starRating/movie/:id' />
           <Route path="/users" />
           <Route path="/searchfor/:title" element={<SearchFor />} />
           <Route path="/add" element={<AddProduct />} />

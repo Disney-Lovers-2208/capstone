@@ -21,6 +21,7 @@ export const fetchSingleBook = (id) => {
   };
 };
 
+
 // REDUCER
 export default function bookReducer(state = {}, action) {
   switch (action.type) {
