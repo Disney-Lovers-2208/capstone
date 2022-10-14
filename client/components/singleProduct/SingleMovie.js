@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { fetchSingleMovie } from "../../store/movie";
+import { Link } from "react-router-dom";
 
 const SingleMovie = () => {
   const movie = useSelector((state) => state.movie);
@@ -16,12 +17,12 @@ const SingleMovie = () => {
 
   return (
     <div className="single-view">
-      <Form>
+      {/* <Form>
         <Form.Group className="mb-3" style={{ width: "10rem" }}>
           <Form.Label>Write A Review</Form.Label>
           <Form.Control as="textarea" rows={4} />
         </Form.Group>
-      </Form>
+      </Form> */}
 
       <div>
         <h2>{title}</h2>
@@ -29,6 +30,7 @@ const SingleMovie = () => {
         <p>{description}</p>
         <p>{genre}</p>
       </div>
+      <Link to={"/reviewform"}>Write a review</Link>
     </div>
   );
 };

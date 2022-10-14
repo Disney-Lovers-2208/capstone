@@ -41,7 +41,7 @@ export const fetchCreateMovie = (movie) => {
 };
 
 // REDUCER
-export default function movieReducer(state = [], action) {
+export default function movieReducer(state = {}, action) {
   switch (action.type) {
     case CREATE_MOVIE:
       return [...state, action.movie];

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { fetchSingleTv } from "../../store/tv";
+import { Link } from "react-router-dom";
 
 const SingleTvShow = () => {
   const tvshow = useSelector((state) => state.tv);
@@ -16,12 +17,12 @@ const SingleTvShow = () => {
 
   return (
     <div className="single-view">
-      <Form>
+      {/* <Form>
         <Form.Group className="mb-3" style={{ width: "10rem" }}>
           <Form.Label>Write A Review</Form.Label>
           <Form.Control as="textarea" rows={4} />
         </Form.Group>
-      </Form>
+      </Form> */}
 
       <div>
         <h2>{title}</h2>
