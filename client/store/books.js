@@ -4,6 +4,7 @@ import axios from "axios";
 const GET_BOOKS = "GET_BOOKS";
 const CREATE_BOOK = "CREATE_BOOK";
 
+
 // action creators:
 const setBooks = (books) => ({
   type: GET_BOOKS,
@@ -24,7 +25,6 @@ export const fetchBooks = () => async (dispatch) => {
 };
 
 export const fetchCreateBook = (book) => {
-  console.log("in fetchCreate book", book);
   return async (dispatch) => {
     try {
       const { data: created } = await axios.post(`/api/books`, book);

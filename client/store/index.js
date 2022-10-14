@@ -5,7 +5,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
 import tvReducer from "./tvshows";
 import movieReducer from "./movies";
-import bookReducer from "./books";
+import booksReducer from "./books";
 import user from "./user";
 import tv from "./tv";
 import book from "./book";
@@ -17,7 +17,7 @@ const reducer = combineReducers({
   auth,
   tvs: tvReducer,
   movies: movieReducer,
-  books: bookReducer,
+  books: booksReducer,
   tv: tv,
   book: book,
   movie: movie,
