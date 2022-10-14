@@ -1,31 +1,29 @@
 import axios from "axios";
 
 // ACTION TYPE
-const SET_FAVORITE_BOOK = "SET_FAVORITE_BOOK";
 const GET_SINGLE_BOOK = "SET_SINGLE_BOOK";
-
-const setFavoriteBook = (book) => {
-  return {
-    type: SET_FAVORITE_BOOK,
-    book,
-  };
-};
+const CREATE_BOOK = "CREATE_BOOK";
 
 const getSingleBook = (book) => {
   return {
     type: GET_SINGLE_BOOK,
     book,
-  }
-}
+  };
+};
 
-// THUNK CREATOR
-export const fetchFavoriteBook = (userId) => {
+export const createBook = (book) => {
+  return {
+    type: CREATE_BOOK,
+    book,
+  };
+};
+
+export const fetchCreateBook = (book) => {
+  console.log("in fetchCreate book", book);
   return async (dispatch) => {
     try {
-      const { data: book } = await axios.get(
-        `/api/userBooks/favoriteBook/${userId}`
-      );
-      dispatch(setFavoriteBook(book));
+      const { data: created } = await axios.post(`/api/books`, book);
+      dispatch(created);
     } catch (error) {
       return error;
     }
@@ -37,17 +35,17 @@ export const fetchSingleBook = (id) => {
     try {
       const { data: book } = await axios.get(`/api/books/${id}`);
       dispatch(getSingleBook(book));
-    } catch(error) {
+    } catch (error) {
       return error;
     }
   };
 };
 
 // REDUCER
-export default function bookReducer(state = {}, action) {
+export default function bookReducer(state = [], action) {
   switch (action.type) {
-    case SET_FAVORITE_BOOK:
-      return action.book;
+    case CREATE_BOOK:
+      return [...state, action.book];
     case GET_SINGLE_BOOK:
       return action.book;
     default:

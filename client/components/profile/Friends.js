@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import Banner from "./Banner";
+import { Link } from "react-router-dom";
 
 export class Friends extends React.Component {
   render() {
@@ -21,10 +22,12 @@ export class Friends extends React.Component {
             {friends
               ? friends.map((friend) => {
                   return (
-                    <div className="friend-card" key={friend.id}>
-                      <img src={friend.image} alt="image" />
-                      {friend.firstName}
-                    </div>
+                    <Link to={`/friend/${friend.id}`} key={friend.id}>
+                      <div className="friend-card">
+                        <img src={friend.image} alt="image" />
+                        {friend.firstName}
+                      </div>
+                    </Link>
                   );
                 })
               : null}

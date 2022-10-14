@@ -1,20 +1,10 @@
 import React from "react";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const SimpleSlider = (props) => {
   const { books, tvs, movies } = props || [];
-  let typeOfProduct;
-  if (books) {
-    typeOfProduct = "book";
-  }
-  if (movies) {
-    typeOfProduct = "movie";
-  }
-  if (tvs) {
-    typeOfProduct = "show";
-  }
-
   const items = books || tvs || movies || [];
 
   let settings = {
@@ -70,16 +60,13 @@ const SimpleSlider = (props) => {
         {items.length !== 0 ? (
           items.map((item) => (
             <div key={item.id}>
-              <motion.img
-                whileHover={{ scale: 1 }}
-                whileTap={{ scale: 0.5 }}
-                src={item.imageUrl}
-                alt="image"
-              />
+              <Link to={`/${item.productType}s/${item.id}`}>
+                <img src={item.imageUrl} alt="image" />
+              </Link>
             </div>
           ))
         ) : (
-          <div>No featured {typeOfProduct}s</div>
+          <div>No featured {item.productType}s</div>
         )}
       </Slider>
     </div>

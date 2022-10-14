@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Form } from "react-bootstrap";
-import { fetchSingleTv } from "../store/tv";
+import { fetchSingleTv } from "../../store/tv";
 
 const SingleTvShow = () => {
   const tvshow = useSelector((state) => state.tv);
