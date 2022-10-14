@@ -20,13 +20,6 @@ const SingleTvShow = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  // let average = starRatings.reduce((accumulator, current) => {
-  //   return accumulator + current.rating;
-  // }, 0) / starRatings.length;
-  
-  // average = average.toFixed(1);
-  // console.log('average:', average);
-
   useEffect(() => {
     dispatch(fetchSingleTv(id));
   }, [dispatch]);
@@ -65,8 +58,6 @@ const SingleTvShow = () => {
 
         {starRatings.map((starRating) => (
           <Row key={starRating.id}>
-            {/* <p>{starRating.rating}</p> */}
-            {/* <p>{isNaN(average) ? 0 : average}</p> */}
           </Row>
         ))}
         </Card>
@@ -76,8 +67,10 @@ const SingleTvShow = () => {
       <Row xs={3}>
         <Col>
           <Button variant='info' as={Link} to={`/review/tv/${id}`}>Write A Review</Button>
-          {/* <Button variant='secondary' as={Link} to={`/starRating/${id}`}>Add a Rating</Button> */}
           <Button variant='dark' as={Link} to={'/profile'}><FaHeart />Add to Favorite</Button>
+          <Button variant='success' as={Link} to={'/profile'}>Add to Favorites</Button>
+          <Button variant='success' as={Link} to={'/profile/saved'}>Add to Saved</Button>
+          <Button variant='success' as={Link} to={'/profile'}>Add to Featured</Button>
         </Col>
       </Row>
     </div>

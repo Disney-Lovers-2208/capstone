@@ -18,12 +18,6 @@ const SingleBook = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  // let average = starRatings.reduce((accumulator, current) => {
-  //   return accumulator + current.rating;
-  // }, 0) / starRatings.length;
-  
-  // average = average.toFixed(1);
-
   useEffect(() => {
     dispatch(fetchSingleBook(id));
   }, [dispatch]);
@@ -56,25 +50,9 @@ const SingleBook = () => {
 
       <br />
 
-      {/* <div className="star-rating">
-          <p>Star Rating:</p>
-          <Card 
-            border="info" 
-            style={{ width: "15rem", backgroundColor: "#DDFF55"}}>
-          {starRatings.map((starRating) => (
-            <Row key={starRating.bookId}>
-              <p>{average}</p>
-            </Row>
-          ))}
-          </Card>
-      </div> */}
-
-      <br />
-
       <Row xs={3}>
         <Col>
           <Button variant='info' as={Link} to={`/review/book/${id}`}>Write A Review</Button>
-          {/* <Button variant='secondary' as={Link} to={`/starRating/${id}`}>Add a Rating</Button> */}
           <Button variant='success' as={Link} to={'/profile'}>Add to Favorites</Button>
           <Button variant='success' as={Link} to={'/profile/saved'}>Add to Saved</Button>
           <Button variant='success' as={Link} to={'/profile'}>Add to Featured</Button>
