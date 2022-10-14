@@ -50,25 +50,11 @@ const SingleTvShow = () => {
 
       <br />
 
-      <div className="star-rating">
-        <p>Star Rating:</p>
-        <Card 
-          border="info"
-          style={{ width: "15rem", backgroundColor: "#DDFF55" }}>
-
-        {starRatings.map((starRating) => (
-          <Row key={starRating.id}>
-          </Row>
-        ))}
-        </Card>
-      </div>
-
       <br />
       <Row xs={3}>
         <Col>
           <Button variant='info' as={Link} to={`/review/tv/${id}`}>Write A Review</Button>
           <Button variant='dark' as={Link} to={'/profile'}><FaHeart />Add to Favorite</Button>
-          <Button variant='success' as={Link} to={'/profile'}>Add to Favorites</Button>
           <Button variant='success' as={Link} to={'/profile/saved'}>Add to Saved</Button>
           <Button variant='success' as={Link} to={'/profile'}>Add to Featured</Button>
         </Col>
