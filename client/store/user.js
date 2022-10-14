@@ -1,4 +1,5 @@
 import axios from "axios";
+import { me } from "./auth";
 
 // ACTION TYPE
 const SET_USER = "SET_USER";
@@ -29,11 +30,13 @@ export const fetchUser = (userId) => {
   };
 };
 
-export const updateUser = (userId, userForm) => {
+export const updateUser = (userId, userForm, navigate) => {
   return async (dispatch) => {
     try {
       const { data: user } = await axios.put(`/api/users/${userId}`, userForm);
       dispatch(_updateUser(user));
+      dispatch(me());
+      navigate("/profile");
     } catch (error) {
       console.log(error);
     }

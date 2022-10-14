@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import { updateUser, fetchUser } from "../../store/user";
 import { useNavigate } from "react-router-dom";
+import { me } from "../../store/auth";
 
 export function Edit(props) {
   const user = useSelector((state) => state.user);
@@ -36,10 +37,12 @@ export function Edit(props) {
     evt.preventDefault();
     alert("Submitting form");
     dispatch(
-      updateUser(user.id, { firstName, lastName, email, username, bio })
+      updateUser(
+        user.id,
+        { firstName, lastName, email, username, bio },
+        navigate
+      )
     );
-    navigate("/profile");
-    refreshPage();
   };
 
   return (
@@ -67,7 +70,7 @@ export function Edit(props) {
               <label htmlFor="firstName"> First Name: </label>
               <input
                 type="text"
-                value={firstName || "first name"}
+                value={firstName || ""}
                 onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
@@ -75,7 +78,7 @@ export function Edit(props) {
               <label htmlFor="lastName"> Last Name: </label>
               <input
                 type="text"
-                value={lastName || "last name"}
+                value={lastName || ""}
                 onChange={(e) => setLastName(e.target.value)}
               />
             </div>
@@ -83,7 +86,7 @@ export function Edit(props) {
               <label htmlFor="email"> Email: </label>
               <input
                 type="text"
-                value={email || "email"}
+                value={email || ""}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -91,7 +94,7 @@ export function Edit(props) {
               <label htmlFor="username"> Username: </label>
               <input
                 type="text"
-                value={username || "username"}
+                value={username || ""}
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
