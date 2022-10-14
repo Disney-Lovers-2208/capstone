@@ -10,7 +10,6 @@ export const Filter = ({
   books,
   all,
 }) => {
-  console.log("ActiveType", activeType);
   return (
     <div className="filter-container">
       <button

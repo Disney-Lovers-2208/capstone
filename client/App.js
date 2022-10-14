@@ -2,23 +2,26 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import AuthForm from "./components/AuthForm";
-import Profile from "./components/profile/Profile";
 import PageNotFound from "./components/PageNotFound";
 import Home from "./components/Home";
 import { me, logout } from "./store";
-import NavigationBar from "./components/NavigationBar";
-import SearchFor from "./components/SearchFor";
-import AllTvShows from "./components/AllTvShows";
-import SingleTvShow from "./components/SingleTvShow";
-import AllBooks from "./components/AllBooks";
-import SingleBook from "./components/SingleBook";
-import AllMovies from "./components/AllMovies";
+import NavigationBar from "./components/search/NavigationBar";
+import SearchFor from "./components/search/SearchFor";
+import AllTvShows from "./components/allProducts/AllTvShows";
+import AllBooks from "./components/allProducts/AllBooks";
+import AllMovies from "./components/allProducts/AllMovies";
+import SingleTvShow from "./components/singleProduct/SingleTvShow";
+import SingleBook from "./components/singleProduct/SingleBook";
+import SingleMovie from "./components/singleProduct/SingleMovie";
+import Profile from "./components/profile/Profile";
 import Saved from "./components/profile/Saved";
-import SingleMovie from "./components/SingleMovie";
 import Friends from "./components/profile/Friends";
 import History from "./components/profile/History";
 import AllUsers from './components/AllUsers';
 
+import Edit from "./components/profile/Edit";
+import FriendsProfilePage from "./components/profile/FriendsProfilePage";
+import UserProfilePage from "./components/profile/UserProfilePage";
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);
   const dispatch = useDispatch();
@@ -40,10 +43,12 @@ const App = () => {
           <Route exact path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<PageNotFound />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<UserProfilePage />} />
           <Route path="/profile/friends" element={<Friends />} />
           <Route path="/profile/history" element={<History />} />
           <Route path="/profile/saved" element={<Saved />} />
+          <Route path="/profile/edit" element={<Edit />} />
+          <Route path="/friend/:id" element={<FriendsProfilePage />} />
           <Route path="/recommendations" />
           <Route path='/books' element={<AllBooks />} />
           <Route path='/movies' element={<AllMovies />}/>

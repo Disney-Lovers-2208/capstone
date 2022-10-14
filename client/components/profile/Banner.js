@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import { Container, Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 
 const Banner = (props) => {
   const { user } = props;
   const location = useLocation().pathname;
-
+  let auth = useSelector((state) => state.auth);
   return (
     <Container fluid>
       <Row>
@@ -35,49 +37,53 @@ const Banner = (props) => {
           <p>{user.bio} Lorem ipsum</p>
         </Col>
         <Col sm={3}>
-          <Row className="buttons">
-            {location !== "/profile" ? (
-              <Col>
-                <Link to="/profile">
-                  <button className="btn btn-sm btn-primary  ml-2">
-                    Profile
-                  </button>
-                </Link>
-              </Col>
-            ) : null}
-            {location !== "/profile/history" ? (
-              <Col>
-                <Link to="/profile/history">
-                  <button className="btn btn-sm btn-primary  ml-2">
-                    History
-                  </button>
-                </Link>
-              </Col>
-            ) : null}
-            {location !== "/profile/saved" ? (
-              <Col>
-                <Link to="/profile/saved">
-                  <button className="btn btn-sm btn-primary  ml-2">
-                    Saved
-                  </button>
-                </Link>
-              </Col>
-            ) : null}
-            {location !== "/profile/friends" ? (
-              <Col>
-                <Link to="/profile/friends">
-                  <button className="btn btn-sm btn-primary ">Friends</button>
-                </Link>
-              </Col>
-            ) : null}
-            {location !== "/profile/edit" ? (
-              <Col>
-                <button className="btn btn-sm btn-outline-primary  ml-2">
-                  Edit
-                </button>
-              </Col>
-            ) : null}
-          </Row>
+          {user.id === auth.id ? (
+            <Row className="buttons">
+              {location !== "/profile" ? (
+                <Col>
+                  <Link to="/profile">
+                    <button className="btn btn-sm btn-primary  ml-2">
+                      Profile
+                    </button>
+                  </Link>
+                </Col>
+              ) : null}
+              {location !== "/profile/history" ? (
+                <Col>
+                  <Link to="/profile/history">
+                    <button className="btn btn-sm btn-primary  ml-2">
+                      History
+                    </button>
+                  </Link>
+                </Col>
+              ) : null}
+              {location !== "/profile/saved" ? (
+                <Col>
+                  <Link to="/profile/saved">
+                    <button className="btn btn-sm btn-primary  ml-2">
+                      Saved
+                    </button>
+                  </Link>
+                </Col>
+              ) : null}
+              {location !== "/profile/friends" ? (
+                <Col>
+                  <Link to="/profile/friends">
+                    <button className="btn btn-sm btn-primary ">Friends</button>
+                  </Link>
+                </Col>
+              ) : null}
+              {location !== "/profile/edit" ? (
+                <Col>
+                  <Link to="/profile/edit">
+                    <button className="btn btn-sm btn-outline-primary  ml-2">
+                      Edit
+                    </button>
+                  </Link>
+                </Col>
+              ) : null}
+            </Row>
+          ) : null}
         </Col>
       </Row>
     </Container>

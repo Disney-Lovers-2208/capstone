@@ -4,6 +4,7 @@ import Banner from "./Banner";
 import { Container, Row, Col } from "react-bootstrap";
 import Filter from "./Filter";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export const Saved = () => {
   const user = useSelector((state) => state.auth);
@@ -57,7 +58,9 @@ export const Saved = () => {
                   exit={{ opacity: 0, scale: 0 }}
                 >
                   <h2>{item.title}</h2>
-                  <img src={item.imageUrl} alt="image" />
+                  <Link to={`/${item.productType}s/${item.id}`}>
+                    <img src={item.imageUrl} alt="image" />
+                  </Link>
                 </motion.div>
               </AnimatePresence>
             );
