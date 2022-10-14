@@ -1,5 +1,4 @@
 import axios from "axios";
-import { me } from "./auth";
 
 // ACTION TYPE
 const SET_USER = "SET_USER";

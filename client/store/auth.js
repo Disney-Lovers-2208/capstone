@@ -27,6 +27,16 @@ export const me = () => async (dispatch) => {
   }
 };
 
+export const updateAuth = (authId, authForm, navigate) => async (dispatch) => {
+  try {
+    const { data: auth } = await axios.put(`/api/users/${authId}`, authForm);
+    dispatch(setAuth(auth));
+    navigate("/profile");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const authenticate =
   (username, password, method, email, firstName, lastName, navigate) =>
   async (dispatch) => {
