@@ -13,13 +13,15 @@ import AllMovies from "./components/allProducts/AllMovies";
 import SingleTvShow from "./components/singleProduct/SingleTvShow";
 import SingleBook from "./components/singleProduct/SingleBook";
 import SingleMovie from "./components/singleProduct/SingleMovie";
-import Profile from "./components/profile/Profile";
+import UserProfilePage from "./components/profile/UserProfilePage";
 import Saved from "./components/profile/Saved";
 import Friends from "./components/profile/Friends";
 import History from "./components/profile/History";
 import Edit from "./components/profile/Edit";
 import FriendsProfilePage from "./components/profile/FriendsProfilePage";
 import UserProfilePage from "./components/profile/UserProfilePage";
+import AddProduct from "./components/search/AddProduct";
+
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);
   const dispatch = useDispatch();
@@ -59,7 +61,7 @@ const App = () => {
           <Route path="/posts/movies/:id" />
           <Route path="/users" />
           <Route path="/searchfor/:title" element={<SearchFor />} />
-          <Route path="/add" />
+          <Route path="/add" element={<AddProduct />} />
         </Routes>
       ) : (
         <Routes>

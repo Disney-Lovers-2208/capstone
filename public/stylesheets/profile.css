@@ -62,11 +62,14 @@ margin-left: 1rem;
 
 
 .slider img{
-    height: 200px
+    height: 250px;
+    width: 160px;
+    border-radius: 1rem;
 }
 
 .slider {
  margin-left: 2%;
+
 }
 
 

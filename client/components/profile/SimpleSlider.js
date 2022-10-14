@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const SimpleSlider = (props) => {
@@ -8,7 +9,7 @@ const SimpleSlider = (props) => {
 
   let settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 10,
     slidesToScroll: 10,

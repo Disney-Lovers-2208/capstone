@@ -1,124 +1,111 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
+import { updateUser, fetchUser } from "../../store/user";
+import { useNavigate } from "react-router-dom";
 
-// import { fetchEditedUser, fetchUser } from "../redux/user";
+export function Edit(props) {
+  const user = useSelector((state) => state.user);
+  const userId = useSelector((state) => state.auth.id);
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
 
-export class Edit extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      username: "",
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  useEffect(() => {
+    dispatch(fetchUser(userId));
+  }, [dispatch]);
 
-  // componentDidMount() {
-  //   console.log("EDIT STUDENT: ", this.props);
-  //   //const username = this.props.match.params.username;
-  //   // const username = this.props.match.params.username;
-  //   // this.props.setUser(username);
-  // }
+  const [firstName, setFirstName] = useState(user.firstName);
+  const [lastName, setLastName] = useState(user.lastName);
+  const [email, setEmail] = useState(user.email);
+  const [username, setUsername] = useState(user.username);
+  const [bio, setBio] = useState(user.bio);
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
+  useEffect(() => {
+    setFirstName(user.firstName);
+    setLastName(user.lastName);
+    setEmail(user.email);
+    setUsername(user.username);
+    setBio(user.bio);
+  }, [user.firstName, user.lastName, user.email, user.username, user.bio]);
 
-  handleSubmit(event) {
-    event.preventDefault();
-    // this.props.editUser({ ...this.props.user, ...this.state });
-    window.location.reload(false);
-  }
-
-  render() {
-    const { firstName, lastName, email, username } = this.state;
-    const { handleChange, handleSubmit } = this;
-    return (
-      <Container>
-        <h1>Edit Profile</h1>
-        <hr />
-        <Row>
-          {/* Left side */}
-          <Col lg={3}>
-            <div className="text-center">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                style={{ width: "100px" }}
-                alt="image"
-              />
-              <h6>Upload a different profile photo...</h6>
-              <input type="file" className="form-control" />
-              <h6>Upload a different banner photo...</h6>
-              <input type="file" className="form-control" />
-            </div>
-          </Col>
-          {/* Right side */}
-          <Col lg={9}>
-            <form className="edit-form" onSubmit={handleSubmit}>
-              <div>
-                <label htmlFor="firstName"> First Name: </label>
-                <input
-                  name="firstName"
-                  onChange={handleChange}
-                  value={firstName}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="lastName"> Last Name: </label>
-                <input
-                  name="lastName"
-                  onChange={handleChange}
-                  value={lastName}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="email"> Email: </label>
-                <input
-                  name="email"
-                  onChange={handleChange}
-                  value={email}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="username"> Username: </label>
-                <input
-                  name="username"
-                  onChange={handleChange}
-                  value={username}
-                  required
-                />
-              </div>
-              <div>
-                <button type="submit">Update</button>
-              </div>
-            </form>
-          </Col>
-        </Row>
-      </Container>
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    alert("Submitting form");
+    dispatch(
+      updateUser(
+        user.id,
+        { firstName, lastName, email, username, bio },
+        navigate
+      )
     );
-  }
+  };
+
+  return (
+    <Container>
+      <h1>Edit Profile</h1>
+      <hr />
+      <Row>
+        {/* Left side */}
+        <Col lg={3}>
+          <div className="text-center">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+              style={{ width: "100px" }}
+              alt="image"
+            />
+            <h6>Upload a different profile photo...</h6>
+            <input type="file" className="form-control" />
+            <h6>Upload a different banner photo...</h6>
+            <input type="file" className="form-control" />
+          </div>
+        </Col>
+        <Col lg={9}>
+          <form className="edit-form" onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="firstName"> First Name: </label>
+              <input
+                type="text"
+                value={firstName || ""}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="lastName"> Last Name: </label>
+              <input
+                type="text"
+                value={lastName || ""}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="email"> Email: </label>
+              <input
+                type="text"
+                value={email || ""}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="username"> Username: </label>
+              <input
+                type="text"
+                value={username || ""}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="bio"> Bio: </label>
+              <textarea
+                value={bio || "bio"}
+                onChange={(e) => setBio(e.target.value)}
+              />
+            </div>
+            <input type="submit" value="Submit" />
+          </form>
+        </Col>
+      </Row>
+    </Container>
+  );
 }
 
-const mapState = (state) => {
-  return {
-    user: state.auth,
-  };
-};
-
-const mapDispatch = (dispatch, { history }) => {
-  return {
-    // editUser: (user) => dispatch(fetchEditedUser(user, history)),
-    // setUser: (username) => dispatch(fetchUser(username)),
-  };
-};
-
-export default connect(mapState, mapDispatch)(Edit);
+export default Edit;
