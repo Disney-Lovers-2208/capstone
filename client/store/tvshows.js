@@ -37,7 +37,7 @@ export const fetchTvShows = () => async (dispatch) => {
 };
 
 // reducer
-export default function tvReducer(state = [], action) {
+export default function tvsReducer(state = [], action) {
   switch (action.type) {
     case CREATE_TV:
       return [...state, action.tv];
