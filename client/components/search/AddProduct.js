@@ -4,9 +4,9 @@ import { Container, InputGroup, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { DropdownButton, Dropdown } from "react-bootstrap";
-import { fetchCreateBook } from "../../store/book";
-import { fetchCreateMovie } from "../../store/movie";
-import { fetchCreateTv } from "../../store/tv";
+import { fetchCreateBook } from "../../store/books";
+import { fetchCreateMovie } from "../../store/movies";
+import { fetchCreateTv } from "../../store/tvshows";
 const AddProduct = () => {
   const [selectedOption, setSelectedOption] = useState("book");
   const dispatch = useDispatch();
