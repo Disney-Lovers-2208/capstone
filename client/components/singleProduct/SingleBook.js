@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -7,10 +7,10 @@ import { Button, Col, Card, Row } from "react-bootstrap";
 import { fetchSingleBook } from "../../store/book";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
+import ReviewForm from "./ReviewForm";
 
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
-import { Link } from "react-router-dom";
 
 const SingleBook = () => {
   const book = useSelector((state) => state.book);
@@ -19,6 +19,7 @@ const SingleBook = () => {
   const starRatings = book.starRatings || [];
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [toggle, handleToggle] = useState(false);
 
   useEffect(() => {
     dispatch(fetchSingleBook(id));
@@ -54,9 +55,6 @@ const SingleBook = () => {
 
       <Row xs={3}>
         <Col>
-          <Button variant="info" as={Link} to={`/review/book/${id}`}>
-            Write A Review
-          </Button>
           <Button variant="dark" as={Link} to={"/profile"}>
             <FaHeart />
             Add to Favorite
@@ -67,6 +65,18 @@ const SingleBook = () => {
           <Button variant="success" as={Link} to={"/profile"}>
             Add to Featured
           </Button>
+          {toggle ? (
+            <ReviewForm />
+          ) : (
+            <Button
+              variant="info"
+              onClick={() => {
+                toggle ? handleToggle(false) : handleToggle(true);
+              }}
+            >
+              Write A Review
+            </Button>
+          )}
         </Col>
       </Row>
     </div>

@@ -1,20 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button, Card, Row, Col } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa";
 import { fetchSingleMovie } from "../../store/movie";
-import { Link } from "react-router-dom";
-
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
-
-TimeAgo.addDefaultLocale(en);
-const timeAgo = new TimeAgo("en-US");
-
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
+import ReviewForm from "./ReviewForm";
 
 TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo("en-US");
@@ -26,6 +19,7 @@ const SingleMovie = () => {
   const starRatings = movie.starRatings || [];
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [toggle, handleToggle] = useState(false);
 
   useEffect(() => {
     dispatch(fetchSingleMovie(id));
@@ -59,9 +53,6 @@ const SingleMovie = () => {
 
       <Row xs={3}>
         <Col>
-          <Button variant="info" as={Link} to={`/review/movie/${id}`}>
-            Write A Review
-          </Button>
           <Button variant="dark" as={Link} to={"/profile"}>
             <FaHeart />
             Add to Favorite
@@ -72,6 +63,18 @@ const SingleMovie = () => {
           <Button variant="success" as={Link} to={"/profile"}>
             Add to Featured
           </Button>
+          {toggle ? (
+            <ReviewForm />
+          ) : (
+            <Button
+              variant="info"
+              onClick={() => {
+                toggle ? handleToggle(false) : handleToggle(true);
+              }}
+            >
+              Write A Review
+            </Button>
+          )}
         </Col>
       </Row>
     </div>

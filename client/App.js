@@ -18,6 +18,7 @@ import Friends from "./components/profile/Friends";
 import History from "./components/profile/History";
 import Edit from "./components/profile/Edit";
 import FriendsProfilePage from "./components/profile/FriendsProfilePage";
+import UserProfilePage from "./components/profile/UserProfilePage";
 import AddProduct from "./components/search/AddProduct";
 import ReviewForm from "./components/singleProduct/ReviewForm";
 
