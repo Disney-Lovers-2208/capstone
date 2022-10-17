@@ -3,28 +3,35 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import RatingStars from "./RatingStars";
 import { createPost } from "../../store/posts";
+import { createStarRating } from "../../store/starRatings";
+import { Rating } from "react-simple-star-rating";
 
 export function ReviewForm(props) {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const authId = useSelector((state) => state.auth.id);
   const { id } = useParams();
-  const [starRating, setStarRating] = useState(0);
+  const [rating, setRating] = useState(0);
   const [content, setContent] = useState("");
+
+  const handleRating = (rating) => {
+    setRating(rating);
+  };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log("in handle submit");
-    dispatch(createPost({ content, authId, bookId: id }));
-    // if (props.product === "tvshow") {
-    //   dispatch(createPost({ content, authId, tvId: id }));
-    // } else if (props.product === "movie") {
-    //   dispatch(createPost({ content, authId, movieId: id }));
-    // } else if (props.product === "book") {
-    //   dispatch(createPost({ content, authId, bookId: id }));
-    // }
+    if (props.product === "tvshow") {
+      dispatch(createPost({ content, userId: authId, tvId: id }));
+      dispatch(createStarRating({ rating, userId: authId, tvId: id }));
+    } else if (props.product === "movie") {
+      dispatch(createPost({ content, userId: authId, movieId: id }));
+      dispatch(createStarRating({ rating, userId: authId, movieId: id }));
+    } else if (props.product === "book") {
+      dispatch(createPost({ content, userId: authId, bookId: id }));
+      dispatch(createStarRating({ rating, userId: authId, bookId: id }));
+    }
+    navigate(`/profile/history`);
   };
 
   return (
@@ -33,7 +40,19 @@ export function ReviewForm(props) {
       <hr />
       <Row>
         <form className="review-form" onSubmit={handleSubmit}>
-          <RatingStars />
+          <Rating
+            tooltipArray={[
+              "1 stars",
+              "2 stars",
+              "3 stars",
+              "4 stars",
+              "5 stars",
+            ]}
+            transition
+            showTooltip
+            onClick={handleRating}
+            ratingValue={rating}
+          />
           <div>
             <label htmlFor="comments">Comments</label>
             <textarea
