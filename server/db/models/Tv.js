@@ -23,4 +23,5 @@ const Tv = db.define("tv", {
   },
 });
 
+
 module.exports = Tv;

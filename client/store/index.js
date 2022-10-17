@@ -3,7 +3,7 @@ import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
-import tvReducer from "./tvshows";
+import tvsReducer from "./tvshows";
 import movieReducer from "./movies";
 import booksReducer from "./books";
 import user from "./user";
@@ -15,7 +15,7 @@ import users from "./users";
 
 const reducer = combineReducers({
   auth,
-  tvs: tvReducer,
+  tvs: tvsReducer,
   movies: movieReducer,
   books: booksReducer,
   tv: tv,

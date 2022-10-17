@@ -36,6 +36,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+
 router.delete("/:id", async (req, res, next) => {
   try {
     const starRating = await StarRating.findByPk(req.params.id);

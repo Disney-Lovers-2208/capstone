@@ -31,6 +31,7 @@ const SingleBook = () => {
         <img src={imageUrl} alt="book-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
+        <p>Where to watch:</p>
       </div>
 
       <br />

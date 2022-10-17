@@ -33,6 +33,7 @@ const SingleMovie = () => {
         <img src={imageUrl} alt="movie-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
+        <p>Where to watch:</p>
       </div>
 
       <div className="reviews">

@@ -20,6 +20,13 @@ const SingleTvShow = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
+  let averageRating = starRatings.reduce((accum, current) => {
+    return accum += current.rating;
+  }, 0) / 5;
+  
+  // console.log(averageRating);
+  averageRating = averageRating.toFixed();
+
   useEffect(() => {
     dispatch(fetchSingleTv(id));
   }, [dispatch]);
@@ -32,6 +39,7 @@ const SingleTvShow = () => {
         <img src={imageUrl} alt="tvshow-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
+        <p>Where to watch:</p>
       </div>
 
       <div className="reviews">
@@ -40,7 +48,7 @@ const SingleTvShow = () => {
           border="info" 
           style={{ width: "15rem", backgroundColor: "#FF5454" }}>
         {posts.map((post) => (
-          <Row key={post.id}>
+          <Row key={post.tvId}>
             <p>{post.content}</p>
             <p>{timeAgo.format(new Date(post.updatedAt))}</p>
           </Row>
@@ -50,7 +58,46 @@ const SingleTvShow = () => {
 
       <br />
 
+      {/* will show the rating twice */}
+      {/* <div className="rating">
+        <p>Rating:</p>
+      <Card 
+        border="info" 
+        style={{ width: "15rem", backgroundColor: "#DDFF55" }}>
+      {starRatings.map((rating) => (
+        <Row key={rating.id}>
+          <p>{averageRating}</p>
+
+        </Row>
+      ))}
+      </Card>
+    </div> */}
+
+    {/* this seems to work, but it's a sus way of getting this. 
+    It technically works because it's already coming in as an array,
+    but not sure if this would be correct/or best way to do this (convert to stars) */}
+    <div className="rating">
+      <p>Rating:</p>
+      <Card border="info" 
+        style={{ width: "15rem", backgroundColor: "#DDFF55" }}>
+          <p>{averageRating}</p>
+
+      </Card>
+    </div>
+
+    {/* this causes an warning error and will say that it's NaN */}
+    {/* <div className="rating">
+      <p>Rating:</p>
+      <Card border="info" 
+        style={{ width: "15rem", backgroundColor: "#DDFF55" }}>
+      {starRatings.reduce((accum, current) => {
+        return accum += current.rating;
+      }, 0) / starRatings.length}
+      </Card>
+    </div> */}
+
       <br />
+
       <Row xs={3}>
         <Col>
           <Button variant='info' as={Link} to={`/review/tv/${id}`}>Write A Review</Button>
@@ -60,6 +107,7 @@ const SingleTvShow = () => {
         </Col>
       </Row>
     </div>
+
   );
 };
 

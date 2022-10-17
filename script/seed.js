@@ -253,6 +253,11 @@ async function seed() {
       userId: 3,
       tvId: 2,
     }),
+    StarRating.create({
+      rating: 5,
+      userId: 2,
+      tvId: 2,
+    }),
   ]);
 
   //make friend connections
