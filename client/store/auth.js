@@ -10,7 +10,7 @@ const SET_AUTH = "SET_AUTH";
 /**
  * ACTION CREATORS
  */
-const setAuth = (auth) => ({ type: SET_AUTH, auth });
+const _setAuth = (auth) => ({ type: SET_AUTH, auth });
 
 /**
  * THUNK CREATORS
@@ -23,7 +23,17 @@ export const me = () => async (dispatch) => {
         authorization: token,
       },
     });
-    return dispatch(setAuth(res.data));
+    return dispatch(_setAuth(res.data));
+  }
+};
+
+export const updateAuth = (authId, authForm, navigate) => async (dispatch) => {
+  try {
+    const { data: auth } = await axios.put(`/api/users/${authId}`, authForm);
+    dispatch(_setAuth(auth));
+    navigate("/profile");
+  } catch (error) {
+    console.log(error);
   }
 };
 

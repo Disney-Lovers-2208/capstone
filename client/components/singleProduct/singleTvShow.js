@@ -1,14 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Form } from "react-bootstrap";
+import { Button, Card, Row, Col } from "react-bootstrap";
+import { FaHeart } from "react-icons/fa";
 import { fetchSingleTv } from "../../store/tv";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
+import ReviewForm from "./ReviewForm";
+
+TimeAgo.addLocale(en);
+const timeAgo = new TimeAgo("en-US");
 
 const SingleTvShow = () => {
   const tvshow = useSelector((state) => state.tv);
   const { imageUrl, title, description, genre } = tvshow;
+  const posts = tvshow.posts || [];
+  const starRatings = tvshow.starRatings || [];
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [toggle, handleToggle] = useState(false);
 
   useEffect(() => {
     dispatch(fetchSingleTv(id));
@@ -16,19 +27,57 @@ const SingleTvShow = () => {
 
   return (
     <div className="single-view">
-      <Form>
-        <Form.Group className="mb-3" style={{ width: "10rem" }}>
-          <Form.Label>Write A Review</Form.Label>
-          <Form.Control as="textarea" rows={4} />
-        </Form.Group>
-      </Form>
-
       <div>
         <h2>{title}</h2>
         <img src={imageUrl} alt="tvshow-image" style={{ width: "15rem" }} />
-        <p>{description}</p>
-        <p>{genre}</p>
+        <p>Summary: {description}</p>
+        <p>Genre: {genre}</p>
       </div>
+
+      <div className="reviews">
+        <p>Reviews:</p>
+        <Card
+          border="info"
+          style={{ width: "15rem", backgroundColor: "#FF5454" }}
+        >
+          {posts.map((post) => (
+            <Row key={post.id}>
+              <p>{post.content}</p>
+              <p>{timeAgo.format(new Date(post.updatedAt))}</p>
+            </Row>
+          ))}
+        </Card>
+      </div>
+
+      <br />
+
+      <br />
+      <Row xs={3}>
+        <Col>
+          <Button variant="dark" as={Link} to={"/profile"}>
+            <FaHeart />
+            Add to Favorite
+          </Button>
+          <Button variant="success" as={Link} to={"/profile/saved"}>
+            Add to Saved
+          </Button>
+          <Button variant="success" as={Link} to={"/profile"}>
+            Add to Featured
+          </Button>
+          {toggle ? (
+            <ReviewForm product={tvshow.productType} />
+          ) : (
+            <Button
+              variant="info"
+              onClick={() => {
+                toggle ? handleToggle(false) : handleToggle(true);
+              }}
+            >
+              Write A Review
+            </Button>
+          )}
+        </Col>
+      </Row>
     </div>
   );
 };

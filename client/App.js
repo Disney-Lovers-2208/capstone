@@ -21,6 +21,8 @@ import AllUsers from './components/AllUsers';
 import Edit from "./components/profile/Edit";
 import FriendsProfilePage from "./components/profile/FriendsProfilePage";
 import UserProfilePage from "./components/profile/UserProfilePage";
+import AddProduct from "./components/search/AddProduct";
+import ReviewForm from "./components/singleProduct/ReviewForm";
 
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);
@@ -49,17 +51,23 @@ const App = () => {
           <Route path="/profile/saved" element={<Saved />} />
           <Route path="/profile/edit" element={<Edit />} />
           <Route path="/friend/:id" element={<FriendsProfilePage />} />
+          <Route path="/reviewform" element={<ReviewForm />} />
           <Route path="/recommendations" />
-          <Route path='/books' element={<AllBooks />} />
-          <Route path='/movies' element={<AllMovies />}/>
-          <Route path='/tvshows' element={<AllTvShows />} />
-          <Route path='/tvshows/:id' element={<SingleTvShow />}/>
-          <Route path='/movies/:id' element={<SingleMovie/>}/>
-          <Route path='/books/:id' element={<SingleBook />}/>
-          <Route path='/users' element={<AllUsers />} />
-          <Route path='/searchfor/:search' element={<SearchFor />} />
-          {/* <Route path='/searchfor/:name' element={<SearchFor />} /> */}
-          <Route path='/add' />
+          <Route path="/books" element={<AllBooks />} />
+          <Route path="/movies" element={<AllMovies />} />
+          <Route path="/tvshows" element={<AllTvShows />} />
+          <Route path="/tvshows/:id" element={<SingleTvShow />} />
+          <Route path="/movies/:id" element={<SingleMovie />} />
+          <Route path="/books/:id" element={<SingleBook />} />
+          <Route path="/posts/book/:id" />
+          <Route path="/posts/tv/:id" />
+          <Route path="/posts/movie/:id" />
+          <Route path="/starRating/tv/:id" />
+          <Route path="/starRating/book/:id" />
+          <Route path="/starRating/movie/:id" />
+          <Route path="/users" />
+          <Route path="/searchfor/:title" element={<SearchFor />} />
+          <Route path="/add" element={<AddProduct />} />
         </Routes>
       ) : (
         <Routes>
