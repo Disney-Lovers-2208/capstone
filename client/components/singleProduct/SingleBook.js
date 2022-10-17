@@ -65,18 +65,7 @@ const SingleBook = () => {
           <Button variant="success" as={Link} to={"/profile"}>
             Add to Featured
           </Button>
-          {toggle ? (
-            <ReviewForm product={book.productType} />
-          ) : (
-            <Button
-              variant="info"
-              onClick={() => {
-                toggle ? handleToggle(false) : handleToggle(true);
-              }}
-            >
-              Write A Review
-            </Button>
-          )}
+          <ReviewForm product={book.productType} />
         </Col>
       </Row>
     </div>
