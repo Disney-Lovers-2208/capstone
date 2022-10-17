@@ -12,7 +12,8 @@ const getSingleTv = (tv) => {
 };
 
 export const fetchSingleTv = (id) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const { auth } = getState();
     try {
       const { data: tv } = await axios.get(`/api/tvs/${id}`);
       dispatch(getSingleTv(tv));

@@ -21,18 +21,22 @@ if (process.env.DATABASE_URL) {
   };
 }
 
-const db = new Sequelize({
-  host: "localhost",
-  port: 5432,
-  database: databaseName,
-  dialect: "postgres",
-  username: "postgres",
-  password: "admin", // setting password because on Windows it won't connect without a password specified
-});
-
-// const db = new Sequelize(
-//   process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`,
-//   config
-// );
+let db;
+if(process.env.WINDOWS){
+  db = new Sequelize({
+    host: "localhost",
+    port: 5432,
+    database: databaseName,
+    dialect: "postgres",
+    username: "postgres",
+    password: "admin", // setting password because on Windows it won't connect without a password specified
+  });
+}
+else {
+  db = new Sequelize(
+     process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`,
+     config
+  );
+}
 
 module.exports = db;
