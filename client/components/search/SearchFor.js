@@ -11,33 +11,33 @@ export const SearchFor = () => {
   const tvshows = useSelector((state) => state.tvs);
   const movies = useSelector((state) => state.movies);
   const books = useSelector((state) => state.books);
-  const [tvList, setTvList] = useState([]);
-  const [movieList, setMovieList] = useState([]);
-  const [bookList, setBookList] = useState([]);
+  // const [tvList, setTvList] = useState([]);
+  // const [movieList, setMovieList] = useState([]);
+  // const [bookList, setBookList] = useState([]);
 
   // filters through tv shows
-  useEffect(() => {
-    const filteredTitles = tvshows.filter((tvshow) => {
-      return tvshow.title.toLowerCase().includes(title.toLowerCase());
-    });
-    setTvList(filteredTitles);
-  }, []);
+  // useEffect(() => {
+  //   const filteredTitles = tvshows.filter((tvshow) => {
+  //     return tvshow.title.toLowerCase().includes(title.toLowerCase());
+  //   });
+  //   setTvList(filteredTitles);
+  // }, []);
 
-  // filters through movies
-  useEffect(() => {
-    const filteredTitles = movies.filter((movie) => {
-      return movie.title.toLowerCase().includes(title.toLowerCase());
-    });
-    setMovieList(filteredTitles);
-  }, []);
+  // // filters through movies
+  // useEffect(() => {
+  //   const filteredTitles = movies.filter((movie) => {
+  //     return movie.title.toLowerCase().includes(title.toLowerCase());
+  //   });
+  //   setMovieList(filteredTitles);
+  // }, []);
 
-  // filters through books
-  useEffect(() => {
-    const filteredTitles = books.filter((book) => {
-      return book.title.toLowerCase().includes(title.toLowerCase());
-    });
-    setBookList(filteredTitles);
-  }, []);
+  // // filters through books
+  // useEffect(() => {
+  //   const filteredTitles = books.filter((book) => {
+  //     return book.title.toLowerCase().includes(title.toLowerCase());
+  //   });
+  //   setBookList(filteredTitles);
+  // }, []);
 
   return (
     <div className="search-results">
