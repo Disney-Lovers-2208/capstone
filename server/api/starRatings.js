@@ -38,14 +38,30 @@ router.get("/:id", async (req, res, next) => {
 
 router.get('/tvs/:tvId', async(req, res, next) => {
   try {
-    console.log('id:', req.params.tvId);
-    const averageStar = await StarRating.findTvAvgRating(req.params.tvId);
-    res.json(averageStar);
+    const averageTvRating = await StarRating.findTvAvgRating(req.params.tvId);
+    res.json(averageTvRating);
   } catch (error) {
-    next(error)
+    next(error);
   }
 });
 
+router.get('/movies/:movieId', async(req, res, next) => {
+  try {
+    const averageMovieRating = await StarRating.findMovieAvgRating(req.params.movieId);
+    res.json(averageMovieRating); 
+  } catch(error) {
+    next(error);
+  }
+});
+
+router.get('/books/:bookId', async(req, res, next) => {
+  try {
+    const averageBookRating = await StarRating.findBookAvgRating(req.params.bookId);
+    res.json(averageBookRating);
+  } catch(error) {
+    next(error);
+  }
+})
 
 router.delete("/:id", async (req, res, next) => {
   try {

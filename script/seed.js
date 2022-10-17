@@ -260,6 +260,32 @@ async function seed() {
     }),
   ]);
 
+  const starRatingsThree = await Promise.all([
+    StarRating.create({
+      rating: 4,
+      userId: 2,
+      bookId: 2,
+    }),
+    StarRating.create({
+      rating: 5,
+      userId: 1,
+      bookId: 2,
+    }),
+  ]);
+
+  const starRatingsFour = await Promise.all([
+    StarRating.create({
+      rating: 3,
+      userId: 1,
+      movieId: 5,
+    }),
+    StarRating.create({
+      rating: 4,
+      userId: 3,
+      movieId: 5,
+    }),
+  ]);
+
   //make friend connections
   for (let i = 0; i < users.length; i++) {
     for (let j = 0; j < users.length; j++) {

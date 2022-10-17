@@ -8,6 +8,7 @@ import { fetchSingleMovie } from "../../store/movie";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ReviewForm from "./ReviewForm";
+import { fetchMovieRating } from "../../store/starRating";
 
 TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo("en-US");
@@ -24,6 +25,10 @@ const SingleMovie = () => {
     dispatch(fetchSingleMovie(id));
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(fetchMovieRating(id));
+  }, [dispatch]);
+
   return (
     <div className="single-view">
       <div>
@@ -32,6 +37,7 @@ const SingleMovie = () => {
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
         <p>Where to watch:</p>
+        <p>Rating: <RatedStars rating={rating} /></p>
       </div>
 
       <div className="reviews">

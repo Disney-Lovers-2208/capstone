@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { Button, Col, Card, Row } from "react-bootstrap";
 import { fetchSingleBook } from "../../store/book";
+import { fetchBookRating } from "../../store/starRating";
+import RatedStars from "../activityLog/RatedStars";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ReviewForm from "./ReviewForm";
@@ -14,7 +16,10 @@ const timeAgo = new TimeAgo("en-US");
 
 const SingleBook = () => {
   const book = useSelector((state) => state.book);
-  const { imageUrl, title, description, genre } = book;
+  // const bookRating = useSelector((state) => state.rating);
+  // console.log('book rating:', bookRating);
+  const { imageUrl, title, description, genre, rating } = book;
+  // const { rating } = bookRating;
   const posts = book.posts || [];
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -22,6 +27,10 @@ const SingleBook = () => {
 
   useEffect(() => {
     dispatch(fetchSingleBook(id));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchBookRating(id));
   }, [dispatch]);
 
   return (
@@ -32,6 +41,8 @@ const SingleBook = () => {
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
         <p>Where to watch:</p>
+        {/* <p>Rating:</p> */}
+        <p>Rating: <RatedStars ratingValue={rating} /></p>
       </div>
 
       <br />
@@ -52,6 +63,7 @@ const SingleBook = () => {
       </div>
 
       <br />
+
 
       <Row xs={3}>
         <Col>

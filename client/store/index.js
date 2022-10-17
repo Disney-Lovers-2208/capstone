@@ -14,6 +14,7 @@ import activityLog from "./activityLog";
 import users from "./users";
 import posts from "./posts";
 import starRatings from "./starRatings";
+import starRating from "./starRating";
 
 const reducer = combineReducers({
   auth,
@@ -28,6 +29,7 @@ const reducer = combineReducers({
   users,
   posts,
   starRatings,
+  starRating,
 });
 
 const middleware = composeWithDevTools(
