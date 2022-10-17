@@ -27,7 +27,7 @@ export const fetchCreateMovie = (movie) => {
   return async (dispatch) => {
     try {
       const { data: created } = await axios.post(`/api/movies`, movie);
-      dispatch(created);
+      dispatch(createMovie(created));
     } catch (error) {
       return error;
     }

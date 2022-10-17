@@ -4,7 +4,6 @@ import axios from "axios";
 const GET_BOOKS = "GET_BOOKS";
 const CREATE_BOOK = "CREATE_BOOK";
 
-
 // action creators:
 const setBooks = (books) => ({
   type: GET_BOOKS,
@@ -28,7 +27,7 @@ export const fetchCreateBook = (book) => {
   return async (dispatch) => {
     try {
       const { data: created } = await axios.post(`/api/books`, book);
-      dispatch(created);
+      dispatch(createBook(created));
     } catch (error) {
       return error;
     }
