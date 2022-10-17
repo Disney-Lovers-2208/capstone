@@ -16,8 +16,7 @@ const timeAgo = new TimeAgo("en-US");
 
 const SingleTvShow = () => {
   const tvshow = useSelector((state) => state.tv);
-  const tvRating = useSelector((state) => state.rating);
-  console.log("rating:", tvRating);
+  const starRating = useSelector((state) => state.tv.starRating);
   const { imageUrl, title, description, genre } = tvshow;
   // const { rating } = tvRating;
   // console.log("state tv:", tvRating);
@@ -26,9 +25,7 @@ const SingleTvShow = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [toggle, handleToggle] = useState(false);
-  // const [isFavorite, setIsFavorite] = useState(false);
-
-
+  
   useEffect(() => {
     dispatch(fetchSingleTv(id));
   }, [dispatch]);
@@ -36,6 +33,8 @@ const SingleTvShow = () => {
   useEffect(() => {
     dispatch(fetchTvRating(id));
   }, [dispatch]);
+
+  console.log("rating:", starRating);
 
   return (
     <div className="single-view">
@@ -45,7 +44,7 @@ const SingleTvShow = () => {
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
         <p>Where to watch:</p>
-        <p>Rating: <Rating readonly={true} count={tvRating} allowFraction={true} fillColor="#f1a545"/></p>
+        <p>Rating: <Rating readonly={true} allowFraction={true} fillColor="#f1a545"/></p>
       </div>
 
       <div className="reviews">

@@ -3,7 +3,7 @@ import clearMovie from "./movie";
 
 //Action Type
 const GET_SINGLE_TV = "GET_SINGLE_TV";
-const SET_FAVORITE_TV = "SET_FAVORITE_TV";
+
 
 const getSingleTv = (tv) => {
   return {

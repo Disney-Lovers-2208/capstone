@@ -43,7 +43,6 @@ const SingleBook = () => {
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
         <p>Where to watch:</p>
-        {/* <p>Rating:</p> */}
         <p>Rating: <RatedStars rating={rating} fillColor="#FFDD55"/></p>
       </div>
 
