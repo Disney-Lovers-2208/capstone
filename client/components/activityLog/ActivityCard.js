@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Card, Container } from "react-bootstrap";
+import RatedStars from "./RatedStars";
 
 export const ActivityCard = (props) => {
   const { activity } = props;
@@ -18,7 +18,9 @@ export const ActivityCard = (props) => {
               {activity.content ? (
                 <Card.Text>{activity.content}</Card.Text>
               ) : (
-                <Card.Text>{activity.rating}</Card.Text>
+                <Card.Text>
+                  <RatedStars rating={activity.rating} />
+                </Card.Text>
               )}
             </div>
           ) : activity.tv ? (
@@ -30,7 +32,9 @@ export const ActivityCard = (props) => {
               {activity.content ? (
                 <Card.Text>{activity.content}</Card.Text>
               ) : (
-                <Card.Text>{activity.rating}</Card.Text>
+                <Card.Text>
+                  <RatedStars rating={activity.rating} />
+                </Card.Text>
               )}
             </div>
           ) : (
@@ -42,7 +46,9 @@ export const ActivityCard = (props) => {
               {activity.content ? (
                 <Card.Text>{activity.content}</Card.Text>
               ) : (
-                <Card.Text>{activity.rating}</Card.Text>
+                <Card.Text>
+                  <RatedStars rating={activity.rating} />
+                </Card.Text>
               )}
             </div>
           )}

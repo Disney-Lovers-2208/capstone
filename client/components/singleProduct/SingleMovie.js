@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button, Card, Row, Col } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa";
 import { fetchSingleMovie } from "../../store/movie";
-
-import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en'
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
+import ReviewForm from "./ReviewForm";
 
 TimeAgo.addDefaultLocale(en);
-const timeAgo = new TimeAgo('en-US');
+const timeAgo = new TimeAgo("en-US");
 
 const SingleMovie = () => {
   const movie = useSelector((state) => state.movie);
@@ -19,12 +19,11 @@ const SingleMovie = () => {
   const starRatings = movie.starRatings || [];
   const dispatch = useDispatch();
   const { id } = useParams();
-
+  const [toggle, handleToggle] = useState(false);
 
   useEffect(() => {
     dispatch(fetchSingleMovie(id));
   }, [dispatch]);
-
 
   return (
     <div className="single-view">
@@ -37,15 +36,16 @@ const SingleMovie = () => {
 
       <div className="reviews">
         <p>Reviews:</p>
-        <Card 
-          border="info" 
-          style={{ width: "15rem", backgroundColor: "#FF5454" }}>
-        {posts.map((post) => (
-          <Row key={post.movieId}>
-            <p>{post.content}</p>
-            <p>{timeAgo.format(new Date(post.updatedAt))}</p>
-          </Row>
-        ))}
+        <Card
+          border="info"
+          style={{ width: "15rem", backgroundColor: "#FF5454" }}
+        >
+          {posts.map((post) => (
+            <Row key={post.movieId}>
+              <p>{post.content}</p>
+              <p>{timeAgo.format(new Date(post.updatedAt))}</p>
+            </Row>
+          ))}
         </Card>
       </div>
 
@@ -53,10 +53,28 @@ const SingleMovie = () => {
 
       <Row xs={3}>
         <Col>
-          <Button variant='info' as={Link} to={`/review/movie/${id}`}>Write A Review</Button>
-          <Button variant='dark' as={Link} to={'/profile'}><FaHeart />Add to Favorite</Button>
-          <Button variant='success' as={Link} to={'/profile/saved'}>Add to Saved</Button>
-          <Button variant='success' as={Link} to={'/profile'}>Add to Featured</Button>
+          <Button variant="dark" as={Link} to={"/profile"}>
+            <FaHeart />
+            Add to Favorite
+          </Button>
+          <Button variant="success" as={Link} to={"/profile/saved"}>
+            Add to Saved
+          </Button>
+          <Button variant="success" as={Link} to={"/profile"}>
+            Add to Featured
+          </Button>
+          {toggle ? (
+            <ReviewForm product={movie.productType} />
+          ) : (
+            <Button
+              variant="info"
+              onClick={() => {
+                toggle ? handleToggle(false) : handleToggle(true);
+              }}
+            >
+              Write A Review
+            </Button>
+          )}
         </Col>
       </Row>
     </div>
