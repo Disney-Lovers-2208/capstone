@@ -2,6 +2,7 @@ import axios from "axios";
 
 // ACTION TYPE
 const GET_SINGLE_MOVIE = "GET_SINGLE_MOVIE";
+const CLEAR_MOVIE = "CLEAR_MOVIE";
 
 const getSingleMovie = (movie) => {
   return {

@@ -92,7 +92,7 @@ export function Edit(props) {
             <div>
               <label htmlFor="bio"> Bio: </label>
               <textarea
-                value={bio || "bio"}
+                value={bio || ""}
                 onChange={(e) => setBio(e.target.value)}
               />
             </div>
