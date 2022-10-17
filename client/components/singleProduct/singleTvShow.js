@@ -65,7 +65,7 @@ const SingleTvShow = () => {
             Add to Featured
           </Button>
           {toggle ? (
-            <ReviewForm />
+            <ReviewForm product={tvshow.productType} />
           ) : (
             <Button
               variant="info"

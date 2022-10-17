@@ -66,7 +66,7 @@ const SingleBook = () => {
             Add to Featured
           </Button>
           {toggle ? (
-            <ReviewForm />
+            <ReviewForm product={book.productType} />
           ) : (
             <Button
               variant="info"

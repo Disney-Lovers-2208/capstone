@@ -1,4 +1,5 @@
 import axios from "axios";
+import clearMovie from "./movie";
 
 //Action Type
 const GET_SINGLE_TV = "GET_SINGLE_TV";

@@ -12,6 +12,8 @@ import book from "./book";
 import movie from "./movie";
 import activityLog from "./activityLog";
 import users from "./users";
+import posts from "./posts";
+import starRatings from "./starRatings";
 
 const reducer = combineReducers({
   auth,
@@ -24,6 +26,8 @@ const reducer = combineReducers({
   user,
   activityLog,
   users,
+  posts,
+  starRatings,
 });
 
 const middleware = composeWithDevTools(

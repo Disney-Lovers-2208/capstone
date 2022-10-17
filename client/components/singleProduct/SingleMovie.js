@@ -64,7 +64,7 @@ const SingleMovie = () => {
             Add to Featured
           </Button>
           {toggle ? (
-            <ReviewForm />
+            <ReviewForm product={movie.productType} />
           ) : (
             <Button
               variant="info"
