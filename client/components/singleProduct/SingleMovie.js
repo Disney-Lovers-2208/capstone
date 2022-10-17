@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button, Card, Row, Col } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa";
+import RatedStars from "../activityLog/RatedStars";
 import { fetchSingleMovie } from "../../store/movie";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
@@ -15,7 +16,9 @@ const timeAgo = new TimeAgo("en-US");
 
 const SingleMovie = () => {
   const movie = useSelector((state) => state.movie);
+  const movieRating = useSelector((state) => state.rating);
   const { imageUrl, title, description, genre } = movie;
+  const rating = movieRating;
   const posts = movie.posts || [];
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -37,7 +40,7 @@ const SingleMovie = () => {
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
         <p>Where to watch:</p>
-        <p>Rating: <RatedStars rating={rating} /></p>
+        <p>Rating: <RatedStars rating={rating} allowFraction={true} /></p>
       </div>
 
       <div className="reviews">

@@ -20,6 +20,8 @@ const SingleBook = () => {
   // console.log('book rating:', bookRating);
   const { imageUrl, title, description, genre, rating } = book;
   // const { rating } = bookRating;
+  console.log('book:', book);
+  console.log('rating:', rating);
   const posts = book.posts || [];
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -42,7 +44,7 @@ const SingleBook = () => {
         <p>Genre: {genre}</p>
         <p>Where to watch:</p>
         {/* <p>Rating:</p> */}
-        <p>Rating: <RatedStars ratingValue={rating} /></p>
+        <p>Rating: <RatedStars rating={rating} fillColor="#FFDD55"/></p>
       </div>
 
       <br />

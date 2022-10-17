@@ -6,7 +6,7 @@ import { Button, Card, Row, Col } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa";
 import { fetchSingleTv } from "../../store/tv";
 import { fetchTvRating } from "../../store/starRating";
-import RatedStars from "../activityLog/RatedStars";
+import { Rating } from "react-simple-star-rating";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ReviewForm from "./ReviewForm";
@@ -16,13 +16,17 @@ const timeAgo = new TimeAgo("en-US");
 
 const SingleTvShow = () => {
   const tvshow = useSelector((state) => state.tv);
-  // const tvRating = useSelector((state) => state.tvId);
+  const tvRating = useSelector((state) => state.rating);
+  console.log("rating:", tvRating);
   const { imageUrl, title, description, genre } = tvshow;
+  // const { rating } = tvRating;
+  // console.log("state tv:", tvRating);
+  console.log('tv:', tvshow);
   const posts = tvshow.posts || [];
   const dispatch = useDispatch();
   const { id } = useParams();
   const [toggle, handleToggle] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
+  // const [isFavorite, setIsFavorite] = useState(false);
 
 
   useEffect(() => {
@@ -41,7 +45,7 @@ const SingleTvShow = () => {
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
         <p>Where to watch:</p>
-        <p>Rating: <RatedStars ratingValue={rating} /></p>
+        <p>Rating: <Rating readonly={true} count={tvRating} allowFraction={true} fillColor="#f1a545"/></p>
       </div>
 
       <div className="reviews">
@@ -56,12 +60,6 @@ const SingleTvShow = () => {
               <p>{timeAgo.format(new Date(post.updatedAt))}</p>
             </Row>
           ))}
-        </Card>
-      </div>
-
-      <div className='rating'>
-        <Card border='info' style={{ width: "15rem", backgroundColor: "#DDFF55" }}>
-          <RatedStars />
         </Card>
       </div>
 
