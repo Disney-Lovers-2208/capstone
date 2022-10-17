@@ -12,7 +12,7 @@ export const _createPost = (post) => {
 };
 
 //thunks:
-export const createPost = (post) => {
+export const createPost = (post, navigate) => {
   return async (dispatch) => {
     try {
       const { data: created } = await axios.post(`/api/posts`, post);
@@ -25,7 +25,6 @@ export const createPost = (post) => {
 
 //reducer:
 export default function posts(state = [], action) {
-  // console.log("action", action);
   switch (action.type) {
     case CREATE_POST:
       return [...state, action.post];
