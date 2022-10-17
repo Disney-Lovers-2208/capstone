@@ -36,6 +36,16 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+router.get('/tvs/:tvId', async(req, res, next) => {
+  try {
+    console.log('id:', req.params.tvId);
+    const averageStar = await StarRating.findTvAvgRating(req.params.tvId);
+    res.json(averageStar);
+  } catch (error) {
+    next(error)
+  }
+});
+
 
 router.delete("/:id", async (req, res, next) => {
   try {

@@ -8,24 +8,16 @@ const StarRating = db.define("starRating", {
   },
 });
 
-// StarRating.findAvgRating = function(ratings) {
-//   let totalRatings = 0;
-//   ratings.forEach((rating) => {
-//     totalRatings += rating.rating;
-//   });
-//   let averageRating = totalRatings / ratings.length
-//   return averageRating.toFixed(1);
-// }
-
-// StarRating.findAvgRating = async function(id) {
-//   const ratings = await this.findByPk(id);
-//   let totalRatings = 0;
-//   ratings.forEach((rating) => {
-//     totalRatings += rating.rating;
-//   });
-//   let averageRating = totalRatings / ratings.length;
-//   return averageRating.toFixed(1);
-// }
-
+StarRating.findTvAvgRating = async function(tvId) {
+  const ratings = await this.findAll({
+    where: {
+      tvId: tvId
+    },
+  });
+  const averageRating = ratings.reduce((accum, current) => {
+    return accum += current.rating;
+  }, 0) / ratings.length;
+  return averageRating;
+};
 
 module.exports = StarRating;

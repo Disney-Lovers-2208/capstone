@@ -16,7 +16,6 @@ const SingleMovie = () => {
   const movie = useSelector((state) => state.movie);
   const { imageUrl, title, description, genre } = movie;
   const posts = movie.posts || [];
-  const starRatings = movie.starRatings || [];
   const dispatch = useDispatch();
   const { id } = useParams();
 

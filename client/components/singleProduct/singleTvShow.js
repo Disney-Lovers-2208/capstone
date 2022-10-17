@@ -16,16 +16,9 @@ const SingleTvShow = () => {
   const tvshow = useSelector((state) => state.tv);
   const { imageUrl, title, description, genre } = tvshow;
   const posts = tvshow.posts || [];
-  const starRatings = tvshow.starRatings || [];
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  let averageRating = starRatings.reduce((accum, current) => {
-    return accum += current.rating;
-  }, 0) / 5;
-  
-  // console.log(averageRating);
-  averageRating = averageRating.toFixed();
 
   useEffect(() => {
     dispatch(fetchSingleTv(id));
@@ -55,46 +48,6 @@ const SingleTvShow = () => {
         ))}
         </Card>
       </div>
-
-      <br />
-
-      {/* will show the rating twice */}
-      {/* <div className="rating">
-        <p>Rating:</p>
-      <Card 
-        border="info" 
-        style={{ width: "15rem", backgroundColor: "#DDFF55" }}>
-      {starRatings.map((rating) => (
-        <Row key={rating.id}>
-          <p>{averageRating}</p>
-
-        </Row>
-      ))}
-      </Card>
-    </div> */}
-
-    {/* this seems to work, but it's a sus way of getting this. 
-    It technically works because it's already coming in as an array,
-    but not sure if this would be correct/or best way to do this (convert to stars) */}
-    <div className="rating">
-      <p>Rating:</p>
-      <Card border="info" 
-        style={{ width: "15rem", backgroundColor: "#DDFF55" }}>
-          <p>{averageRating}</p>
-
-      </Card>
-    </div>
-
-    {/* this causes an warning error and will say that it's NaN */}
-    {/* <div className="rating">
-      <p>Rating:</p>
-      <Card border="info" 
-        style={{ width: "15rem", backgroundColor: "#DDFF55" }}>
-      {starRatings.reduce((accum, current) => {
-        return accum += current.rating;
-      }, 0) / starRatings.length}
-      </Card>
-    </div> */}
 
       <br />
 

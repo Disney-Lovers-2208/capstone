@@ -15,7 +15,6 @@ const SingleBook = () => {
   const book = useSelector((state) => state.book);
   const { imageUrl, title, description, genre } = book;
   const posts = book.posts || [];
-  const starRatings = book.starRatings || [];
   const dispatch = useDispatch();
   const { id } = useParams();
 
