@@ -10,7 +10,7 @@ import SearchFor from "./components/search/SearchFor";
 import AllTvShows from "./components/allProducts/AllTvShows";
 import AllBooks from "./components/allProducts/AllBooks";
 import AllMovies from "./components/allProducts/AllMovies";
-import SingleTvShow from "./components/singleProduct/SingleTvShow";
+import SingleTvShow from "./components/singleProduct/singleTvShow";
 import SingleBook from "./components/singleProduct/SingleBook";
 import SingleMovie from "./components/singleProduct/SingleMovie";
 import Saved from "./components/profile/Saved";
