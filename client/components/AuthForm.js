@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 const AuthForm = (props) => {
   const location = useLocation().pathname;
   const dispatch = useDispatch();
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const error = useSelector((state) => state.auth.error);
 
   const handleLoginSubmit = (evt) => {
