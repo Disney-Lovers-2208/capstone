@@ -10,7 +10,6 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ReviewForm from "./ReviewForm";
 
-
 TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo("en-US");
 
@@ -39,7 +38,9 @@ const SingleMovie = () => {
         <img src={imageUrl} alt="movie-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
-        <p>Rating: <RatedStars rating={rating} allowFraction={true} /></p>
+        <p>
+          Rating: <RatedStars rating={rating} allowFraction={true} />
+        </p>
       </div>
 
       <div className="reviews">
