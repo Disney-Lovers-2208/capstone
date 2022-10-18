@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import { Button, Card, Row, Col } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa";
 import { fetchSingleTv } from "../../store/tv";
-import { fetchTvRating } from "../../store/starRating";
 import { Rating } from "react-simple-star-rating";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
@@ -17,23 +16,18 @@ const timeAgo = new TimeAgo("en-US");
 const SingleTvShow = () => {
   const tvshow = useSelector((state) => state.tv);
   const starRating = useSelector((state) => state.tv.starRating);
+  // console.log('rating:', starRating);
   const { imageUrl, title, description, genre } = tvshow;
-  // const { rating } = tvRating;
-  // console.log("state tv:", tvRating);
+  // const { rating } = starRating;
   console.log('tv:', tvshow);
   const posts = tvshow.posts || [];
   const dispatch = useDispatch();
   const { id } = useParams();
-  
+
   useEffect(() => {
     dispatch(fetchSingleTv(id));
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(fetchTvRating(id));
-  }, [dispatch]);
-
-  console.log("rating:", starRating);
 
   return (
     <div className="single-view">
@@ -42,7 +36,6 @@ const SingleTvShow = () => {
         <img src={imageUrl} alt="tvshow-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
-        <p>Where to watch:</p>
         <p>Rating: <Rating readonly={true} allowFraction={true} fillColor="#f1a545"/></p>
       </div>
 

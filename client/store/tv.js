@@ -1,28 +1,32 @@
 import axios from "axios";
 import clearMovie from "./movie";
 
-//Action Type
+// Action Type:
 const GET_SINGLE_TV = "GET_SINGLE_TV";
 
 
-const getSingleTv = (tv) => {
+// Action creator:
+const getSingleTv = (tv, rating) => {
   return {
     type: GET_SINGLE_TV,
     tv,
+    rating,
   };
 };
 
+
+// thunks:
 export const fetchSingleTv = (id) => {
   return async (dispatch) => {
     try {
       const { data: tv } = await axios.get(`/api/tvs/${id}`);
-      dispatch(getSingleTv(tv));
+      const { data: rating } = await axios.get(`/api/starRatings/tvs/${id}`);
+      dispatch(getSingleTv(tv, rating));
     } catch (error) {
       return error;
     }
   };
 };
-
 
 
 //reducer

@@ -61,7 +61,7 @@ router.get('/books/:bookId', async(req, res, next) => {
   } catch(error) {
     next(error);
   }
-})
+});
 
 router.delete("/:id", async (req, res, next) => {
   try {

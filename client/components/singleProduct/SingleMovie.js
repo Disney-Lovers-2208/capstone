@@ -28,9 +28,9 @@ const SingleMovie = () => {
     dispatch(fetchSingleMovie(id));
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(fetchMovieRating(id));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchMovieRating(id));
+  // }, [dispatch]);
 
   return (
     <div className="single-view">
@@ -39,7 +39,6 @@ const SingleMovie = () => {
         <img src={imageUrl} alt="movie-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
-        <p>Where to watch:</p>
         <p>Rating: <RatedStars rating={rating} allowFraction={true} /></p>
       </div>
 

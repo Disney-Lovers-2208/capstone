@@ -42,7 +42,6 @@ const SingleBook = () => {
         <img src={imageUrl} alt="book-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
-        <p>Where to watch:</p>
         <p>Rating: <RatedStars rating={rating} fillColor="#FFDD55"/></p>
       </div>
 
