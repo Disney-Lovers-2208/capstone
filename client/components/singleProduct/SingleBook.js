@@ -17,10 +17,9 @@ const timeAgo = new TimeAgo("en-US");
 const SingleBook = () => {
   const auth = useSelector((state) => state.auth);
   const book = useSelector((state) => state.book);
-  const { imageUrl, title, description, genre } = book;
+  const { imageUrl, title, description, genre, starRating } = book;
   const userBook = useSelector((state) => state.userBook);
   const posts = book.posts || [];
-  const starRatings = book.starRatings || [];
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -101,6 +100,7 @@ const SingleBook = () => {
         <img src={imageUrl} alt="book-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
+        <p>Rating: <RatedStars rating={rating} fillColor="#FFDD55"/></p>
       </div>
       <br />
       <div className="reviews">

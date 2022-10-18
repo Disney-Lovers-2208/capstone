@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { Button, Card, Row, Col } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa";
 import { fetchSingleTv } from "../../store/tv";
+import { Rating } from "react-simple-star-rating";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ReviewForm from "./ReviewForm";
@@ -14,9 +15,8 @@ const timeAgo = new TimeAgo("en-US");
 
 const SingleTvShow = () => {
   const tvshow = useSelector((state) => state.tv);
-  const { imageUrl, title, description, genre } = tvshow;
+  const { imageUrl, title, description, genre, starRating } = tvshow;
   const posts = tvshow.posts || [];
-  const starRatings = tvshow.starRatings || [];
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -31,6 +31,15 @@ const SingleTvShow = () => {
         <img src={imageUrl} alt="tvshow-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
+        <p>
+          Rating:{" "}
+          <Rating
+            readonly={true}
+            initialValue={starRating}
+            allowFraction={true}
+            fillColor="#f1a545"
+          />
+        </p>
       </div>
 
       <div className="reviews">
@@ -50,7 +59,6 @@ const SingleTvShow = () => {
 
       <br />
 
-      <br />
       <Row xs={3}>
         <Col>
           <Button variant="dark" as={Link} to={"/profile"}>

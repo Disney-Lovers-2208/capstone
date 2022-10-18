@@ -253,6 +253,37 @@ async function seed() {
       userId: 3,
       tvId: 2,
     }),
+    StarRating.create({
+      rating: 5,
+      userId: 2,
+      tvId: 2,
+    }),
+  ]);
+
+  const starRatingsThree = await Promise.all([
+    StarRating.create({
+      rating: 4,
+      userId: 2,
+      bookId: 2,
+    }),
+    StarRating.create({
+      rating: 5,
+      userId: 1,
+      bookId: 2,
+    }),
+  ]);
+
+  const starRatingsFour = await Promise.all([
+    StarRating.create({
+      rating: 3,
+      userId: 1,
+      movieId: 5,
+    }),
+    StarRating.create({
+      rating: 4,
+      userId: 3,
+      movieId: 5,
+    }),
   ]);
 
   //make friend connections
