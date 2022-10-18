@@ -10,7 +10,6 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ReviewForm from "./ReviewForm";
 
-
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
 
@@ -24,11 +23,8 @@ const SingleTvShow = () => {
 
   useEffect(() => {
     dispatch(fetchSingleTv(id));
-    console.log(starRating);
-    setRating(starRating);
-    console.log(starRating);
-  }, [dispatch])
-  
+  }, [dispatch]);
+
   return (
     <div className="single-view">
       <div>
@@ -36,8 +32,15 @@ const SingleTvShow = () => {
         <img src={imageUrl} alt="tvshow-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
-        <p>Rating: <Rating readonly={true} initialValue={rating} 
-        allowFraction={true} fillColor="#f1a545"/></p>
+        <p>
+          Rating:{" "}
+          <Rating
+            readonly={true}
+            initialValue={starRating}
+            allowFraction={true}
+            fillColor="#f1a545"
+          />
+        </p>
       </div>
 
       <div className="reviews">
@@ -73,7 +76,6 @@ const SingleTvShow = () => {
         </Col>
       </Row>
     </div>
-
   );
 };
 
