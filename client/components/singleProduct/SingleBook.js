@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { Button, Col, Card, Row } from "react-bootstrap";
 import { fetchSingleBook } from "../../store/book";
+import { Rating } from "react-simple-star-rating";
 import { fetchUserBook, fetchUpdateUserBook } from "../../store/userBook";
 import { fetchCreateUserBook } from "../../store/userBooks";
 import TimeAgo from "javascript-time-ago";
@@ -100,9 +101,17 @@ const SingleBook = () => {
         <img src={imageUrl} alt="book-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
-        <p>Rating: <RatedStars rating={rating} fillColor="#FFDD55"/></p>
+        <p>{" "} 
+          <Rating 
+            readonly={true} 
+            initialValue={starRating}
+            allowFraction={true}
+            fillColor="#f1a545"/>
+        </p>
       </div>
+
       <br />
+
       <div className="reviews">
         <p>Reviews:</p>
         <Card
