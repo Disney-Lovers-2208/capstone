@@ -16,7 +16,7 @@ import SingleMovie from "./components/singleProduct/SingleMovie";
 import Saved from "./components/profile/Saved";
 import Friends from "./components/profile/Friends";
 import History from "./components/profile/History";
-import AllUsers from './components/AllUsers';
+import AllUsers from "./components/AllUsers";
 
 import Edit from "./components/profile/Edit";
 import FriendsProfilePage from "./components/profile/FriendsProfilePage";
