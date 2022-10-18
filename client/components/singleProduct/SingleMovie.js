@@ -19,7 +19,7 @@ const SingleMovie = () => {
   const starRatings = movie.starRatings || [];
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [toggle, handleToggle] = useState(false);
+  // const [toggle, handleToggle] = useState(false);
 
   useEffect(() => {
     dispatch(fetchSingleMovie(id));

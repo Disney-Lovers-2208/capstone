@@ -19,7 +19,7 @@ const SingleBook = () => {
   const starRatings = book.starRatings || [];
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [toggle, handleToggle] = useState(false);
+  // const [toggle, handleToggle] = useState(false);
 
   useEffect(() => {
     dispatch(fetchSingleBook(id));

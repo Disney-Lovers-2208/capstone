@@ -19,7 +19,7 @@ export const UserCard = (props) => {
     // )
 
     return (
-        <Container className='card'>
+        <Container className='all-users'>
             <Card border='info' style={{ width: '15rem', backgroundColor: '#FF5454' }}>
                 <Card.Body>
                     <Link to={`/profile`} style={{ color: 'inherit' }}>
