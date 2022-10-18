@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
@@ -154,36 +153,3 @@ const SingleBook = () => {
 };
 
 export default SingleBook;
-
-{
-  /* <select
-            value={selected}
-            onChange={(e) => {
-              console.log(selected);
-              if (status) {
-                dispatch(
-                  fetchUpdateUserBook({
-                    userId: auth.id,
-                    bookId: id,
-                    status: e.target.value,
-                  })
-                );
-              } else {
-                dispatch(
-                  fetchCreateUserBook({
-                    userId: auth.id,
-                    bookId: id,
-                    status: e.target.value,
-                  })
-                );
-              }
-              window.location.reload(false);
-            }}
-          >
-            {selectOptions.map((value) => (
-              <option value={value} key={value}>
-                {value}
-              </option>
-            ))}
-          </select> */
-}
