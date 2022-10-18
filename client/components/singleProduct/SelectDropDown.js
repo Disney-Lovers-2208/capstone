@@ -1,17 +1,32 @@
 import React from "react";
-
-const SelectDropDown = ({
-  selectOptions,
-  setSelected,
-  selected,
-  getSelected,
-}) => {
+import { fetchUpdateUserBook } from "../../store/userBook";
+import { fetchCreateUserBook } from "../../store/userBooks";
+import { useDispatch } from "react-redux";
+const SelectDropDown = ({ selectOptions, selected, status, auth, id }) => {
+  const dispatch = useDispatch();
   return (
     <select
       value={selected}
       onChange={(e) => {
-        setSelected(e.target.value);
-        getSelected();
+        console.log(selected);
+        if (status) {
+          dispatch(
+            fetchUpdateUserBook({
+              userId: auth.id,
+              bookId: id,
+              status: e.target.value,
+            })
+          );
+        } else {
+          dispatch(
+            fetchCreateUserBook({
+              userId: auth.id,
+              bookId: id,
+              status: e.target.value,
+            })
+          );
+        }
+        window.location.reload(false);
       }}
     >
       {selectOptions.map((value) => (

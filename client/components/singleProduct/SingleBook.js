@@ -25,9 +25,9 @@ const SingleBook = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  let favorite = null;
-  let featured = null;
-  let status = null;
+  let favorite = userBook ? userBook.favorite : null;
+  let featured = userBook ? userBook.featured : null;
+  let status = userBook ? userBook.status : null;
 
   useEffect(() => {
     dispatch(fetchUserBook({ userId: auth.id, bookId: id }));
@@ -36,16 +36,6 @@ const SingleBook = () => {
   useEffect(() => {
     dispatch(fetchSingleBook(id));
   }, [dispatch]);
-
-  const favoriteBook = auth.books.filter(
-    (book) => book.user_book.favorite === true
-  )[0];
-
-  if (userBook) {
-    favorite = userBook.favorite;
-    featured = userBook.featured;
-    status = userBook.status;
-  }
 
   //update status book
   const selectOptions = ["Select", "Saved", "Read"];
@@ -65,6 +55,10 @@ const SingleBook = () => {
   };
 
   //update favorite book
+  const favoriteBook = auth.books.filter(
+    (book) => book.user_book.favorite === true
+  )[0];
+
   const handleFavoriteClick = (evt) => {
     evt.preventDefault();
     if (favorite) {
@@ -109,9 +103,7 @@ const SingleBook = () => {
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
       </div>
-
       <br />
-
       <div className="reviews">
         <p>Reviews:</p>
         <Card
@@ -126,9 +118,7 @@ const SingleBook = () => {
           ))}
         </Card>
       </div>
-
       <br />
-
       <Row xs={3}>
         <Col>
           <Button variant="dark" onClick={handleFavoriteClick}>
@@ -136,12 +126,37 @@ const SingleBook = () => {
               <> Remove as Favorite </>
             ) : (
               <>
-                <FaHeart /> Make Favorite
+                <FaHeart />
+                Make Favorite
               </>
             )}
           </Button>
+          <SelectDropDown
+            status={status}
+            selectOptions={selectOptions}
+            selected={selected}
+            auth={auth}
+            id={id}
+          />
+          <Button variant="success" onClick={handleFeaturedClick}>
+            {featured === true ? (
+              <>Remove from Featured </>
+            ) : (
+              <> Add to Featured </>
+            )}
+          </Button>
 
-          <select
+          <ReviewForm product={book.productType} />
+        </Col>
+      </Row>
+    </div>
+  );
+};
+
+export default SingleBook;
+
+{
+  /* <select
             value={selected}
             onChange={(e) => {
               console.log(selected);
@@ -170,21 +185,5 @@ const SingleBook = () => {
                 {value}
               </option>
             ))}
-          </select>
-
-          <Button variant="success" onClick={handleFeaturedClick}>
-            {featured === true ? (
-              <>Remove from Featured </>
-            ) : (
-              <> Add to Featured </>
-            )}
-          </Button>
-
-          <ReviewForm product={book.productType} />
-        </Col>
-      </Row>
-    </div>
-  );
-};
-
-export default SingleBook;
+          </select> */
+}
