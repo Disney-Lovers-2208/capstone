@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import { Container, Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import Stats from "./Stats";
 
 const Banner = (props) => {
   const { user } = props;
+
   const location = useLocation().pathname;
   let auth = useSelector((state) => state.auth);
   return (
@@ -53,6 +54,9 @@ const Banner = (props) => {
           ) : null}
         </Col>
       </Row>
+
+      <Stats user={user} />
+
       <hr />
       {user.id === auth.id ? (
         <Row className="buttons">
