@@ -10,25 +10,25 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ReviewForm from "./ReviewForm";
 
+
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
 
 const SingleTvShow = () => {
   const tvshow = useSelector((state) => state.tv);
-  const starRating = useSelector((state) => state.tv.starRating);
-  // console.log('rating:', starRating);
-  const { imageUrl, title, description, genre } = tvshow;
-  // const { rating } = starRating;
-  console.log('tv:', tvshow);
+  const { imageUrl, title, description, genre, starRating } = tvshow;
   const posts = tvshow.posts || [];
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     dispatch(fetchSingleTv(id));
-  }, [dispatch]);
-
-
+    console.log(starRating);
+    setRating(starRating);
+    console.log(starRating);
+  }, [dispatch])
+  
   return (
     <div className="single-view">
       <div>
@@ -36,7 +36,8 @@ const SingleTvShow = () => {
         <img src={imageUrl} alt="tvshow-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
-        <p>Rating: <Rating readonly={true} allowFraction={true} fillColor="#f1a545"/></p>
+        <p>Rating: <Rating readonly={true} initialValue={rating} 
+        allowFraction={true} fillColor="#f1a545"/></p>
       </div>
 
       <div className="reviews">

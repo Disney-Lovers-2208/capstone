@@ -6,11 +6,10 @@ const GET_SINGLE_TV = "GET_SINGLE_TV";
 
 
 // Action creator:
-const getSingleTv = (tv, rating) => {
+const getSingleTv = (tv) => {
   return {
     type: GET_SINGLE_TV,
     tv,
-    rating,
   };
 };
 
@@ -21,7 +20,8 @@ export const fetchSingleTv = (id) => {
     try {
       const { data: tv } = await axios.get(`/api/tvs/${id}`);
       const { data: rating } = await axios.get(`/api/starRatings/tvs/${id}`);
-      dispatch(getSingleTv(tv, rating));
+      tv.starRating = rating;
+      dispatch(getSingleTv(tv));
     } catch (error) {
       return error;
     }
