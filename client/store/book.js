@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // ACTION TYPE
-const GET_SINGLE_BOOK = "SET_SINGLE_BOOK";
+const GET_SINGLE_BOOK = "GET_SINGLE_BOOK";
 
 const getSingleBook = (book) => {
   return {
@@ -22,7 +22,6 @@ export const fetchSingleBook = (id) => {
     }
   };
 };
-
 
 // REDUCER
 export default function bookReducer(state = {}, action) {

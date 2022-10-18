@@ -33,7 +33,34 @@ margin-left: 1rem;
   }
   
 
+.stats{ 
+    background-color: aquamarine;
+    height: 150px;
+    border-radius: 1rem;
+    padding-top: 40px;
+    margin: 15px;
 
+}
+
+.stats-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 1;
+    flex-grow: 1;
+    padding: 10px
+}
+
+.stats-inner-row{
+    padding-left: 25px;
+}
+.stats-image-icon{
+    height: 80px;
+
+}
+.stats-image-icon img{
+    height: 100%;
+}
 .profile .featured { 
     text-align: center;
 }
