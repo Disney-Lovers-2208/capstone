@@ -15,6 +15,8 @@ export const fetchSingleMovie = (id) => {
   return async (dispatch) => {
     try {
       const { data: movie } = await axios.get(`/api/movies/${id}`);
+      const { data: rating } = await axios.get(`/api/starRatings/movies/${id}`);
+      movie.starRating = rating;
       dispatch(getSingleMovie(movie));
     } catch (error) {
       return error;
