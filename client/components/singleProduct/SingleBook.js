@@ -10,6 +10,7 @@ import { fetchCreateUserBook } from "../../store/userBooks";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ReviewForm from "./ReviewForm";
+import SelectDropDown from "./SelectDropDown";
 
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
@@ -23,7 +24,6 @@ const SingleBook = () => {
   const starRatings = book.starRatings || [];
   const dispatch = useDispatch();
   const { id } = useParams();
-  // const [toggle, handleToggle] = useState(false);
 
   let favorite = null;
   let featured = null;
@@ -46,6 +46,10 @@ const SingleBook = () => {
     featured = userBook.featured;
     status = userBook.status;
   }
+
+  //update status book
+  const selectOptions = ["Select", "Saved", "Read"];
+  const [selected, setSelected] = useState(selectOptions[0]);
 
   //update featured books
   const handleFeaturedClick = (evt) => {
@@ -127,32 +131,55 @@ const SingleBook = () => {
 
       <Row xs={3}>
         <Col>
-          {/* Favorite Book */}
-          {favorite === true ? (
-            <Button variant="dark" onClick={handleFavoriteClick}>
-              Remove as Favorite
-            </Button>
-          ) : (
-            <Button variant="dark" onClick={handleFavoriteClick}>
-              <FaHeart />
-              Make Favorite
-            </Button>
-          )}
-          {/* Save / read drop down  */}
-          <select>
-            <option value="book">Saved</option>
-            <option value="movie">Read</option>
+          <Button variant="dark" onClick={handleFavoriteClick}>
+            {favorite === true ? (
+              <> Remove as Favorite </>
+            ) : (
+              <>
+                <FaHeart /> Make Favorite
+              </>
+            )}
+          </Button>
+
+          <select
+            value={selected}
+            onChange={(e) => {
+              console.log(selected);
+              if (status) {
+                dispatch(
+                  fetchUpdateUserBook({
+                    userId: auth.id,
+                    bookId: id,
+                    status: e.target.value,
+                  })
+                );
+              } else {
+                dispatch(
+                  fetchCreateUserBook({
+                    userId: auth.id,
+                    bookId: id,
+                    status: e.target.value,
+                  })
+                );
+              }
+              window.location.reload(false);
+            }}
+          >
+            {selectOptions.map((value) => (
+              <option value={value} key={value}>
+                {value}
+              </option>
+            ))}
           </select>
-          {/* Add to featured */}
-          {featured === true ? (
-            <Button variant="success" onClick={handleFeaturedClick}>
-              Remove from Featured
-            </Button>
-          ) : (
-            <Button variant="success" onClick={handleFeaturedClick}>
-              Add to Featured
-            </Button>
-          )}
+
+          <Button variant="success" onClick={handleFeaturedClick}>
+            {featured === true ? (
+              <>Remove from Featured </>
+            ) : (
+              <> Add to Featured </>
+            )}
+          </Button>
+
           <ReviewForm product={book.productType} />
         </Col>
       </Row>
