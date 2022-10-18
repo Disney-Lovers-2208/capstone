@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
+import { getAllUsers } from '../store/users';
 import UserCard from './UserCard';
 
 export const AllUsers = () => {
     const users = useSelector((state) => state.users);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getAllUsers())
+    }, [dispatch]);
 
     return (
         <div className='all-items'>

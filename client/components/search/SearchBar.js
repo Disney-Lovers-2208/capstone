@@ -10,7 +10,7 @@ import { fetchBooks } from "../../store/books";
 import { fetchBookReviews } from "../../store/book";
 
 export const SearchBar = () => {
-  const [title, setTitle] = useState("");
+  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
   // noticing an issue where it can only search once and can't search again
@@ -34,10 +34,10 @@ export const SearchBar = () => {
           <input
             type="search"
             placeholder="Search for..."
-            onChange={(evt) => setTitle(evt.target.value)}
-            value={title}
+            onChange={(evt) => setSearch(evt.target.value)}
+            value={search}
           />
-          <Button variant="light" as={Link} to={`/searchfor/${title}`}>
+          <Button variant="light" as={Link} to={`/searchfor/${search}`}>
             <GoSearch />
           </Button>
         </Col>

@@ -65,7 +65,7 @@ const App = () => {
           <Route path="/starRating/tv/:id" />
           <Route path="/starRating/book/:id" />
           <Route path="/starRating/movie/:id" />
-          <Route path="/users" />
+          <Route path="/users" element={<AllUsers />} />
           <Route path="/searchfor/:title" element={<SearchFor />} />
           <Route path="/add" element={<AddProduct />} />
         </Routes>

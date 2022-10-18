@@ -1,87 +1,74 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import TvCard from "../productCards/TvCard";
-import { Button, Row, Col } from "react-bootstrap";
-import MovieCard from "../productCards/MovieCard";
-import BookCard from "../productCards/BookCard";
+import { Button, Row, Col, Card } from "react-bootstrap";
+
 
 export const SearchFor = () => {
   const { title } = useParams();
-  const tvshows = useSelector((state) => state.tvs);
-  const movies = useSelector((state) => state.movies);
-  const books = useSelector((state) => state.books);
-  // const [tvList, setTvList] = useState([]);
-  // const [movieList, setMovieList] = useState([]);
-  // const [bookList, setBookList] = useState([]);
 
-  // filters through tv shows
-  // useEffect(() => {
-  //   const filteredTitles = tvshows.filter((tvshow) => {
-  //     return tvshow.title.toLowerCase().includes(title.toLowerCase());
-  //   });
-  //   setTvList(filteredTitles);
-  // }, []);
+  const titleFilter = item => item.title.toLowerCase().includes(title.toLowerCase());
 
-  // // filters through movies
-  // useEffect(() => {
-  //   const filteredTitles = movies.filter((movie) => {
-  //     return movie.title.toLowerCase().includes(title.toLowerCase());
-  //   });
-  //   setMovieList(filteredTitles);
-  // }, []);
+  const tvshows = useSelector(state => state.tvs).filter(titleFilter);
+  const movies = useSelector(state => state.movies).filter(titleFilter);
+  const books = useSelector(state => state.books).filter(titleFilter);
 
-  // // filters through books
-  // useEffect(() => {
-  //   const filteredTitles = books.filter((book) => {
-  //     return book.title.toLowerCase().includes(title.toLowerCase());
-  //   });
-  //   setBookList(filteredTitles);
-  // }, []);
 
   return (
     <div className="search-results">
+      <p>You searched for { title }</p>
       <p>Don't see your fave?</p>
       <Button variant="info" as={Link} to={"/add"} style={{ align: "center" }}>
         Add Your Fave!
       </Button>
 
+      <h2>TV Shows</h2>
+      <Row xs={3} md={3}>
+        {tvshows.map(tvshow => {
+          return (
+            <Card key={tvshow.id} style={{ width: "15rem" , margin: "2rem" }}>
+              <Col>
+                <Link to={`/tvshows/${tvshow.id}`}>
+                  <Card.Img className="card-img" variant="top" src={tvshow.imageUrl} />
+                </Link>
+              </Col>
+            </Card>
+          )
+        })}
+      </Row>
+
       <br />
 
-      {/* search for movies */}
+      <h2>Movies</h2>
       <Row xs={3} md={3}>
-        {movieList.length
-          ? movieList.map((movie) => (
-              <Col key={movie.id}>
-                <p>Movies:</p>
-                <MovieCard movie={movie} />
+        {movies.map(movie => {
+          return (
+            <Card key={movie.id} style={{ width: "15rem" , margin: "2rem" }}>
+              <Col>
+                <Link to={`/movies/${movie.id}`}>
+                  <Card.Img className="card-img" variant="top" src={movie.imageUrl} />
+                </Link>
               </Col>
-            ))
-          : null}
+            </Card>
+          )
+        })}
       </Row>
 
-      {/* search for tv shows */}
-      <Row xs={3} md={3}>
-        {tvList.length
-          ? tvList.map((tvshow) => (
-              <Col key={tvshow.id}>
-                <p>Tv Shows:</p>
-                <TvCard tvShow={tvshow} />
-              </Col>
-            ))
-          : null}
-      </Row>
+      <br />
 
-      {/* search for books */}
-      <Row>
-        {bookList.length
-          ? bookList.map((book) => (
-              <Col key={book.id}>
-                <p>Books:</p>
-                <BookCard book={book} />
+      <h2>Books</h2>
+      <Row xs={3} md={3}>
+        {books.map(book => {
+          return (
+            <Card key={book.id} style={{ width: "15rem" , margin: "2rem" }}>
+              <Col>
+                <Link to={`/books/${book.id}`}>
+                  <Card.Img className="card-img" variant="top" src={book.imageUrl} />
+                </Link>
               </Col>
-            ))
-          : null}
+            </Card>
+          )
+        })}
       </Row>
     </div>
   );
