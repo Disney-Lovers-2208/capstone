@@ -37,12 +37,17 @@ const SingleBook = () => {
     dispatch(fetchSingleBook(id));
   }, [dispatch]);
 
+  const favoriteBook = auth.books.filter(
+    (book) => book.user_book.favorite === true
+  )[0];
+
   if (userBook) {
     favorite = userBook.favorite;
     featured = userBook.featured;
     status = userBook.status;
   }
 
+  //update featured books
   const handleFeaturedClick = (evt) => {
     evt.preventDefault();
     if (userBook) {
@@ -52,6 +57,44 @@ const SingleBook = () => {
       featured = true;
       dispatch(fetchCreateUserBook({ userId: auth.id, bookId: id, featured }));
     }
+    window.location.reload(false);
+  };
+
+  //update favorite book
+  const handleFavoriteClick = (evt) => {
+    evt.preventDefault();
+    if (favorite) {
+      favorite = false;
+      dispatch(fetchUpdateUserBook({ userId: auth.id, bookId: id, favorite }));
+    } else {
+      let text = `You already have a book!\nBy clicking OK you will change your favorite book to ${title} permanently`;
+      if (favoriteBook) {
+        console.log(favoriteBook);
+        if (confirm(text) == true) {
+          text = "You pressed OK!";
+          favorite = false;
+          dispatch(
+            fetchUpdateUserBook({
+              userId: auth.id,
+              bookId: favoriteBook.id,
+              favorite,
+            })
+          );
+          favorite = true;
+          dispatch(
+            fetchUpdateUserBook({ userId: auth.id, bookId: id, favorite })
+          );
+        } else {
+          text = "You canceled!";
+        }
+      } else {
+        favorite = true;
+        dispatch(
+          fetchUpdateUserBook({ userId: auth.id, bookId: id, favorite })
+        );
+      }
+    }
+    window.location.reload(false);
   };
 
   return (
@@ -86,13 +129,13 @@ const SingleBook = () => {
         <Col>
           {/* Favorite Book */}
           {favorite === true ? (
-            <Button variant="dark" as={Link} to={"/profile"}>
-              Remove from Favorite
+            <Button variant="dark" onClick={handleFavoriteClick}>
+              Remove as Favorite
             </Button>
           ) : (
-            <Button variant="dark" as={Link} to={"/profile"}>
+            <Button variant="dark" onClick={handleFavoriteClick}>
               <FaHeart />
-              Add to Favorite
+              Make Favorite
             </Button>
           )}
           {/* Save / read drop down  */}
@@ -102,21 +145,11 @@ const SingleBook = () => {
           </select>
           {/* Add to featured */}
           {featured === true ? (
-            <Button
-              variant="success"
-              onClick={handleFeaturedClick}
-              as={Link}
-              to={"/profile"}
-            >
+            <Button variant="success" onClick={handleFeaturedClick}>
               Remove from Featured
             </Button>
           ) : (
-            <Button
-              variant="success"
-              onClick={handleFeaturedClick}
-              as={Link}
-              to={"/profile"}
-            >
+            <Button variant="success" onClick={handleFeaturedClick}>
               Add to Featured
             </Button>
           )}

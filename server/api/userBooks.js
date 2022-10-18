@@ -4,6 +4,35 @@ const {
 } = require("../db");
 module.exports = router;
 
+router.get("/favoriteBook/:userId", async (req, res, next) => {
+  console.log("HEREHEREHERR", req.params.userId);
+  try {
+    const books = await User_Book.findOne({
+      where: {
+        userId: req.params.userId,
+        favorite: true,
+      },
+    });
+    res.json(books);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/savedBooks/:userId", async (req, res, next) => {
+  try {
+    const books = await User_Book.findOne({
+      where: {
+        userId: req.params.userId,
+        status: "Saved",
+      },
+    });
+    res.json(books);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get("/:userId/:bookId", async (req, res, next) => {
   try {
     const userBook = await User_Book.findOne({
@@ -27,34 +56,6 @@ router.put("/:userId/:bookId", async (req, res, next) => {
       },
     });
     res.send(await userBook.update(req.body));
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.get("/favoriteBook/:userId", async (req, res, next) => {
-  try {
-    const books = await User_Book.findOne({
-      where: {
-        userId: req.params.userId,
-        favorite: true,
-      },
-    });
-    res.json(books);
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.get("/savedBooks/:userId", async (req, res, next) => {
-  try {
-    const books = await User_Book.findOne({
-      where: {
-        userId: req.params.userId,
-        status: "Saved",
-      },
-    });
-    res.json(books);
   } catch (err) {
     next(err);
   }
