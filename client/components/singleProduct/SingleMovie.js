@@ -9,7 +9,7 @@ import { fetchSingleMovie } from "../../store/movie";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ReviewForm from "./ReviewForm";
-import { fetchMovieRating } from "../../store/starRating";
+
 
 TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo("en-US");
