@@ -22,7 +22,7 @@ const SingleMovie = () => {
   const posts = movie.posts || [];
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [toggle, handleToggle] = useState(false);
+  // const [toggle, handleToggle] = useState(false);
 
   useEffect(() => {
     dispatch(fetchSingleMovie(id));
@@ -72,18 +72,7 @@ const SingleMovie = () => {
           <Button variant="success" as={Link} to={"/profile"}>
             Add to Featured
           </Button>
-          {toggle ? (
-            <ReviewForm product={movie.productType} />
-          ) : (
-            <Button
-              variant="info"
-              onClick={() => {
-                toggle ? handleToggle(false) : handleToggle(true);
-              }}
-            >
-              Write A Review
-            </Button>
-          )}
+          <ReviewForm product={movie.productType} />
         </Col>
       </Row>
     </div>

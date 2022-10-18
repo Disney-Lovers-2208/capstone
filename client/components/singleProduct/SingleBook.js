@@ -25,7 +25,7 @@ const SingleBook = () => {
   const posts = book.posts || [];
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [toggle, handleToggle] = useState(false);
+  // const [toggle, handleToggle] = useState(false);
 
   useEffect(() => {
     dispatch(fetchSingleBook(id));
@@ -78,18 +78,7 @@ const SingleBook = () => {
           <Button variant="success" as={Link} to={"/profile"}>
             Add to Featured
           </Button>
-          {toggle ? (
-            <ReviewForm product={book.productType} />
-          ) : (
-            <Button
-              variant="info"
-              onClick={() => {
-                toggle ? handleToggle(false) : handleToggle(true);
-              }}
-            >
-              Write A Review
-            </Button>
-          )}
+          <ReviewForm product={book.productType} />
         </Col>
       </Row>
     </div>
