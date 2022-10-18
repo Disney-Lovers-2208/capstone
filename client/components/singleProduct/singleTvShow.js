@@ -31,8 +31,7 @@ const SingleTvShow = () => {
         <img src={imageUrl} alt="tvshow-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
-        <p>
-          Rating:{" "}
+        <p>{" "}
           <Rating
             readonly={true}
             initialValue={starRating}

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button, Card, Row, Col } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa";
-import RatedStars from "../activityLog/RatedStars";
+import { Rating } from "react-simple-star-rating";
 import { fetchSingleMovie } from "../../store/movie";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
@@ -15,21 +15,15 @@ const timeAgo = new TimeAgo("en-US");
 
 const SingleMovie = () => {
   const movie = useSelector((state) => state.movie);
-  const movieRating = useSelector((state) => state.rating);
-  const { imageUrl, title, description, genre } = movie;
-  const rating = movieRating;
+  const { imageUrl, title, description, genre, starRating } = movie;
   const posts = movie.posts || [];
   const dispatch = useDispatch();
   const { id } = useParams();
-  // const [toggle, handleToggle] = useState(false);
 
   useEffect(() => {
     dispatch(fetchSingleMovie(id));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(fetchMovieRating(id));
-  // }, [dispatch]);
 
   return (
     <div className="single-view">
@@ -38,8 +32,13 @@ const SingleMovie = () => {
         <img src={imageUrl} alt="movie-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
-        <p>
-          Rating: <RatedStars rating={rating} allowFraction={true} />
+        <p>{" "}
+          <Rating 
+            readonly={true} 
+            initialValue={starRating} 
+            allowFraction={true}
+            fillColor="#f1a545"
+          />
         </p>
       </div>
 
