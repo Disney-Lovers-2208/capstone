@@ -57,45 +57,35 @@ export function Edit(props) {
         </Col>
         <Col lg={9}>
           <form className="edit-form" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="firstName"> First Name: </label>
-              <input
-                type="text"
-                value={firstName || ""}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="lastName"> Last Name: </label>
-              <input
-                type="text"
-                value={lastName || ""}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="email"> Email: </label>
-              <input
-                type="text"
-                value={email || ""}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="username"> Username: </label>
-              <input
-                type="text"
-                value={username || ""}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="bio"> Bio: </label>
-              <textarea
-                value={bio || ""}
-                onChange={(e) => setBio(e.target.value)}
-              />
-            </div>
+            <label htmlFor="firstName"> First Name: </label>
+            <input
+              type="text"
+              value={firstName || ""}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <label htmlFor="lastName"> Last Name: </label>
+            <input
+              type="text"
+              value={lastName || ""}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+            <label htmlFor="email"> Email: </label>
+            <input
+              type="text"
+              value={email || ""}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label htmlFor="username"> Username: </label>
+            <input
+              type="text"
+              value={username || ""}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <label htmlFor="bio"> Bio: </label>
+            <textarea
+              value={bio || ""}
+              onChange={(e) => setBio(e.target.value)}
+            />
             <input type="submit" value="Submit" />
           </form>
         </Col>
