@@ -19,7 +19,6 @@ const SingleTvShow = () => {
   const posts = tvshow.posts || [];
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     dispatch(fetchSingleTv(id));

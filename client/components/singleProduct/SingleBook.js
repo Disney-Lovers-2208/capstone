@@ -16,16 +16,12 @@ const timeAgo = new TimeAgo("en-US");
 
 const SingleBook = () => {
   const book = useSelector((state) => state.book);
-  // const bookRating = useSelector((state) => state.rating);
-  // console.log('book rating:', bookRating);
-  const { imageUrl, title, description, genre, rating } = book;
-  // const { rating } = bookRating;
+  const { imageUrl, title, description, genre, starRating } = book;
   console.log('book:', book);
   console.log('rating:', rating);
   const posts = book.posts || [];
   const dispatch = useDispatch();
   const { id } = useParams();
-  // const [toggle, handleToggle] = useState(false);
 
   useEffect(() => {
     dispatch(fetchSingleBook(id));
