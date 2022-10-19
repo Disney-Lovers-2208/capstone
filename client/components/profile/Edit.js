@@ -49,12 +49,11 @@ export function Edit(props) {
   };
 
   return (
-    <Container>
+    <div className="edit-profile-form">
       <h1>Edit Profile</h1>
       <hr />
       <Row>
-        {/* Left side */}
-        <Col lg={4}>
+        <Col lg={3}>
           <div className="text-center">
             <img
               src={auth.image}
@@ -64,7 +63,7 @@ export function Edit(props) {
             <h6>Upload a different profile photo...</h6>
           </div>
         </Col>
-        <Col lg={8}>
+        <Col lg={9}>
           <form className="edit-form" onSubmit={handleSubmit}>
             <div className="edit-form-names">
               <label htmlFor="firstName" className="form-labels">
@@ -123,7 +122,7 @@ export function Edit(props) {
           </form>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 }
 
