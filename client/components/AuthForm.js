@@ -20,7 +20,9 @@ const AuthForm = (props) => {
     const formName = "login";
     const username = evt.target.username.value;
     const password = evt.target.password.value;
-    dispatch(authenticate(username, password, formName));
+    dispatch(
+      authenticate(username, password, formName, null, null, null, navigate)
+    );
   };
 
   const handleSignupSubmit = (evt) => {

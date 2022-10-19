@@ -8,7 +8,7 @@ export function Edit(props) {
   const auth = useSelector((state) => state.auth);
   const authId = useSelector((state) => state.auth.id);
   const dispatch = useDispatch();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState(auth.firstName);
   const [lastName, setLastName] = useState(auth.lastName);
@@ -48,7 +48,6 @@ export function Edit(props) {
     );
   };
 
-  console.log("auth", auth);
   return (
     <Container>
       <h1>Edit Profile</h1>
