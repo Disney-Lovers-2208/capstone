@@ -31,7 +31,6 @@ export const fetchUserMovie = (userMovie) => {
 
 export const fetchUpdateUserMovie = (userMovie) => {
   const { userId, movieId } = userMovie;
-  console.log("in fetch userMovie ", userMovie);
   return async (dispatch) => {
     try {
       const { data } = await axios.put(

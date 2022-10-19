@@ -16,7 +16,7 @@ export class Friends extends React.Component {
             <Banner user={user} />
           </Col>
         </Row>
-
+        <h1>Friends</h1>
         <Row>
           <Col className="friends-list">
             {friends

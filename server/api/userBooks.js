@@ -67,3 +67,18 @@ router.post("/", async (req, res, next) => {
     next(err);
   }
 });
+
+router.delete("/:userId/:bookId", async (req, res, next) => {
+  try {
+    const userBook = await User_Book.findOne({
+      where: {
+        userId: req.params.userId,
+        bookId: req.params.bookId,
+      },
+    });
+    await userBook.destroy();
+    res.send(userBook);
+  } catch (error) {
+    next(error);
+  }
+});

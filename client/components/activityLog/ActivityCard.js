@@ -4,7 +4,6 @@ import RatedStars from "./RatedStars";
 
 export const ActivityCard = (props) => {
   const { activity } = props;
-
   return (
     <Container>
       <Card>
