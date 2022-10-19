@@ -66,46 +66,50 @@ export function Edit(props) {
         </Col>
         <Col lg={8}>
           <form className="edit-form" onSubmit={handleSubmit}>
-            <label htmlFor="firstName" className="form-labels">
-              {" "}
-              First Name:{" "}
-            </label>
-            <input
-              type="text"
-              className="form-inputs"
-              value={firstName || ""}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-            <label htmlFor="lastName" className="form-labels">
-              {" "}
-              Last Name:{" "}
-            </label>
-            <input
-              type="text"
-              className="form-inputs"
-              value={lastName || ""}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-            <label htmlFor="email" className="form-labels">
-              {" "}
-              Email:{" "}
-            </label>
-            <input
-              type="text"
-              className="form-inputs"
-              value={email || ""}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label htmlFor="username" className="form-labels">
-              {" "}
-              Username:{" "}
-            </label>
-            <input
-              type="text"
-              className="form-inputs"
-              value={username || ""}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+            <div className="edit-form-names">
+              <label htmlFor="firstName" className="form-labels">
+                {" "}
+                First Name:{" "}
+              </label>
+              <input
+                type="text"
+                className="form-inputs"
+                value={firstName || ""}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <label htmlFor="lastName" className="form-labels">
+                {" "}
+                Last Name:{" "}
+              </label>
+              <input
+                type="text"
+                className="form-inputs"
+                value={lastName || ""}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+            <div className="edit-form-username-email">
+              <label htmlFor="email" className="form-labels">
+                {" "}
+                Email:{" "}
+              </label>
+              <input
+                type="text"
+                className="form-inputs"
+                value={email || ""}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <label htmlFor="username" className="form-labels">
+                {" "}
+                Username:{" "}
+              </label>
+              <input
+                type="text"
+                className="form-inputs"
+                value={username || ""}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
             <label htmlFor="bio" className="form-labels">
               {" "}
               Bio:{" "}
