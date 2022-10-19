@@ -18,7 +18,7 @@ export const Stats = ({ user }) => {
       <Row className="stats-row">
         <Col lg={6} sm={12}>
           <Row>
-            <Col className="stats ">
+            <Col className="stats" style={{ backgroundColor: "#48CAE4" }}>
               <Row className="stats-inner-row">
                 <Col lg={4} className="stats-image-icon">
                   <img src="https://www.salinasuhsd.org/cms/lib/CA02208720/Centricity/Domain/194/Book-512.png" />
@@ -29,7 +29,7 @@ export const Stats = ({ user }) => {
                 </Col>
               </Row>
             </Col>
-            <Col className="stats ">
+            <Col className="stats" style={{ backgroundColor: "#48CAE4" }}>
               <Row className="stats-inner-row">
                 <Col lg={4} className="stats-image-icon">
                   <img src="https://cdn-icons-png.flaticon.com/512/83/83519.png" />
@@ -44,7 +44,7 @@ export const Stats = ({ user }) => {
         </Col>
         <Col lg={6} sm={12}>
           <Row>
-            <Col className="stats ">
+            <Col className="stats" style={{ backgroundColor: "#48CAE4" }}>
               <Row className="stats-inner-row">
                 <Col lg={4} className="stats-image-icon">
                   <img src="https://icons-for-free.com/download-icon-television+tv+icon-1320086462225673727_512.png" />
@@ -55,7 +55,7 @@ export const Stats = ({ user }) => {
                 </Col>
               </Row>
             </Col>
-            <Col className="stats" style={{ backgroundColor: "Yellow" }}>
+            <Col className="stats" style={{ backgroundColor: "#48CAE4" }}>
               <Row className="stats-inner-row">
                 <Col lg={4} className="stats-image-icon">
                   <img src="https://static.thenounproject.com/png/655193-200.png" />
