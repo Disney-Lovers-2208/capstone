@@ -38,11 +38,9 @@ export const fetchUserBook = (userBook) => {
 };
 
 export const fetchFavoriteBook = (userId) => {
-  console.log("user id", userId);
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`/api/userBooks/favoriteBook/${userId}`);
-      console.log("data,", data);
       dispatch(getFavoriteBook(data));
     } catch (error) {
       return error;
