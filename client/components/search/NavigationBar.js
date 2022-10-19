@@ -13,7 +13,7 @@ const NavigationBar = ({ handleClick, isLoggedIn }) => (
       {isLoggedIn ? (
         <div>
           <Navbar expand="sm">
-            <SearchBar />
+            <SearchBar/>
             <Nav.Link as={Link} to="/home">
               <FiHome />
             </Nav.Link>

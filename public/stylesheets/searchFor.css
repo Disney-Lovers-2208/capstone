@@ -2,13 +2,11 @@
     text-align: center;
     font-style: italic;
     /* font-family:monospace; */
-    /* display: flex;
-    flex-direction:
-    flex: 1;
-    flex-grow: 1; */
 }
 
 .search-results .card-img {
+    border-radius: 15px;
+    border: solid #03045e;
     height: 300px;
     width: 250px;
     box-shadow:    
@@ -20,23 +18,63 @@
     0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
-
-.search-results h2 {
-    border: solid;
-    border-radius: 1rem;
-    border-color: #3849ef;
-    background-color: #c173f5;
-    margin: 50px;
-}
-
 .search-results .btn{
-    background-color: #ddff55;
+    background-color: #caf0f8;
+    color:black;
 }
 
 .add-button {
-    background-color: aquamarine;
+    background-color: #48cae4;
     border-radius: 1rem;
+    border: solid #0077b6;
     margin: 50px;
     height: 120px;
     text-align: center;
+    margin-bottom: -5%;
+}
+
+.search-results .tvs {
+    background-color: #caf0f8;
+    border: solid #0077b6;
+    border-radius: 15px;
+    margin: 50px;
+    box-shadow:    
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+    padding: 10px;
+    margin-bottom: -5%;
+}
+
+.search-results .movies {
+    background-color: #caf0f8;
+    border: solid #0077b6;
+    border-radius: 15px;
+    margin: 50px;
+    box-shadow:    
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+    padding: 10px;
+    margin-bottom: -5%;
+}
+
+.search-results .books {
+    background-color: #caf0f8;
+    border: solid #0077b6;
+    border-radius: 15px;
+    margin: 50px;
+    box-shadow:    
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
 }
