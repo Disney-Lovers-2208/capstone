@@ -1,10 +1,4 @@
 .navbar {
     background-color: #0077b6;
     border-radius: 5px;
-    /* font-family:monospace; */
-}
-
-.navbar .nav-link .search-bar {
-    display: inline-block;
-    position:relative;
 }

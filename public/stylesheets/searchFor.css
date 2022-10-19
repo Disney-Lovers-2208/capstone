@@ -1,14 +1,13 @@
 .search-results {
     text-align: center;
     font-style: italic;
-    /* font-family:monospace; */
 }
 
 .search-results .card-img {
     border-radius: 15px;
     border: solid #03045e;
-    height: 300px;
-    width: 250px;
+    height: 250px;
+    width: 200px;
     box-shadow:    
     0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048),
