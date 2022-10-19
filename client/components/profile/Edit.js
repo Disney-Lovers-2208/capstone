@@ -15,6 +15,8 @@ export function Edit(props) {
   const [email, setEmail] = useState(auth.email);
   const [username, setUsername] = useState(auth.username);
   const [bio, setBio] = useState(auth.bio);
+  const [image, setImage] = useState(auth.image);
+  const [bannerImage, setBannerImage] = useState(auth.bannerImage);
 
   useEffect(() => {
     setFirstName(auth.firstName);
@@ -22,7 +24,17 @@ export function Edit(props) {
     setEmail(auth.email);
     setUsername(auth.username);
     setBio(auth.bio);
-  }, [auth.firstName, auth.lastName, auth.email, auth.username, auth.bio]);
+    setImage(auth.image);
+    setBannerImage(auth.image);
+  }, [
+    auth.firstName,
+    auth.lastName,
+    auth.email,
+    auth.username,
+    auth.bio,
+    auth.image,
+    auth.bannerImage,
+  ]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -30,12 +42,13 @@ export function Edit(props) {
     dispatch(
       updateAuth(
         authId,
-        { firstName, lastName, email, username, bio },
+        { firstName, lastName, email, username, bio, image, bannerImage },
         navigate
       )
     );
   };
 
+  console.log("auth", auth);
   return (
     <Container>
       <h1>Edit Profile</h1>
@@ -45,14 +58,22 @@ export function Edit(props) {
         <Col lg={3}>
           <div className="text-center">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-              style={{ width: "100px" }}
+              src={auth.image}
+              style={{ width: "100px", borderRadius: "100%" }}
               alt="image"
             />
             <h6>Upload a different profile photo...</h6>
-            <input type="file" className="form-control" />
+            <input
+              type="text"
+              value={image || ""}
+              onChange={(e) => setImage(e.target.value)}
+            />
             <h6>Upload a different banner photo...</h6>
-            <input type="file" className="form-control" />
+            <input
+              type="text"
+              value={bannerImage || ""}
+              onChange={(e) => setBannerImage(e.target.value)}
+            />
           </div>
         </Col>
         <Col lg={9}>
