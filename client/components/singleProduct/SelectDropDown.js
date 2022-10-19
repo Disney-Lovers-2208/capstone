@@ -1,6 +1,8 @@
 import React from "react";
 import { fetchUpdateUserBook } from "../../store/userBook";
 import { fetchCreateUserBook } from "../../store/userBooks";
+import { fetchUpdateUserMovie } from "../../store/userMovie";
+import { fetchCreateUserMovie } from "../../store/userMovies";
 import { fetchUpdateUserTv } from "../../store/userTv";
 import { fetchCreateUserTv } from "../../store/userTvShows";
 import { useLocation } from "react-router-dom";
@@ -52,7 +54,7 @@ const SelectDropDown = ({ selectOptions, selected, status, auth, id }) => {
         } else {
           if (status) {
             dispatch(
-              fetchUpdateUserTv({
+              fetchUpdateUserMovie({
                 userId: auth.id,
                 movieId: id,
                 status: e.target.value,
@@ -60,7 +62,7 @@ const SelectDropDown = ({ selectOptions, selected, status, auth, id }) => {
             );
           } else {
             dispatch(
-              fetchCreateUserTv({
+              fetchCreateUserMovie({
                 userId: auth.id,
                 movieId: id,
                 status: e.target.value,

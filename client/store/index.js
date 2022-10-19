@@ -18,6 +18,8 @@ import userBook from "./userBook";
 import userBooks from "./userBooks";
 import userTv from "./userTv";
 import userTvShows from "./userTvShows";
+import userMovie from "./userMovie";
+import userMovies from "./userMovies";
 
 const reducer = combineReducers({
   auth,
@@ -26,6 +28,7 @@ const reducer = combineReducers({
   userTvShows: userTvShows,
   books: booksReducer,
   userBooks: userBooks,
+  userMovies: userMovies,
   tv: tv,
   book: book,
   movie: movie,
@@ -36,6 +39,7 @@ const reducer = combineReducers({
   starRatings,
   userBook,
   userTv,
+  userMovie,
 });
 
 const middleware = composeWithDevTools(
