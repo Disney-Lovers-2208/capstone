@@ -15,21 +15,15 @@ export const SearchFor = () => {
 
 
   return (
-    <div className="search-results">
-      <div className="add-button">
-        <p>Don't see your fave?</p>
-        <Button as={Link} to={"/add"}>
-          Add Your Fave!
-        </Button>
-
-        <p>You searched for: { title }</p>
-
+    <div className="search-results" style={{ backgroundColor: "#caf0f8" }}>
+      <div className="searched-for">
+        <h3>You searched for: { title }</h3>
       </div>
 
       <br />
 
       <div className='tvs'>
-        <h2>TV Shows</h2>
+        <h3>TV Shows</h3>
         <Row xs={2} md={4}>
               {tvshows.map(tvshow => {
                 return (
@@ -46,7 +40,7 @@ export const SearchFor = () => {
       <br />
 
       <div className='movies'>
-        <h2>Movies</h2>
+        <h3>Movies</h3>
         <Row xs={2} md={4}>
               {movies.map(movie => {
                 return (
@@ -63,7 +57,7 @@ export const SearchFor = () => {
       <br />
 
       <div className='books'>
-        <h2>Books</h2>
+        <h3>Books</h3>
         <Row xs={2} md={4}>
               {books.map(book => {
                 return (
@@ -75,6 +69,14 @@ export const SearchFor = () => {
                 )
               })}
         </Row>
+      </div>
+
+      <div className="add-button">
+        <h2>Don't see your fave?</h2>
+        <Button as={Link} to={"/add"}>
+          Add Your Fave!
+        </Button>
+
       </div>
 
     </div>

@@ -13,7 +13,7 @@ export const BookCard = (props) => {
             style={{ width: "15rem", margin: '2rem'}}
           >
             <Link to={`/books/${book.id}`}>
-              <Card.Img variant='top' src={book.imageUrl}></Card.Img>
+              <Card.Img src={book.imageUrl}></Card.Img>
             </Link>
           </Card>
         ))}

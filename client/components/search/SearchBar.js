@@ -34,9 +34,9 @@ export const SearchBar = () => {
             placeholder="Search for..."
             onChange={(evt) => setSearch(evt.target.value)}
             value={search}
-            style={{ borderRadius: '10px', border: 'solid black', padding: '5px' }}
+            style={{ padding: '5px' }}
           />
-          <Button variant="light" as={Link} to={`/searchfor/${search}`} style={{ padding: '5px', borderRadius: '25px' }}>
+          <Button variant="light" as={Link} to={`/searchfor/${search}`} style={{ padding: '6px', borderRadius: '10px' }}>
             <GoSearch />
           </Button>
 

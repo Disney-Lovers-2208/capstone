@@ -14,6 +14,7 @@ const NavigationBar = ({ handleClick, isLoggedIn }) => (
         <div>
           <Navbar expand="sm">
             <SearchBar/>
+            <Navbar.Brand>Name</Navbar.Brand>
             <Nav.Link as={Link} to="/home">
               <FiHome />
             </Nav.Link>
