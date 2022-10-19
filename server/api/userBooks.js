@@ -5,7 +5,6 @@ const {
 module.exports = router;
 
 router.get("/favoriteBook/:userId", async (req, res, next) => {
-  console.log("HEREHEREHERR", req.params.userId);
   try {
     const books = await User_Book.findOne({
       where: {
