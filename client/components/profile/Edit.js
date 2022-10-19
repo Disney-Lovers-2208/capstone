@@ -42,7 +42,7 @@ export function Edit(props) {
       <hr />
       <Row>
         {/* Left side */}
-        <Col lg={3}>
+        <Col lg={4}>
           <div className="text-center">
             <img
               src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
@@ -55,34 +55,54 @@ export function Edit(props) {
             <input type="file" className="form-control" />
           </div>
         </Col>
-        <Col lg={9}>
+        <Col lg={8}>
           <form className="edit-form" onSubmit={handleSubmit}>
-            <label htmlFor="firstName"> First Name: </label>
+            <label htmlFor="firstName" className="form-labels">
+              {" "}
+              First Name:{" "}
+            </label>
             <input
               type="text"
+              className="form-inputs"
               value={firstName || ""}
               onChange={(e) => setFirstName(e.target.value)}
             />
-            <label htmlFor="lastName"> Last Name: </label>
+            <label htmlFor="lastName" className="form-labels">
+              {" "}
+              Last Name:{" "}
+            </label>
             <input
               type="text"
+              className="form-inputs"
               value={lastName || ""}
               onChange={(e) => setLastName(e.target.value)}
             />
-            <label htmlFor="email"> Email: </label>
+            <label htmlFor="email" className="form-labels">
+              {" "}
+              Email:{" "}
+            </label>
             <input
               type="text"
+              className="form-inputs"
               value={email || ""}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <label htmlFor="username"> Username: </label>
+            <label htmlFor="username" className="form-labels">
+              {" "}
+              Username:{" "}
+            </label>
             <input
               type="text"
+              className="form-inputs"
               value={username || ""}
               onChange={(e) => setUsername(e.target.value)}
             />
-            <label htmlFor="bio"> Bio: </label>
+            <label htmlFor="bio" className="form-labels">
+              {" "}
+              Bio:{" "}
+            </label>
             <textarea
+              className="form-inputs"
               value={bio || ""}
               onChange={(e) => setBio(e.target.value)}
             />
