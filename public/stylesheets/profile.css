@@ -28,9 +28,7 @@
 }
 
 .single-product-info-right{
- 
     text-align: left;
-width: 20px;
 }
 
 .info-container {
@@ -50,7 +48,7 @@ width: 20px;
 
 .single-product-button-row button{
 width: 20%;
-margin-left: 2rem;
+margin-right: 2rem;
 background-color: #023E8A;
 color: #CAF0F8;
 font-weight: 800;
