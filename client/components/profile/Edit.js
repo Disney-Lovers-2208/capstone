@@ -63,17 +63,6 @@ export function Edit(props) {
               alt="image"
             />
             <h6>Upload a different profile photo...</h6>
-            <input
-              type="text"
-              value={image || ""}
-              onChange={(e) => setImage(e.target.value)}
-            />
-            <h6>Upload a different banner photo...</h6>
-            <input
-              type="text"
-              value={bannerImage || ""}
-              onChange={(e) => setBannerImage(e.target.value)}
-            />
           </div>
         </Col>
         <Col lg={9}>
