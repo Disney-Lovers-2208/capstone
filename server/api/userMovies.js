@@ -53,4 +53,19 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.delete("/:userId/:movieId", async (req, res, next) => {
+  try {
+    const userMovie = await User_Movie.findOne({
+      where: {
+        userId: req.params.userId,
+        movieId: req.params.movieId,
+      },
+    });
+    await userMovie.destroy();
+    res.send(userMovie);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

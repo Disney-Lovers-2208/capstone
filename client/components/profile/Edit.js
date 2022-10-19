@@ -8,13 +8,15 @@ export function Edit(props) {
   const auth = useSelector((state) => state.auth);
   const authId = useSelector((state) => state.auth.id);
   const dispatch = useDispatch();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState(auth.firstName);
   const [lastName, setLastName] = useState(auth.lastName);
   const [email, setEmail] = useState(auth.email);
   const [username, setUsername] = useState(auth.username);
   const [bio, setBio] = useState(auth.bio);
+  const [image, setImage] = useState(auth.image);
+  const [bannerImage, setBannerImage] = useState(auth.bannerImage);
 
   useEffect(() => {
     setFirstName(auth.firstName);
@@ -22,7 +24,17 @@ export function Edit(props) {
     setEmail(auth.email);
     setUsername(auth.username);
     setBio(auth.bio);
-  }, [auth.firstName, auth.lastName, auth.email, auth.username, auth.bio]);
+    setImage(auth.image);
+    setBannerImage(auth.image);
+  }, [
+    auth.firstName,
+    auth.lastName,
+    auth.email,
+    auth.username,
+    auth.bio,
+    auth.image,
+    auth.bannerImage,
+  ]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -30,7 +42,7 @@ export function Edit(props) {
     dispatch(
       updateAuth(
         authId,
-        { firstName, lastName, email, username, bio },
+        { firstName, lastName, email, username, bio, image, bannerImage },
         navigate
       )
     );
@@ -42,60 +54,71 @@ export function Edit(props) {
       <hr />
       <Row>
         {/* Left side */}
-        <Col lg={3}>
+        <Col lg={4}>
           <div className="text-center">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-              style={{ width: "100px" }}
+              src={auth.image}
+              style={{ width: "100px", borderRadius: "100%" }}
               alt="image"
             />
             <h6>Upload a different profile photo...</h6>
-            <input type="file" className="form-control" />
-            <h6>Upload a different banner photo...</h6>
-            <input type="file" className="form-control" />
           </div>
         </Col>
-        <Col lg={9}>
+        <Col lg={8}>
           <form className="edit-form" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="firstName"> First Name: </label>
+            <div className="edit-form-names">
+              <label htmlFor="firstName" className="form-labels">
+                {" "}
+                First Name:{" "}
+              </label>
               <input
                 type="text"
+                className="form-inputs"
                 value={firstName || ""}
                 onChange={(e) => setFirstName(e.target.value)}
               />
-            </div>
-            <div>
-              <label htmlFor="lastName"> Last Name: </label>
+              <label htmlFor="lastName" className="form-labels">
+                {" "}
+                Last Name:{" "}
+              </label>
               <input
                 type="text"
+                className="form-inputs"
                 value={lastName || ""}
                 onChange={(e) => setLastName(e.target.value)}
               />
             </div>
-            <div>
-              <label htmlFor="email"> Email: </label>
+            <div className="edit-form-username-email">
+              <label htmlFor="email" className="form-labels">
+                {" "}
+                Email:{" "}
+              </label>
               <input
                 type="text"
+                className="form-inputs"
                 value={email || ""}
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </div>
-            <div>
-              <label htmlFor="username"> Username: </label>
+              <label htmlFor="username" className="form-labels">
+                {" "}
+                Username:{" "}
+              </label>
               <input
                 type="text"
+                className="form-inputs"
                 value={username || ""}
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
-            <div>
-              <label htmlFor="bio"> Bio: </label>
-              <textarea
-                value={bio || ""}
-                onChange={(e) => setBio(e.target.value)}
-              />
-            </div>
+            <label htmlFor="bio" className="form-labels">
+              {" "}
+              Bio:{" "}
+            </label>
+            <textarea
+              className="form-inputs"
+              value={bio || ""}
+              onChange={(e) => setBio(e.target.value)}
+            />
             <input type="submit" value="Submit" />
           </form>
         </Col>

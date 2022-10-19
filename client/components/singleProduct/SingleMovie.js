@@ -73,7 +73,6 @@ const SingleMovie = () => {
       } else {
         let text = `You already have a movie!\nBy clicking OK you will change your favorite movie to ${title} permanently`;
         if (favoriteMovie) {
-          console.log(favoriteMovie);
           if (confirm(text) == true) {
             text = "You pressed OK!";
             favorite = false;

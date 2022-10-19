@@ -55,9 +55,9 @@ export const authenticate =
       }
       window.localStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
-      navigate("/home");
+      navigate("/profile");
     } catch (authError) {
-      return dispatch(setAuth({ error: authError }));
+      return dispatch(_setAuth({ error: authError }));
     }
   };
 

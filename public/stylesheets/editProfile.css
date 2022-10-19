@@ -12,6 +12,26 @@
     
 }
 
+.edit-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-labels {
+    margin: 1rem;
+}
+
+.form-inputs {
+    margin: 1rem;
+}
+
+.edit-form-names {
+    display: flex;
+}
+
+.edit-form-names {
+    display: flex;
+}
 
 .avatar{
     width:200px;

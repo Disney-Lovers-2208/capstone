@@ -64,7 +64,6 @@ const SingleTvShow = () => {
       } else {
         let text = `You already have a tv show!\nBy clicking OK you will change your favorite tv to ${title} permanently`;
         if (favoriteTv) {
-          console.log(favoriteTv);
           if (confirm(text) == true) {
             text = "You pressed OK!";
             favorite = false;

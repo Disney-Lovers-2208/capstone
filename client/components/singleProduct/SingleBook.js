@@ -69,7 +69,6 @@ const SingleBook = () => {
       } else {
         let text = `You already have a book!\nBy clicking OK you will change your favorite book to ${title} permanently`;
         if (favoriteBook) {
-          console.log(favoriteBook);
           if (confirm(text) == true) {
             text = "You pressed OK!";
             favorite = false;

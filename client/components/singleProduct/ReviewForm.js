@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { createPost } from "../../store/posts";
 import { createStarRating } from "../../store/starRatings";
 import { Rating } from "react-simple-star-rating";
+import { fetchSingleBook } from "../../store/book";
+import { fetchSingleMovie } from "../../store/movie";
+import { fetchSingleTv } from "../../store/tv";
 
 export function ReviewForm(props) {
   const dispatch = useDispatch();
@@ -25,12 +28,18 @@ export function ReviewForm(props) {
     if (props.product === "tvshow") {
       dispatch(createPost({ content, userId: authId, tvId: id }));
       dispatch(createStarRating({ rating, userId: authId, tvId: id }));
+      dispatch(fetchSingleTv(id));
+      window.location.reload();
     } else if (props.product === "movie") {
       dispatch(createPost({ content, userId: authId, movieId: id }));
       dispatch(createStarRating({ rating, userId: authId, movieId: id }));
+      dispatch(fetchSingleMovie(id));
+      window.location.reload();
     } else if (props.product === "book") {
       dispatch(createPost({ content, userId: authId, bookId: id }));
       dispatch(createStarRating({ rating, userId: authId, bookId: id }));
+      dispatch(fetchSingleBook(id));
+      window.location.reload();
     }
     handleToggle(false);
   };
@@ -72,7 +81,6 @@ export function ReviewForm(props) {
           variant="info"
           onClick={() => {
             toggle ? handleToggle(false) : handleToggle(true);
-            console.log("hit button in on click");
           }}
         >
           Write A Review
