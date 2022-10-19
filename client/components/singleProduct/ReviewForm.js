@@ -78,6 +78,12 @@ export function ReviewForm(props) {
         </Container>
       ) : (
         <Button
+          style={{
+            borderRadius: "0px",
+            backgroundColor: "#48CAE4",
+            color: "white",
+            fontWeight: "800",
+          }}
           variant="info"
           onClick={() => {
             toggle ? handleToggle(false) : handleToggle(true);
