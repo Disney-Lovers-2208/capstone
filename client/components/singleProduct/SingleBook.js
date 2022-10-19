@@ -60,35 +60,72 @@ const SingleBook = () => {
 
   const handleFavoriteClick = (evt) => {
     evt.preventDefault();
-    if (favorite) {
-      favorite = false;
-      dispatch(fetchUpdateUserBook({ userId: auth.id, bookId: id, favorite }));
-    } else {
-      let text = `You already have a book!\nBy clicking OK you will change your favorite book to ${title} permanently`;
-      if (favoriteBook) {
-        console.log(favoriteBook);
-        if (confirm(text) == true) {
-          text = "You pressed OK!";
-          favorite = false;
-          dispatch(
-            fetchUpdateUserBook({
-              userId: auth.id,
-              bookId: favoriteBook.id,
-              favorite,
-            })
-          );
+    if (userBook) {
+      if (favorite) {
+        favorite = false;
+        dispatch(
+          fetchUpdateUserBook({ userId: auth.id, bookId: id, favorite })
+        );
+      } else {
+        let text = `You already have a book!\nBy clicking OK you will change your favorite book to ${title} permanently`;
+        if (favoriteBook) {
+          console.log(favoriteBook);
+          if (confirm(text) == true) {
+            text = "You pressed OK!";
+            favorite = false;
+            dispatch(
+              fetchUpdateUserBook({
+                userId: auth.id,
+                bookId: favoriteBook.id,
+                favorite,
+              })
+            );
+            favorite = true;
+            dispatch(
+              fetchUpdateUserBook({ userId: auth.id, bookId: id, favorite })
+            );
+          } else {
+            text = "You canceled!";
+          }
+        } else {
           favorite = true;
           dispatch(
             fetchUpdateUserBook({ userId: auth.id, bookId: id, favorite })
           );
-        } else {
-          text = "You canceled!";
         }
-      } else {
-        favorite = true;
+      }
+    } else {
+      if (favorite) {
+        favorite = false;
         dispatch(
           fetchUpdateUserBook({ userId: auth.id, bookId: id, favorite })
         );
+      } else {
+        let text = `You already have a book!\nBy clicking OK you will change your favorite book to ${title} permanently`;
+        if (favoriteBook) {
+          if (confirm(text) == true) {
+            text = "You pressed OK!";
+            favorite = false;
+            dispatch(
+              fetchUpdateUserTv({
+                userId: auth.id,
+                bookId: favoriteBook.id,
+                favorite,
+              })
+            );
+            favorite = true;
+            dispatch(
+              fetchCreateUserBook({ userId: auth.id, bookId: id, favorite })
+            );
+          } else {
+            text = "You canceled!";
+          }
+        } else {
+          favorite = true;
+          dispatch(
+            fetchCreateUserBook({ userId: auth.id, bookId: id, favorite })
+          );
+        }
       }
     }
     window.location.reload(false);

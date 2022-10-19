@@ -9,7 +9,6 @@ const SelectDropDown = ({ selectOptions, selected, status, auth, id }) => {
   const dispatch = useDispatch();
   const location = useLocation().pathname;
   let productType = location[1];
-  console.log("productType,", productType);
   return (
     <select
       value={selected}
