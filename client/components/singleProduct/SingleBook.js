@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
-import { Button, Col, Card, Row } from "react-bootstrap";
+import { Button, Col, Card, Row, Container } from "react-bootstrap";
 import { fetchSingleBook } from "../../store/book";
 import { Rating } from "react-simple-star-rating";
 import { fetchUserBook, fetchUpdateUserBook } from "../../store/userBook";
@@ -167,72 +167,65 @@ const SingleBook = () => {
   };
 
   return (
-    <div className="single-view">
-      <div>
-        <h2>{title}</h2>
-        <img src={imageUrl} alt="book-image" style={{ width: "15rem" }} />
-        <p>Summary: {description}</p>
-        <p>Genre: {genre}</p>
-        <p>
-          {" "}
-          <Rating
-            readonly={true}
-            initialValue={starRating}
-            allowFraction={true}
-            fillColor="#f1a545"
-          />
-        </p>
-      </div>
-
-      <br />
-
-      <div className="reviews">
-        <p>Reviews:</p>
-        <Card
-          border="info"
-          style={{ width: "15rem", backgroundColor: "#FF5454" }}
-        >
-          {posts.map((post) => (
-            <Row key={post.bookId}>
-              <p>{post.content}</p>
-              <p>{timeAgo.format(new Date(post.updatedAt))}</p>
+    <Container fluid className="single-view">
+      <Row className="single-view-row">
+        <Col className="single-product-left" lg={6} sm={12}>
+          <img src={imageUrl} alt="book-image" />
+        </Col>
+        <Col className="single-product-info-right" lg={6} sm={12}>
+          <div className="info-container">
+            <h1>{title}</h1>
+            <Rating
+              readonly={true}
+              initialValue={starRating}
+              allowFraction={true}
+              fillColor="#f1a545"
+            />
+            (number of reviews) Reviews
+            <p>{description}</p>
+            <SelectDropDown
+              status={status}
+              selectOptions={selectOptions}
+              selected={selected}
+              auth={auth}
+              id={id}
+            />
+            <Row className="single-product-button-row">
+              <Button onClick={handleFavoriteClick}>
+                {favorite === true ? (
+                  <> Remove as Favorite </>
+                ) : (
+                  <>
+                    <FaHeart /> Make Favorite
+                  </>
+                )}
+              </Button>
+              <Button onClick={handleFeaturedClick}>
+                {featured === true ? (
+                  <>Remove from Featured </>
+                ) : (
+                  <> Add to Featured </>
+                )}
+              </Button>
             </Row>
-          ))}
-        </Card>
-      </div>
-      <br />
-
-      <Row xs={3}>
-        <Col>
-          <Button variant="dark" onClick={handleFavoriteClick}>
-            {favorite === true ? (
-              <> Remove as Favorite </>
-            ) : (
-              <>
-                <FaHeart />
-                Make Favorite
-              </>
-            )}
-          </Button>
-          <SelectDropDown
-            status={status}
-            selectOptions={selectOptions}
-            selected={selected}
-            auth={auth}
-            id={id}
-          />
-          <Button variant="success" onClick={handleFeaturedClick}>
-            {featured === true ? (
-              <>Remove from Featured </>
-            ) : (
-              <> Add to Featured </>
-            )}
-          </Button>
-
-          <ReviewForm product={book.productType} />
+            <ReviewForm product={book.productType} />
+            <hr />
+            <p style={{ textAlign: "left" }}>Reviews:</p>
+            <Card
+              border="info"
+              style={{ width: "15rem", backgroundColor: "#FF5454" }}
+            >
+              {posts.map((post) => (
+                <Row key={post.bookId}>
+                  <p>{post.content}</p>
+                  <p>{timeAgo.format(new Date(post.updatedAt))}</p>
+                </Row>
+              ))}
+            </Card>
+          </div>
         </Col>
       </Row>
-    </div>
+    </Container>
   );
 };
 
