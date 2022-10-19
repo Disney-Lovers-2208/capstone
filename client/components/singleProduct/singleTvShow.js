@@ -44,10 +44,24 @@ const SingleTvShow = () => {
     evt.preventDefault();
     if (userTv) {
       featured === true ? (featured = false) : (featured = true);
-      dispatch(fetchUpdateUserTv({ userId: auth.id, tvkId: id, featured }));
+      dispatch(
+        fetchUpdateUserTv({
+          userId: auth.id,
+          tvkId: id,
+          featured,
+          status: "Watched",
+        })
+      );
     } else {
       featured = true;
-      dispatch(fetchCreateUserTv({ userId: auth.id, tvId: id, featured }));
+      dispatch(
+        fetchCreateUserTv({
+          userId: auth.id,
+          tvId: id,
+          favorite: true,
+          status: "Watched",
+        })
+      );
     }
     window.location.reload(false);
   };
@@ -66,24 +80,34 @@ const SingleTvShow = () => {
         if (favoriteTv) {
           if (confirm(text) == true) {
             text = "You pressed OK!";
-            favorite = false;
             dispatch(
               fetchUpdateUserTv({
                 userId: auth.id,
                 tvId: favoriteTv.id,
-                favorite,
+                favorite: false,
+                status: "Watched",
               })
             );
-            favorite = true;
             dispatch(
-              fetchUpdateUserTv({ userId: auth.id, tvId: id, favorite })
+              fetchUpdateUserTv({
+                userId: auth.id,
+                tvId: id,
+                favorite: true,
+                status: "Watched",
+              })
             );
           } else {
             text = "You canceled!";
           }
         } else {
-          favorite = true;
-          dispatch(fetchUpdateUserTv({ userId: auth.id, tvId: id, favorite }));
+          dispatch(
+            fetchUpdateUserTv({
+              userId: auth.id,
+              tvId: id,
+              favorite: true,
+              status: "Watched",
+            })
+          );
         }
       }
     } else {
@@ -95,24 +119,34 @@ const SingleTvShow = () => {
         if (favoriteTv) {
           if (confirm(text) == true) {
             text = "You pressed OK!";
-            favorite = false;
             dispatch(
               fetchUpdateUserTv({
                 userId: auth.id,
                 tvId: favoriteTv.id,
-                favorite,
+                favorite: false,
+                status: "Watched",
               })
             );
-            favorite = true;
             dispatch(
-              fetchCreateUserTv({ userId: auth.id, tvId: id, favorite })
+              fetchCreateUserTv({
+                userId: auth.id,
+                tvId: id,
+                favorite: true,
+                status: "Watched",
+              })
             );
           } else {
             text = "You canceled!";
           }
         } else {
-          favorite = true;
-          dispatch(fetchCreateUserTv({ userId: auth.id, tvId: id, favorite }));
+          dispatch(
+            fetchCreateUserTv({
+              userId: auth.id,
+              tvId: id,
+              favorite: true,
+              status: "Watched",
+            })
+          );
         }
       }
     }
