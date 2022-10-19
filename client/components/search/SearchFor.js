@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { Button, Row, Col, Card } from "react-bootstrap";
+import { Button, Row, Col, Card, ButtonGroup } from "react-bootstrap";
+import Slider from "react-slick";
 
 
 export const SearchFor = () => {
@@ -13,9 +14,14 @@ export const SearchFor = () => {
   const movies = useSelector(state => state.movies).filter(titleFilter);
   const books = useSelector(state => state.books).filter(titleFilter);
 
+  let settings = {
+    dots: true,
+    speed: 500,
+    slidesToShow: 4,
+  }
 
   return (
-    <div className="search-results" style={{ backgroundColor: "#caf0f8" }}>
+    <div className="search-results">
       <div className="searched-for">
         <h3>You searched for: { title }</h3>
       </div>
@@ -24,24 +30,27 @@ export const SearchFor = () => {
 
       <div className='tvs'>
         <h3>TV Shows</h3>
-        <Row xs={2} md={4}>
-              {tvshows.map(tvshow => {
-                return (
-                    <Col key={tvshow.id} style={{ margin: '2rem' }}>
-                      <Link to={`/tvshows/${tvshow.id}`}>
-                        <Card.Img className="card-img" variant="top" src={tvshow.imageUrl} />
-                      </Link>
-                    </Col>
-                )
-              })}
-        </Row>
+          <Row>
+            <Slider {...settings}>
+                {tvshows.map(tvshow => {
+                  return (
+                      <Col key={tvshow.id} style={{ margin: '2rem' }}>
+                        <Link to={`/tvshows/${tvshow.id}`}>
+                          <Card.Img className="card-img" variant="top" src={tvshow.imageUrl} />
+                        </Link>
+                      </Col>
+                  )
+                })}
+            </Slider>
+          </Row>
       </div>
 
       <br />
 
       <div className='movies'>
         <h3>Movies</h3>
-        <Row xs={2} md={4}>
+        <Row>
+          <Slider {...settings}>
               {movies.map(movie => {
                 return (
                     <Col key={movie.id} style={{ margin: '2rem' }}>
@@ -51,6 +60,7 @@ export const SearchFor = () => {
                     </Col>
                 )
               })}
+            </Slider>
         </Row>
       </div>
 
@@ -58,7 +68,8 @@ export const SearchFor = () => {
 
       <div className='books'>
         <h3>Books</h3>
-        <Row xs={2} md={4}>
+        <Row>
+          <Slider {...settings}>
               {books.map(book => {
                 return (
                     <Col key={book.id} style={{ margin: '2rem' }}>
@@ -68,6 +79,7 @@ export const SearchFor = () => {
                     </Col>
                 )
               })}
+          </Slider>
         </Row>
       </div>
 
