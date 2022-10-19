@@ -57,7 +57,7 @@ export const authenticate =
       dispatch(me());
       navigate("/home");
     } catch (authError) {
-      return dispatch(setAuth({ error: authError }));
+      return dispatch(_setAuth({ error: authError }));
     }
   };
 
