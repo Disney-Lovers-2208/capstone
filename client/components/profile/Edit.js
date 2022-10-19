@@ -8,7 +8,7 @@ export function Edit(props) {
   const auth = useSelector((state) => state.auth);
   const authId = useSelector((state) => state.auth.id);
   const dispatch = useDispatch();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState(auth.firstName);
   const [lastName, setLastName] = useState(auth.lastName);
@@ -48,14 +48,13 @@ export function Edit(props) {
     );
   };
 
-  console.log("auth", auth);
   return (
     <Container>
       <h1>Edit Profile</h1>
       <hr />
       <Row>
         {/* Left side */}
-        <Col lg={3}>
+        <Col lg={4}>
           <div className="text-center">
             <img
               src={auth.image}
@@ -65,47 +64,61 @@ export function Edit(props) {
             <h6>Upload a different profile photo...</h6>
           </div>
         </Col>
-        <Col lg={9}>
+        <Col lg={8}>
           <form className="edit-form" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="firstName"> First Name: </label>
+            <div className="edit-form-names">
+              <label htmlFor="firstName" className="form-labels">
+                {" "}
+                First Name:{" "}
+              </label>
               <input
                 type="text"
+                className="form-inputs"
                 value={firstName || ""}
                 onChange={(e) => setFirstName(e.target.value)}
               />
-            </div>
-            <div>
-              <label htmlFor="lastName"> Last Name: </label>
+              <label htmlFor="lastName" className="form-labels">
+                {" "}
+                Last Name:{" "}
+              </label>
               <input
                 type="text"
+                className="form-inputs"
                 value={lastName || ""}
                 onChange={(e) => setLastName(e.target.value)}
               />
             </div>
-            <div>
-              <label htmlFor="email"> Email: </label>
+            <div className="edit-form-username-email">
+              <label htmlFor="email" className="form-labels">
+                {" "}
+                Email:{" "}
+              </label>
               <input
                 type="text"
+                className="form-inputs"
                 value={email || ""}
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </div>
-            <div>
-              <label htmlFor="username"> Username: </label>
+              <label htmlFor="username" className="form-labels">
+                {" "}
+                Username:{" "}
+              </label>
               <input
                 type="text"
+                className="form-inputs"
                 value={username || ""}
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
-            <div>
-              <label htmlFor="bio"> Bio: </label>
-              <textarea
-                value={bio || ""}
-                onChange={(e) => setBio(e.target.value)}
-              />
-            </div>
+            <label htmlFor="bio" className="form-labels">
+              {" "}
+              Bio:{" "}
+            </label>
+            <textarea
+              className="form-inputs"
+              value={bio || ""}
+              onChange={(e) => setBio(e.target.value)}
+            />
             <input type="submit" value="Submit" />
           </form>
         </Col>
