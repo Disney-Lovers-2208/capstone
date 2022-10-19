@@ -39,7 +39,6 @@ const AddProduct = () => {
         value={selectedOption}
         onChange={(e) => {
           setSelectedOption(e.target.value);
-          console.log(e.target.value);
         }}
       >
         <option value="book">Book</option>

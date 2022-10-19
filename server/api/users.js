@@ -26,7 +26,6 @@ router.get("/:id", async (req, res, next) => {
     const user = await User.findByPk(req.params.id, {
       include: [Movie, Book, Tv, { model: User, as: "friend" }],
     });
-    console.log(user);
     res.json(user);
   } catch (err) {
     next(err);

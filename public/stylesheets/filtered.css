@@ -6,6 +6,11 @@
     grid-row-gap: 2rem;
 }
 
+.popular-movies div{ 
+    height: 40vh;
+    display:flex;
+    flex-direction: column;
+}
 .popular-movies img{
     object-fit: cover; 
     width: 20vh;

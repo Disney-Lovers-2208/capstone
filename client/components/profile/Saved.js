@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Banner from "./Banner";
 import { Container, Row, Col } from "react-bootstrap";
 import Filter from "./Filter";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { fetchDeleteUserBook } from "../../store/userBooks";
+import { fetchDeleteUserMovie } from "../../store/userMovies";
+import { fetchDeleteUserTv } from "../../store/userTvShows";
 
 export const Saved = () => {
   const user = useSelector((state) => state.auth);
-
+  const dispatch = useDispatch();
   const tvs = user?.tvs || [];
   const books = user?.books || [];
   const movies = user?.movies || [];
@@ -30,6 +33,50 @@ export const Saved = () => {
   const [activeType, setActiveType] = useState("all");
   const [filtered, setFiltered] = useState(savedAll);
 
+  //toggle stuff
+  const [isOn, setIsOn] = useState(false);
+  const toggleSwitch = () => {
+    setIsOn(!isOn);
+  };
+
+  const spring = {
+    type: "spring",
+    stiffness: 700,
+    damping: 30,
+  };
+
+  const handleDelete = (evt, id, productType) => {
+    evt.preventDefault();
+    let text = `You are deleting something`;
+    if (confirm(text) == true) {
+      if (productType === "book") {
+        dispatch(
+          fetchDeleteUserBook({
+            userId: user.id,
+            bookId: id,
+          })
+        );
+      }
+      if (productType === "movie") {
+        dispatch(
+          fetchDeleteUserMovie({
+            userId: user.id,
+            movieId: id,
+          })
+        );
+      }
+      if (productType === "tvshow") {
+        dispatch(
+          fetchDeleteUserTv({
+            userId: user.id,
+            tvId: id,
+          })
+        );
+      }
+    }
+    window.location.reload(false);
+  };
+
   return (
     <Container fluid>
       <Row>
@@ -37,15 +84,26 @@ export const Saved = () => {
           <Banner user={user} />
         </Col>
       </Row>
-      <Filter
-        activeType={activeType}
-        setActiveType={setActiveType}
-        setFiltered={setFiltered}
-        movies={savedMovies}
-        tvs={savedTvs}
-        books={savedBooks}
-        all={savedAll}
-      />
+      <h1>Saved</h1>
+      <Row>
+        <Col>
+          <Filter
+            activeType={activeType}
+            setActiveType={setActiveType}
+            setFiltered={setFiltered}
+            movies={savedMovies}
+            tvs={savedTvs}
+            books={savedBooks}
+            all={savedAll}
+          />
+        </Col>
+        <Col>
+          <div className="switch" data-isOn={isOn} onClick={toggleSwitch}>
+            <motion.div className="handle" layout transition={spring} />
+          </div>
+        </Col>
+      </Row>
+
       <Row style={{ marginTop: "2rem" }}>
         <motion.div layout className="popular-movies">
           {filtered.map((item) => {
@@ -61,6 +119,16 @@ export const Saved = () => {
                   <Link to={`/${item.productType}s/${item.id}`}>
                     <img src={item.imageUrl} alt="image" />
                   </Link>
+                  {isOn ? (
+                    <button
+                      className="toggle-delete"
+                      onClick={(evt) =>
+                        handleDelete(evt, item.id, item.productType)
+                      }
+                    >
+                      delete
+                    </button>
+                  ) : null}
                 </motion.div>
               </AnimatePresence>
             );

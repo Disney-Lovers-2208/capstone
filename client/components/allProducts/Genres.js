@@ -16,8 +16,6 @@ export const Genres = ({ movies }) => {
     }
   }
 
-  console.log(genreArr);
-
   return (
     <Container>
       {genreArr.map((genre) => (

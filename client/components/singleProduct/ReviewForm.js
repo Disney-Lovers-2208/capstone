@@ -72,7 +72,6 @@ export function ReviewForm(props) {
           variant="info"
           onClick={() => {
             toggle ? handleToggle(false) : handleToggle(true);
-            console.log("hit button in on click");
           }}
         >
           Write A Review

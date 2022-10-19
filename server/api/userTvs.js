@@ -39,4 +39,19 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.delete("/:userId/:tvId", async (req, res, next) => {
+  try {
+    const userTv = await User_Tv.findOne({
+      where: {
+        userId: req.params.userId,
+        tvId: req.params.tvId,
+      },
+    });
+    await userTv.destroy();
+    res.send(userTv);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

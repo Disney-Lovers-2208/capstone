@@ -31,7 +31,6 @@ export const fetchUserTv = (userTv) => {
 
 export const fetchUpdateUserTv = (userTv) => {
   const { userId, tvId } = userTv;
-  console.log("in fetch userTv ", userTv);
   return async (dispatch) => {
     try {
       const { data } = await axios.put(
