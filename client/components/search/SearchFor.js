@@ -16,12 +16,15 @@ export const SearchFor = () => {
 
   return (
     <div className="search-results">
-      <p>Don't see your fave?</p>
-      <Button variant='info' as={Link} to={"/add"}>
-        Add Your Fave!
-      </Button>
+      <div className="add-button">
+        <p>Don't see your fave?</p>
+        <Button variant='info' as={Link} to={"/add"}>
+          Add Your Fave!
+        </Button>
 
-      <p>You searched for: { title }</p>
+        <p>You searched for: { title }</p>
+
+        </div>
 
       <br />
 
