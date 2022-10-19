@@ -7,7 +7,6 @@ import SearchTabs from "./SearchTabs";
 import { fetchTvShows } from "../../store/tvshows";
 import { fetchMovies } from "../../store/movies";
 import { fetchBooks } from "../../store/books";
-import { fetchBookReviews } from "../../store/book";
 
 export const SearchBar = () => {
   const [search, setSearch] = useState("");
@@ -28,7 +27,7 @@ export const SearchBar = () => {
 
 
   return (
-    <Container id="search-bar" className="flex-row">
+    <Container className="flex-row">
       <Row>
         <Col>
           <input
@@ -36,8 +35,9 @@ export const SearchBar = () => {
             placeholder="Search for..."
             onChange={(evt) => setSearch(evt.target.value)}
             value={search}
+            style={{ borderRadius: '10px', border: 'solid black', padding: '3px' }}
           />
-          <Button variant="light" as={Link} to={`/searchfor/${search}`}>
+          <Button variant="light" as={Link} to={`/searchfor/${search}`} style={{ padding: '8px', borderRadius: '50px' }}>
             <GoSearch />
           </Button>
         </Col>

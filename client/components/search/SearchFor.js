@@ -16,23 +16,24 @@ export const SearchFor = () => {
 
   return (
     <div className="search-results">
-      <p>You searched for { title }</p>
       <p>Don't see your fave?</p>
-      <Button variant="info" as={Link} to={"/add"} style={{ align: "center" }}>
+      <Button variant='info' as={Link} to={"/add"}>
         Add Your Fave!
       </Button>
+
+      <p>You searched for: { title }</p>
+
+      <br />
 
       <h2>TV Shows</h2>
       <Row xs={3} md={3}>
         {tvshows.map(tvshow => {
           return (
-            <Card key={tvshow.id} style={{ width: "15rem" , margin: "2rem" }}>
-              <Col>
+              <Col key={tvshow.id} style={{ margin: '2rem' }}>
                 <Link to={`/tvshows/${tvshow.id}`}>
                   <Card.Img className="card-img" variant="top" src={tvshow.imageUrl} />
                 </Link>
               </Col>
-            </Card>
           )
         })}
       </Row>
@@ -43,13 +44,11 @@ export const SearchFor = () => {
       <Row xs={3} md={3}>
         {movies.map(movie => {
           return (
-            <Card key={movie.id} style={{ width: "15rem" , margin: "2rem" }}>
-              <Col>
+              <Col key={movie.id} style={{ margin: "2rem" }}>
                 <Link to={`/movies/${movie.id}`}>
                   <Card.Img className="card-img" variant="top" src={movie.imageUrl} />
                 </Link>
               </Col>
-            </Card>
           )
         })}
       </Row>
@@ -60,13 +59,11 @@ export const SearchFor = () => {
       <Row xs={3} md={3}>
         {books.map(book => {
           return (
-            <Card key={book.id} style={{ width: "15rem" , margin: "2rem" }}>
-              <Col>
+              <Col key={book.id} style={{ margin: "2rem" }}>
                 <Link to={`/books/${book.id}`}>
                   <Card.Img className="card-img" variant="top" src={book.imageUrl} />
                 </Link>
               </Col>
-            </Card>
           )
         })}
       </Row>
