@@ -1,6 +1,7 @@
 body {
   font-family: Verdana;
   background-color: #CAF0F8;
+  height: 100%
 }
 
 a {
@@ -31,4 +32,27 @@ form div {
   flex-wrap: wrap;
   padding: 2rem;
 justify-content: center;
+}
+
+select{
+  display: block;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 16px;
+  padding: 11px 15px;
+  margin-top: 9px;
+  margin-bottom: 15px;
+  width: 100%;
+  background-color: #CAF0F8 ;
+  font-weight: 600;
+  border: 3px solid #023E8A;; 
+  color: #023E8A ;
+  width: 45%;
+}
+
+select:hover{
+  border: 3px solid #0077B6;; 
+  color: #0077B6 ;
+
+
 }
