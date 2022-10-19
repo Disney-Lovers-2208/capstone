@@ -23,7 +23,7 @@ export const UserCard = (props) => {
             <Card border='info' style={{ width: '15rem', backgroundColor: '#FF5454' }}>
                 <Card.Body>
                     <Link to={`/profile`} style={{ color: 'inherit' }}>
-                        <Card.Img src={image} variant='top'></Card.Img>
+                        <Card.Img src={image}></Card.Img>
                         <Card.Title>{firstName} {lastName}</Card.Title>
                     </Link>
                 </Card.Body>

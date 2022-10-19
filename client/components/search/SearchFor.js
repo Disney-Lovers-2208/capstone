@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { Button, Row, Col, Card } from "react-bootstrap";
+import { Button, Row, Col, Card, ButtonGroup } from "react-bootstrap";
+import Slider from "react-slick";
 
 
 export const SearchFor = () => {
@@ -13,63 +14,83 @@ export const SearchFor = () => {
   const movies = useSelector(state => state.movies).filter(titleFilter);
   const books = useSelector(state => state.books).filter(titleFilter);
 
+  let settings = {
+    dots: true,
+    speed: 500,
+    slidesToShow: 4,
+  }
 
   return (
     <div className="search-results">
-      <p>You searched for { title }</p>
-      <p>Don't see your fave?</p>
-      <Button variant="info" as={Link} to={"/add"} style={{ align: "center" }}>
-        Add Your Fave!
-      </Button>
-
-      <h2>TV Shows</h2>
-      <Row xs={3} md={3}>
-        {tvshows.map(tvshow => {
-          return (
-            <Card key={tvshow.id} style={{ width: "15rem" , margin: "2rem" }}>
-              <Col>
-                <Link to={`/tvshows/${tvshow.id}`}>
-                  <Card.Img className="card-img" variant="top" src={tvshow.imageUrl} />
-                </Link>
-              </Col>
-            </Card>
-          )
-        })}
-      </Row>
+      <div className="searched-for">
+        <h3>You searched for: { title }</h3>
+      </div>
 
       <br />
 
-      <h2>Movies</h2>
-      <Row xs={3} md={3}>
-        {movies.map(movie => {
-          return (
-            <Card key={movie.id} style={{ width: "15rem" , margin: "2rem" }}>
-              <Col>
-                <Link to={`/movies/${movie.id}`}>
-                  <Card.Img className="card-img" variant="top" src={movie.imageUrl} />
-                </Link>
-              </Col>
-            </Card>
-          )
-        })}
-      </Row>
+      <div className='tvs'>
+        <h3>TV Shows</h3>
+          <Row>
+            <Slider {...settings}>
+                {tvshows.map(tvshow => {
+                  return (
+                      <Col key={tvshow.id} style={{ margin: '2rem' }}>
+                        <Link to={`/tvshows/${tvshow.id}`}>
+                          <Card.Img className="card-img" variant="top" src={tvshow.imageUrl} />
+                        </Link>
+                      </Col>
+                  )
+                })}
+            </Slider>
+          </Row>
+      </div>
 
       <br />
 
-      <h2>Books</h2>
-      <Row xs={3} md={3}>
-        {books.map(book => {
-          return (
-            <Card key={book.id} style={{ width: "15rem" , margin: "2rem" }}>
-              <Col>
-                <Link to={`/books/${book.id}`}>
-                  <Card.Img className="card-img" variant="top" src={book.imageUrl} />
-                </Link>
-              </Col>
-            </Card>
-          )
-        })}
-      </Row>
+      <div className='movies'>
+        <h3>Movies</h3>
+        <Row>
+          <Slider {...settings}>
+              {movies.map(movie => {
+                return (
+                    <Col key={movie.id} style={{ margin: '2rem' }}>
+                      <Link to={`/movies/${movie.id}`}>
+                        <Card.Img className="card-img" variant="top" src={movie.imageUrl} />
+                      </Link>
+                    </Col>
+                )
+              })}
+            </Slider>
+        </Row>
+      </div>
+
+      <br />
+
+      <div className='books'>
+        <h3>Books</h3>
+        <Row>
+          <Slider {...settings}>
+              {books.map(book => {
+                return (
+                    <Col key={book.id} style={{ margin: '2rem' }}>
+                      <Link to={`/books/${book.id}`}>
+                        <Card.Img className="card-img" variant="top" src={book.imageUrl} />
+                      </Link>
+                    </Col>
+                )
+              })}
+          </Slider>
+        </Row>
+      </div>
+
+      <div className="add-button">
+        <h2>Don't see your fave?</h2>
+        <Button as={Link} to={"/add"}>
+          Add Your Fave!
+        </Button>
+
+      </div>
+
     </div>
   );
 };

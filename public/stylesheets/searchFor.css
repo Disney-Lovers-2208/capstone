@@ -1,0 +1,52 @@
+.search-results {
+    text-align: left;
+}
+
+.search-results .searched-for {
+    padding-right: 67%;
+}
+
+.search-results .card-img {
+    border-radius: 15px;
+    height: 300px;
+    width: 250px;
+}
+
+.search-results .btn{
+    background-color: #0077b6;
+    color:black;
+    align-items: center;
+    padding: 1rem;
+    align-content: center;
+}
+
+.add-button {
+    margin: 50px;
+    height: 120px;
+    text-align: center;
+    display:inline-flex;
+}
+
+.search-results .tvs {
+    margin: 50px;
+    padding: 10px;
+    margin-bottom: -2%;
+    margin-top: -1%;
+    margin-right: 15%;
+    margin-left: 15%;
+
+}
+
+.search-results .movies {
+    margin: 50px;
+    padding: 10px;
+    margin-bottom: -2%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.search-results .books {
+    margin: 50px;
+    margin-right: 15%;
+    margin-left: 15%;
+}
