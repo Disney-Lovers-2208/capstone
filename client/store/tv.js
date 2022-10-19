@@ -1,9 +1,7 @@
 import axios from "axios";
-import clearMovie from "./movie";
 
 // Action Type:
 const GET_SINGLE_TV = "GET_SINGLE_TV";
-
 
 // Action creator:
 const getSingleTv = (tv) => {
@@ -12,7 +10,6 @@ const getSingleTv = (tv) => {
     tv,
   };
 };
-
 
 // thunks:
 export const fetchSingleTv = (id) => {
@@ -27,7 +24,6 @@ export const fetchSingleTv = (id) => {
     }
   };
 };
-
 
 //reducer
 export default function tvReducer(state = {}, action) {

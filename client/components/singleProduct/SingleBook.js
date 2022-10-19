@@ -101,12 +101,14 @@ const SingleBook = () => {
         <img src={imageUrl} alt="book-image" style={{ width: "15rem" }} />
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
-        <p>{" "} 
-          <Rating 
-            readonly={true} 
+        <p>
+          {" "}
+          <Rating
+            readonly={true}
             initialValue={starRating}
             allowFraction={true}
-            fillColor="#f1a545"/>
+            fillColor="#f1a545"
+          />
         </p>
       </div>
 
@@ -127,6 +129,7 @@ const SingleBook = () => {
         </Card>
       </div>
       <br />
+
       <Row xs={3}>
         <Col>
           <Button variant="dark" onClick={handleFavoriteClick}>
