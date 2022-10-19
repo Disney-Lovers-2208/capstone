@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { authenticate } from "../store";
 import { Container, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 /**
  * COMPONENT
@@ -11,6 +12,7 @@ import { Link } from "react-router-dom";
 const AuthForm = (props) => {
   const location = useLocation().pathname;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const error = useSelector((state) => state.auth.error);
 
   const handleLoginSubmit = (evt) => {

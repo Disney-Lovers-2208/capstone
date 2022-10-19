@@ -10,12 +10,14 @@ import SearchFor from "./components/search/SearchFor";
 import AllTvShows from "./components/allProducts/AllTvShows";
 import AllBooks from "./components/allProducts/AllBooks";
 import AllMovies from "./components/allProducts/AllMovies";
-import SingleTvShow from "./components/singleProduct/SingleTvShow";
+import SingleTvShow from "./components/singleProduct/singleTvShow";
 import SingleBook from "./components/singleProduct/SingleBook";
 import SingleMovie from "./components/singleProduct/SingleMovie";
 import Saved from "./components/profile/Saved";
 import Friends from "./components/profile/Friends";
 import History from "./components/profile/History";
+import AllUsers from "./components/AllUsers";
+
 import Edit from "./components/profile/Edit";
 import FriendsProfilePage from "./components/profile/FriendsProfilePage";
 import UserProfilePage from "./components/profile/UserProfilePage";
@@ -63,7 +65,7 @@ const App = () => {
           <Route path="/starRating/tv/:id" />
           <Route path="/starRating/book/:id" />
           <Route path="/starRating/movie/:id" />
-          <Route path="/users" />
+          <Route path="/users" element={<AllUsers />} />
           <Route path="/searchfor/:title" element={<SearchFor />} />
           <Route path="/add" element={<AddProduct />} />
         </Routes>

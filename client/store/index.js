@@ -3,7 +3,7 @@ import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
-import tvReducer from "./tvshows";
+import tvsReducer from "./tvshows";
 import movieReducer from "./movies";
 import booksReducer from "./books";
 import user from "./user";
@@ -14,12 +14,21 @@ import activityLog from "./activityLog";
 import users from "./users";
 import posts from "./posts";
 import starRatings from "./starRatings";
+import userBook from "./userBook";
+import userBooks from "./userBooks";
+import userTv from "./userTv";
+import userTvShows from "./userTvShows";
+import userMovie from "./userMovie";
+import userMovies from "./userMovies";
 
 const reducer = combineReducers({
   auth,
-  tvs: tvReducer,
+  tvs: tvsReducer,
   movies: movieReducer,
+  userTvShows: userTvShows,
   books: booksReducer,
+  userBooks: userBooks,
+  userMovies: userMovies,
   tv: tv,
   book: book,
   movie: movie,
@@ -28,6 +37,9 @@ const reducer = combineReducers({
   users,
   posts,
   starRatings,
+  userBook,
+  userTv,
+  userMovie,
 });
 
 const middleware = composeWithDevTools(

@@ -66,7 +66,7 @@ const SimpleSlider = (props) => {
             </div>
           ))
         ) : (
-          <div>No featured {item.productType}s</div>
+          <div>No featured</div>
         )}
       </Slider>
     </div>

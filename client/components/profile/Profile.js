@@ -6,6 +6,7 @@ import Banner from "./Banner";
 import SimpleSlider from "./SimpleSlider";
 
 export class Profile extends React.Component {
+
   render() {
     const user = this.props.user || [];
     const tvs = user?.tvs || [];
@@ -19,7 +20,8 @@ export class Profile extends React.Component {
     const favoriteMovie = movies.filter(
       (movie) => movie.user_movie.favorite === true
     )[0];
-    const favoriteTv = tvs.filter((tv) => tv.user_tv.favorite === true)[0];
+    const favoriteTv = tvs.filter((tv) => tv.user_tv.favorite === true
+    )[0];
 
     //features
     const featuredTvs = tvs.filter((tv) => tv.user_tv.featured === true);
@@ -29,6 +31,7 @@ export class Profile extends React.Component {
     const featuredBooks = books.filter(
       (book) => book.user_book.featured === true
     );
+
 
     return (
       <Container fluid className="profile">
