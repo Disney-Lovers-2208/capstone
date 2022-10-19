@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { updateAuth } from "../../store/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -49,81 +49,80 @@ export function Edit(props) {
   };
 
   return (
-    <Container>
+    <div className="edit-profile-page">
       <h1>Edit Profile</h1>
-      <hr />
-      <Row>
-        {/* Left side */}
-        <Col lg={4}>
-          <div className="text-center">
-            <img
-              src={auth.image}
-              style={{ width: "100px", borderRadius: "100%" }}
-              alt="image"
-            />
-            <h6>Upload a different profile photo...</h6>
-          </div>
-        </Col>
-        <Col lg={8}>
-          <form className="edit-form" onSubmit={handleSubmit}>
-            <div className="edit-form-names">
-              <label htmlFor="firstName" className="form-labels">
-                {" "}
-                First Name:{" "}
-              </label>
-              <input
-                type="text"
-                className="form-inputs"
-                value={firstName || ""}
-                onChange={(e) => setFirstName(e.target.value)}
+      <div>
+        <Row className="edit-form">
+          <Col lg={4}>
+            <div className="text-center">
+              <img
+                src={auth.image}
+                style={{ width: "100px", borderRadius: "100%" }}
+                alt="image"
               />
-              <label htmlFor="lastName" className="form-labels">
-                {" "}
-                Last Name:{" "}
-              </label>
-              <input
-                type="text"
-                className="form-inputs"
-                value={lastName || ""}
-                onChange={(e) => setLastName(e.target.value)}
-              />
+              <h6>Upload a different profile photo...</h6>
             </div>
-            <div className="edit-form-username-email">
-              <label htmlFor="email" className="form-labels">
-                {" "}
-                Email:{" "}
-              </label>
-              <input
-                type="text"
-                className="form-inputs"
-                value={email || ""}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <label htmlFor="username" className="form-labels">
-                {" "}
-                Username:{" "}
-              </label>
-              <input
-                type="text"
-                className="form-inputs"
-                value={username || ""}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <label htmlFor="bio" className="form-labels">
-              {" "}
-              Bio:{" "}
-            </label>
-            <textarea
-              className="form-inputs"
-              value={bio || ""}
-              onChange={(e) => setBio(e.target.value)}
-            />
-            <input type="submit" value="Submit" />
-          </form>
-        </Col>
-      </Row>
-    </Container>
+          </Col>
+          <Col lg={8}>
+            <form className="edit-form-text" onSubmit={handleSubmit}>
+              <Row className="edit-name">
+                <Col>
+                  <label htmlFor="firstName"> First Name: </label>
+                  <input
+                    type="text"
+                    value={firstName || ""}
+                    className="form-inputs"
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                </Col>
+                <Col>
+                  <label htmlFor="lastName"> Last Name: </label>
+                  <input
+                    type="text"
+                    value={lastName || ""}
+                    className="form-inputs"
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <label htmlFor="email"> Email: </label>
+                  <input
+                    type="text"
+                    value={email || ""}
+                    className="form-inputs"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </Col>
+                <Col>
+                  <label htmlFor="username"> Username: </label>
+                  <input
+                    type="text"
+                    value={username || ""}
+                    className="form-inputs"
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <label htmlFor="bio"> Bio: </label>
+                  <textarea
+                    value={bio || ""}
+                    className="bio-text"
+                    onChange={(e) => setBio(e.target.value)}
+                  />
+                </Col>
+              </Row>
+              <Row className="submit">
+                <input type="submit" value="Submit" className="submit-button" />
+              </Row>
+            </form>
+          </Col>
+        </Row>
+      </div>
+    </div>
   );
 }
 
