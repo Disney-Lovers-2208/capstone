@@ -129,7 +129,6 @@ const SingleTvShow = () => {
         <p>Summary: {description}</p>
         <p>Genre: {genre}</p>
         <p>
-          {" "}
           <Rating
             readonly={true}
             initialValue={starRating}
