@@ -37,7 +37,7 @@ const SingleMovie = () => {
   }, [dispatch]);
 
   //update status movie
-  const selectOptions = ["Select", "Saved", "Watched"];
+  const selectOptions = ["Status", "Saved", "Watched"];
   const [selected, setSelected] = useState(selectOptions[0]);
 
   //update featured movies

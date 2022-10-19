@@ -37,7 +37,7 @@ const SingleBook = () => {
   }, [dispatch]);
 
   //update status book
-  const selectOptions = ["Select", "Saved", "Read"];
+  const selectOptions = ["Status", "Saved", "Read"];
   const [selected, setSelected] = useState(selectOptions[0]);
 
   //update featured books
