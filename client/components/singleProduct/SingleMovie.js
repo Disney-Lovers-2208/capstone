@@ -46,12 +46,21 @@ const SingleMovie = () => {
     if (userMovie) {
       featured === true ? (featured = false) : (featured = true);
       dispatch(
-        fetchUpdateUserMovie({ userId: auth.id, movieId: id, featured })
+        fetchUpdateUserMovie({
+          userId: auth.id,
+          movieId: id,
+          featured,
+          status: "Watched",
+        })
       );
     } else {
-      featured = true;
       dispatch(
-        fetchCreateUserMovie({ userId: auth.id, movieId: id, featured })
+        fetchCreateUserMovie({
+          userId: auth.id,
+          movieId: id,
+          featured: true,
+          status: "Watched",
+        })
       );
     }
     window.location.reload(false);
@@ -66,67 +75,91 @@ const SingleMovie = () => {
     evt.preventDefault();
     if (userMovie) {
       if (favorite) {
-        favorite = false;
         dispatch(
-          fetchUpdateUserMovie({ userId: auth.id, movieId: id, favorite })
+          fetchUpdateUserMovie({
+            userId: auth.id,
+            movieId: id,
+            favorite: false,
+            status: "Watched",
+          })
         );
       } else {
         let text = `You already have a movie!\nBy clicking OK you will change your favorite movie to ${title} permanently`;
         if (favoriteMovie) {
           if (confirm(text) == true) {
             text = "You pressed OK!";
-            favorite = false;
             dispatch(
               fetchUpdateUserMovie({
                 userId: auth.id,
                 movieId: favoriteMovie.id,
-                favorite,
+                favorite: false,
+                status: "Watched",
               })
             );
-            favorite = true;
             dispatch(
-              fetchUpdateUserMovie({ userId: auth.id, movieId: id, favorite })
+              fetchUpdateUserMovie({
+                userId: auth.id,
+                movieId: id,
+                favorite: true,
+                status: "Watched",
+              })
             );
           } else {
             text = "You canceled!";
           }
         } else {
-          favorite = true;
           dispatch(
-            fetchUpdateUserMovie({ userId: auth.id, movieId: id, favorite })
+            fetchUpdateUserMovie({
+              userId: auth.id,
+              movieId: id,
+              favorite: true,
+              status: "Watched",
+            })
           );
         }
       }
     } else {
       if (favorite) {
-        favorite = false;
         dispatch(
-          fetchUpdateUserMovie({ userId: auth.id, movieId: id, favorite })
+          fetchUpdateUserMovie({
+            userId: auth.id,
+            movieId: id,
+            favorite: false,
+            status: "Watched",
+          })
         );
       } else {
         let text = `You already have a movie!\nBy clicking OK you will change your favorite movie to ${title} permanently`;
         if (favoriteMovie) {
           if (confirm(text) == true) {
             text = "You pressed OK!";
-            favorite = false;
             dispatch(
-              fetchUpdateUserTv({
+              fetchUpdateUserMovie({
                 userId: auth.id,
                 movieId: favoriteMovie.id,
-                favorite,
+                favorite: false,
+                status: "Watched",
               })
             );
-            favorite = true;
             dispatch(
-              fetchCreateUserMovie({ userId: auth.id, movieId: id, favorite })
+              fetchCreateUserMovie({
+                userId: auth.id,
+                movieId: id,
+                favorite: true,
+                status: "Watched",
+              })
             );
           } else {
             text = "You canceled!";
           }
         } else {
-          favorite = true;
           dispatch(
-            fetchCreateUserMovie({ userId: auth.id, movieId: id, favorite })
+            fetchCreateUserMovie({
+              userId: auth.id,
+              movieId: id,
+              favorite: true,
+              status: "Watched",
+            })
           );
         }
       }
