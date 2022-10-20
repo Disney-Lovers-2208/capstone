@@ -8,15 +8,15 @@ import { AnimatePresence, motion } from "framer-motion";
 
 
 export const SearchFor = () => {
-  const { title, name } = useParams();
+  const { title } = useParams();
 
   const titleFilter = item => item.title.toLowerCase().includes(title.toLowerCase());
-  const nameFilter = item => item.name.toLowerCase().includes(name.toLowerCase());
+  // const nameFilter = item => item.name.toLowerCase().includes(name.toLowerCase());
 
   const tvshows = useSelector(state => state.tvs).filter(titleFilter);
   const movies = useSelector(state => state.movies).filter(titleFilter);
   const books = useSelector(state => state.books).filter(titleFilter);
-  const users = useSelector(state => state.users).filter(nameFilter);
+  // const users = useSelector(state => state.users).filter(nameFilter);
 
 
   const [isOn, setIsOn] = useState(false);
