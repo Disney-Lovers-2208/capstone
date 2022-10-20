@@ -10,6 +10,7 @@ const {
     Tv,
     Post,
     StarRating,
+    Review,
     Connection,
     User_Movie,
     User_Book,
@@ -213,78 +214,135 @@ async function seed() {
     }),
   ]);
 
-  const postsOne = await Promise.all([
-    Post.create({
+  const reviews = await Promise.all([
+    Review.create({
+      rating: 5,
+      content: randQuote(),
       userId: 1,
-      content: randQuote(),
-      movieId: 3,
+      movieId: 1,
     }),
-    Post.create({
+    Review.create({
+      rating: 3,
+      content: randQuote(),
       userId: 2,
-      content: randQuote(),
-      bookId: 5,
+      movieId: 1,
     }),
-  ]);
-
-  const starRatingsOne = await Promise.all([
-    StarRating.create({
+    Review.create({
+      rating: 5,
+      content: randQuote(),
+      userId: 3,
+      movieId: 1,
+    }),
+    Review.create({
       rating: 1,
-      userId: 3,
-      tvId: 1,
-    }),
-    StarRating.create({
-      rating: 5,
-      userId: 2,
-      tvId: 1,
-    }),
-  ]);
-
-  const postsTwo = await Promise.all([
-    Post.create({
-      userId: 3,
       content: randQuote(),
-      tvId: 17,
-    }),
-  ]);
-
-  const starRatingsTwo = await Promise.all([
-    StarRating.create({
-      rating: 3,
-      userId: 3,
-      tvId: 2,
-    }),
-    StarRating.create({
-      rating: 5,
-      userId: 2,
-      tvId: 2,
-    }),
-  ]);
-
-  const starRatingsThree = await Promise.all([
-    StarRating.create({
-      rating: 4,
-      userId: 2,
-      bookId: 2,
-    }),
-    StarRating.create({
-      rating: 5,
       userId: 1,
-      bookId: 2,
+      tvId: 1,
+    }),
+    Review.create({
+      rating: 3,
+      content: randQuote(),
+      userId: 2,
+      tvId: 1,
+    }),
+    Review.create({
+      rating: 5,
+      content: randQuote(),
+      userId: 3,
+      tvId: 1,
+    }),
+    Review.create({
+      rating: 1,
+      content: randQuote(),
+      userId: 1,
+      bookId: 1,
+    }),
+    Review.create({
+      rating: 3,
+      content: randQuote(),
+      userId: 2,
+      bookId: 1,
+    }),
+    Review.create({
+      rating: 5,
+      content: randQuote(),
+      userId: 3,
+      bookId: 1,
     }),
   ]);
 
-  const starRatingsFour = await Promise.all([
-    StarRating.create({
-      rating: 3,
-      userId: 1,
-      movieId: 5,
-    }),
-    StarRating.create({
-      rating: 4,
-      userId: 3,
-      movieId: 5,
-    }),
-  ]);
+  // const postsOne = await Promise.all([
+  //   Post.create({
+  //     userId: 1,
+  //     content: randQuote(),
+  //     movieId: 3,
+  //   }),
+  //   Post.create({
+  //     userId: 2,
+  //     content: randQuote(),
+  //     bookId: 5,
+  //   }),
+  // ]);
+
+  // const starRatingsOne = await Promise.all([
+  //   StarRating.create({
+  //     rating: 1,
+  //     userId: 3,
+  //     tvId: 1,
+  //   }),
+  //   StarRating.create({
+  //     rating: 5,
+  //     userId: 2,
+  //     tvId: 1,
+  //   }),
+  // ]);
+
+  // const postsTwo = await Promise.all([
+  //   Post.create({
+  //     userId: 3,
+  //     content: randQuote(),
+  //     tvId: 17,
+  //   }),
+  // ]);
+
+  // const starRatingsTwo = await Promise.all([
+  //   StarRating.create({
+  //     rating: 3,
+  //     userId: 3,
+  //     tvId: 2,
+  //   }),
+  //   StarRating.create({
+  //     rating: 5,
+  //     userId: 2,
+  //     tvId: 2,
+  //   }),
+  // ]);
+
+  // const starRatingsThree = await Promise.all([
+  //   StarRating.create({
+  //     rating: 4,
+  //     userId: 2,
+  //     bookId: 2,
+  //   }),
+  //   StarRating.create({
+  //     rating: 5,
+  //     userId: 1,
+  //     bookId: 2,
+  //   }),
+  // ]);
+
+  // const starRatingsFour = await Promise.all([
+  //   StarRating.create({
+  //     rating: 3,
+  //     userId: 1,
+  //     movieId: 5,
+  //   }),
+  //   StarRating.create({
+  //     rating: 4,
+  //     userId: 3,
+  //     movieId: 5,
+  //   }),
+  // ]);
 
   //make friend connections
   for (let i = 0; i < users.length; i++) {

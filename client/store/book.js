@@ -14,7 +14,9 @@ export const fetchSingleBook = (id) => {
   return async (dispatch) => {
     try {
       const { data: book } = await axios.get(`/api/books/${id}`);
-      const { data: rating } = await axios.get(`/api/starRatings/books/${id}`);
+      const { data: rating } = await axios.get(
+        `/api/reviews/avgStarBooks/${id}`
+      );
       book.starRating = rating;
       dispatch(getSingleBook(book));
     } catch (error) {
