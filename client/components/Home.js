@@ -21,13 +21,18 @@ export const Home = () => {
   return (
     <div className="activity-log">
       <Row xs={3} md={3}>
-        {activityLog.length
-          ? activityLog.map((activity, index) => (
+        {activityLog.length ? (
+          activityLog
+            .slice(0)
+            .reverse()
+            .map((activity, index) => (
               <Col key={index}>
                 <ActivityCard activity={activity} />
               </Col>
             ))
-          : null}
+        ) : (
+          <h1>No friend activity sorry</h1>
+        )}
       </Row>
     </div>
   );

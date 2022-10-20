@@ -10,7 +10,7 @@ const setBooks = (books) => ({
   books,
 });
 
-export const createBook = (book) => {
+const createBook = (book) => {
   return {
     type: CREATE_BOOK,
     book,

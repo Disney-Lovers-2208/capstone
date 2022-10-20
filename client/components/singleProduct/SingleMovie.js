@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { Button, Col, Card, Row, Container } from "react-bootstrap";
 import { fetchSingleMovie } from "../../store/movie";
+import { getReviews } from "../../store/reviews";
 import { Rating } from "react-simple-star-rating";
 import { fetchUserMovie, fetchUpdateUserMovie } from "../../store/userMovie";
 import { fetchCreateUserMovie } from "../../store/userMovies";
@@ -19,9 +20,9 @@ const timeAgo = new TimeAgo("en-US");
 const SingleMovie = () => {
   const auth = useSelector((state) => state.auth);
   const movie = useSelector((state) => state.movie);
+  const reviews = useSelector((state) => state.reviews);
   const { imageUrl, title, description, genre, starRating } = movie;
   const userMovie = useSelector((state) => state.userMovie);
-  const reviews = movie.reviews || [];
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -35,6 +36,9 @@ const SingleMovie = () => {
 
   useEffect(() => {
     dispatch(fetchSingleMovie(id));
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(getReviews("movie", id));
   }, [dispatch]);
 
   //update status movie
@@ -213,22 +217,25 @@ const SingleMovie = () => {
             <ReviewForm product={movie.productType} />
             <hr />
             <p style={{ textAlign: "left" }}>Reviews:</p>
-            {reviews.map((review) => (
-              <Row key={review.id}>
-                <Card border="info" style={{ width: "15rem" }}>
-                  <Card.Title>
-                    {review.user.firstName} {review.user.lastName}
-                  </Card.Title>
-                  <Card.Text>{review.content}</Card.Text>
-                  <Card.Text>
-                    <RatedStars rating={review.rating} />
-                  </Card.Text>
-                  <Card.Text>
-                    {timeAgo.format(new Date(review.updatedAt))}
-                  </Card.Text>
-                </Card>
-              </Row>
-            ))}
+            {reviews
+              .slice(0)
+              .reverse()
+              .map((review) => (
+                <Row key={review.id}>
+                  <Card border="info" style={{ width: "15rem" }}>
+                    <Card.Title>
+                      {review.user.firstName} {review.user.lastName}
+                    </Card.Title>
+                    <Card.Text>{review.content}</Card.Text>
+                    <Card.Text>
+                      <RatedStars rating={review.rating} />
+                    </Card.Text>
+                    <Card.Text>
+                      {timeAgo.format(new Date(review.updatedAt))}
+                    </Card.Text>
+                  </Card>
+                </Row>
+              ))}
           </div>
         </Col>
       </Row>
