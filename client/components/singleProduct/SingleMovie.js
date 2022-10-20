@@ -11,6 +11,7 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ReviewForm from "./ReviewForm";
 import SelectDropDown from "./SelectDropDown";
+import RatedStars from "../activityLog/RatedStars";
 
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
@@ -20,7 +21,7 @@ const SingleMovie = () => {
   const movie = useSelector((state) => state.movie);
   const { imageUrl, title, description, genre, starRating } = movie;
   const userMovie = useSelector((state) => state.userMovie);
-  const posts = movie.posts || [];
+  const reviews = movie.reviews || [];
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -212,17 +213,22 @@ const SingleMovie = () => {
             <ReviewForm product={movie.productType} />
             <hr />
             <p style={{ textAlign: "left" }}>Reviews:</p>
-            <Card
-              border="info"
-              style={{ width: "15rem", backgroundColor: "#FF5454" }}
-            >
-              {posts.map((post) => (
-                <Row key={post.movieId}>
-                  <p>{post.content}</p>
-                  <p>{timeAgo.format(new Date(post.updatedAt))}</p>
-                </Row>
-              ))}
-            </Card>
+            {reviews.map((review) => (
+              <Row key={review.id}>
+                <Card border="info" style={{ width: "15rem" }}>
+                  <Card.Title>
+                    {review.user.firstName} {review.user.lastName}
+                  </Card.Title>
+                  <Card.Text>{review.content}</Card.Text>
+                  <Card.Text>
+                    <RatedStars rating={review.rating} />
+                  </Card.Text>
+                  <Card.Text>
+                    {timeAgo.format(new Date(review.updatedAt))}
+                  </Card.Text>
+                </Card>
+              </Row>
+            ))}
           </div>
         </Col>
       </Row>
