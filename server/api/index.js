@@ -5,6 +5,7 @@ router.use("/users", require("./users"));
 router.use("/books", require("./books"));
 router.use("/tvs", require("./tvs"));
 router.use("/movies", require("./movies"));
+router.use("/reviews", require("./reviews"));
 router.use("/posts", require("./posts"));
 router.use("/userBooks", require("./userBooks"));
 router.use("/userMovies", require("./userMovies"));

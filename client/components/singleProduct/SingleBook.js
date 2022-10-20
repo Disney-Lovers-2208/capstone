@@ -18,9 +18,9 @@ const timeAgo = new TimeAgo("en-US");
 const SingleBook = () => {
   const auth = useSelector((state) => state.auth);
   const book = useSelector((state) => state.book);
-  const { imageUrl, title, description, genre, starRating } = book;
+  const { imageUrl, title, description, starRating } = book;
   const userBook = useSelector((state) => state.userBook);
-  const posts = book.posts || [];
+  const reviews = book.reviews || [];
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -215,10 +215,10 @@ const SingleBook = () => {
               border="info"
               style={{ width: "15rem", backgroundColor: "#FF5454" }}
             >
-              {posts.map((post) => (
-                <Row key={post.bookId}>
-                  <p>{post.content}</p>
-                  <p>{timeAgo.format(new Date(post.updatedAt))}</p>
+              {reviews.map((review) => (
+                <Row key={review.id}>
+                  <p>{review.content}</p>
+                  <p>{timeAgo.format(new Date(review.updatedAt))}</p>
                 </Row>
               ))}
             </Card>

@@ -4,6 +4,7 @@ const User = require("./models/User");
 const Movie = require("./models/Movie");
 const Tv = require("./models/Tv");
 const Book = require("./models/Book");
+const Review = require("./models/Reviews");
 const Post = require("./models/Post");
 const StarRating = require("./models/StarRating");
 const User_Movie = require("./models/userMovie");
@@ -12,6 +13,21 @@ const User_Tv = require("./models/userTv");
 const Connection = require("./models/Connection");
 
 //One-to-many
+
+// Review
+User.hasMany(Review);
+Review.belongsTo(User);
+
+Book.hasMany(Review);
+Review.belongsTo(Book);
+
+Tv.hasMany(Review);
+Review.belongsTo(Tv);
+
+Movie.hasMany(Review);
+Review.belongsTo(Movie);
+
+//Star rating and posts
 User.hasMany(StarRating);
 StarRating.belongsTo(User);
 
@@ -55,6 +71,7 @@ module.exports = {
     Movie,
     Tv,
     Book,
+    Review,
     Post,
     StarRating,
     User_Movie,

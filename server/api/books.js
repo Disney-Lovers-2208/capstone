@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { Book, Post },
+  models: { Book, Review },
 } = require("../db");
 module.exports = router;
 
@@ -23,7 +23,9 @@ router.post("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const book = await Book.findByPk(req.params.id, { include: [Post] });
+    const book = await Book.findByPk(req.params.id, {
+      include: [Review],
+    });
     res.json(book);
   } catch (err) {
     next(err);
