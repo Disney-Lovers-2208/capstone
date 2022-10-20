@@ -12,9 +12,9 @@ const NavigationBar = ({ handleClick, isLoggedIn }) => (
     <nav>
       {isLoggedIn ? (
         <div>
-          <Navbar expand="sm">
-            <SearchBar/>
-            <Navbar.Brand>Name</Navbar.Brand>
+          <Navbar>
+            <SearchBar />
+            <img src="/images/logo.png" style={{ width: "300px" }} />
             <Nav.Link as={Link} to="/home">
               <FiHome />
             </Nav.Link>
