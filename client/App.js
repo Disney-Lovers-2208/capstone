@@ -59,12 +59,6 @@ const App = () => {
           <Route path="/tvshows/:id" element={<SingleTvShow />} />
           <Route path="/movies/:id" element={<SingleMovie />} />
           <Route path="/books/:id" element={<SingleBook />} />
-          <Route path="/posts/book/:id" />
-          <Route path="/posts/tv/:id" />
-          <Route path="/posts/movie/:id" />
-          <Route path="/starRating/tv/:id" />
-          <Route path="/starRating/book/:id" />
-          <Route path="/starRating/movie/:id" />
           <Route path="/users" element={<AllUsers />} />
           <Route path="/searchfor/:title" element={<SearchFor />} />
           <Route path="/add" element={<AddProduct />} />
