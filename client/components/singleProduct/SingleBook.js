@@ -11,6 +11,7 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ReviewForm from "./ReviewForm";
 import SelectDropDown from "./SelectDropDown";
+import RatedStars from "../activityLog/RatedStars";
 
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
@@ -211,17 +212,22 @@ const SingleBook = () => {
             <ReviewForm product={book.productType} />
             <hr />
             <p style={{ textAlign: "left" }}>Reviews:</p>
-            <Card
-              border="info"
-              style={{ width: "15rem", backgroundColor: "#FF5454" }}
-            >
-              {reviews.map((review) => (
-                <Row key={review.id}>
-                  <p>{review.content}</p>
-                  <p>{timeAgo.format(new Date(review.updatedAt))}</p>
-                </Row>
-              ))}
-            </Card>
+            {reviews.map((review) => (
+              <Row key={review.id}>
+                <Card border="info" style={{ width: "15rem" }}>
+                  <Card.Title>
+                    {review.user.firstName} {review.user.lastName}
+                  </Card.Title>
+                  <Card.Text>{review.content}</Card.Text>
+                  <Card.Text>
+                    <RatedStars rating={review.rating} />
+                  </Card.Text>
+                  <Card.Text>
+                    {timeAgo.format(new Date(review.updatedAt))}
+                  </Card.Text>
+                </Card>
+              </Row>
+            ))}
           </div>
         </Col>
       </Row>
