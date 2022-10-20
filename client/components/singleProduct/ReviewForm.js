@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { createPost } from "../../store/posts";
-import { createStarRating } from "../../store/starRatings";
+import { createReview } from "../../store/reviews";
 import { Rating } from "react-simple-star-rating";
 import { fetchSingleBook } from "../../store/book";
 import { fetchSingleMovie } from "../../store/movie";
@@ -26,20 +25,28 @@ export function ReviewForm(props) {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (props.product === "tvshow") {
-      dispatch(createPost({ content, userId: authId, tvId: id }));
-      dispatch(createStarRating({ rating, userId: authId, tvId: id }));
+      dispatch(
+        createReview({ rating, content, userId: authId, tvId: id }, "tv", id)
+      );
       dispatch(fetchSingleTv(id));
-      window.location.reload();
     } else if (props.product === "movie") {
-      dispatch(createPost({ content, userId: authId, movieId: id }));
-      dispatch(createStarRating({ rating, userId: authId, movieId: id }));
+      dispatch(
+        createReview(
+          { rating, content, userId: authId, movieId: id },
+          "movie",
+          id
+        )
+      );
       dispatch(fetchSingleMovie(id));
-      window.location.reload();
     } else if (props.product === "book") {
-      dispatch(createPost({ content, userId: authId, bookId: id }));
-      dispatch(createStarRating({ rating, userId: authId, bookId: id }));
+      dispatch(
+        createReview(
+          { rating, content, userId: authId, bookId: id },
+          "book",
+          id
+        )
+      );
       dispatch(fetchSingleBook(id));
-      window.location.reload();
     }
     handleToggle(false);
   };

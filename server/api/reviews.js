@@ -31,6 +31,7 @@ router.get("/tv/:tvId", async (req, res, next) => {
       where: {
         tvId: req.params.tvId,
       },
+      include: [User],
     });
     res.json(tvReviews);
   } catch (error) {
@@ -44,6 +45,7 @@ router.get("/movie/:movieId", async (req, res, next) => {
       where: {
         movieId: req.params.movieId,
       },
+      include: [User],
     });
     res.json(movieReviews);
   } catch (error) {
@@ -57,6 +59,7 @@ router.get("/book/:bookId", async (req, res, next) => {
       where: {
         bookId: req.params.bookId,
       },
+      include: [User],
     });
     res.json(bookReviews);
   } catch (error) {

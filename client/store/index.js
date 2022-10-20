@@ -12,8 +12,7 @@ import book from "./book";
 import movie from "./movie";
 import activityLog from "./activityLog";
 import users from "./users";
-import posts from "./posts";
-import starRatings from "./starRatings";
+import reviews from "./reviews";
 import userBook from "./userBook";
 import userBooks from "./userBooks";
 import userTv from "./userTv";
@@ -35,8 +34,7 @@ const reducer = combineReducers({
   user,
   activityLog,
   users,
-  posts,
-  starRatings,
+  reviews,
   userBook,
   userTv,
   userMovie,

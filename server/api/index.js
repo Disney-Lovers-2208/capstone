@@ -6,11 +6,9 @@ router.use("/books", require("./books"));
 router.use("/tvs", require("./tvs"));
 router.use("/movies", require("./movies"));
 router.use("/reviews", require("./reviews"));
-router.use("/posts", require("./posts"));
 router.use("/userBooks", require("./userBooks"));
 router.use("/userMovies", require("./userMovies"));
 router.use("/userTvs", require("./userTvs"));
-router.use("/starRatings", require("./starRatings"));
 router.use("/friends", require("./friends"));
 
 router.use((req, res, next) => {
