@@ -52,7 +52,7 @@ export const SearchFor = () => {
         </Col>
       </Row>
 
-      <Row style={{ marginTop: "2rem" }}>
+      {/* <Row style={{ marginTop: "2rem" }}>
         <motion.div layout className="toggle-results">
           {isOn ? (
             <Row>
@@ -67,7 +67,7 @@ export const SearchFor = () => {
             </Row>
           ) : null}
         </motion.div>
-      </Row>
+      </Row> */}
 
       {/* <Row style={{marginTop: "2rem" }}>
         <motion.div layout className="toggle-results">
