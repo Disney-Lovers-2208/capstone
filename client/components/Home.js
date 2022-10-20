@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { getActivityLog } from "../store/activityLog";
-import { getAllUsers } from "../store/users";
 import ActivityCard from "./activityLog/ActivityCard";
 /**
  * COMPONENT

@@ -11,6 +11,7 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ReviewForm from "./ReviewForm";
 import SelectDropDown from "./SelectDropDown";
+import RatedStars from "../activityLog/RatedStars";
 
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
@@ -18,9 +19,9 @@ const timeAgo = new TimeAgo("en-US");
 const SingleTvShow = () => {
   const auth = useSelector((state) => state.auth);
   const tv = useSelector((state) => state.tv);
-  const { imageUrl, title, description, genre, starRating } = tv;
+  const { imageUrl, title, description, starRating } = tv;
   const userTv = useSelector((state) => state.userTv);
-  const posts = tv.posts || [];
+  const reviews = tv.reviews || [];
   const dispatch = useDispatch();
   const { id } = useParams();
   let favorite = userTv ? userTv.favorite : null;
@@ -197,17 +198,22 @@ const SingleTvShow = () => {
             <ReviewForm product={tv.productType} />
             <hr />
             <p style={{ textAlign: "left" }}>Reviews:</p>
-            <Card
-              border="info"
-              style={{ width: "15rem", backgroundColor: "#FF5454" }}
-            >
-              {posts.map((post) => (
-                <Row key={post.tvId}>
-                  <p>{post.content}</p>
-                  <p>{timeAgo.format(new Date(post.updatedAt))}</p>
-                </Row>
-              ))}
-            </Card>
+            {reviews.map((review) => (
+              <Row key={review.id}>
+                <Card border="info" style={{ width: "15rem" }}>
+                  <Card.Title>
+                    {review.user.firstName} {review.user.lastName}
+                  </Card.Title>
+                  <Card.Text>{review.content}</Card.Text>
+                  <Card.Text>
+                    <RatedStars rating={review.rating} />
+                  </Card.Text>
+                  <Card.Text>
+                    {timeAgo.format(new Date(review.updatedAt))}
+                  </Card.Text>
+                </Card>
+              </Row>
+            ))}
           </div>
         </Col>
       </Row>
