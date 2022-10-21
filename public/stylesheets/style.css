@@ -44,11 +44,11 @@ select{
   margin-top: 9px;
   margin-bottom: 15px;
   width: 100%;
-  background-color: #CAF0F8 ;
+  background-color: white ;
   font-weight: 600;
   border: 3px solid #023E8A;; 
   color: #023E8A ;
-  width: 45%;
+  width: 61%;
 }
 
 select:hover{
@@ -58,3 +58,8 @@ select:hover{
 
 }
 
+.sticky{ 
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}

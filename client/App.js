@@ -40,7 +40,11 @@ const App = () => {
 
   return (
     <div>
-      <NavigationBar handleClick={handleClick} isLoggedIn={isLoggedIn} />
+      <NavigationBar
+        handleClick={handleClick}
+        className="fixed-top"
+        isLoggedIn={isLoggedIn}
+      />
       {isLoggedIn ? (
         <Routes>
           <Route exact path="/" element={<Home />} />
