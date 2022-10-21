@@ -3,7 +3,6 @@ import axios from "axios";
 // action type:
 const GET_TV_SHOWS = "GET_TV_SHOWS";
 const CREATE_TV = "CREATE_TV";
-const GET_TV_RATING = "GET_TV_RATING";
 
 // action creators:
 const setTvShows = (tvs) => ({
@@ -18,13 +17,6 @@ const createTv = (tv) => {
     tv,
   };
 };
-
-// const setRating = (rating) => {
-//   return {
-//     type: GET_TV_RATING,
-//     rating,
-//   }
-// }
 
 //Thunk
 export const fetchCreateTv = (tv) => {
@@ -47,16 +39,6 @@ export const fetchTvShows = () => async (dispatch) => {
   }
 };
 
-// export const fetchTvRating = (id) => async (dispatch) => {
-//   try {
-//     const { data: rating } = await axios.get(`/api/tvs/${id}`);
-//     dispatch(setRating(rating));
-//   } catch (error) {
-//     return error;
-//   }
-// }
-
-
 // reducer
 export default function tvsReducer(state = [], action) {
   switch (action.type) {
@@ -64,8 +46,6 @@ export default function tvsReducer(state = [], action) {
       return [...state, action.tv];
     case GET_TV_SHOWS:
       return action.tvs;
-    // case GET_TV_RATING:
-    //   return action.rating;
     default:
       return state;
   }
