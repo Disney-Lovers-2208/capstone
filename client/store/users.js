@@ -2,7 +2,7 @@ import axios from "axios";
 
 // ACTION TYPE
 const GET_ALL_USERS = "GET_ALL_USERS";
-const ADD_FRIEND = "ADD_FRIEND";
+
 
 // ACTION CREATOR
 const _getAllUsers = (users) => {
@@ -12,12 +12,6 @@ const _getAllUsers = (users) => {
   };
 };
 
-const _addFriend = (friend) => {
-  return {
-    type: ADD_FRIEND,
-    friend,
-  }
-}
 
 // THUNK CREATOR
 export const getAllUsers = () => {
@@ -36,8 +30,6 @@ export default function users(state = [], action) {
   switch (action.type) {
     case GET_ALL_USERS:
       return action.users;
-    case ADD_FRIEND:
-      return [...state, action.friend]
     default:
       return state;
   }
