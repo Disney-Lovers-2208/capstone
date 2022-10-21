@@ -9,6 +9,8 @@ const timeAgo = new TimeAgo("en-US");
 
 export const ActivityCard = (props) => {
   const { activity } = props;
+
+  console.log("user", activity.user);
   return (
     <Container className="activity-log-card">
       <>
