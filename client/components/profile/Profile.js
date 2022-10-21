@@ -32,7 +32,6 @@ export class Profile extends React.Component {
       (book) => book.user_book.featured === true
     );
 
-    // const isFriend = if friend, 
 
     return (
       <Container fluid className="profile">
