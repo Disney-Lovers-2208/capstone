@@ -25,3 +25,33 @@ router.get("/:id", async (req, res, next) => {
     next(error);
   }
 });
+
+router.post("/:userId/:friendId", async (req, res, next) => {
+  try {
+    const currentUser = await User.findByPk(req.params.userId, { 
+      include: {
+        model: User,
+        as: 'friend',
+      }});
+    await currentUser.setFriend(req.params.friendId);
+    await currentUser.reload();
+    res.json(currentUser);
+  } catch (error) {
+    next(error)
+  }
+});
+
+router.delete("/:userId/:friendId", async (req, res, next) => {
+  try {
+    const currentUser = await User.findByPk(req.params.userId, { 
+      include: {
+        model: User,
+        as: 'friend',
+      }});
+    await currentUser.removeFriend(req.params.friendId);
+    await currentUser.reload();
+    res.json(currentUser);
+  } catch (error) {
+    next(error)
+  }
+});
