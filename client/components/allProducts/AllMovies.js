@@ -9,7 +9,7 @@ export const AllMovies = () => {
   const movies = useSelector((state) => state.movies);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [moviesPerPage] = useState(18);
+  const [moviesPerPage] = useState(20);
 
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;

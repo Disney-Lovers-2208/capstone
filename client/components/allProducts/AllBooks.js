@@ -8,7 +8,7 @@ export const AllBooks = () => {
   const books = useSelector((state) => state.books);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [booksPerPage] = useState(18);
+  const [booksPerPage] = useState(20);
 
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;

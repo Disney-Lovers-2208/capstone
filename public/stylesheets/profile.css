@@ -1,5 +1,4 @@
 .single-view{
-    background-color: #CAF0F8; 
     text-align: center;
     min-height: 100%;
     position: absolute;
@@ -16,7 +15,7 @@
 }
 
 .single-product-left img{
-    margin-top: 4rem;
+    margin-top: 2rem;
     width: 25rem;
     box-shadow:
     0 2.8px 2.2px rgba(3, 4, 94, 0.034),
@@ -47,10 +46,10 @@
 }
 
 .single-product-button-row button{
-width: 20%;
+width: 30%;
 margin-right: 2rem;
 background-color: #023E8A;
-color: #CAF0F8;
+color: white;
 font-weight: 800;
 border-radius: 0px;
 }

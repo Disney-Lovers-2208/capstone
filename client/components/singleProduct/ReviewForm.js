@@ -87,8 +87,9 @@ export function ReviewForm(props) {
         <Button
           style={{
             borderRadius: "0px",
-            backgroundColor: "#48CAE4",
-            color: "white",
+            border: "none",
+            backgroundColor: "#dcdf00",
+            color: "#03045E",
             fontWeight: "800",
           }}
           variant="info"

@@ -1,6 +1,5 @@
 body {
   font-family: 'Yeseva One', sans-serif;
-  background-color: #CAF0F8;
   height: 100%
 }
 
@@ -45,11 +44,11 @@ select{
   margin-top: 9px;
   margin-bottom: 15px;
   width: 100%;
-  background-color: #CAF0F8 ;
+  background-color: white ;
   font-weight: 600;
   border: 3px solid #023E8A;; 
   color: #023E8A ;
-  width: 45%;
+  width: 61%;
 }
 
 select:hover{
@@ -57,4 +56,10 @@ select:hover{
   color: #0077B6 ;
 
 
+}
+
+.sticky{ 
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }

@@ -187,8 +187,7 @@ const SingleBook = () => {
               allowFraction={true}
               fillColor="#f1a545"
             />
-            (number of reviews) Reviews
-            <p>{description}</p>
+            {reviews.length} Reviews <p>{description}</p>
             <SelectDropDown
               status={status}
               selectOptions={selectOptions}

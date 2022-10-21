@@ -8,7 +8,7 @@ export const AllTvShows = () => {
   const tvshows = useSelector((state) => state.tvs);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [showsPerPage] = useState(18);
+  const [showsPerPage] = useState(20);
 
   const indexOfLastTv = currentPage * showsPerPage;
   const indexOfFirstTv = indexOfLastTv - showsPerPage;
