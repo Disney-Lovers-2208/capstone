@@ -23,12 +23,8 @@ import FriendsProfilePage from "./components/profile/FriendsProfilePage";
 import UserProfilePage from "./components/profile/UserProfilePage";
 import AddProduct from "./components/search/AddProduct";
 import ReviewForm from "./components/singleProduct/ReviewForm";
-<<<<<<< HEAD
 import LandingPage from "./components/LandingPage";
-=======
 
-
->>>>>>> main
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);
   const dispatch = useDispatch();
@@ -47,7 +43,7 @@ const App = () => {
       <NavigationBar handleClick={handleClick} isLoggedIn={isLoggedIn} />
       {isLoggedIn ? (
         <Routes>
-          <Route exact path="/" element={<LandingPage />} />
+          <Route exact path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/profile" element={<UserProfilePage />} />
