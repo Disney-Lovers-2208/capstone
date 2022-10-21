@@ -46,15 +46,15 @@ export const SearchBar = () => {
 
 
   return (
-    <Container className='search-bar'>
+    <>
       <Row>
-        <Col>
+        <Col style={{ display: "flex", flexDirection: "row" }}>
           <input
             type="search"
             placeholder="Search for..."
             onChange={(evt) => setSearch(evt.target.value)}
             value={search}
-            style={{ padding: '5px' }}
+            className="search-bar"
           />
           <Button onKeyDown={handleKeyDown} as={Link} to={`/searchfor/${search}`} style={{ padding: '6px', borderRadius: '10px' }}>
             <GoSearch />
@@ -62,7 +62,7 @@ export const SearchBar = () => {
         </Col>
         <AllProductsTabs />
       </Row>
-    </Container>
+    </>
   );
 };
 
