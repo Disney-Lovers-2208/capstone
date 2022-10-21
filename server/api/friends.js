@@ -33,7 +33,7 @@ router.post("/:userId/:friendId", async (req, res, next) => {
         model: User,
         as: 'friend',
       }});
-    await currentUser.setFriend(req.params.friendId);
+    await currentUser.addFriend(req.params.friendId);
     await currentUser.reload();
     res.json(currentUser);
   } catch (error) {
