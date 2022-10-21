@@ -24,6 +24,7 @@ import UserProfilePage from "./components/profile/UserProfilePage";
 import AddProduct from "./components/search/AddProduct";
 import ReviewForm from "./components/singleProduct/ReviewForm";
 
+
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/profile" element={<UserProfilePage />} />
+          <Route path="/users/:id" element={<FriendsProfilePage />} />
           <Route path="/profile/friends" element={<Friends />} />
           <Route path="/profile/history" element={<History />} />
           <Route path="/profile/saved" element={<Saved />} />

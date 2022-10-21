@@ -37,6 +37,28 @@ export const updateAuth = (authId, authForm, navigate) => async (dispatch) => {
   }
 };
 
+export const addFriend = (friendId) => {
+  return async (dispatch, getState) => {
+    try {
+      const { data: updatedUser } = await axios.post(`/api/friends/${getState().auth.id}/${friendId}`);
+      dispatch(_setAuth(updatedUser));
+    } catch (error) {
+      return error;
+    }
+  }
+};
+
+export const removeFriend = (friendId) => {
+  return async (dispatch, getState) => {
+    try {
+      const { data: updatedUser } = await axios.delete(`/api/friends/${getState().auth.id}/${friendId}`);
+      dispatch(_setAuth(updatedUser));
+    } catch (error) {
+      return error;
+    }
+  }
+};
+
 export const authenticate =
   (username, password, method, email, firstName, lastName, navigate) =>
   async (dispatch) => {

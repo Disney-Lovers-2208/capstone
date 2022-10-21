@@ -5,6 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { fetchUser } from "../../store/user";
 import Profile from "./Profile";
 
+
 const FriendsProfilePage = () => {
   const { pathname } = useLocation();
   const userId = pathname.split("/").pop();

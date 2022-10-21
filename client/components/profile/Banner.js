@@ -1,15 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { addFriend, removeFriend } from "../../store/auth";
 import Stats from "./Stats";
 
 const Banner = (props) => {
   const { user } = props;
+  let auth = useSelector((state) => state.auth);
+  const isFriend = auth.friend.find((friend) => friend.id === user.id);
+  const isOwnProfile = () => {
+    return auth.id === user.id;
+  }
+  const dispatch = useDispatch();
 
   const location = useLocation().pathname;
-  let auth = useSelector((state) => state.auth);
   return (
     <Container fluid>
       <Row>
@@ -35,6 +40,13 @@ const Banner = (props) => {
           <h1>
             {user.firstName} {user.lastName}
           </h1>
+          {!isOwnProfile() ? (
+            isFriend ? (
+              <button onClick={() => dispatch(removeFriend(user.id))}>Remove Friend</button>
+            ) : (
+              <button onClick={() => dispatch(addFriend(user.id))}>Add Friend</button>
+            )
+          ) : null}
           <p>{user.bio} Lorem ipsum</p>
         </Col>
 
