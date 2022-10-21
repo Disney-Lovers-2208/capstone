@@ -11,39 +11,50 @@ import { fetchBooks } from "../../store/books";
 export const SearchBar = () => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    dispatch(fetchTvShows());
-  }, [dispatch]);
+  // function helperFunc() {
+  //   setLoading(false);
+  // }
 
-  useEffect(() => {
-    dispatch(fetchMovies());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchBooks());
-  }, [dispatch]);
-
+  // useEffect(() => {
+  //   setLoading(true);
+  //   dispatch(fetchTvShows());
+  //   dispatch(fetchMovies());
+  //   dispatch(fetchBooks(helperFunc));
+  // }, [dispatch]);
 
   return (
-    <Container className='search-bar'>
-      <Row>
-        <Col>
-          <input
-            type="search"
-            placeholder="Search for..."
-            onChange={(evt) => setSearch(evt.target.value)}
-            value={search}
-            style={{ padding: '5px' }}
-          />
-          <Button variant="light" as={Link} to={`/searchfor/${search}`} style={{ padding: '6px', borderRadius: '10px' }}>
-            <GoSearch />
-          </Button>
-
-        </Col>
-        <SearchTabs />
-      </Row>
-    </Container>
+    <div>
+      {loading ? (
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+      ) : (
+        <Container className="search-bar">
+          <Row>
+            <Col>
+              <input
+                type="search"
+                placeholder="Search for..."
+                onChange={(evt) => setSearch(evt.target.value)}
+                value={search}
+                style={{ padding: "5px" }}
+              />
+              <Button
+                variant="light"
+                as={Link}
+                to={`/searchfor/${search}`}
+                style={{ padding: "6px", borderRadius: "10px" }}
+              >
+                <GoSearch />
+              </Button>
+            </Col>
+            <SearchTabs />
+          </Row>
+        </Container>
+      )}
+    </div>
   );
 };
 

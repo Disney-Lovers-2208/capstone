@@ -10,7 +10,7 @@ const _getActivityLog = (activityLog) => ({
 });
 
 // thunks
-export const getActivityLog = (userId) => async (dispatch) => {
+export const getActivityLog = (userId, helperFunc) => async (dispatch) => {
   try {
     const { data: friends } = await axios.get(`/api/friends/${userId}`);
     let friendIdArray = [];
@@ -26,6 +26,7 @@ export const getActivityLog = (userId) => async (dispatch) => {
       }
     }
     dispatch(_getActivityLog(reviews));
+    helperFunc();
   } catch (error) {
     console.log(error);
   }

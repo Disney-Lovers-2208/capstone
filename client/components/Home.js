@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import { getActivityLog } from "../store/activityLog";
@@ -13,27 +13,41 @@ export const Home = () => {
   let auth = useSelector((state) => state.auth);
   let activityLog = useSelector((state) => state.activityLog);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+
+  function helperFunc() {
+    setLoading(false);
+  }
 
   useEffect(() => {
-    dispatch(getActivityLog(userId));
+    setLoading(true);
+    dispatch(getActivityLog(userId, helperFunc));
   }, [dispatch]);
 
   return (
-    <div className="activity-log">
-      <Row xs={3} md={3}>
-        {activityLog.length ? (
-          activityLog
-            .slice(0)
-            .reverse()
-            .map((activity, index) => (
-              <Col key={index}>
-                <ActivityCard activity={activity} />
-              </Col>
-            ))
-        ) : (
-          <h1>No friend activity sorry</h1>
-        )}
-      </Row>
+    <div>
+      {loading ? (
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+      ) : (
+        <div className="activity-log">
+          <Row xs={3} md={3}>
+            {activityLog.length ? (
+              activityLog
+                .slice(0)
+                .reverse()
+                .map((activity, index) => (
+                  <Col key={index}>
+                    <ActivityCard activity={activity} />
+                  </Col>
+                ))
+            ) : (
+              <h1>No friend activity sorry</h1>
+            )}
+          </Row>
+        </div>
+      )}
     </div>
   );
 };

@@ -3,7 +3,6 @@ import axios from "axios";
 // ACTION TYPE
 const GET_ALL_USERS = "GET_ALL_USERS";
 
-
 // ACTION CREATOR
 const _getAllUsers = (users) => {
   return {
@@ -12,13 +11,13 @@ const _getAllUsers = (users) => {
   };
 };
 
-
 // THUNK CREATOR
-export const getAllUsers = () => {
+export const getAllUsers = (helperFunc) => {
   return async (dispatch) => {
     try {
       const { data: users } = await axios.get("/api/users");
       dispatch(_getAllUsers(users));
+      helperFunc();
     } catch (error) {
       console.log(error);
     }

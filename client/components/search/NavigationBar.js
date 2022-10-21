@@ -13,7 +13,7 @@ const NavigationBar = ({ handleClick, isLoggedIn }) => (
       {isLoggedIn ? (
         <div>
           <Navbar expand="sm">
-            <SearchBar/>
+            <SearchBar />
             <Navbar.Brand>Name</Navbar.Brand>
             <Nav.Link as={Link} to="/home">
               <FiHome />
@@ -29,13 +29,7 @@ const NavigationBar = ({ handleClick, isLoggedIn }) => (
             </Nav.Link>
           </Navbar>
         </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          {/* <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link> */}
-        </div>
-      )}
+      ) : null}
     </nav>
   </div>
 );

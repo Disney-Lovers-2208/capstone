@@ -27,45 +27,63 @@ export const me = () => async (dispatch) => {
   }
 };
 
-export const updateAuth = (authId, authForm, navigate) => async (dispatch) => {
-  try {
-    const { data: auth } = await axios.put(`/api/users/${authId}`, authForm);
-    dispatch(_setAuth(auth));
-    navigate("/profile");
-  } catch (error) {
-    console.log(error);
-  }
-};
+export const updateAuth =
+  (authId, authForm, navigate, helperFunc) => async (dispatch) => {
+    try {
+      const { data: auth } = await axios.put(`/api/users/${authId}`, authForm);
+      dispatch(_setAuth(auth));
+      helperFunc();
+      navigate("/profile");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 export const addFriend = (friendId) => {
   return async (dispatch, getState) => {
     try {
-      const { data: updatedUser } = await axios.post(`/api/friends/${getState().auth.id}/${friendId}`);
+      const { data: updatedUser } = await axios.post(
+        `/api/friends/${getState().auth.id}/${friendId}`
+      );
       dispatch(_setAuth(updatedUser));
     } catch (error) {
       return error;
     }
-  }
+  };
 };
 
 export const removeFriend = (friendId) => {
   return async (dispatch, getState) => {
     try {
-      const { data: updatedUser } = await axios.delete(`/api/friends/${getState().auth.id}/${friendId}`);
+      const { data: updatedUser } = await axios.delete(
+        `/api/friends/${getState().auth.id}/${friendId}`
+      );
       dispatch(_setAuth(updatedUser));
     } catch (error) {
       return error;
     }
-  }
+  };
 };
 
 export const authenticate =
-  (username, password, method, email, firstName, lastName, navigate) =>
+  (
+    username,
+    password,
+    method,
+    email,
+    firstName,
+    lastName,
+    navigate,
+    helperFunc
+  ) =>
   async (dispatch) => {
     try {
       let res;
       if (method === "login") {
         res = await axios.post("/auth/login", { username, password });
+        window.localStorage.setItem(TOKEN, res.data.token);
+        dispatch(me());
+        navigate("/home");
       } else {
         res = await axios.post("/auth/signup", {
           username,
@@ -74,10 +92,11 @@ export const authenticate =
           firstName,
           lastName,
         });
+        window.localStorage.setItem(TOKEN, res.data.token);
+        dispatch(me());
+        navigate("/profile");
       }
-      window.localStorage.setItem(TOKEN, res.data.token);
-      dispatch(me());
-      navigate("/profile");
+      helperFunc();
     } catch (authError) {
       return dispatch(_setAuth({ error: authError }));
     }

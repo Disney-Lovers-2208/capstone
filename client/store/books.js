@@ -18,9 +18,10 @@ const createBook = (book) => {
 };
 
 // thunks:
-export const fetchBooks = () => async (dispatch) => {
+export const fetchBooks = (helperFunc) => async (dispatch) => {
   const { data } = await axios.get("/api/books");
   dispatch(setBooks(data));
+  helperFunc();
 };
 
 export const fetchCreateBook = (book) => {
