@@ -1,32 +1,21 @@
-.auth{
-    margin-top: 5rem;
+.form-body{
+
     font-family: 'Montserrat', sans-serif;
     width: 100%;
     padding: 0%;
     margin: 0%;
+
 }
 
-.sideDesign{ 
-  background-color: #3849EF;
+.side-design{ 
+  background-color: white;
   color: white;
   font-family: 'Montserrat', sans-serif;
-  padding: 2rem;
-}
-.authForm{ 
-    display: flex;
-    flex-direction: column;
-    box-shadow: rgba(56, 73, 239, 1) 0px 5px 15px;
-    background-color: #3849EF;
-    width: 500px;
-    height: 600px;
-    border-radius: 25px;
-    padding-top: 50px;
-    text-align: center;
-    margin: 0 auto;
-    
+align-items: center;
+text-align: center;
 }
 
-  .auth input{
+  .form-body input{
     background-color: white;
     margin-top: 10px;
     border-radius: 25px;
@@ -37,8 +26,24 @@
 
 
 
-.auth button{
-    background-color: #DDFF55;
-    border-radius: 25px;
+.form-body button{
+  margin-right: 2rem;
+  background-color: #023E8A;
+  color: #CAF0F8;
+  font-weight: 800;
+  border-radius: 0px;
+  border: none;
+  width: 150px;
+  height: 55px;
 }
   
+#second-button{
+  margin-left: 2rem;
+  background-color: #dcdf00;
+  border: none;
+  color: #023E8A;
+  font-weight: 600;
+  border-radius: 0px;
+  width: 100px;
+  height: 30px;
+}
