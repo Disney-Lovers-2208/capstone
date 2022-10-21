@@ -3,6 +3,7 @@ import axios from "axios";
 // ACTION TYPE
 const GET_ALL_USERS = "GET_ALL_USERS";
 
+
 // ACTION CREATOR
 const _getAllUsers = (users) => {
   return {
@@ -10,6 +11,7 @@ const _getAllUsers = (users) => {
     users,
   };
 };
+
 
 // THUNK CREATOR
 export const getAllUsers = () => {

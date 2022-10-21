@@ -37,6 +37,7 @@ Book.belongsToMany(User, { through: User_Book });
 User.belongsToMany(Tv, { through: User_Tv });
 Tv.belongsToMany(User, { through: User_Tv });
 
+
 module.exports = {
   db,
   models: {
