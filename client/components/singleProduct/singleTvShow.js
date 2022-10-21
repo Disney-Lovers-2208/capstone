@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { Button, Col, Card, Row, Container } from "react-bootstrap";
 import { fetchSingleTv } from "../../store/tv";
+import { getReviews } from "../../store/reviews";
 import { Rating } from "react-simple-star-rating";
 import { fetchUserTv, fetchUpdateUserTv } from "../../store/userTv";
 import { fetchCreateUserTv } from "../../store/userTvShows";
@@ -11,6 +12,7 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ReviewForm from "./ReviewForm";
 import SelectDropDown from "./SelectDropDown";
+import RatedStars from "../activityLog/RatedStars";
 
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
@@ -18,9 +20,9 @@ const timeAgo = new TimeAgo("en-US");
 const SingleTvShow = () => {
   const auth = useSelector((state) => state.auth);
   const tv = useSelector((state) => state.tv);
-  const { imageUrl, title, description, genre, starRating } = tv;
+  const reviews = useSelector((state) => state.reviews);
+  const { imageUrl, title, description, starRating } = tv;
   const userTv = useSelector((state) => state.userTv);
-  const posts = tv.posts || [];
   const dispatch = useDispatch();
   const { id } = useParams();
   let favorite = userTv ? userTv.favorite : null;
@@ -33,6 +35,10 @@ const SingleTvShow = () => {
 
   useEffect(() => {
     dispatch(fetchSingleTv(id));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getReviews("tv", id));
   }, [dispatch]);
 
   //update status tv
@@ -197,17 +203,25 @@ const SingleTvShow = () => {
             <ReviewForm product={tv.productType} />
             <hr />
             <p style={{ textAlign: "left" }}>Reviews:</p>
-            <Card
-              border="info"
-              style={{ width: "15rem", backgroundColor: "#FF5454" }}
-            >
-              {posts.map((post) => (
-                <Row key={post.tvId}>
-                  <p>{post.content}</p>
-                  <p>{timeAgo.format(new Date(post.updatedAt))}</p>
+            {reviews
+              .slice(0)
+              .reverse()
+              .map((review) => (
+                <Row key={review.id}>
+                  <Card border="info" style={{ width: "15rem" }}>
+                    <Card.Title>
+                      {review.user.firstName} {review.user.lastName}
+                    </Card.Title>
+                    <Card.Text>{review.content}</Card.Text>
+                    <Card.Text>
+                      <RatedStars rating={review.rating} />
+                    </Card.Text>
+                    <Card.Text>
+                      {timeAgo.format(new Date(review.updatedAt))}
+                    </Card.Text>
+                  </Card>
                 </Row>
               ))}
-            </Card>
           </div>
         </Col>
       </Row>

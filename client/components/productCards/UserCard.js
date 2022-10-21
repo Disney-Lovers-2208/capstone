@@ -4,7 +4,7 @@ import { Card, Container } from 'react-bootstrap';
 
 export const UserCard = (props) => {
     const { user } = props;
-    const { firstName, lastName, image } = user;
+    const { id, firstName, lastName, image } = user;
 
     // return (
     //     <Container fluid className='all-users'>
@@ -22,7 +22,7 @@ export const UserCard = (props) => {
         <Container className='all-users'>
             <Card border='info' style={{ width: '15rem', backgroundColor: '#FF5454' }}>
                 <Card.Body>
-                    <Link to={`/profile`} style={{ color: 'inherit' }}>
+                    <Link to={`/users/${id}`} style={{ color: 'inherit' }}>
                         <Card.Img src={image}></Card.Img>
                         <Card.Title>{firstName} {lastName}</Card.Title>
                     </Link>

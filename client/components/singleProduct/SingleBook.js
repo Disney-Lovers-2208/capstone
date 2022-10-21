@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { Button, Col, Card, Row, Container } from "react-bootstrap";
 import { fetchSingleBook } from "../../store/book";
+import { getReviews } from "../../store/reviews";
 import { Rating } from "react-simple-star-rating";
 import { fetchUserBook, fetchUpdateUserBook } from "../../store/userBook";
 import { fetchCreateUserBook } from "../../store/userBooks";
@@ -11,6 +12,7 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ReviewForm from "./ReviewForm";
 import SelectDropDown from "./SelectDropDown";
+import RatedStars from "../activityLog/RatedStars";
 
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
@@ -18,9 +20,9 @@ const timeAgo = new TimeAgo("en-US");
 const SingleBook = () => {
   const auth = useSelector((state) => state.auth);
   const book = useSelector((state) => state.book);
-  const { imageUrl, title, description, genre, starRating } = book;
+  const reviews = useSelector((state) => state.reviews);
+  const { imageUrl, title, description, starRating } = book;
   const userBook = useSelector((state) => state.userBook);
-  const posts = book.posts || [];
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -34,6 +36,10 @@ const SingleBook = () => {
 
   useEffect(() => {
     dispatch(fetchSingleBook(id));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getReviews("book", id));
   }, [dispatch]);
 
   //update status book
@@ -211,17 +217,25 @@ const SingleBook = () => {
             <ReviewForm product={book.productType} />
             <hr />
             <p style={{ textAlign: "left" }}>Reviews:</p>
-            <Card
-              border="info"
-              style={{ width: "15rem", backgroundColor: "#FF5454" }}
-            >
-              {posts.map((post) => (
-                <Row key={post.bookId}>
-                  <p>{post.content}</p>
-                  <p>{timeAgo.format(new Date(post.updatedAt))}</p>
+            {reviews
+              .slice(0)
+              .reverse()
+              .map((review) => (
+                <Row key={review.id}>
+                  <Card border="info" style={{ width: "15rem" }}>
+                    <Card.Title>
+                      {review.user.firstName} {review.user.lastName}
+                    </Card.Title>
+                    <Card.Text>{review.content}</Card.Text>
+                    <Card.Text>
+                      <RatedStars rating={review.rating} />
+                    </Card.Text>
+                    <Card.Text>
+                      {timeAgo.format(new Date(review.updatedAt))}
+                    </Card.Text>
+                  </Card>
                 </Row>
               ))}
-            </Card>
           </div>
         </Col>
       </Row>

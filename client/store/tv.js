@@ -16,7 +16,7 @@ export const fetchSingleTv = (id) => {
   return async (dispatch) => {
     try {
       const { data: tv } = await axios.get(`/api/tvs/${id}`);
-      const { data: rating } = await axios.get(`/api/starRatings/tvs/${id}`);
+      const { data: rating } = await axios.get(`/api/reviews/avgStarTv/${id}`);
       tv.starRating = rating;
       dispatch(getSingleTv(tv));
     } catch (error) {

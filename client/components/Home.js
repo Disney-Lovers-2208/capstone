@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { getActivityLog } from "../store/activityLog";
-import { getAllUsers } from "../store/users";
 import ActivityCard from "./activityLog/ActivityCard";
 /**
  * COMPONENT
@@ -22,13 +21,18 @@ export const Home = () => {
   return (
     <div className="activity-log">
       <Row xs={3} md={3}>
-        {activityLog.length
-          ? activityLog.map((activity, index) => (
+        {activityLog.length ? (
+          activityLog
+            .slice(0)
+            .reverse()
+            .map((activity, index) => (
               <Col key={index}>
                 <ActivityCard activity={activity} />
               </Col>
             ))
-          : null}
+        ) : (
+          <h1>No friend activity sorry</h1>
+        )}
       </Row>
     </div>
   );
