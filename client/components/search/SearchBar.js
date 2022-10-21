@@ -7,6 +7,7 @@ import AllProductsTabs from "./AllProductsTabs";
 import { fetchTvShows } from "../../store/tvshows";
 import { fetchMovies } from "../../store/movies";
 import { fetchBooks } from "../../store/books";
+import { getAllUsers } from "../../store/users";
 
 export const SearchBar = () => {
   const [search, setSearch] = useState("");
@@ -16,7 +17,7 @@ export const SearchBar = () => {
     if(evt.key === 13) {
       console.log('Pressed enter');
     }
-  }
+  };
 
   useEffect(() => {
     window.addEventListener('keydown', evt => {
@@ -25,7 +26,7 @@ export const SearchBar = () => {
         handleKeyDown(evt)
       }
     })
-  })
+  });
 
   useEffect(() => {
     dispatch(fetchTvShows());
@@ -37,6 +38,10 @@ export const SearchBar = () => {
 
   useEffect(() => {
     dispatch(fetchBooks());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getAllUsers());
   }, [dispatch]);
 
 

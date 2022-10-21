@@ -1,30 +1,46 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Col, Row } from "react-bootstrap";
-import { getAllUsers } from "../../store/users";
+import { Container, Col, Row } from "react-bootstrap";
+import { Pagination } from "./Pagination";
 import UserCard from "../productCards/UserCard";
 
 export const AllUsers = () => {
   const users = useSelector((state) => state.users);
-  const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [usersPerPage] = useState(10);
 
-  useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch]);
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
-    <div className="all-items">
-      <Row xs={3} md={3}>
-        {users.length
-          ? users.map((user) => (
-              <Col key={user.id}>
-                <UserCard user={user} />
-              </Col>
-            ))
-          : null}
+    <Container>
+      <Row>
+        <Col className="all-users">
+          <Row>
+            <Pagination 
+              itemsPerPage={usersPerPage}
+              totalItems={users.length}
+              paginate={paginate}
+            />
+          </Row>
+          <Row>
+            <UserCard users={currentUsers} />
+          </Row>
+          <Row>
+            <Pagination 
+              itemsPerPage={usersPerPage}
+              totalItems={users.length}
+              paginate={paginate}
+            />
+          </Row>
+        </Col>
       </Row>
-    </div>
+    </Container>
   );
 };
 
