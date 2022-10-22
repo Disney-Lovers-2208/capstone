@@ -4,6 +4,8 @@ import RatedStars from "./RatedStars";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import { Link } from "react-router-dom";
+import { BsFillBookFill } from "react-icons/bs";
+
 TimeAgo.addLocale(en);
 
 const timeAgo = new TimeAgo("en-US");
@@ -17,7 +19,7 @@ export const ActivityCard = (props) => {
       <>
         {activity.book ? (
           <Container className="activity-log-card">
-            <Col className="card-col">
+            <Col className="card-col" style={{ borderRadius: "15px" }}>
               <Row>
                 <Col lg={4} sm={12} className="d-none d-sm-block">
                   <Link to={`/books/${activity.book.id}`}>
@@ -55,6 +57,9 @@ export const ActivityCard = (props) => {
                     {activity.content}
                   </Card.Text>
                 </Col>
+                <div className="innerdiv">
+                  <BsFillBookFill size={30} color="#03045E" />
+                </div>
               </Row>
             </Col>
           </Container>

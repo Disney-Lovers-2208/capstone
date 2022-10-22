@@ -8,7 +8,7 @@ const SimpleSlider = (props) => {
 
   let settings = {
     dots: true,
-    infinite: true,
+    infinite: items.length > 10,
     speed: 500,
     slidesToShow: 10,
     slidesToScroll: 10,
@@ -19,7 +19,7 @@ const SimpleSlider = (props) => {
         settings: {
           slidesToShow: 7,
           slidesToScroll: 7,
-          infinite: true,
+          infinite: items.length > 7,
           dots: true,
         },
       },
@@ -28,7 +28,7 @@ const SimpleSlider = (props) => {
         settings: {
           slidesToShow: 5,
           slidesToScroll: 5,
-          infinite: true,
+          infinite: items.length > 5,
           dots: true,
         },
       },
@@ -37,7 +37,7 @@ const SimpleSlider = (props) => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-          infinite: true,
+          infinite: items.length > 3,
           dots: true,
         },
       },
@@ -46,7 +46,7 @@ const SimpleSlider = (props) => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          infinite: true,
+          infinite: items.length > 2,
           dots: true,
         },
       },
