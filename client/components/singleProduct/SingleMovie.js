@@ -187,7 +187,7 @@ const SingleMovie = () => {
               allowFraction={true}
               fillColor="#f1a545"
             />
-            (number of reviews) Reviews
+            {reviews.length} Reviews
             <p>{description}</p>
             <SelectDropDown
               status={status}

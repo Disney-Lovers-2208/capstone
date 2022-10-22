@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Row, Col } from "react-bootstrap";
+import ScrollToTop from "react-scroll-to-top";
 import { getActivityLog } from "../store/activityLog";
 import ActivityCard from "./activityLog/ActivityCard";
-/**
- * COMPONENT
- */
+
 export const Home = () => {
   const username = useSelector((state) => state.auth.username);
   const userId = useSelector((state) => state.auth.id);
@@ -24,30 +22,31 @@ export const Home = () => {
     dispatch(getActivityLog(userId, helperFunc));
   }, [dispatch]);
 
+  const scrollToTop = auth.books.filter(
+    (book) => book.user_book.favorite === true
+  )[0];
+
   return (
     <div>
-      {loading ? (
-        <div className="loader-container">
-          <div className="spinner"></div>
-        </div>
-      ) : (
-        <div className="activity-log">
-          <Row xs={3} md={3}>
-            {activityLog.length ? (
-              activityLog
-                .slice(0)
-                .reverse()
-                .map((activity, index) => (
-                  <Col key={index}>
-                    <ActivityCard activity={activity} />
-                  </Col>
-                ))
-            ) : (
-              <h1>No friend activity sorry</h1>
-            )}
-          </Row>
-        </div>
-      )}
+      <ScrollToTop smooth color="#6f00ff" />
+      <div className="activity-log">
+        <h2 style={{ textAlign: "center", fontWeight: 600, color: "#03045E" }}>
+          {" "}
+          Friend Activity
+        </h2>
+        {activityLog.length ? (
+          activityLog
+            .slice(0)
+            .reverse()
+            .map((activity, index) => (
+              <div key={index}>
+                <ActivityCard activity={activity} />
+              </div>
+            ))
+        ) : (
+          <h1>No friend activity sorry</h1>
+        )}
+      </div>
     </div>
   );
 };

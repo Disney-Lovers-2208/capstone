@@ -23,7 +23,7 @@ import FriendsProfilePage from "./components/profile/FriendsProfilePage";
 import UserProfilePage from "./components/profile/UserProfilePage";
 import AddProduct from "./components/search/AddProduct";
 import ReviewForm from "./components/singleProduct/ReviewForm";
-
+import LandingPage from "./components/LandingPage";
 
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.id);
@@ -40,7 +40,11 @@ const App = () => {
 
   return (
     <div>
-      <NavigationBar handleClick={handleClick} isLoggedIn={isLoggedIn} />
+      <NavigationBar
+        handleClick={handleClick}
+        className="fixed-top"
+        isLoggedIn={isLoggedIn}
+      />
       {isLoggedIn ? (
         <Routes>
           <Route exact path="/" element={<Home />} />
