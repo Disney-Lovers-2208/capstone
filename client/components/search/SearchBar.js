@@ -13,19 +13,19 @@ export const SearchBar = () => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
-  const handleKeyDown = evt => {
-    if(evt.key === 13) {
-      console.log('Pressed enter');
+  const handleKeyDown = (evt) => {
+    if (evt.key === 13) {
+      console.log("Pressed enter");
     }
   };
 
   useEffect(() => {
-    window.addEventListener('keydown', evt => {
-      if(evt.key === 'Enter') {
-        console.log('You pressed enter');
-        handleKeyDown(evt)
+    window.addEventListener("keydown", (evt) => {
+      if (evt.key === "Enter") {
+        console.log("You pressed enter");
+        handleKeyDown(evt);
       }
-    })
+    });
   });
 
   useEffect(() => {
@@ -44,7 +44,6 @@ export const SearchBar = () => {
     dispatch(getAllUsers());
   }, [dispatch]);
 
-
   return (
     <>
       <Row>
@@ -56,7 +55,12 @@ export const SearchBar = () => {
             value={search}
             className="search-bar"
           />
-          <Button onKeyDown={handleKeyDown} as={Link} to={`/searchfor/${search}`} style={{ padding: '6px', borderRadius: '10px' }}>
+          <Button
+            onKeyDown={handleKeyDown}
+            as={Link}
+            to={`/searchfor/${search}`}
+            style={{ padding: "6px", borderRadius: "10px" }}
+          >
             <GoSearch />
           </Button>
         </Col>
