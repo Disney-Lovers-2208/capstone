@@ -18,11 +18,13 @@ const _setAuth = (auth) => ({ type: SET_AUTH, auth });
 export const me = () => async (dispatch) => {
   const token = window.localStorage.getItem(TOKEN);
   if (token) {
+    dispatch({ type: "INC" });
     const res = await axios.get("/auth/me", {
       headers: {
         authorization: token,
       },
     });
+    dispatch({ type: "DEC" });
     return dispatch(_setAuth(res.data));
   }
 };
@@ -66,19 +68,11 @@ export const removeFriend = (friendId) => {
 };
 
 export const authenticate =
-  (
-    username,
-    password,
-    method,
-    email,
-    firstName,
-    lastName,
-    navigate,
-    helperFunc
-  ) =>
+  (username, password, method, email, firstName, lastName, navigate) =>
   async (dispatch) => {
     try {
       let res;
+      dispatch({ type: "INC" });
       if (method === "login") {
         res = await axios.post("/auth/login", { username, password });
         window.localStorage.setItem(TOKEN, res.data.token);
@@ -96,8 +90,9 @@ export const authenticate =
         dispatch(me());
         navigate("/profile");
       }
-      helperFunc();
+      dispatch({ type: "DEC" });
     } catch (authError) {
+      dispatch({ type: "DEC" });
       return dispatch(_setAuth({ error: authError }));
     }
   };

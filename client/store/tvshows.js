@@ -22,7 +22,9 @@ const createTv = (tv) => {
 export const fetchCreateTv = (tv) => {
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data: created } = await axios.post(`/api/tvs`, tv);
+      dispatch({ type: "DEC" });
       dispatch(createTv(created));
     } catch (error) {
       return error;
@@ -32,9 +34,12 @@ export const fetchCreateTv = (tv) => {
 
 export const fetchTvShows = () => async (dispatch) => {
   try {
+    dispatch({ type: "INC" });
     const { data } = await axios.get("/api/tvs");
+    dispatch({ type: "DEC" });
     dispatch(setTvShows(data));
   } catch (error) {
+    dispatch({ type: "DEC" });
     return error;
   }
 };

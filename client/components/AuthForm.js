@@ -14,34 +14,19 @@ const AuthForm = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const error = useSelector((state) => state.auth.error);
-  const [loading, setLoading] = useState(false);
-
-  function helperFunc() {
-    setLoading(false);
-  }
+  const count = useSelector((state) => state.count);
 
   const handleLoginSubmit = (evt) => {
     evt.preventDefault();
     const formName = "login";
     const username = evt.target.username.value;
     const password = evt.target.password.value;
-    setLoading(true);
     dispatch(
-      authenticate(
-        username,
-        password,
-        formName,
-        null,
-        null,
-        null,
-        navigate,
-        helperFunc
-      )
+      authenticate(username, password, formName, null, null, null, navigate)
     );
   };
 
   const handleSignupSubmit = (evt) => {
-    setLoading(true);
     evt.preventDefault();
     const formName = "signup";
     const username = evt.target.username.value;
@@ -57,8 +42,7 @@ const AuthForm = (props) => {
         email,
         firstName,
         lastName,
-        navigate,
-        helperFunc
+        navigate
       )
     );
   };
@@ -66,7 +50,7 @@ const AuthForm = (props) => {
   if (location === "/signup") {
     return (
       <div>
-        {loading ? (
+        {count ? (
           <div className="loader-container">
             <div className="spinner"></div>
           </div>
@@ -142,7 +126,7 @@ const AuthForm = (props) => {
   } else {
     return (
       <div>
-        {loading ? (
+        {count ? (
           <div className="loader-container">
             <div className="spinner"></div>
           </div>
