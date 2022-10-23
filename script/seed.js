@@ -8,8 +8,6 @@ const {
     Movie,
     Book,
     Tv,
-    Post,
-    StarRating,
     Review,
     Connection,
     User_Movie,
@@ -20,10 +18,15 @@ const {
 
 const axios = require("axios");
 
-/**
- * seed - this function clears the database, updates tables to
- *      match the models, and populates the database.
- */
+function capitalizeName(string) {
+  const text = string
+    .toLowerCase()
+    .split(" ")
+    .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+    .join(" ");
+
+  return text;
+}
 
 async function fetchMovies() {
   const { data: dataZero } = await axios.get(
@@ -53,7 +56,6 @@ async function fetchMovies() {
   const { data: dataEight } = await axios.get(
     "https://api.themoviedb.org/3/movie/top_rated?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=8"
   );
-
   const { data: dataNine } = await axios.get(
     "https://api.themoviedb.org/3/movie/popular?api_key=4ef60b9d635f533695cbcaccb6603a57&language=en-US&page=1"
   );
@@ -112,21 +114,24 @@ async function fetchMovies() {
       }
     }
   }
-
   return concatArr;
 }
 
 async function mapMovies() {
   const moviesArr = await fetchMovies();
+  let movieTitles = [];
   for (let i = 0; i < moviesArr.length; i++) {
-    await Promise.all([
-      Movie.create({
-        title: moviesArr[i]["title"],
-        description: moviesArr[i]["overview"],
-        genre: moviesArr[i]["genre_ids"],
-        imageUrl: `https://image.tmdb.org/t/p/original/${moviesArr[i]["poster_path"]}`,
-      }),
-    ]);
+    if (!movieTitles.includes(moviesArr[i]["title"])) {
+      await Promise.all([
+        Movie.create({
+          title: moviesArr[i]["title"],
+          description: moviesArr[i]["overview"],
+          genre: moviesArr[i]["genre_ids"],
+          imageUrl: `https://image.tmdb.org/t/p/original/${moviesArr[i]["poster_path"]}`,
+        }),
+      ]);
+      movieTitles.push(moviesArr[i]["title"]);
+    }
   }
 }
 
@@ -137,15 +142,19 @@ async function fetchTvShows() {
 
 async function mapTvShows() {
   const tvShowArr = await fetchTvShows();
+  let tvTitles = [];
   for (let i = 0; i < tvShowArr.length; i++) {
-    await Promise.all([
-      Tv.create({
-        title: tvShowArr[i]["name"],
-        description: tvShowArr[i]["summary"],
-        genre: tvShowArr[i]["genres"],
-        imageUrl: tvShowArr[i]["image"]["medium"],
-      }),
-    ]);
+    if (!tvTitles.includes(tvShowArr[i]["name"])) {
+      await Promise.all([
+        Tv.create({
+          title: tvShowArr[i]["name"],
+          description: tvShowArr[i]["summary"],
+          genre: tvShowArr[i]["genres"],
+          imageUrl: tvShowArr[i]["image"]["medium"],
+        }),
+      ]);
+      tvTitles.push(tvShowArr[i]["name"]);
+    }
   }
 }
 
@@ -160,17 +169,22 @@ async function fetchBooks() {
 async function mapBooks() {
   const bookArr = await fetchBooks();
   let listList = bookArr.results.lists;
+  let bookTitles = [];
   for (let i = 0; i < listList.length; i++) {
     let bookList = listList[i].books;
     for (let i = 0; i < bookList.length; i++) {
-      await Promise.all([
-        Book.create({
-          title: bookList[i]["title"].toLowerCase(),
-          author: bookList[i]["author"],
-          description: bookList[i]["description"],
-          imageUrl: bookList[i]["book_image"],
-        }),
-      ]);
+      if (!bookTitles.includes(bookList[i]["title"].toLowerCase())) {
+        let capitalizedTitle = capitalizeName(bookList[i]["title"]);
+        await Promise.all([
+          Book.create({
+            title: capitalizedTitle,
+            author: bookList[i]["author"],
+            description: bookList[i]["description"],
+            imageUrl: bookList[i]["book_image"],
+          }),
+        ]);
+        bookTitles.push(bookList[i]["title"].toLowerCase());
+      }
     }
   }
 }
@@ -280,73 +294,72 @@ async function seed() {
     }
   }
 
-  //user_movie connections
-  for (let i = 1; i <= 3; i++) {
-    let done = [];
-    for (let j = 0; j <= 15; j++) {
-      let movieIdNum = Math.floor(Math.random() * 279) + 1;
-      if (done.includes(movieIdNum)) {
-        while (done.includes(movieIdNum)) {
-          movieIdNum = Math.floor(Math.random() * 279);
-        }
-      } else {
-        done.push(movieIdNum);
-      }
-      await Promise.all([
-        User_Movie.create({
-          userId: i,
-          movieId: movieIdNum,
-          featured: true,
-        }),
-      ]);
-    }
-  }
+  // //user_movie connections
+  // for (let i = 1; i <= 3; i++) {
+  //   let done = [];
+  //   for (let j = 0; j <= 15; j++) {
+  //     let movieIdNum = Math.floor(Math.random() * 279) + 1;
+  //     if (done.includes(movieIdNum)) {
+  //       while (done.includes(movieIdNum)) {
+  //         movieIdNum = Math.floor(Math.random() * 279);
+  //       }
+  //     } else {
+  //       done.push(movieIdNum);
+  //     }
+  //     await Promise.all([
+  //       User_Movie.create({
+  //         userId: i,
+  //         movieId: movieIdNum,
+  //         featured: true,
+  //       }),
+  //     ]);
+  //   }
+  // }
 
-  //user_books connections
-  for (let i = 1; i <= 3; i++) {
-    let done = [];
-    for (let j = 0; j <= 15; j++) {
-      let bookIdNum = Math.floor(Math.random() * 229) + 1;
-      if (done.includes(bookIdNum)) {
-        do {
-          bookIdNum = Math.floor(Math.random() * 229);
-        } while (done.includes(bookIdNum));
-      } else {
-        done.push(bookIdNum);
-      }
-      await Promise.all([
-        User_Book.create({
-          userId: i,
-          bookId: bookIdNum,
-          featured: true,
-        }),
-      ]);
-    }
-  }
+  // //user_books connections
+  // for (let i = 1; i <= 3; i++) {
+  //   let done = [];
+  //   for (let j = 0; j <= 15; j++) {
+  //     let bookIdNum = Math.floor(Math.random() * 229) + 1;
+  //     if (done.includes(bookIdNum)) {
+  //       do {
+  //         bookIdNum = Math.floor(Math.random() * 229);
+  //       } while (done.includes(bookIdNum));
+  //     } else {
+  //       done.push(bookIdNum);
+  //     }
+  //     await Promise.all([
+  //       User_Book.create({
+  //         userId: i,
+  //         bookId: bookIdNum,
+  //         featured: true,
+  //       }),
+  //     ]);
+  //   }
+  // }
 
-  //user_tv connections
-  for (let i = 1; i <= 3; i++) {
-    let done = [];
-    for (let j = 0; j <= 15; j++) {
-      let tvIdNum = Math.floor(Math.random() * 239) + 1;
-      if (done.includes(tvIdNum)) {
-        while (done.includes(tvIdNum)) {
-          tvIdNum = Math.floor(Math.random() * 239) + 1;
-        }
-      } else {
-        done.push(tvIdNum);
-      }
-      await Promise.all([
-        User_Tv.create({
-          userId: i,
-          tvId: tvIdNum,
-          featured: true,
-        }),
-      ]);
-    }
-  }
+  // //user_tv connections
+  // for (let i = 1; i <= 3; i++) {
+  //   let done = [];
+  //   for (let j = 0; j <= 15; j++) {
+  //     let tvIdNum = Math.floor(Math.random() * 239) + 1;
+  //     if (done.includes(tvIdNum)) {
+  //       while (done.includes(tvIdNum)) {
+  //         tvIdNum = Math.floor(Math.random() * 239) + 1;
+  //       }
+  //     } else {
+  //       done.push(tvIdNum);
+  //     }
+  //     await Promise.all([
+  //       User_Tv.create({
+  //         userId: i,
+  //         tvId: tvIdNum,
+  //         featured: true,
+  //       }),
+  //     ]);
+  //   }
+  // }
 
-  // console.log("console of user magic", Object.keys(users[0].__proto__));
   console.log(`seeded successfully`);
 }
 
