@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { Container, Col, Row, Button, Form } from "react-bootstrap";
+import { Col, Row, Button } from "react-bootstrap";
 import { GoSearch } from "react-icons/go";
 import { fetchTvShows } from "../../store/tvshows";
 import { fetchMovies } from "../../store/movies";
@@ -42,14 +42,16 @@ export const SearchBar = () => {
     <>
       <Row>
         <Col style={{ display: "flex", flexDirection: "row" }}>
-          <input
-            type="search"
-            placeholder="Search for..."
-            onChange={(evt) => setSearch(evt.target.value)}
-            value={search}
-            className="search-bar"
-          />
+            <input
+              type="search"
+              placeholder="Search for..."
+              onChange={(evt) => setSearch(evt.target.value)}
+              value={search}
+              className="search-bar"
+              onKeyDown={handleKeyDown}
+            />
           <Button
+            type="submit"
             variant="light"
             as={Link}
             to={`/searchfor/${search}`}
