@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { Col, Row } from "react-bootstrap";
-import { getAllUsers } from "../../store/users";
+import { Container, Col, Row } from "react-bootstrap";
+import { Pagination } from "./Pagination";
 import UserCard from "../productCards/UserCard";
 
 export const AllUsers = () => {
   const users = useSelector((state) => state.users);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [usersPerPage] = useState(10);
   const count = useSelector((state) => state.count);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch]);
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div>
