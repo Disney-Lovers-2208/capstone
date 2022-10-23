@@ -23,6 +23,7 @@ export const SearchBar = () => {
     window.addEventListener("keydown", (evt) => {
       if (evt.key === "Enter") {
         console.log("You pressed enter");
+        window.location.href = `/searchfor/${search}`;
         handleKeyDown(evt);
       }
     });
