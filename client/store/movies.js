@@ -19,16 +19,21 @@ export const createMovie = (movie) => {
 
 // thunks:
 export const fetchMovies = () => async (dispatch) => {
+  dispatch({ type: "INC" });
   const { data } = await axios.get("/api/movies");
+  dispatch({ type: "DEC" });
   dispatch(setMovies(data));
 };
 
 export const fetchCreateMovie = (movie) => {
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data: created } = await axios.post(`/api/movies`, movie);
+      dispatch({ type: "DEC" });
       dispatch(createMovie(created));
     } catch (error) {
+      dispatch({ type: "DEC" });
       return error;
     }
   };

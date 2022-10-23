@@ -6,6 +6,7 @@ import TvCard from "../productCards/TvCard";
 
 export const AllTvShows = () => {
   const tvshows = useSelector((state) => state.tvs);
+  const count = useSelector((state) => state.count);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [showsPerPage] = useState(20);
@@ -20,30 +21,38 @@ export const AllTvShows = () => {
   };
 
   return (
-    <Container fluid className="all-movies">
-      <Row>
-        <Col className="all-movies">
-          <Row>{/* <Genres movies={movies} /> */}</Row>
+    <div>
+      {count ? (
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+      ) : (
+        <Container fluid className="all-movies">
           <Row>
-            <Pagination
-              itemsPerPage={showsPerPage}
-              totalItems={tvshows.length}
-              paginate={paginate}
-            />
+            <Col className="all-movies">
+              <Row>{/* <Genres movies={movies} /> */}</Row>
+              <Row>
+                <Pagination
+                  itemsPerPage={showsPerPage}
+                  totalItems={tvshows.length}
+                  paginate={paginate}
+                />
+              </Row>
+              <Row>
+                <TvCard tvShow={currentTvs} />
+              </Row>
+              <Row>
+                <Pagination
+                  itemsPerPage={showsPerPage}
+                  totalItems={tvshows.length}
+                  paginate={paginate}
+                />
+              </Row>
+            </Col>
           </Row>
-          <Row>
-            <TvCard tvShow={currentTvs} />
-          </Row>
-          <Row>
-            <Pagination
-              itemsPerPage={showsPerPage}
-              totalItems={tvshows.length}
-              paginate={paginate}
-            />
-          </Row>
-        </Col>
-      </Row>
-    </Container>
+        </Container>
+      )}
+    </div>
   );
 };
 

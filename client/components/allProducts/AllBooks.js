@@ -6,6 +6,7 @@ import BookCard from "../productCards/BookCard";
 
 export const AllBooks = () => {
   const books = useSelector((state) => state.books);
+  const count = useSelector((state) => state.count);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [booksPerPage] = useState(20);
@@ -20,30 +21,62 @@ export const AllBooks = () => {
   };
 
   return (
-    <Container fluid className="all-movies">
-      <Row>
-        <Col className="all-movies">
-          <Row>{/* <Genres movies={movies} /> */}</Row>
+    <div>
+      {count ? (
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+      ) : (
+        <Container fluid className="all-movies">
           <Row>
-            <Pagination
-              itemsPerPage={booksPerPage}
-              totalItems={books.length}
-              paginate={paginate}
-            />
+            <Col className="all-movies">
+              <Row>{/* <Genres movies={movies} /> */}</Row>
+              <Row>
+                <Pagination
+                  itemsPerPage={booksPerPage}
+                  totalItems={books.length}
+                  paginate={paginate}
+                />
+              </Row>
+              <Row>
+                <BookCard books={currentBooks} />
+              </Row>
+              <Row>
+                <Pagination
+                  itemsPerPage={booksPerPage}
+                  totalItems={books.length}
+                  paginate={paginate}
+                />
+              </Row>
+            </Col>
           </Row>
-          <Row>
-            <BookCard books={currentBooks} />
-          </Row>
-          <Row>
-            <Pagination
-              itemsPerPage={booksPerPage}
-              totalItems={books.length}
-              paginate={paginate}
-            />
-          </Row>
-        </Col>
-      </Row>
-    </Container>
+        </Container>
+      )}
+      <Container fluid className="all-movies">
+        <Row>
+          <Col className="all-movies">
+            <Row>{/* <Genres movies={movies} /> */}</Row>
+            <Row>
+              <Pagination
+                itemsPerPage={booksPerPage}
+                totalItems={books.length}
+                paginate={paginate}
+              />
+            </Row>
+            <Row>
+              <BookCard books={currentBooks} />
+            </Row>
+            <Row>
+              <Pagination
+                itemsPerPage={booksPerPage}
+                totalItems={books.length}
+                paginate={paginate}
+              />
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

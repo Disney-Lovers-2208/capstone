@@ -14,6 +14,7 @@ const AuthForm = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const error = useSelector((state) => state.auth.error);
+  const count = useSelector((state) => state.count);
 
   const handleLoginSubmit = (evt) => {
     evt.preventDefault();
@@ -48,95 +49,127 @@ const AuthForm = (props) => {
 
   if (location === "/signup") {
     return (
-      <Container fluid className="form-body">
-        <Row>
-          <Col lg={6} className="side-design d-none d-sm-block">
-            <img src="/images/readingPerson.svg" />
-          </Col>
-          <Col lg={6} className="input">
-            <div>
-              <form onSubmit={handleSignupSubmit} name={location?.slice(1)}>
-                <h2> Sign Up</h2>
+      <div>
+        {count ? (
+          <div className="loader-container">
+            <div className="spinner"></div>
+          </div>
+        ) : (
+          <Container fluid className="form-body">
+            <Row>
+              <Col lg={6} className="side-design d-none d-sm-block">
+                <img src="/images/readingPerson.svg" />
+              </Col>
+              <Col lg={6} className="input">
                 <div>
-                  <label htmlFor="email"></label>
-                  <input name="email" placeholder="email" type="text" />
-                </div>
-                <div>
-                  <label htmlFor="firstname"></label>
-                  <input
-                    name="firstname"
-                    placeholder="First Name"
-                    type="text"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="lastname"></label>
-                  <input name="lastname" placeholder="Last Name" type="text" />
-                </div>
-                <div>
-                  <label htmlFor="username"></label>
-                  <input name="username" placeholder="Username" type="text" />
-                </div>
-                <div>
-                  <label htmlFor="password"></label>
-                  <input
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                  />
-                </div>
-                <br />
-                <div>
-                  <button type="submit">Sign Up</button>
-                </div>
+                  <form onSubmit={handleSignupSubmit} name={location?.slice(1)}>
+                    <h2> Sign Up</h2>
+                    <div>
+                      <label htmlFor="email"></label>
+                      <input name="email" placeholder="email" type="text" />
+                    </div>
+                    <div>
+                      <label htmlFor="firstname"></label>
+                      <input
+                        name="firstname"
+                        placeholder="First Name"
+                        type="text"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="lastname"></label>
+                      <input
+                        name="lastname"
+                        placeholder="Last Name"
+                        type="text"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="username"></label>
+                      <input
+                        name="username"
+                        placeholder="Username"
+                        type="text"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="password"></label>
+                      <input
+                        name="password"
+                        placeholder="Password"
+                        type="password"
+                      />
+                    </div>
+                    <br />
+                    <div>
+                      <button type="submit">Sign Up</button>
+                    </div>
 
-                {error && error.response && <div> {error.response.data} </div>}
-              </form>
-              <div>
-                Already have an Account?
-                <Link to="/login">
-                  <button id="second-button">Login</button>
-                </Link>
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </Container>
+                    {error && error.response && (
+                      <div> {error.response.data} </div>
+                    )}
+                  </form>
+                  <div>
+                    Already have an Account?
+                    <Link to="/login">
+                      <button id="second-button">Login</button>
+                    </Link>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        )}
+      </div>
     );
   } else {
     return (
-      <Container fluid className="form-body">
-        <Row>
-          <Col lg={6} className="side-design d-none d-sm-block">
-            <img src="/images/watchingMovie.svg" />
-          </Col>
-          <Col>
-            <form onSubmit={handleLoginSubmit} name={location?.slice(1)}>
-              <h2>Login</h2>
-              <Col>
-                <label htmlFor="username"></label>
-                <input name="username" placeholder="Username" type="text" />
+      <div>
+        {count ? (
+          <div className="loader-container">
+            <div className="spinner"></div>
+          </div>
+        ) : (
+          <Container fluid className="form-body">
+            <Row>
+              <Col lg={6} className="side-design d-none d-sm-block">
+                <img src="/images/watchingMovie.svg" />
               </Col>
               <Col>
-                <label htmlFor="password"></label>
-                <input name="password" placeholder="Password" type="password" />
-              </Col>
-              <br />
-              <div>
-                <button type="submit">Login</button>
-              </div>
+                <form onSubmit={handleLoginSubmit} name={location?.slice(1)}>
+                  <h2>Login</h2>
+                  <Col>
+                    <label htmlFor="username"></label>
+                    <input name="username" placeholder="Username" type="text" />
+                  </Col>
+                  <Col>
+                    <label htmlFor="password"></label>
+                    <input
+                      name="password"
+                      placeholder="Password"
+                      type="password"
+                    />
+                  </Col>
+                  <br />
+                  <div>
+                    <button type="submit">Login</button>
+                  </div>
 
-              {error && error.response && <div> {error.response.data} </div>}
-            </form>
-            <div>
-              Don't have an Account?
-              <Link to="/signup">
-                <button id="second-button">Sign Up</button>
-              </Link>
-            </div>
-          </Col>
-        </Row>
-      </Container>
+                  {error && error.response && (
+                    <div> {error.response.data} </div>
+                  )}
+                </form>
+                <div>
+                  Don't have an Account?
+                  <Link to="/signup">
+                    <button id="second-button">Sign Up</button>
+                  </Link>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        )}
+      </div>
     );
   }
 };

@@ -13,13 +13,7 @@ export const SearchBar = () => {
 
   useEffect(() => {
     dispatch(fetchTvShows());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(fetchMovies());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(fetchBooks());
   }, [dispatch]);
 

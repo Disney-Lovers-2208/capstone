@@ -13,13 +13,16 @@ const getSingleBook = (book) => {
 export const fetchSingleBook = (id) => {
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data: book } = await axios.get(`/api/books/${id}`);
       const { data: rating } = await axios.get(
         `/api/reviews/avgStarBooks/${id}`
       );
       book.starRating = rating;
+      dispatch({ type: "DEC" });
       dispatch(getSingleBook(book));
     } catch (error) {
+      dispatch({ type: "DEC" });
       return error;
     }
   };

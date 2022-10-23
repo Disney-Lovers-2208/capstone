@@ -22,6 +22,7 @@ const SingleBook = () => {
   const auth = useSelector((state) => state.auth);
   const book = useSelector((state) => state.book);
   const reviews = useSelector((state) => state.reviews);
+  const count = useSelector((state) => state.count);
   const { imageUrl, title, description, starRating } = book;
   const userBook = useSelector((state) => state.userBook);
   const dispatch = useDispatch();
@@ -215,93 +216,101 @@ const SingleBook = () => {
   };
 
   return (
-    <Container fluid className="single-view">
-      <Row className="single-view-row">
-        <Col className="single-product-left" lg={6} sm={12}>
-          <img src={imageUrl} alt="book-image" />
-        </Col>
-        <Col className="single-product-info-right" lg={6} sm={12}>
-          <div className="info-container">
-            <h1>{title}</h1>
-            <Rating
-              readonly={true}
-              initialValue={starRating}
-              allowFraction={true}
-              fillColor="#f1a545"
-            />
-            {reviews.length} Reviews <p>{description}</p>
-            <SelectDropDown
-              status={status}
-              selectOptions={selectOptions}
-              selected={selected}
-              auth={auth}
-              id={id}
-            />
-            <Row className="single-product-button-row">
-              <Button onClick={handleFavoriteClick}>
-                {favorite === true ? (
-                  <> Remove as Favorite </>
-                ) : (
-                  <>
-                    <FaHeart /> Make Favorite
-                  </>
-                )}
-              </Button>
-              <Button onClick={handleFeaturedClick}>
-                {featured === true ? (
-                  <>Remove from Featured </>
-                ) : (
-                  <> Add to Featured </>
-                )}
-              </Button>
-            </Row>
-            <ReviewForm product={book.productType} />
-            <hr />
-            <p style={{ textAlign: "left" }}>Reviews:</p>
-            <Slider {...settings}>
-              {reviews
-                .slice(0)
-                .reverse()
-                .map((review) => (
-                  <Row key={review.id}>
-                    <Card
-                      style={{
-                        width: "15rem",
-                        height: "17rem",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Card.Img
-                        variant="top"
-                        src={review.user.image}
-                        alt="review-user0image"
-                        style={{
-                          width: "5rem",
-                          borderRadius: "100%",
-                          marginTop: "1rem",
-                        }}
-                      ></Card.Img>
-                      <Card.Title>
-                        {review.user.firstName} {review.user.lastName}
-                      </Card.Title>
-                      <Card.Text>
-                        <RatedStars rating={review.rating} />
-                      </Card.Text>
-                      <Card.Text
-                        style={{
-                          alignItem: "left",
-                        }}
-                      >
-                        {review.content}
-                      </Card.Text>
-                    </Card>
-                  </Row>
-                ))}
-            </Slider>
-          </div>
-        </Col>
-      </Row>
-    </Container>
+    <div>
+      {count ? (
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+      ) : (
+        <Container fluid className="single-view">
+          <Row className="single-view-row">
+            <Col className="single-product-left" lg={6} sm={12}>
+              <img src={imageUrl} alt="book-image" />
+            </Col>
+            <Col className="single-product-info-right" lg={6} sm={12}>
+              <div className="info-container">
+                <h1>{title}</h1>
+                <Rating
+                  readonly={true}
+                  initialValue={starRating}
+                  allowFraction={true}
+                  fillColor="#f1a545"
+                />
+                {reviews.length} Reviews <p>{description}</p>
+                <SelectDropDown
+                  status={status}
+                  selectOptions={selectOptions}
+                  selected={selected}
+                  auth={auth}
+                  id={id}
+                />
+                <Row className="single-product-button-row">
+                  <Button onClick={handleFavoriteClick}>
+                    {favorite === true ? (
+                      <> Remove as Favorite </>
+                    ) : (
+                      <>
+                        <FaHeart /> Make Favorite
+                      </>
+                    )}
+                  </Button>
+                  <Button onClick={handleFeaturedClick}>
+                    {featured === true ? (
+                      <>Remove from Featured </>
+                    ) : (
+                      <> Add to Featured </>
+                    )}
+                  </Button>
+                </Row>
+                <ReviewForm product={book.productType} />
+                <hr />
+                <p style={{ textAlign: "left" }}>Reviews:</p>
+                <Slider {...settings}>
+                  {reviews
+                    .slice(0)
+                    .reverse()
+                    .map((review) => (
+                      <Row key={review.id}>
+                        <Card
+                          style={{
+                            width: "15rem",
+                            height: "17rem",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Card.Img
+                            variant="top"
+                            src={review.user.image}
+                            alt="review-user0image"
+                            style={{
+                              width: "5rem",
+                              borderRadius: "100%",
+                              marginTop: "1rem",
+                            }}
+                          ></Card.Img>
+                          <Card.Title>
+                            {review.user.firstName} {review.user.lastName}
+                          </Card.Title>
+                          <Card.Text>
+                            <RatedStars rating={review.rating} />
+                          </Card.Text>
+                          <Card.Text
+                            style={{
+                              alignItem: "left",
+                            }}
+                          >
+                            {review.content}
+                          </Card.Text>
+                        </Card>
+                      </Row>
+                    ))}
+                </Slider>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      )}
+    </div>
   );
 };
 
