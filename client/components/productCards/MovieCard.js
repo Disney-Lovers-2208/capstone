@@ -7,12 +7,19 @@ export const MovieCard = (props) => {
   const { id, imageUrl, title } = movies;
 
   return (
-
     <Container fluid className="all-movies">
       {movies.map((movie) => (
-        <Card key={movie.id} style={{ width: "15rem", margin: "2rem" }}>
+        <Card
+          key={movie.id}
+          style={{ width: "15rem", margin: "2rem", border: "none" }}
+        >
           <Link to={`/movies/${movie.id}`} style={{ color: "inherit" }}>
-            <Card.Img className="card-img" variant="top" src={movie.imageUrl} />
+            <Card.Img
+              className="card-img"
+              style={{ borderRadius: "1rem" }}
+              variant="top"
+              src={movie.imageUrl}
+            />
           </Link>
         </Card>
       ))}
