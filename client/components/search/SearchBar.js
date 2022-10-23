@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import { GoSearch } from "react-icons/go";
-import AllProductsTabs from "./AllProductsTabs";
 import { fetchTvShows } from "../../store/tvshows";
 import { fetchMovies } from "../../store/movies";
 import { fetchBooks } from "../../store/books";
@@ -58,7 +57,6 @@ export const SearchBar = () => {
             <GoSearch />
           </Button>
         </Col>
-        <AllProductsTabs />
       </Row>
     </>
   );
