@@ -28,6 +28,12 @@ function capitalizeName(string) {
   return text;
 }
 
+function removeTags(string) {
+  let tagStart = string.indexOf("<");
+  let tagEnd = string.indexOf(">");
+  return string.slice(tagEnd + 1);
+}
+
 async function fetchMovies() {
   const { data: dataZero } = await axios.get(
     "https://api.themoviedb.org/4/list/1?api_key=4ef60b9d635f533695cbcaccb6603a57"
@@ -144,11 +150,13 @@ async function mapTvShows() {
   const tvShowArr = await fetchTvShows();
   let tvTitles = [];
   for (let i = 0; i < tvShowArr.length; i++) {
+    let description = tvShowArr[i]["summary"];
+    description = removeTags(description);
     if (!tvTitles.includes(tvShowArr[i]["name"])) {
       await Promise.all([
         Tv.create({
           title: tvShowArr[i]["name"],
-          description: tvShowArr[i]["summary"],
+          description: description,
           genre: tvShowArr[i]["genres"],
           imageUrl: tvShowArr[i]["image"]["medium"],
         }),
@@ -194,9 +202,12 @@ async function seed() {
   console.log("db synced!");
 
   // creating tv shows and movies
-  await mapTvShows();
   await mapMovies();
+  console.log("mapped movies");
   await mapBooks();
+  console.log("mapped books");
+  await mapTvShows();
+  console.log("mapped tv shows");
 
   // Creating Users
   const users = await Promise.all([
