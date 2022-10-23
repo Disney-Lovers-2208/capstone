@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
-import { Navbar, Nav } from "react-bootstrap";
-import { Row, Col, Container } from "react-bootstrap";
+import { Navbar, Nav, Row, Col } from "react-bootstrap";
 import { FiHome } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
-import SearchTabs from "./SearchTabs";
 import { MdOutlineRecommend } from "react-icons/md";
 import { GrLogout } from "react-icons/gr";
 
