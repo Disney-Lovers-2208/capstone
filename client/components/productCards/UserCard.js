@@ -1,24 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Card, Container } from "react-bootstrap";
+import { removeFriend } from "../../store/auth";
+import { useDispatch } from "react-redux";
 
-export const UserCard = (props) => {
-  const { user } = props;
-  const { id, firstName, lastName, image } = user;
+export const UserCard = ({ friend }) => {
+  const { id, firstName, lastName, image, username } = friend;
 
+  const dispatch = useDispatch();
   return (
     <Container className="all-users">
-      <Card
-        border="info"
-        style={{ width: "15rem", backgroundColor: "#FF5454" }}
-      >
-        <Card.Body>
-          <Link to={`/users/${id}`} style={{ color: "inherit" }}>
-            <Card.Img src={image}></Card.Img>
-            <Card.Title>
-              {firstName} {lastName}
-            </Card.Title>
-          </Link>
+      <Card className="friend-card">
+        <Card.Body style={{ textAlign: "center" }}>
+          <Card.Img src={image}></Card.Img>
+          <Card.Title>
+            {firstName} {lastName}
+          </Card.Title>
+          <Card.Title>{username}</Card.Title>
+          <button
+            onClick={() => {
+              event.stopPropagation();
+              dispatch(removeFriend(user.id));
+            }}
+          >
+            Remove Friend
+          </button>
         </Card.Body>
       </Card>
     </Container>
