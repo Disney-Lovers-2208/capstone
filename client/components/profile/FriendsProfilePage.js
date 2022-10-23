@@ -9,21 +9,16 @@ const FriendsProfilePage = () => {
   const { pathname } = useLocation();
   const userId = pathname.split("/").pop();
   const user = useSelector((state) => state.user);
+  const count = useSelector((state) => state.count);
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
-
-  function helperFunc() {
-    setLoading(false);
-  }
 
   useEffect(() => {
-    setLoading(true);
-    dispatch(fetchUser(userId, helperFunc));
+    dispatch(fetchUser(userId));
   }, [dispatch]);
 
   return (
     <div>
-      {loading ? (
+      {count ? (
         <div className="loader-container">
           <div className="spinner"></div>
         </div>

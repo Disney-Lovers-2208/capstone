@@ -29,26 +29,30 @@ export const me = () => async (dispatch) => {
   }
 };
 
-export const updateAuth =
-  (authId, authForm, navigate, helperFunc) => async (dispatch) => {
-    try {
-      const { data: auth } = await axios.put(`/api/users/${authId}`, authForm);
-      dispatch(_setAuth(auth));
-      helperFunc();
-      navigate("/profile");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export const updateAuth = (authId, authForm, navigate) => async (dispatch) => {
+  try {
+    dispatch({ type: "INC" });
+    const { data: auth } = await axios.put(`/api/users/${authId}`, authForm);
+    dispatch({ type: "DEC" });
+    dispatch(_setAuth(auth));
+    navigate("/profile");
+  } catch (error) {
+    dispatch({ type: "DEC" });
+    console.log(error);
+  }
+};
 
 export const addFriend = (friendId) => {
   return async (dispatch, getState) => {
     try {
+      dispatch({ type: "INC" });
       const { data: updatedUser } = await axios.post(
         `/api/friends/${getState().auth.id}/${friendId}`
       );
+      dispatch({ type: "DEC" });
       dispatch(_setAuth(updatedUser));
     } catch (error) {
+      dispatch({ type: "DEC" });
       return error;
     }
   };
@@ -57,11 +61,14 @@ export const addFriend = (friendId) => {
 export const removeFriend = (friendId) => {
   return async (dispatch, getState) => {
     try {
+      dispatch({ type: "INC" });
       const { data: updatedUser } = await axios.delete(
         `/api/friends/${getState().auth.id}/${friendId}`
       );
+      dispatch({ type: "DEC" });
       dispatch(_setAuth(updatedUser));
     } catch (error) {
+      dispatch({ type: "DEC" });
       return error;
     }
   };

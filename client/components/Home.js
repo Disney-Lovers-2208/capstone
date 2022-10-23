@@ -5,21 +5,14 @@ import { getActivityLog } from "../store/activityLog";
 import ActivityCard from "./activityLog/ActivityCard";
 
 export const Home = () => {
-  const username = useSelector((state) => state.auth.username);
   const userId = useSelector((state) => state.auth.id);
-  const users = useSelector((state) => state.users);
   let auth = useSelector((state) => state.auth);
+  const count = useSelector((state) => state.count);
   let activityLog = useSelector((state) => state.activityLog);
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
-
-  function helperFunc() {
-    setLoading(false);
-  }
 
   useEffect(() => {
-    setLoading(true);
-    dispatch(getActivityLog(userId, helperFunc));
+    dispatch(getActivityLog(userId));
   }, [dispatch]);
 
   const scrollToTop = auth.books.filter(
@@ -28,25 +21,35 @@ export const Home = () => {
 
   return (
     <div>
-      <ScrollToTop smooth color="#6f00ff" />
-      <div className="activity-log">
-        <h2 style={{ textAlign: "center", fontWeight: 600, color: "#03045E" }}>
-          {" "}
-          Friend Activity
-        </h2>
-        {activityLog.length ? (
-          activityLog
-            .slice(0)
-            .reverse()
-            .map((activity, index) => (
-              <div key={index}>
-                <ActivityCard activity={activity} />
-              </div>
-            ))
-        ) : (
-          <h1>No friend activity sorry</h1>
-        )}
-      </div>
+      {count ? (
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+      ) : (
+        <div>
+          <ScrollToTop smooth color="#6f00ff" />
+          <div className="activity-log">
+            <h2
+              style={{ textAlign: "center", fontWeight: 600, color: "#03045E" }}
+            >
+              {" "}
+              Friend Activity
+            </h2>
+            {activityLog.length ? (
+              activityLog
+                .slice(0)
+                .reverse()
+                .map((activity, index) => (
+                  <div key={index}>
+                    <ActivityCard activity={activity} />
+                  </div>
+                ))
+            ) : (
+              <h1>No friend activity sorry</h1>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

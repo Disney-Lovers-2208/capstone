@@ -27,6 +27,7 @@ export const fetchCreateTv = (tv) => {
       dispatch({ type: "DEC" });
       dispatch(createTv(created));
     } catch (error) {
+      dispatch({ type: "DEC" });
       return error;
     }
   };

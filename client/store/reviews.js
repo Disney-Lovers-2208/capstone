@@ -16,11 +16,14 @@ const _getReviews = (reviews) => {
 export const getReviews = (productType, id) => {
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data: reviews } = await axios.get(
         `/api/reviews/${productType}/${id}`
       );
+      dispatch({ type: "DEC" });
       dispatch(_getReviews(reviews));
     } catch (error) {
+      dispatch({ type: "DEC" });
       return error;
     }
   };
@@ -29,9 +32,12 @@ export const getReviews = (productType, id) => {
 export const createReview = (review, productType, id) => {
   return async (dispatch) => {
     try {
-      const { data: created } = await axios.post(`/api/reviews`, review);
+      dispatch({ type: "INC" });
+      await axios.post(`/api/reviews`, review);
+      dispatch({ type: "DEC" });
       dispatch(getReviews(productType, id));
     } catch (error) {
+      dispatch({ type: "DEC" });
       return error;
     }
   };

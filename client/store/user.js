@@ -18,12 +18,13 @@ const _updateUser = (user) => ({
 });
 
 // THUNK CREATOR
-export const fetchUser = (userId, helperFunc) => {
+export const fetchUser = (userId) => {
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data: user } = await axios.get(`/api/users/${userId}`);
+      dispatch({ type: "DEC" });
       dispatch(setUser(user));
-      helperFunc();
     } catch (error) {
       return error;
     }

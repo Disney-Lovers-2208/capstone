@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 export function Edit(props) {
   const auth = useSelector((state) => state.auth);
   const authId = useSelector((state) => state.auth.id);
+  const count = useSelector((state) => state.count);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -17,7 +18,6 @@ export function Edit(props) {
   const [bio, setBio] = useState(auth.bio);
   const [image, setImage] = useState(auth.image);
   const [bannerImage, setBannerImage] = useState(auth.bannerImage);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setFirstName(auth.firstName);
@@ -37,27 +37,21 @@ export function Edit(props) {
     auth.bannerImage,
   ]);
 
-  function helperFunc() {
-    setLoading(false);
-  }
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
     alert("Submitting form");
-    setLoading(true);
     dispatch(
       updateAuth(
         authId,
         { firstName, lastName, email, username, bio, image, bannerImage },
-        navigate,
-        helperFunc
+        navigate
       )
     );
   };
 
   return (
     <div>
-      {loading ? (
+      {count ? (
         <div className="loader-container">
           <div className="spinner"></div>
         </div>

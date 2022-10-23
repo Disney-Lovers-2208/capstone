@@ -11,6 +11,7 @@ import { fetchDeleteUserTv } from "../../store/userTvShows";
 
 export const History = () => {
   const user = useSelector((state) => state.auth);
+  const count = useSelector((state) => state.count);
   const dispatch = useDispatch();
   const tvs = user?.tvs || [];
   const books = user?.books || [];
@@ -73,64 +74,72 @@ export const History = () => {
   };
 
   return (
-    <Container fluid className="profile">
-      <Row>
-        <Col>
-          <Banner user={user} />
-        </Col>
-      </Row>
-      <h1>History</h1>
-      <Row>
-        <Col>
-          <Filter
-            activeType={activeType}
-            setActiveType={setActiveType}
-            setFiltered={setFiltered}
-            movies={watchedMovies}
-            tvs={watchedTvs}
-            books={readBooks}
-            all={seenAll}
-          />
-        </Col>
-        <Col>
-          <div className="switch" data-ison={isOn} onClick={toggleSwitch}>
-            <motion.div className="handle" layout transition={spring} />
-          </div>
-        </Col>
-      </Row>
+    <div>
+      {count ? (
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+      ) : (
+        <Container fluid className="profile">
+          <Row>
+            <Col>
+              <Banner user={user} />
+            </Col>
+          </Row>
+          <h1>History</h1>
+          <Row>
+            <Col>
+              <Filter
+                activeType={activeType}
+                setActiveType={setActiveType}
+                setFiltered={setFiltered}
+                movies={watchedMovies}
+                tvs={watchedTvs}
+                books={readBooks}
+                all={seenAll}
+              />
+            </Col>
+            <Col>
+              <div className="switch" data-ison={isOn} onClick={toggleSwitch}>
+                <motion.div className="handle" layout transition={spring} />
+              </div>
+            </Col>
+          </Row>
 
-      <Row style={{ marginTop: "2rem" }}>
-        <motion.div layout className="popular-movies">
-          {filtered.map((item) => {
-            return (
-              <AnimatePresence key={item.id}>
-                <motion.div
-                  layout
-                  animate={{ opacity: 1, scale: 1 }}
-                  initial={{ opacity: 0, scale: 0 }}
-                  exit={{ opacity: 0, scale: 0 }}
-                >
-                  <h2>{item.title}</h2>
-                  <Link to={`/${item.productType}s/${item.id}`}>
-                    <img src={item.imageUrl} alt="image" />
-                  </Link>
-                  {isOn ? (
-                    <button
-                      className="toggle-delete"
-                      onClick={(evt) =>
-                        handleDelete(evt, item.id, item.productType)
-                      }
+          <Row style={{ marginTop: "2rem" }}>
+            <motion.div layout className="popular-movies">
+              {filtered.map((item) => {
+                return (
+                  <AnimatePresence key={item.id}>
+                    <motion.div
+                      layout
+                      animate={{ opacity: 1, scale: 1 }}
+                      initial={{ opacity: 0, scale: 0 }}
+                      exit={{ opacity: 0, scale: 0 }}
                     >
-                      delete
-                    </button>
-                  ) : null}
-                </motion.div>
-              </AnimatePresence>
-            );
-          })}
-        </motion.div>
-      </Row>
-    </Container>
+                      <h2>{item.title}</h2>
+                      <Link to={`/${item.productType}s/${item.id}`}>
+                        <img src={item.imageUrl} alt="image" />
+                      </Link>
+                      {isOn ? (
+                        <button
+                          className="toggle-delete"
+                          onClick={(evt) =>
+                            handleDelete(evt, item.id, item.productType)
+                          }
+                        >
+                          delete
+                        </button>
+                      ) : null}
+                    </motion.div>
+                  </AnimatePresence>
+                );
+              })}
+            </motion.div>
+          </Row>
+        </Container>
+      )}
+    </div>
   );
 };
 

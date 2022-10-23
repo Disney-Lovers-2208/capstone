@@ -12,12 +12,11 @@ const _getAllUsers = (users) => {
 };
 
 // THUNK CREATOR
-export const getAllUsers = (helperFunc) => {
+export const getAllUsers = () => {
   return async (dispatch) => {
     try {
       const { data: users } = await axios.get("/api/users");
       dispatch(_getAllUsers(users));
-      helperFunc();
     } catch (error) {
       console.log(error);
     }

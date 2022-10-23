@@ -7,6 +7,7 @@ import MovieCard from "../productCards/MovieCard";
 
 export const AllMovies = () => {
   const movies = useSelector((state) => state.movies);
+  const count = useSelector((state) => state.count);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage] = useState(20);
@@ -21,30 +22,38 @@ export const AllMovies = () => {
   };
 
   return (
-    <Container fluid className="all-movies">
-      <Row>
-        <Col className="all-movies">
-          <Row>{/* <Genres movies={movies} /> */}</Row>
+    <div>
+      {count ? (
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+      ) : (
+        <Container fluid className="all-movies">
           <Row>
-            <Pagination
-              itemsPerPage={moviesPerPage}
-              totalItems={movies.length}
-              paginate={paginate}
-            />
+            <Col className="all-movies">
+              <Row>{/* <Genres movies={movies} /> */}</Row>
+              <Row>
+                <Pagination
+                  itemsPerPage={moviesPerPage}
+                  totalItems={movies.length}
+                  paginate={paginate}
+                />
+              </Row>
+              <Row>
+                <MovieCard movies={currentMovies} />
+              </Row>
+              <Row>
+                <Pagination
+                  itemsPerPage={moviesPerPage}
+                  totalItems={movies.length}
+                  paginate={paginate}
+                />
+              </Row>
+            </Col>
           </Row>
-          <Row>
-            <MovieCard movies={currentMovies} />
-          </Row>
-          <Row>
-            <Pagination
-              itemsPerPage={moviesPerPage}
-              totalItems={movies.length}
-              paginate={paginate}
-            />
-          </Row>
-        </Col>
-      </Row>
-    </Container>
+        </Container>
+      )}
+    </div>
   );
 };
 

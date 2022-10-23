@@ -7,21 +7,16 @@ import UserCard from "../productCards/UserCard";
 
 export const AllUsers = () => {
   const users = useSelector((state) => state.users);
+  const count = useSelector((state) => state.count);
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
-
-  function helperFunc() {
-    setLoading(false);
-  }
 
   useEffect(() => {
-    setLoading(true);
-    dispatch(getAllUsers(helperFunc));
+    dispatch(getAllUsers());
   }, [dispatch]);
 
   return (
     <div>
-      {loading ? (
+      {count ? (
         <div className="loader-container">
           <div className="spinner"></div>
         </div>

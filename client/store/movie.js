@@ -14,11 +14,13 @@ const getSingleMovie = (movie) => {
 export const fetchSingleMovie = (id) => {
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data: movie } = await axios.get(`/api/movies/${id}`);
       const { data: rating } = await axios.get(
         `/api/reviews/avgStarMovie/${id}`
       );
       movie.starRating = rating;
+      dispatch({ type: "DEC" });
       dispatch(getSingleMovie(movie));
     } catch (error) {
       return error;

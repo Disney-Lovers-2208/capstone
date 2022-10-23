@@ -29,9 +29,12 @@ export const fetchUserBook = (userBook) => {
   const { userId, bookId } = userBook;
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data } = await axios.get(`/api/userBooks/${userId}/${bookId}`);
+      dispatch({ type: "DEC" });
       dispatch(getUserBook(data));
     } catch (error) {
+      dispatch({ type: "DEC" });
       return error;
     }
   };
@@ -40,9 +43,12 @@ export const fetchUserBook = (userBook) => {
 export const fetchFavoriteBook = (userId) => {
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data } = await axios.get(`/api/userBooks/favoriteBook/${userId}`);
+      dispatch({ type: "DEC" });
       dispatch(getFavoriteBook(data));
     } catch (error) {
+      dispatch({ type: "DEC" });
       return error;
     }
   };
@@ -52,12 +58,15 @@ export const fetchUpdateUserBook = (userBook) => {
   const { userId, bookId } = userBook;
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data } = await axios.put(
         `/api/userBooks/${userId}/${bookId}`,
         userBook
       );
+      dispatch({ type: "DEC" });
       dispatch(updateUserBook(data));
     } catch (error) {
+      dispatch({ type: "DEC" });
       return error;
     }
   };
