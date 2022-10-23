@@ -40,7 +40,7 @@ export const Home = () => {
                 .slice(0)
                 .reverse()
                 .map((activity, index) => (
-                  <div key={index}>
+                  <div key={index} style={{ textAlign: "center" }}>
                     <ActivityCard activity={activity} />
                   </div>
                 ))
