@@ -133,77 +133,79 @@ export const SearchFor = () => {
             </motion.div>
           </Row>
         </div>
-      ) : null}
+      ) : (
+        <div>
+          <div className="tvs">
+            <h3>Shows</h3>
+            <Row>
+              <Slider {...settings}>
+                {tvshows.map((tvshow) => {
+                  return (
+                    <Col key={tvshow.id} style={{ margin: "2rem" }}>
+                      <Link to={`/tvshows/${tvshow.id}`}>
+                        <Card.Img
+                          className="card-img"
+                          variant="top"
+                          src={tvshow.imageUrl}
+                          alt="tv-image"
+                        />
+                      </Link>
+                    </Col>
+                  );
+                })}
+              </Slider>
+            </Row>
+          </div>
 
-      <div className="tvs">
-        <h3>Shows</h3>
-        <Row>
-          <Slider {...settings}>
-            {tvshows.map((tvshow) => {
-              return (
-                <Col key={tvshow.id} style={{ margin: "2rem" }}>
-                  <Link to={`/tvshows/${tvshow.id}`}>
-                    <Card.Img
-                      className="card-img"
-                      variant="top"
-                      src={tvshow.imageUrl}
-                      alt="tv-image"
-                    />
-                  </Link>
-                </Col>
-              );
-            })}
-          </Slider>
-        </Row>
-      </div>
+          <br />
 
-      <br />
+          <div className="movies">
+            <h3>Movies</h3>
+            <Row>
+              <Slider {...settings}>
+                {movies.map((movie) => {
+                  return (
+                    <Col key={movie.id} style={{ margin: "2rem" }}>
+                      <Link to={`/movies/${movie.id}`}>
+                        <Card.Img
+                          className="card-img"
+                          variant="top"
+                          src={movie.imageUrl}
+                          alt="movie-image"
+                        />
+                      </Link>
+                    </Col>
+                  );
+                })}
+              </Slider>
+            </Row>
+          </div>
 
-      <div className="movies">
-        <h3>Movies</h3>
-        <Row>
-          <Slider {...settings}>
-            {movies.map((movie) => {
-              return (
-                <Col key={movie.id} style={{ margin: "2rem" }}>
-                  <Link to={`/movies/${movie.id}`}>
-                    <Card.Img
-                      className="card-img"
-                      variant="top"
-                      src={movie.imageUrl}
-                      alt="movie-image"
-                    />
-                  </Link>
-                </Col>
-              );
-            })}
-          </Slider>
-        </Row>
-      </div>
+          <br />
 
-      <br />
-
-      <div className="books">
-        <h3>Books</h3>
-        <Row>
-          <Slider {...settings}>
-            {books.map((book) => {
-              return (
-                <Col key={book.id} style={{ margin: "2rem" }}>
-                  <Link to={`/books/${book.id}`}>
-                    <Card.Img
-                      className="card-img"
-                      variant="top"
-                      src={book.imageUrl}
-                      alt="book-image"
-                    />
-                  </Link>
-                </Col>
-              );
-            })}
-          </Slider>
-        </Row>
-      </div>
+          <div className="books">
+            <h3>Books</h3>
+            <Row>
+              <Slider {...settings}>
+                {books.map((book) => {
+                  return (
+                    <Col key={book.id} style={{ margin: "2rem" }}>
+                      <Link to={`/books/${book.id}`}>
+                        <Card.Img
+                          className="card-img"
+                          variant="top"
+                          src={book.imageUrl}
+                          alt="book-image"
+                        />
+                      </Link>
+                    </Col>
+                  );
+                })}
+              </Slider>
+            </Row>
+          </div>
+        </div>
+      )}
 
       {/* <div className='people'>
           <h3>People</h3>
