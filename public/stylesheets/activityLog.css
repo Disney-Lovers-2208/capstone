@@ -2,6 +2,7 @@
  padding-top: 3rem;
 
 
+
 }
 
 .activity-log-card{  
@@ -13,9 +14,15 @@
      height: 450px;
      width: 70%;
 }
+.post-user-image{
+  width: 70px;
+  margin-top: 2rem;
+}
 
 .post-title{
+
     margin-top: 2rem;
+    margin-left: 2rem;
     padding: 3px;
     width: 100%;
     text-align: left;
@@ -41,3 +48,10 @@
     0 41.8px 33.4px rgba(3,4,94, 0.016),
     0 10px 80px rgba(3,4,94, 0.12);
   }
+
+  .innerdiv {
+    padding-right: 3rem;
+    margin-bottom: 3rem;
+    text-align: right;
+
+    }
