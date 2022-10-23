@@ -15,10 +15,6 @@ export const Home = () => {
     dispatch(getActivityLog(userId));
   }, [dispatch]);
 
-  const scrollToTop = auth.books.filter(
-    (book) => book.user_book.favorite === true
-  )[0];
-
   return (
     <div>
       {count ? (

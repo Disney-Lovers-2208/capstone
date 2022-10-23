@@ -41,10 +41,12 @@ export const ActivityCard = (props) => {
                       </Link>
                     </Col>
                     <Col lg={11} md={11} sm={11}>
-                      <h3 className="post-title">
-                        {activity.user.firstName} {activity.user.lastName}{" "}
-                        reviewed {activity.book.title}
-                      </h3>
+                      <Row className="post-title">
+                        <h2>
+                          {activity.user.firstName} {activity.user.lastName}{" "}
+                          reviewed {activity.book.title}
+                        </h2>
+                      </Row>
                     </Col>
                   </Row>
                   <Card.Text
