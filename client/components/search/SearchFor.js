@@ -19,7 +19,6 @@ export const SearchFor = () => {
   const books = useSelector(state => state.books).filter(titleFilter);
   const users = useSelector(state => state.users).filter(nameFilter);
 
-
   const [isOn, setIsOn] = useState(false);
   const toggleSwitch = () => {
     setIsOn(!isOn);
@@ -52,57 +51,6 @@ export const SearchFor = () => {
           </div>
         </Col>
       </Row>
-
-      {/* <Row style={{ marginTop: "2rem" }}>
-        <motion.div layout className="toggle-results">
-          {isOn ? (
-            <Row>
-              {users.map((user) => {
-                 <Col key={user.id}>
-                    <h2>People</h2>
-                    <Link to={`/users/${user.id}`}>
-                      <p>{user.firstName} {user.lastName}</p>
-                      <img src={user.image} alt="user-image" />
-                    </Link>
-                 </Col>
-              })}
-            </Row>
-          ) : null}
-        </motion.div>
-      </Row> */}
-
-      {/* <Row style={{marginTop: "2rem" }}>
-        <motion.div layout className="toggle-results">
-          {filtered.map((item) => {
-            return (
-              <AnimatePresence key={user.id}>
-                <motion.div 
-                  layout 
-                  animate={{ opacity: 1, scale: 1 }} 
-                  initial={{ opacity: 0, scale: 0}} 
-                  exit={{ opacity: 0, scale: 0 }}>
-                  <h2>People</h2>
-                  <Link to={`/users/${user.id}`}>
-                    <img src={user.image} alt="user-image"/>
-                  </Link>
-                  {isOn ? (
-                   <Row>
-                    {users.map((user) => {
-                       <Col key={user.id}>
-                        <h2>People</h2>
-                        <Link to={`/users/${user.id}`}>
-                          <img src={user.image} alt="user-image" />
-                        </Link>
-                       </Col>
-                    })}
-                   </Row>
-                  ) : null}
-                </motion.div>
-              </AnimatePresence>
-            )
-          })}
-        </motion.div>
-      </Row> */}
 
       {isOn ? (
               <div className='people'>
@@ -182,29 +130,6 @@ export const SearchFor = () => {
           </Slider>
         </Row>
       </div>
-
-      {/* <div className='people'>
-          <h3>People</h3>
-          <Row>
-            <motion.div>
-            <Slider {...settings}>
-              {users.map(user => {
-                return (
-                  <AnimatePresence>
-                    <Col key={user.id} style={{ margin: '2rem'}}>
-                      <Link to={`/users/${user.id}`}>
-                        <Card.Title>{user.firstName} {user.lastName}</Card.Title>
-                        <Card.Img className="card-img" variant="top" src={user.image} alt="user-image" />
-                      </Link>
-                    </Col>
-                  </AnimatePresence>
-                )
-              })}
-            </Slider>
-            </motion.div>
-          </Row>
-      </div>  */}
-
 
       <div className="add-button">
         <h2>Don't see your fave?</h2>
