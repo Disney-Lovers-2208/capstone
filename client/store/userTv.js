@@ -21,9 +21,12 @@ export const fetchUserTv = (userTv) => {
   const { userId, tvId } = userTv;
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data } = await axios.get(`/api/userTvs/${userId}/${tvId}`);
+      dispatch({ type: "DEC" });
       dispatch(getUserTv(data));
     } catch (error) {
+      dispatch({ type: "DEC" });
       return error;
     }
   };
@@ -33,12 +36,15 @@ export const fetchUpdateUserTv = (userTv) => {
   const { userId, tvId } = userTv;
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data } = await axios.put(
         `/api/userTvs/${userId}/${tvId}`,
         userTv
       );
+      dispatch({ type: "DEC" });
       dispatch(updateUserTv(data));
     } catch (error) {
+      dispatch({ type: "DEC" });
       return error;
     }
   };

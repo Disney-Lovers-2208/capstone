@@ -4,7 +4,6 @@ import { Row, Col, Nav } from "react-bootstrap";
 
 export const SearchTabs = () => {
   let pathname = window.location.pathname;
-  console.log(pathname);
   return (
     <div className="search-tabs">
       <Row>

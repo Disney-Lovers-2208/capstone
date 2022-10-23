@@ -13,6 +13,7 @@ export function ReviewForm(props) {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const authId = useSelector((state) => state.auth.id);
+  const count = useSelector((state) => state.count);
   const { id } = useParams();
   const [rating, setRating] = useState(0);
   const [content, setContent] = useState("");
@@ -53,52 +54,60 @@ export function ReviewForm(props) {
 
   return (
     <div>
-      {toggle ? (
-        <Container>
-          <h1>Leave a Review!</h1>
-          <hr />
-          <Row>
-            <form className="review-form" onSubmit={handleSubmit}>
-              <Rating
-                tooltipArray={[
-                  "1 stars",
-                  "2 stars",
-                  "3 stars",
-                  "4 stars",
-                  "5 stars",
-                ]}
-                transition
-                showTooltip
-                onClick={handleRating}
-                ratingValue={rating}
-              />
-              <div>
-                <label htmlFor="comments">Comments</label>
-                <textarea
-                  value={content || ""}
-                  onChange={(e) => setContent(e.target.value)}
-                />
-                <button type="submit">Submit</button>
-              </div>
-            </form>
-          </Row>
-        </Container>
+      {count ? (
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
       ) : (
-        <Button
-          style={{
-            borderRadius: "0px",
-            border: "none",
-            backgroundColor: "#dcdf00",
-            color: "#03045E",
-            fontWeight: "800",
-          }}
-          variant="info"
-          onClick={() => {
-            toggle ? handleToggle(false) : handleToggle(true);
-          }}
-        >
-          Write A Review
-        </Button>
+        <div>
+          {toggle ? (
+            <Container>
+              <h1>Leave a Review!</h1>
+              <hr />
+              <Row>
+                <form className="review-form" onSubmit={handleSubmit}>
+                  <Rating
+                    tooltipArray={[
+                      "1 stars",
+                      "2 stars",
+                      "3 stars",
+                      "4 stars",
+                      "5 stars",
+                    ]}
+                    transition
+                    showTooltip
+                    onClick={handleRating}
+                    ratingValue={rating}
+                  />
+                  <div>
+                    <label htmlFor="comments">Comments</label>
+                    <textarea
+                      value={content || ""}
+                      onChange={(e) => setContent(e.target.value)}
+                    />
+                    <button type="submit">Submit</button>
+                  </div>
+                </form>
+              </Row>
+            </Container>
+          ) : (
+            <Button
+              style={{
+                borderRadius: "0px",
+                border: "none",
+                backgroundColor: "#dcdf00",
+                color: "#03045E",
+                fontWeight: "800",
+              }}
+              variant="info"
+              onClick={() => {
+                toggle ? handleToggle(false) : handleToggle(true);
+              }}
+            >
+              Write A Review
+            </Button>
+          )}
+        </div>
       )}
     </div>
   );

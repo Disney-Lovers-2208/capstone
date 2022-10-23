@@ -21,9 +21,12 @@ export const fetchUserMovie = (userMovie) => {
   const { userId, movieId } = userMovie;
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data } = await axios.get(`/api/userMovies/${userId}/${movieId}`);
+      dispatch({ type: "DEC" });
       dispatch(getUserMovie(data));
     } catch (error) {
+      dispatch({ type: "DEC" });
       return error;
     }
   };
@@ -33,12 +36,15 @@ export const fetchUpdateUserMovie = (userMovie) => {
   const { userId, movieId } = userMovie;
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data } = await axios.put(
         `/api/userMovies/${userId}/${movieId}`,
         userMovie
       );
+      dispatch({ type: "DEC" });
       dispatch(updateUserMovie(data));
     } catch (error) {
+      dispatch({ type: "DEC" });
       return error;
     }
   };
