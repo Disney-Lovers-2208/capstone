@@ -17,8 +17,8 @@ export const UserCard = ({ friend }) => {
           </Card.Title>
           <Card.Title>{username}</Card.Title>
           <button
-            onClick={() => {
-              event.stopPropagation();
+            onClick={(e) => {
+              e.stopPropagation();
               dispatch(removeFriend(user.id));
             }}
           >
