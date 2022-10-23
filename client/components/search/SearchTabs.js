@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Tab, Row, Col, Nav } from "react-bootstrap";
+import { Row, Col, Nav } from "react-bootstrap";
 
 export const SearchTabs = () => {
   let pathname = window.location.pathname;
