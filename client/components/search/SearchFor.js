@@ -45,7 +45,6 @@ export const SearchFor = () => {
         <h3>You searched for: {title}</h3>
       </div>
 
-<<<<<<< HEAD
       <Row>
         <Col>
           <div className="switch" onClick={toggleSwitch}>
@@ -156,64 +155,10 @@ export const SearchFor = () => {
                 })}
               </Slider>
             </Row>
-=======
-      <div>
-        <Row>
-          <Col>
-            <div className="switch" data-isOn={isOn} onClick={toggleSwitch}>
-              <motion.div className="handle" layout transition={spring}/>
-            </div>
-          </Col>
-        </Row>
-      </div>
-
-      {isOn ? (
-        <div className='people'>
-          <h3>People</h3>
-          <Row>
-            <motion.div>
-                    <Slider {...settings}>
-                      {users.map(user => {
-                        return (
-                          <AnimatePresence>
-                            <Col key={user.id} style={{ margin: '2rem'}}>
-                              <Link to={`/users/${user.id}`}>
-                                <Card.Title>{user.firstName} {user.lastName}</Card.Title>
-                                <Card.Img className="card-img" variant="top" src={user.image} alt="user-image" />
-                              </Link>
-                            </Col>
-                          </AnimatePresence>
-                        )
-                      })}
-                    </Slider>
-            </motion.div>
-          </Row>
-        </div>
-      ) : null} 
-
-      {!isOn ? (
-        <Row> 
-          <div className='tvs'>
-            <h3>Shows</h3>
-              <Row>
-                <Slider {...settings}>
-                    {tvshows.map(tvshow => {
-                      return (
-                          <Col key={tvshow.id} style={{ margin: '2rem' }}>
-                            <Link to={`/tvshows/${tvshow.id}`}>
-                              <Card.Img className="card-img" variant="top" src={tvshow.imageUrl} alt='tv-image'/>
-                            </Link>
-                          </Col>
-                      )
-                    })}
-                </Slider>
-              </Row>
->>>>>>> 9703b4c8a33330a196b3e28efa76285864b79b74
           </div>
 
           <br />
 
-<<<<<<< HEAD
           <div className="movies">
             <h3>Movies</h3>
             <Row>
@@ -290,53 +235,6 @@ export const SearchFor = () => {
           Add Your Fave!
         </Button>
       </div>
-=======
-          <div className='movies'>
-            <h3>Movies</h3>
-            <Row>
-              <Slider {...settings}>
-                  {movies.map(movie => {
-                    return (
-                        <Col key={movie.id} style={{ margin: '2rem' }}>
-                          <Link to={`/movies/${movie.id}`}>
-                            <Card.Img className="card-img" variant="top" src={movie.imageUrl} alt="movie-image" />
-                          </Link>
-                        </Col>
-                    )
-                  })}
-                </Slider>
-            </Row>
-          </div>
-
-          <br />
-
-          <div className='books'>
-            <h3>Books</h3>
-            <Row>
-              <Slider {...settings}>
-                  {books.map(book => {
-                    return (
-                        <Col key={book.id} style={{ margin: '2rem' }}>
-                          <Link to={`/books/${book.id}`}>
-                            <Card.Img className="card-img" variant="top" src={book.imageUrl} alt="book-image" />
-                          </Link>
-                        </Col>
-                    )
-                  })}
-              </Slider>
-            </Row>
-          </div>
-
-          <div className="add-button">
-            <h2>Don't see your fave?</h2>
-            <Button as={Link} to={"/add"}>
-              Add Your Fave!
-            </Button>
-          </div>
-      </Row> 
-      ) : null}  
-
->>>>>>> 9703b4c8a33330a196b3e28efa76285864b79b74
     </div>
   );
 };
