@@ -67,13 +67,14 @@ export function Edit(props) {
                     style={{ width: "250px", borderRadius: "100%" }}
                     alt="image"
                   />
+
                   <h6>Upload a different profile photo...</h6>
                 </div>
               </Col>
               <Col lg={8} sm={12}>
                 <form className="" onSubmit={handleSubmit}>
                   <Row className="input-row">
-                    <Col>
+                    <Col lg={4} md={6} sm={6}>
                       <label htmlFor="firstName"> First Name: </label>
                       <input
                         type="text"
@@ -91,10 +92,9 @@ export function Edit(props) {
                         onChange={(e) => setLastName(e.target.value)}
                       />
                     </Col>
-                    <Col></Col>
                   </Row>
                   <Row className="input-row">
-                    <Col>
+                    <Col lg={4} md={6} sm={6}>
                       <label htmlFor="email"> Email: </label>
                       <input
                         type="text"
@@ -112,7 +112,6 @@ export function Edit(props) {
                         onChange={(e) => setUsername(e.target.value)}
                       />
                     </Col>
-                    <Col></Col>
                   </Row>
                   <Row className="bio-row">
                     <Col>
