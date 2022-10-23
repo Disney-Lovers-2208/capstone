@@ -7,6 +7,7 @@ import { fetchTvShows } from "../../store/tvshows";
 import { fetchMovies } from "../../store/movies";
 import { fetchBooks } from "../../store/books";
 import { getAllUsers } from "../../store/users";
+import SearchTabs from "./SearchTabs";
 
 export const SearchBar = () => {
   const [search, setSearch] = useState("");
@@ -49,7 +50,7 @@ export const SearchBar = () => {
             className="search-bar"
           />
           <Button
-            onKeyDown={handleKeyDown}
+            variant="light"
             as={Link}
             to={`/searchfor/${search}`}
             style={{ padding: "6px", borderRadius: "10px" }}
@@ -58,6 +59,7 @@ export const SearchBar = () => {
           </Button>
         </Col>
       </Row>
+      <SearchTabs />
     </>
   );
 };
