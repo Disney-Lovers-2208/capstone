@@ -5,11 +5,20 @@ import Profile from "./Profile";
 
 const UserProfilePage = () => {
   let user = useSelector((state) => state.auth);
+  const count = useSelector((state) => state.count);
 
   return (
-    <Container fluid className="profile">
-      <Profile user={user} />
-    </Container>
+    <div>
+      {count ? (
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+      ) : (
+        <Container fluid className="profile">
+          <Profile user={user} />
+        </Container>
+      )}
+    </div>
   );
 };
 

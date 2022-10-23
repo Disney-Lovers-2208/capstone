@@ -20,9 +20,12 @@ const deleteUserMovie = (userMovie) => {
 export const fetchCreateUserMovie = (userMovie) => {
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data } = await axios.post(`/api/userMovies`, userMovie);
+      dispatch({ type: "DEC" });
       dispatch(createUserMovie(data));
     } catch (error) {
+      dispatch({ type: "DEC" });
       return error;
     }
   };
@@ -31,9 +34,11 @@ export const fetchCreateUserMovie = (userMovie) => {
 export const fetchDeleteUserMovie = (userMovie) => {
   const { userId, movieId } = userMovie;
   return async (dispatch) => {
+    dispatch({ type: "INC" });
     const { data: deleted } = await axios.delete(
       `/api/userMovies/${userId}/${movieId}`
     );
+    dispatch({ type: "DEC" });
     dispatch(deleteUserMovie(deleted));
   };
 };

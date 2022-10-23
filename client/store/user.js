@@ -4,7 +4,6 @@ import axios from "axios";
 const SET_USER = "SET_USER";
 const UPDATE_USER = "UPDATE_USER";
 
-
 // ACTION CREATOR
 const setUser = (user) => {
   return {
@@ -18,12 +17,13 @@ const _updateUser = (user) => ({
   user,
 });
 
-
 // THUNK CREATOR
 export const fetchUser = (userId) => {
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data: user } = await axios.get(`/api/users/${userId}`);
+      dispatch({ type: "DEC" });
       dispatch(setUser(user));
     } catch (error) {
       return error;
@@ -31,26 +31,10 @@ export const fetchUser = (userId) => {
   };
 };
 
-export const updateUser = (userId, userForm, navigate) => {
-  return async (dispatch) => {
-    try {
-      const { data: user } = await axios.put(`/api/users/${userId}`, userForm);
-      dispatch(_updateUser(user));
-      dispatch(me());
-      navigate("/profile");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-
-
 // REDUCER
 export default function userReducer(state = {}, action) {
   switch (action.type) {
     case SET_USER:
-      return action.user;
-    case UPDATE_USER:
       return action.user;
     default:
       return state;

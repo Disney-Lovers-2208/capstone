@@ -12,6 +12,7 @@ const _getActivityLog = (activityLog) => ({
 // thunks
 export const getActivityLog = (userId) => async (dispatch) => {
   try {
+    dispatch({ type: "INC" });
     const { data: friends } = await axios.get(`/api/friends/${userId}`);
     let friendIdArray = [];
     for (let i = 0; i < friends.length; i++) {
@@ -25,8 +26,10 @@ export const getActivityLog = (userId) => async (dispatch) => {
         reviews.push(allReviews[j]);
       }
     }
+    dispatch({ type: "DEC" });
     dispatch(_getActivityLog(reviews));
   } catch (error) {
+    dispatch({ type: "DEC" });
     console.log(error);
   }
 };
