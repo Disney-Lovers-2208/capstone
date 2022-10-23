@@ -90,7 +90,7 @@ margin-left: 1rem;
   
 
 .stats{ 
-    background-color: aquamarine;
+    background-color: #4162a8;
     height: 150px;
     border-radius: 1rem;
     padding-top: 40px;
@@ -124,7 +124,7 @@ margin-left: 1rem;
 .profile .featured  img{ 
    height: 400px;
    width: 250px;
-   padding: 2%;
+
    box-shadow:
     0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048),

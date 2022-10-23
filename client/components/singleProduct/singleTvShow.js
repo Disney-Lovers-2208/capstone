@@ -13,6 +13,7 @@ import en from "javascript-time-ago/locale/en";
 import ReviewForm from "./ReviewForm";
 import SelectDropDown from "./SelectDropDown";
 import RatedStars from "../activityLog/RatedStars";
+import Slider from "react-slick";
 
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
@@ -29,6 +30,47 @@ const SingleTvShow = () => {
   let favorite = userTv ? userTv.favorite : null;
   let featured = userTv ? userTv.featured : null;
   let status = userTv ? userTv.status : null;
+
+  const settings = {
+    className: "center",
+    centerMode: true,
+    infinite: reviews.length > 3,
+    centerPadding: "80px",
+    slidesToShow: 3,
+    speed: 500,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  };
+
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          content: " url(../images/next.png)",
+        }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          content: " url(../images/back.png)",
+        }}
+        onClick={onClick}
+      />
+    );
+  }
 
   useEffect(() => {
     dispatch(fetchUserTv({ userId: auth.id, tvId: id }));
@@ -210,25 +252,46 @@ const SingleTvShow = () => {
                 <ReviewForm product={tv.productType} />
                 <hr />
                 <p style={{ textAlign: "left" }}>Reviews:</p>
-                {reviews
-                  .slice(0)
-                  .reverse()
-                  .map((review) => (
-                    <Row key={review.id}>
-                      <Card border="info" style={{ width: "15rem" }}>
-                        <Card.Title>
-                          {review.user.firstName} {review.user.lastName}
-                        </Card.Title>
-                        <Card.Text>{review.content}</Card.Text>
-                        <Card.Text>
-                          <RatedStars rating={review.rating} />
-                        </Card.Text>
-                        <Card.Text>
-                          {timeAgo.format(new Date(review.updatedAt))}
-                        </Card.Text>
-                      </Card>
-                    </Row>
-                  ))}
+                <Slider {...settings}>
+                  {reviews
+                    .slice(0)
+                    .reverse()
+                    .map((review) => (
+                      <Row key={review.id}>
+                        <Card
+                          style={{
+                            width: "15rem",
+                            height: "17rem",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Card.Img
+                            variant="top"
+                            src={review.user.image}
+                            alt="review-user0image"
+                            style={{
+                              width: "5rem",
+                              borderRadius: "100%",
+                              marginTop: "1rem",
+                            }}
+                          ></Card.Img>
+                          <Card.Title>
+                            {review.user.firstName} {review.user.lastName}
+                          </Card.Title>
+                          <Card.Text>
+                            <RatedStars rating={review.rating} />
+                          </Card.Text>
+                          <Card.Text
+                            style={{
+                              alignItem: "left",
+                            }}
+                          >
+                            {review.content}
+                          </Card.Text>
+                        </Card>
+                      </Row>
+                    ))}
+                </Slider>
               </div>
             </Col>
           </Row>
