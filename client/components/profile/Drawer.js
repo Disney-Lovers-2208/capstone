@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
-// import { Link } from "@mui/material";
 import { Divider } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -14,7 +13,6 @@ import { CgProfile } from "react-icons/cg";
 import { FaUserFriends } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdModeEdit } from "react-icons/md";
-import UserProfilePage from "./UserProfilePage";
 import { Link } from "react-router-dom";
 
 export default function TemporaryDrawer() {

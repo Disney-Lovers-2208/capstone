@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { connect } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import Banner from "./Banner";
 import {
@@ -10,16 +9,15 @@ import {
   ListItemText,
   ListItemAvatar,
   Typography,
-  ListItemButton,
-  Link,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export const Friends = () => {
   const user = useSelector((state) => state.auth);
   let friends = useSelector((state) => state.auth.friend);
 
   return (
-    <Container fluid className="friends" style={{ paddingLeft: "2rem" }}>
+    <Container fluid className="friend" style={{ paddingLeft: "2rem" }}>
       <Row>
         <Col>
           <Banner user={user} />
@@ -37,7 +35,7 @@ export const Friends = () => {
               ? friends.map((friend) => {
                   return (
                     <div key={friend.id}>
-                      <ListItem>
+                      <ListItem component={Link} to={`/friends/${friend.id}`}>
                         <ListItemAvatar>
                           <img
                             src={friend.image}
@@ -55,6 +53,8 @@ export const Friends = () => {
                                 sx={{ display: "inline" }}
                                 component="span"
                                 fontSize="1.8rem"
+                                underline="none"
+                                color="#03045e"
                               >
                                 {`${friend.firstName} ${friend.lastName}`}
                               </Typography>
@@ -72,13 +72,6 @@ export const Friends = () => {
                             </React.Fragment>
                           }
                         />
-                        <ListItemButton>
-                          <ListItemText
-                            primary="Spam"
-                            color="yellow"
-                            width="2rem "
-                          />
-                        </ListItemButton>
                       </ListItem>
                       <Divider variant="inset" component="li" />
                     </div>
