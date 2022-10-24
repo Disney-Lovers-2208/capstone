@@ -53,14 +53,14 @@ const Banner = (props) => {
                 style={{ marginTop: "1rem " }}
                 onClick={() => dispatch(removeFriend(user.id))}
               >
-                Remove Friend
+                Unfollow
               </button>
             ) : (
               <button
                 style={{ padding: "1rem", marginTop: "1rem " }}
                 onClick={() => dispatch(addFriend(user.id))}
               >
-                Add Friend
+                Follow
               </button>
             )
           ) : null}

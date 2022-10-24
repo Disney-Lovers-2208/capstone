@@ -270,6 +270,7 @@ const SingleBook = () => {
                     <Row key={review.id}>
                       <Card
                         style={{
+                          padding: "1rem",
                           width: "15rem",
                           height: "17rem",
                           alignItems: "center",

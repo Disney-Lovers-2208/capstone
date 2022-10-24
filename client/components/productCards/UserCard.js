@@ -22,7 +22,7 @@ export const UserCard = ({ friend }) => {
               dispatch(removeFriend(user.id));
             }}
           >
-            Remove Friend
+            Unfollow
           </button>
         </Card.Body>
       </Card>
