@@ -16,16 +16,16 @@ const _setAuth = (auth) => ({ type: SET_AUTH, auth });
  * THUNK CREATORS
  */
 export const me = () => async (dispatch) => {
+  dispatch({ type: "INC" });
   const token = window.localStorage.getItem(TOKEN);
   if (token) {
-    dispatch({ type: "INC" });
     const res = await axios.get("/auth/me", {
       headers: {
         authorization: token,
       },
     });
+    dispatch(_setAuth(res.data));
     dispatch({ type: "DEC" });
-    return dispatch(_setAuth(res.data));
   }
 };
 
@@ -33,8 +33,8 @@ export const updateAuth = (authId, authForm, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "INC" });
     const { data: auth } = await axios.put(`/api/users/${authId}`, authForm);
-    dispatch(_setAuth(auth));
     dispatch({ type: "DEC" });
+    dispatch(_setAuth(auth));
     navigate("/profile");
   } catch (error) {
     dispatch({ type: "DEC" });
@@ -49,8 +49,8 @@ export const addFriend = (friendId) => {
       const { data: updatedUser } = await axios.post(
         `/api/friends/${getState().auth.id}/${friendId}`
       );
-      dispatch(_setAuth(updatedUser));
       dispatch({ type: "DEC" });
+      dispatch(_setAuth(updatedUser));
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;
@@ -65,8 +65,8 @@ export const removeFriend = (friendId) => {
       const { data: updatedUser } = await axios.delete(
         `/api/friends/${getState().auth.id}/${friendId}`
       );
-      dispatch(_setAuth(updatedUser));
       dispatch({ type: "DEC" });
+      dispatch(_setAuth(updatedUser));
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;

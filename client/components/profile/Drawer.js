@@ -38,7 +38,7 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List
-        PaperProps={{
+        paperprops={{
           lg: {
             width: 600,
           },
