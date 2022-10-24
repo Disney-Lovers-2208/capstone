@@ -11,6 +11,7 @@ import {
   ListItemAvatar,
   Typography,
   ListItemButton,
+  Link,
 } from "@mui/material";
 
 export const Friends = () => {
