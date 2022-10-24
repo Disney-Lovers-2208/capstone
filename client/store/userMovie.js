@@ -23,8 +23,8 @@ export const fetchUserMovie = (userMovie) => {
     try {
       dispatch({ type: "INC" });
       const { data } = await axios.get(`/api/userMovies/${userId}/${movieId}`);
-      dispatch({ type: "DEC" });
       dispatch(getUserMovie(data));
+      dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;
@@ -41,8 +41,8 @@ export const fetchUpdateUserMovie = (userMovie) => {
         `/api/userMovies/${userId}/${movieId}`,
         userMovie
       );
-      dispatch({ type: "DEC" });
       dispatch(updateUserMovie(data));
+      dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;

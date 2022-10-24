@@ -255,44 +255,41 @@ const SingleTvShow = () => {
                 <hr />
                 <p style={{ textAlign: "left" }}>Reviews:</p>
                 <Slider {...settings}>
-                  {reviews
-                    .slice(0)
-                    .reverse()
-                    .map((review) => (
-                      <Row key={review.id}>
-                        <Card
+                  {reviews.map((review) => (
+                    <Row key={review.id}>
+                      <Card
+                        style={{
+                          width: "15rem",
+                          height: "17rem",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Card.Img
+                          variant="top"
+                          src={review.user.image}
+                          alt="review-user0image"
                           style={{
-                            width: "15rem",
-                            height: "17rem",
-                            alignItems: "center",
+                            width: "5rem",
+                            borderRadius: "100%",
+                            marginTop: "1rem",
+                          }}
+                        ></Card.Img>
+                        <Card.Title>
+                          {review.user.firstName} {review.user.lastName}
+                        </Card.Title>
+                        <Card.Text>
+                          <RatedStars rating={review.rating} />
+                        </Card.Text>
+                        <Card.Text
+                          style={{
+                            alignItem: "left",
                           }}
                         >
-                          <Card.Img
-                            variant="top"
-                            src={review.user.image}
-                            alt="review-user0image"
-                            style={{
-                              width: "5rem",
-                              borderRadius: "100%",
-                              marginTop: "1rem",
-                            }}
-                          ></Card.Img>
-                          <Card.Title>
-                            {review.user.firstName} {review.user.lastName}
-                          </Card.Title>
-                          <Card.Text>
-                            <RatedStars rating={review.rating} />
-                          </Card.Text>
-                          <Card.Text
-                            style={{
-                              alignItem: "left",
-                            }}
-                          >
-                            {review.content}
-                          </Card.Text>
-                        </Card>
-                      </Row>
-                    ))}
+                          {review.content}
+                        </Card.Text>
+                      </Card>
+                    </Row>
+                  ))}
                 </Slider>
               </div>
             </Col>

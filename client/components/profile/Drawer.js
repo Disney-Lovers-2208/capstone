@@ -77,7 +77,7 @@ export default function TemporaryDrawer() {
           </ListItem>
         </Link>
         <Divider />
-        <Link to={`/profile`} underline="none" color="#03045e">
+        <Link href={`/profile/friends`} underline="none" color="#03045e">
           <ListItem key={4}>
             <ListItemButton>
               <ListItemIcon>

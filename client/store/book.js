@@ -19,8 +19,8 @@ export const fetchSingleBook = (id) => {
         `/api/reviews/avgStarBooks/${id}`
       );
       book.starRating = rating;
-      dispatch({ type: "DEC" });
       dispatch(getSingleBook(book));
+      dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;

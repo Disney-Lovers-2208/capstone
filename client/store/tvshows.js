@@ -23,9 +23,9 @@ export const fetchCreateTv = (tv, navigate) => {
   return async (dispatch) => {
     try {
       dispatch({ type: "INC" });
-      const { data: created } = await axios.post(`/api/tvs`, tv);
-      dispatch({ type: "DEC" });
+      let { data: created } = await axios.post(`/api/tvs`, tv);
       dispatch(createTv(created));
+      dispatch({ type: "DEC" });
       navigate("/tvshows");
     } catch (error) {
       dispatch({ type: "DEC" });
@@ -37,9 +37,10 @@ export const fetchCreateTv = (tv, navigate) => {
 export const fetchTvShows = () => async (dispatch) => {
   try {
     dispatch({ type: "INC" });
-    const { data } = await axios.get("/api/tvs");
-    dispatch({ type: "DEC" });
+    let { data } = await axios.get("/api/tvs");
+    data = data.reverse();
     dispatch(setTvShows(data));
+    dispatch({ type: "DEC" });
   } catch (error) {
     dispatch({ type: "DEC" });
     return error;

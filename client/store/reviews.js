@@ -17,11 +17,12 @@ export const getReviews = (productType, id) => {
   return async (dispatch) => {
     try {
       dispatch({ type: "INC" });
-      const { data: reviews } = await axios.get(
+      let { data: reviews } = await axios.get(
         `/api/reviews/${productType}/${id}`
       );
-      dispatch({ type: "DEC" });
+      reviews = reviews.reverse();
       dispatch(_getReviews(reviews));
+      dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;
@@ -34,8 +35,8 @@ export const createReview = (review, productType, id) => {
     try {
       dispatch({ type: "INC" });
       await axios.post(`/api/reviews`, review);
-      dispatch({ type: "DEC" });
       dispatch(getReviews(productType, id));
+      dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;

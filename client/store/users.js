@@ -15,9 +15,12 @@ const _getAllUsers = (users) => {
 export const getAllUsers = () => {
   return async (dispatch) => {
     try {
+      dispatch({ type: "INC" });
       const { data: users } = await axios.get("/api/users");
       dispatch(_getAllUsers(users));
+      dispatch({ type: "DEC" });
     } catch (error) {
+      dispatch({ type: "DEC" });
       console.log(error);
     }
   };
