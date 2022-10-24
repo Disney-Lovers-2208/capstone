@@ -10,6 +10,7 @@ import {
   ListItemAvatar,
   Typography,
   ListItemButton,
+  Link,
 } from "@mui/material";
 
 export class Friends extends React.Component {
@@ -44,40 +45,49 @@ export class Friends extends React.Component {
                         return (
                           <div key={friend.id}>
                             <ListItem>
-                              <ListItemAvatar>
-                                <img
-                                  src={friend.image}
-                                  style={{
-                                    width: "100px",
-                                    borderRadius: "100%",
-                                    padding: "15px",
-                                  }}
-                                />
-                              </ListItemAvatar>
-                              <ListItemText
-                                primary={
-                                  <React.Fragment>
-                                    <Typography
-                                      sx={{ display: "inline" }}
-                                      component="span"
-                                      fontSize="1.8rem"
-                                    >
-                                      {`${friend.firstName} ${friend.lastName}`}
-                                    </Typography>
-                                  </React.Fragment>
-                                }
-                                secondary={
-                                  <React.Fragment>
-                                    <Typography
-                                      sx={{ display: "inline" }}
-                                      component="span"
-                                      fontSize="1.2rem"
-                                    >
-                                      {` — ${friend.bio}…`}
-                                    </Typography>
-                                  </React.Fragment>
-                                }
-                              />
+                              <Link href={`/friend/${friend.id}`}>
+                                <Row>
+                                  <Col lg={3}>
+                                    <ListItemAvatar>
+                                      <img
+                                        src={friend.image}
+                                        style={{
+                                          width: "120px",
+                                          height: "120px",
+                                          borderRadius: "100%",
+                                          marginRight: "5px",
+                                        }}
+                                      />
+                                    </ListItemAvatar>
+                                  </Col>
+                                  <Col lg={9} style={{ paddingTop: "1rem" }}>
+                                    <ListItemText
+                                      primary={
+                                        <React.Fragment>
+                                          <Typography
+                                            sx={{ display: "inline" }}
+                                            component="span"
+                                            fontSize="1.8rem"
+                                          >
+                                            {`${friend.firstName} ${friend.lastName}`}
+                                          </Typography>
+                                        </React.Fragment>
+                                      }
+                                      secondary={
+                                        <React.Fragment>
+                                          <Typography
+                                            sx={{ display: "inline" }}
+                                            component="span"
+                                            fontSize="1.2rem"
+                                          >
+                                            {` — ${friend.bio}…`}
+                                          </Typography>
+                                        </React.Fragment>
+                                      }
+                                    />
+                                  </Col>
+                                </Row>
+                              </Link>
                               <ListItemButton>
                                 <ListItemText
                                   primary="Spam"
