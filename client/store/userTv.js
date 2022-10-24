@@ -23,8 +23,8 @@ export const fetchUserTv = (userTv) => {
     try {
       dispatch({ type: "INC" });
       const { data } = await axios.get(`/api/userTvs/${userId}/${tvId}`);
-      dispatch({ type: "DEC" });
       dispatch(getUserTv(data));
+      dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;
@@ -41,8 +41,8 @@ export const fetchUpdateUserTv = (userTv) => {
         `/api/userTvs/${userId}/${tvId}`,
         userTv
       );
-      dispatch({ type: "DEC" });
       dispatch(updateUserTv(data));
+      dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;

@@ -23,8 +23,8 @@ export const fetchUser = (userId) => {
     try {
       dispatch({ type: "INC" });
       const { data: user } = await axios.get(`/api/users/${userId}`);
-      dispatch({ type: "DEC" });
       dispatch(setUser(user));
+      dispatch({ type: "DEC" });
     } catch (error) {
       return error;
     }

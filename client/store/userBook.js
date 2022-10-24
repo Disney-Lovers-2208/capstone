@@ -31,8 +31,8 @@ export const fetchUserBook = (userBook) => {
     try {
       dispatch({ type: "INC" });
       const { data } = await axios.get(`/api/userBooks/${userId}/${bookId}`);
-      dispatch({ type: "DEC" });
       dispatch(getUserBook(data));
+      dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;
@@ -45,8 +45,8 @@ export const fetchFavoriteBook = (userId) => {
     try {
       dispatch({ type: "INC" });
       const { data } = await axios.get(`/api/userBooks/favoriteBook/${userId}`);
-      dispatch({ type: "DEC" });
       dispatch(getFavoriteBook(data));
+      dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;

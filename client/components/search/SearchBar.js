@@ -20,8 +20,6 @@ export const SearchBar = () => {
     }
   };
 
-  console.log("is logged in ", isLoggedIn);
-
   useEffect(() => {
     window.addEventListener("keydown", (evt) => {
       if (evt.key === "Enter") {

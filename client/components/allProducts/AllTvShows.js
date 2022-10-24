@@ -5,7 +5,7 @@ import Pagination from "./Pagination";
 import TvCard from "../productCards/TvCard";
 
 export const AllTvShows = () => {
-  const tvshows = useSelector((state) => state.tvs);
+  let tvshows = useSelector((state) => state.tvs);
   const count = useSelector((state) => state.count);
 
   const [currentPage, setCurrentPage] = useState(1);
