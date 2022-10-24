@@ -167,7 +167,6 @@ export const SearchFor = () => {
           </div>
 
           <Row>
-            <Col>
             <Col lg={4} sm={12}>
               {!isOn ? (
                 <Row className="add-button" style={{ textAlign: "center" }}>
