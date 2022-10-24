@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Col, Row, Button } from "react-bootstrap";
 import { BsSearch } from "react-icons/bs";
@@ -11,6 +11,7 @@ import SearchTabs from "./SearchTabs";
 
 export const SearchBar = () => {
   const [search, setSearch] = useState("");
+  const isLoggedIn = useSelector((state) => !!state.auth.id);
   const dispatch = useDispatch();
 
   const handleKeyDown = (evt) => {
@@ -18,6 +19,8 @@ export const SearchBar = () => {
       console.log("Pressed enter");
     }
   };
+
+  console.log("is logged in ", isLoggedIn);
 
   useEffect(() => {
     window.addEventListener("keydown", (evt) => {
