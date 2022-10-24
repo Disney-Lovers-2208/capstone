@@ -42,7 +42,7 @@ export const SearchFor = () => {
   // carousel for search results
   const settings = {
     dots: movies.length < 30,
-
+    infinite: false,
     centerPadding: "80px",
     slidesToShow: 5,
     speed: 500,

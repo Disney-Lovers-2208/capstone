@@ -36,7 +36,7 @@ const SingleMovie = () => {
     dots: reviews.length < 40,
     className: "center",
     centerMode: true,
-
+    infinite: false,
     centerPadding: "80px",
     slidesToShow: 3,
     speed: 500,

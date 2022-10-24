@@ -36,6 +36,7 @@ const SingleTvShow = () => {
     className: "center",
     centerMode: true,
     centerPadding: "80px",
+    infinite: false,
     slidesToShow: 3,
     speed: 500,
     nextArrow: <SampleNextArrow />,

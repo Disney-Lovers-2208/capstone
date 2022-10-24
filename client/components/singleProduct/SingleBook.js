@@ -34,6 +34,7 @@ const SingleBook = () => {
 
   const settings = {
     dots: reviews.length < 40,
+    infinite: false,
     className: "center",
     centerMode: true,
     centerPadding: "80px",
