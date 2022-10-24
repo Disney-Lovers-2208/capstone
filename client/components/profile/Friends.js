@@ -36,7 +36,10 @@ export class Friends extends React.Component {
               {friends
                 ? friends.map((friend) => {
                     return (
-                      <Link to={`/users/${friend.id}`}>
+                      <Link
+                        to={`/users/${friend.id}`}
+                        style={{ textDecoration: "none", color: "#03045e" }}
+                      >
                         <ListItem>
                           <ListItemAvatar>
                             <img

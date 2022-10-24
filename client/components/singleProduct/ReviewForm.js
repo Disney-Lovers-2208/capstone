@@ -66,27 +66,33 @@ export function ReviewForm(props) {
               <hr />
               <Row>
                 <form className="review-form" onSubmit={handleSubmit}>
-                  <Rating
-                    tooltipArray={[
-                      "1 stars",
-                      "2 stars",
-                      "3 stars",
-                      "4 stars",
-                      "5 stars",
-                    ]}
-                    transition
-                    showTooltip
-                    onClick={handleRating}
-                    ratingValue={rating}
-                  />
-                  <div>
-                    <label htmlFor="comments">Comments</label>
-                    <textarea
-                      value={content || ""}
-                      onChange={(e) => setContent(e.target.value)}
-                    />
-                    <button type="submit">Submit</button>
-                  </div>
+                  <Col>
+                    <Row>
+                      <Rating
+                        tooltipArray={[
+                          "1 stars",
+                          "2 stars",
+                          "3 stars",
+                          "4 stars",
+                          "5 stars",
+                        ]}
+                        transition
+                        showTooltip
+                        onClick={handleRating}
+                        ratingValue={rating}
+                      />
+                    </Row>
+                    <Row>
+                      <label htmlFor="comments">Comments</label>
+                      <textarea
+                        value={content || ""}
+                        onChange={(e) => setContent(e.target.value)}
+                      />
+                    </Row>
+                    <Row>
+                      <button type="submit">Submit</button>
+                    </Row>
+                  </Col>
                 </form>
               </Row>
             </Container>
