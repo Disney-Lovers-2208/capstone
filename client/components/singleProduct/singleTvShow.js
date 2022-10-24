@@ -114,7 +114,6 @@ const SingleTvShow = () => {
         })
       );
     }
-    window.location.reload(false);
   };
 
   //update favorite tv
@@ -201,7 +200,6 @@ const SingleTvShow = () => {
         }
       }
     }
-    window.location.reload(false);
   };
   return (
     <div>

@@ -70,7 +70,6 @@ export const History = () => {
         );
       }
     }
-    window.location.reload(false);
   };
 
   return (

@@ -114,7 +114,6 @@ const SingleBook = () => {
         })
       );
     }
-    window.location.reload(false);
   };
 
   //update favorite book
@@ -214,7 +213,6 @@ const SingleBook = () => {
         }
       }
     }
-    window.location.reload(false);
   };
 
   return (
