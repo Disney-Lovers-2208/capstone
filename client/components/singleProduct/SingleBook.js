@@ -36,7 +36,6 @@ const SingleBook = () => {
     dots: reviews.length < 40,
     className: "center",
     centerMode: true,
-    infinite: reviews.length > 3,
     centerPadding: "80px",
     slidesToShow: 3,
     speed: 500,
@@ -114,7 +113,6 @@ const SingleBook = () => {
         })
       );
     }
-    window.location.reload(false);
   };
 
   //update favorite book
@@ -214,7 +212,6 @@ const SingleBook = () => {
         }
       }
     }
-    window.location.reload(false);
   };
 
   return (
