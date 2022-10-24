@@ -13,7 +13,6 @@ export const Home = () => {
   let activityLog = useSelector((state) => state.activityLog);
   const dispatch = useDispatch();
 
-  console.log("count", count);
   useEffect(() => {
     dispatch(getActivityLog(userId));
   }, [dispatch]);
@@ -24,12 +23,12 @@ export const Home = () => {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  activityLog = activityLog.reverse();
   const currentPosts = activityLog.slice(indexOfFirstPost, indexOfLastPost);
 
   //change page
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
   return (
@@ -41,13 +40,28 @@ export const Home = () => {
       ) : (
         <div>
           <ScrollToTop smooth color="#6f00ff" />
+
           <div className="activity-log">
             <h2
               style={{ textAlign: "center", fontWeight: 600, color: "#03045E" }}
             >
-              {" "}
               Friend Activity
             </h2>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                paddingTop: "1rem",
+                justifyContent: "center",
+              }}
+            >
+              <Pagination
+                itemsPerPage={postsPerPage}
+                totalItems={activityLog.length}
+                paginate={paginate}
+              />
+            </div>
             {currentPosts.length ? (
               currentPosts.slice(0).map((activity, index) => (
                 <div key={index} style={{ textAlign: "center" }}>

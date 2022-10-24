@@ -22,8 +22,8 @@ export const fetchCreateUserMovie = (userMovie) => {
     try {
       dispatch({ type: "INC" });
       const { data } = await axios.post(`/api/userMovies`, userMovie);
-      dispatch({ type: "DEC" });
       dispatch(createUserMovie(data));
+      dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;
@@ -38,8 +38,8 @@ export const fetchDeleteUserMovie = (userMovie) => {
     const { data: deleted } = await axios.delete(
       `/api/userMovies/${userId}/${movieId}`
     );
-    dispatch({ type: "DEC" });
     dispatch(deleteUserMovie(deleted));
+    dispatch({ type: "DEC" });
   };
 };
 

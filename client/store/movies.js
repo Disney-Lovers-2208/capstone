@@ -20,9 +20,10 @@ export const createMovie = (movie) => {
 // thunks:
 export const fetchMovies = () => async (dispatch) => {
   dispatch({ type: "INC" });
-  const { data } = await axios.get("/api/movies");
-  dispatch({ type: "DEC" });
+  let { data } = await axios.get("/api/movies");
+  data = data.reverse();
   dispatch(setMovies(data));
+  dispatch({ type: "DEC" });
 };
 
 export const fetchCreateMovie = (movie, navigate) => {
@@ -30,8 +31,8 @@ export const fetchCreateMovie = (movie, navigate) => {
     try {
       dispatch({ type: "INC" });
       const { data: created } = await axios.post(`/api/movies`, movie);
-      dispatch({ type: "DEC" });
       dispatch(createMovie(created));
+      dispatch({ type: "DEC" });
       navigate("/movies");
     } catch (error) {
       dispatch({ type: "DEC" });

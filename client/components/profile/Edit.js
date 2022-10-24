@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import { updateAuth } from "../../store/auth";
 import { useNavigate } from "react-router-dom";
+import TemporaryDrawer from "./Drawer";
 
 export function Edit(props) {
   const auth = useSelector((state) => state.auth);
@@ -57,6 +58,9 @@ export function Edit(props) {
         </div>
       ) : (
         <div className="edit-profile">
+          <div style={{ textAlign: "right" }}>
+            <TemporaryDrawer />
+          </div>
           <h1>Edit Profile</h1>
           <div>
             <Row className="profile-row">

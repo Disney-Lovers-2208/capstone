@@ -5,7 +5,7 @@ import Pagination from "./Pagination";
 import BookCard from "../productCards/BookCard";
 
 export const AllBooks = () => {
-  const books = useSelector((state) => state.books);
+  let books = useSelector((state) => state.books);
   const count = useSelector((state) => state.count);
 
   const [currentPage, setCurrentPage] = useState(1);

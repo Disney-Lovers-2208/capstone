@@ -88,7 +88,7 @@ const AddProduct = () => {
                 <label htmlFor="description"></label>
                 <input
                   name="description"
-                  placeholder="Dgiescription"
+                  placeholder="Description"
                   type="text"
                 />
               </div>
