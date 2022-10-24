@@ -4,7 +4,7 @@ const User = require("./models/User");
 const Movie = require("./models/Movie");
 const Tv = require("./models/Tv");
 const Book = require("./models/Book");
-const Review = require("./models/Reviews");
+const Review = require("./models/Review");
 const User_Movie = require("./models/userMovie");
 const User_Book = require("./models/userBook");
 const User_Tv = require("./models/userTv");
@@ -36,7 +36,6 @@ Book.belongsToMany(User, { through: User_Book });
 
 User.belongsToMany(Tv, { through: User_Tv });
 Tv.belongsToMany(User, { through: User_Tv });
-
 
 module.exports = {
   db,
