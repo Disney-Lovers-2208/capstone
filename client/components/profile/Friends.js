@@ -1,18 +1,22 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import Banner from "./Banner";
+import { removeFriend } from "../../store";
+
 import {
   List,
   ListItem,
   Divider,
   ListItemText,
   ListItemAvatar,
+  ListItemButton,
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export const Friends = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
   let friends = useSelector((state) => state.auth.friend);
 
@@ -35,7 +39,7 @@ export const Friends = () => {
               ? friends.map((friend) => {
                   return (
                     <div key={friend.id}>
-                      <ListItem component={Link} to={`/friends/${friend.id}`}>
+                      <ListItem component={Link} to={`/friend/${friend.id}`}>
                         <ListItemAvatar>
                           <img
                             src={friend.image}
@@ -72,6 +76,21 @@ export const Friends = () => {
                             </React.Fragment>
                           }
                         />
+                        <div style={{ textAlign: "right" }}>
+                          <ListItemButton
+                            sx={{
+                              backgroundColor: "#03045e",
+                              color: "white",
+                            }}
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              event.preventDefault();
+                              dispatch(removeFriend(friend.id));
+                            }}
+                          >
+                            Unfollow
+                          </ListItemButton>
+                        </div>
                       </ListItem>
                       <Divider variant="inset" component="li" />
                     </div>
