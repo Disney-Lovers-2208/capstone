@@ -21,13 +21,13 @@ box-shadow:
 
 .add-product-form button{
 
-    background-color: #023E8A;
-    color: white;
-    font-weight: 800;
-    border-radius: 0px;
-    border: none;
-    width: 150px;
-    height: 55px;
+  background-color: #023E8A;
+  color: white;
+  font-weight: 800;
+  border-radius: 0px;
+  border: none;
+  width: 150px;
+  height: 55px;
   }
 
   .add-product-form input {
