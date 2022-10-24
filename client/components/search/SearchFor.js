@@ -35,7 +35,7 @@ export const SearchFor = () => {
   // carousel for search results
   const settings = {
     className: "center",
-    infinite: users.length > 3,
+    infinite: users.length > 5,
     centerPadding: "80px",
     slidesToShow: 5,
     speed: 500,
@@ -92,7 +92,7 @@ export const SearchFor = () => {
 
       <Row>
         <Col>
-          <div className="switch" onClick={toggleSwitch}>
+          <div className="switch" data-ison={isOn} onClick={toggleSwitch}>
             <motion.div className="handle" layout transition={spring} />
           </div>
         </Col>
