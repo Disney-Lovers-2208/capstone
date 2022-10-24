@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { Navbar, Nav, Row, Col } from "react-bootstrap";
 import { FiHome } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineRecommend } from "react-icons/md";
 import { GrLogout } from "react-icons/gr";
+import TemporaryDrawer from "../profile/Drawer";
 
 const NavigationBar = ({ handleClick, isLoggedIn }) => {
   const [fixed, setFixed] = useState(false);
+
+  let location = useLocation().pathname;
+  location = location.substring(0, 8);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,9 +49,14 @@ const NavigationBar = ({ handleClick, isLoggedIn }) => {
                   <Nav.Link as={Link} to="/recommendations">
                     <MdOutlineRecommend size={30} color="#03045E" />
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/login" onClick={handleClick}>
-                    <GrLogout size={30} color="#03045E" />
-                  </Nav.Link>
+                  <div>
+                    <Nav.Link as={Link} to="/login" onClick={handleClick}>
+                      <GrLogout size={30} color="#03045E" />
+                    </Nav.Link>
+                    <div style={{ paddingTop: "1rem" }}>
+                      {location === "/profile" ? <TemporaryDrawer /> : null}
+                    </div>
+                  </div>
                 </Col>
               </Row>
             </Navbar>

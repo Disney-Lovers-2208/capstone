@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import { addFriend, removeFriend } from "../../store/auth";
 import Stats from "./Stats";
-import TemporaryDrawer from "./Drawer";
 
 const Banner = (props) => {
   const { user } = props;
@@ -14,8 +13,6 @@ const Banner = (props) => {
     return auth.id === user.id;
   };
   const dispatch = useDispatch();
-
-  const location = useLocation().pathname;
 
   return (
     <Container fluid>
@@ -64,10 +61,6 @@ const Banner = (props) => {
               </button>
             )
           ) : null}
-
-          <div style={{ textAlign: "right", paddingTop: "1rem" }}>
-            {user.id === auth.id ? <TemporaryDrawer /> : null}
-          </div>
         </Col>
       </Row>
       <Stats user={user} />
