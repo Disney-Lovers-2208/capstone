@@ -15,12 +15,9 @@ const AddProduct = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleClick = () => {
-    return 'Fields cannot be empty';
-  }
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
+
     const title = evt.target.title.value;
     const description = evt.target.description.value;
     const genrePreSplit = evt.target.genre.value;
@@ -45,6 +42,18 @@ const AddProduct = () => {
       dispatch(
         fetchCreateTv({ title, description, genre, imageUrl }, navigate)
       );
+    }
+
+    if (!title) {
+      return alert(`Title must be included`);
+    }
+
+    if(!description) {
+      return alert(`Description must be included`);
+    }
+
+    if(!author) {
+      return alert(`Author must be included`);
     }
   };
 
@@ -104,7 +113,7 @@ const AddProduct = () => {
               </div>
             </Row>
             <Row style={{ justifyContent: "center" }}>
-              <Button variant="primary" type="submit" onClick={handleClick}>
+              <Button variant="primary" type="submit">
                 Submit
               </Button>
             </Row>
