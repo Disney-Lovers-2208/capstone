@@ -13,7 +13,6 @@ export const Home = () => {
   let activityLog = useSelector((state) => state.activityLog);
   const dispatch = useDispatch();
 
-  console.log("count", count);
   useEffect(() => {
     dispatch(getActivityLog(userId));
   }, [dispatch]);
@@ -24,7 +23,6 @@ export const Home = () => {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  activityLog = activityLog.reverse();
   const currentPosts = activityLog.slice(indexOfFirstPost, indexOfLastPost);
 
   //change page

@@ -22,8 +22,8 @@ export const fetchCreateUserBook = (userBook) => {
     try {
       dispatch({ type: "INC" });
       const { data } = await axios.post(`/api/userBooks`, userBook);
-      dispatch({ type: "DEC" });
       dispatch(createUserBook(data));
+      dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;
@@ -38,8 +38,8 @@ export const fetchDeleteUserBook = (userBook) => {
     const { data: deleted } = await axios.delete(
       `/api/userBooks/${userId}/${bookId}`
     );
-    dispatch({ type: "DEC" });
     dispatch(deleteUserBook(deleted));
+    dispatch({ type: "DEC" });
   };
 };
 

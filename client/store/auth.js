@@ -33,8 +33,8 @@ export const updateAuth = (authId, authForm, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "INC" });
     const { data: auth } = await axios.put(`/api/users/${authId}`, authForm);
-    dispatch({ type: "DEC" });
     dispatch(_setAuth(auth));
+    dispatch({ type: "DEC" });
     navigate("/profile");
   } catch (error) {
     dispatch({ type: "DEC" });
@@ -49,8 +49,8 @@ export const addFriend = (friendId) => {
       const { data: updatedUser } = await axios.post(
         `/api/friends/${getState().auth.id}/${friendId}`
       );
-      dispatch({ type: "DEC" });
       dispatch(_setAuth(updatedUser));
+      dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;
@@ -65,8 +65,8 @@ export const removeFriend = (friendId) => {
       const { data: updatedUser } = await axios.delete(
         `/api/friends/${getState().auth.id}/${friendId}`
       );
-      dispatch({ type: "DEC" });
       dispatch(_setAuth(updatedUser));
+      dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;

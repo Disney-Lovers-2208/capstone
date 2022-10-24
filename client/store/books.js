@@ -20,9 +20,10 @@ const createBook = (book) => {
 // thunks:
 export const fetchBooks = () => async (dispatch) => {
   dispatch({ type: "INC" });
-  const { data } = await axios.get("/api/books");
-  dispatch({ type: "DEC" });
+  let { data } = await axios.get("/api/books");
+  data = data.reverse();
   dispatch(setBooks(data));
+  dispatch({ type: "DEC" });
 };
 
 export const fetchCreateBook = (book, navigate) => {

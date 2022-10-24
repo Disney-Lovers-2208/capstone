@@ -20,8 +20,8 @@ export const fetchSingleMovie = (id) => {
         `/api/reviews/avgStarMovie/${id}`
       );
       movie.starRating = rating;
-      dispatch({ type: "DEC" });
       dispatch(getSingleMovie(movie));
+      dispatch({ type: "DEC" });
     } catch (error) {
       return error;
     }

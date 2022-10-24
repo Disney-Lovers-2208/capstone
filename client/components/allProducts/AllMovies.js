@@ -6,7 +6,7 @@ import Genres from "./Genres";
 import MovieCard from "../productCards/MovieCard";
 
 export const AllMovies = () => {
-  const movies = useSelector((state) => state.movies);
+  let movies = useSelector((state) => state.movies);
   const count = useSelector((state) => state.count);
 
   const [currentPage, setCurrentPage] = useState(1);

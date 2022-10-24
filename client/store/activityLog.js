@@ -26,8 +26,9 @@ export const getActivityLog = (userId) => async (dispatch) => {
         reviews.push(allReviews[j]);
       }
     }
-    dispatch({ type: "DEC" });
+    reviews = reviews.reverse();
     dispatch(_getActivityLog(reviews));
+    dispatch({ type: "DEC" });
   } catch (error) {
     dispatch({ type: "DEC" });
     console.log(error);

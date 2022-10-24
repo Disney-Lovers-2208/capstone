@@ -22,8 +22,8 @@ export const fetchCreateUserTv = (userTv) => {
     try {
       dispatch({ type: "INC" });
       const { data } = await axios.post(`/api/userTvs`, userTv);
-      dispatch({ type: "DEC" });
       dispatch(createUserTv(data));
+      dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;
@@ -38,8 +38,8 @@ export const fetchDeleteUserTv = (userTv) => {
     const { data: deleted } = await axios.delete(
       `/api/userTvs/${userId}/${tvId}`
     );
-    dispatch({ type: "DEC" });
     dispatch(deleteUserTv(deleted));
+    dispatch({ type: "DEC" });
   };
 };
 
