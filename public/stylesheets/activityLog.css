@@ -1,28 +1,28 @@
 .activity-log{
  padding-top: 3rem;
-
-
-
+  text-align: center;
 }
 
 .activity-log-card{  
-
     display: flex;
     justify-content: center;
     text-align: center;
-    padding: 2rem;
-     height: 450px;
-     width: 70%;
+    margin-top: 1rem;
 }
+
 .post-user-image{
   width: 70px;
-  margin-top: 2rem;
+  margin-top: 1rem;
+}
+
+.post-info{ 
+  padding: 1rem;
 }
 
 .post-title{
 
     margin-top: 2rem;
-    margin-left: 2rem;
+   margin-left: 5px;;
     padding: 3px;
     width: 100%;
     text-align: left;
@@ -51,7 +51,7 @@
 
   .innerdiv {
     padding-right: 3rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     text-align: right;
 
     }

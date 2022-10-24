@@ -15,10 +15,6 @@ export const Home = () => {
     dispatch(getActivityLog(userId));
   }, [dispatch]);
 
-  const scrollToTop = auth.books.filter(
-    (book) => book.user_book.favorite === true
-  )[0];
-
   return (
     <div>
       {count ? (
@@ -40,7 +36,7 @@ export const Home = () => {
                 .slice(0)
                 .reverse()
                 .map((activity, index) => (
-                  <div key={index}>
+                  <div key={index} style={{ textAlign: "center" }}>
                     <ActivityCard activity={activity} />
                   </div>
                 ))

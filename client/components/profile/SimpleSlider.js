@@ -13,6 +13,8 @@ const SimpleSlider = (props) => {
     slidesToShow: 10,
     slidesToScroll: 10,
     initialSlide: 0,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
     responsive: [
       {
         breakpoint: 1700,
@@ -52,6 +54,36 @@ const SimpleSlider = (props) => {
       },
     ],
   };
+
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          content: " url(../images/next.png)",
+        }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          content: " url(../images/back.png)",
+        }}
+        onClick={onClick}
+      />
+    );
+  }
 
   return (
     <div className="slider">
