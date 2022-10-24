@@ -13,7 +13,6 @@ const NavigationBar = ({ handleClick, isLoggedIn }) => {
   useEffect(() => {
     const handleScroll = () => {
       setFixed(window.scrollY > 20);
-      console.log(window.scrollY);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);

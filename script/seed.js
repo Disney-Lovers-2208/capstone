@@ -201,11 +201,8 @@ async function seed() {
 
   // creating tv shows and movies
   await mapMovies();
-  console.log("mapped movies");
   await mapBooks();
-  console.log("mapped books");
   await mapTvShows();
-  console.log("mapped tv shows");
 
   // Creating Users
   const users = await Promise.all([
@@ -303,71 +300,71 @@ async function seed() {
     }
   }
 
-  //user_movie connections
-  for (let i = 1; i <= 3; i++) {
-    let done = [];
-    for (let j = 0; j <= 15; j++) {
-      let movieIdNum = Math.floor(Math.random() * 252) + 1;
-      if (done.includes(movieIdNum)) {
-        while (done.includes(movieIdNum)) {
-          movieIdNum = Math.floor(Math.random() * 252);
-        }
-      } else {
-        done.push(movieIdNum);
-      }
-      await Promise.all([
-        User_Movie.create({
-          userId: i,
-          movieId: movieIdNum,
-          featured: true,
-        }),
-      ]);
-    }
-  }
+  // //user_movie connections
+  // for (let i = 1; i <= 3; i++) {
+  //   let done = [];
+  //   for (let j = 0; j <= 15; j++) {
+  //     let movieIdNum = Math.floor(Math.random() * 252) + 1;
+  //     if (done.includes(movieIdNum)) {
+  //       while (done.includes(movieIdNum)) {
+  //         movieIdNum = Math.floor(Math.random() * 252);
+  //       }
+  //     } else {
+  //       done.push(movieIdNum);
+  //     }
+  //     await Promise.all([
+  //       User_Movie.create({
+  //         userId: i,
+  //         movieId: movieIdNum,
+  //         featured: true,
+  //       }),
+  //     ]);
+  //   }
+  // }
 
-  //user_books connections
-  for (let i = 1; i <= 3; i++) {
-    let done = [];
-    for (let j = 0; j <= 15; j++) {
-      let bookIdNum = Math.floor(Math.random() * 177) + 1;
-      if (done.includes(bookIdNum)) {
-        do {
-          bookIdNum = Math.floor(Math.random() * 177);
-        } while (done.includes(bookIdNum));
-      } else {
-        done.push(bookIdNum);
-      }
-      await Promise.all([
-        User_Book.create({
-          userId: i,
-          bookId: bookIdNum,
-          featured: true,
-        }),
-      ]);
-    }
-  }
+  // //user_books connections
+  // for (let i = 1; i <= 3; i++) {
+  //   let done = [];
+  //   for (let j = 0; j <= 15; j++) {
+  //     let bookIdNum = Math.floor(Math.random() * 177) + 1;
+  //     if (done.includes(bookIdNum)) {
+  //       do {
+  //         bookIdNum = Math.floor(Math.random() * 177);
+  //       } while (done.includes(bookIdNum));
+  //     } else {
+  //       done.push(bookIdNum);
+  //     }
+  //     await Promise.all([
+  //       User_Book.create({
+  //         userId: i,
+  //         bookId: bookIdNum,
+  //         featured: true,
+  //       }),
+  //     ]);
+  //   }
+  // }
 
-  //user_tv connections
-  for (let i = 1; i <= 3; i++) {
-    let done = [];
-    for (let j = 0; j <= 15; j++) {
-      let tvIdNum = Math.floor(Math.random() * 239) + 1;
-      if (done.includes(tvIdNum)) {
-        while (done.includes(tvIdNum)) {
-          tvIdNum = Math.floor(Math.random() * 239) + 1;
-        }
-      } else {
-        done.push(tvIdNum);
-      }
-      await Promise.all([
-        User_Tv.create({
-          userId: i,
-          tvId: tvIdNum,
-          featured: true,
-        }),
-      ]);
-    }
-  }
+  // //user_tv connections
+  // for (let i = 1; i <= 3; i++) {
+  //   let done = [];
+  //   for (let j = 0; j <= 15; j++) {
+  //     let tvIdNum = Math.floor(Math.random() * 239) + 1;
+  //     if (done.includes(tvIdNum)) {
+  //       while (done.includes(tvIdNum)) {
+  //         tvIdNum = Math.floor(Math.random() * 239) + 1;
+  //       }
+  //     } else {
+  //       done.push(tvIdNum);
+  //     }
+  //     await Promise.all([
+  //       User_Tv.create({
+  //         userId: i,
+  //         tvId: tvIdNum,
+  //         featured: true,
+  //       }),
+  //     ]);
+  //   }
+  // }
 
   console.log(`seeded successfully`);
 }
