@@ -53,7 +53,7 @@ const AddProduct = () => {
       ) : (
         <Container className="add-product-form">
           <h1>Add a new Book, TV Show, or Movie!</h1>
-          <div style={{ paddingLeft: "30%" }}>
+          <div style={{ paddingLeft: "30%", marginBottom: "2rem" }}>
             <select
               value={selectedOption}
               onChange={(e) => {
