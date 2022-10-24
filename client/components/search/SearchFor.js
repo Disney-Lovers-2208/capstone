@@ -35,6 +35,7 @@ export const SearchFor = () => {
 
   // carousel for search results
   const settings = {
+    dots: true,
     infinite: users.length > 3,
     centerPadding: "80px",
     slidesToShow: 5,
@@ -46,6 +47,7 @@ export const SearchFor = () => {
         breakpoint: 1800,
         settings: {
           slidesToShow: 4,
+          dots: true,
           slidesToScroll: 1,
           infinite: users.length > 1,
         },
@@ -54,6 +56,7 @@ export const SearchFor = () => {
         breakpoint: 1500,
         settings: {
           slidesToShow: 3,
+          dots: false,
           slidesToScroll: 1,
           infinite: users.length > 1,
         },
@@ -63,6 +66,7 @@ export const SearchFor = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
+          dots: false,
           infinite: users.length > 1,
         },
       },
@@ -71,6 +75,7 @@ export const SearchFor = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          dots: false,
           infinite: users.length > 1,
         },
       },
@@ -169,7 +174,11 @@ export const SearchFor = () => {
                 </Button>
               </Row>
             </Col>
-            <Col lg={4} sm={12} style={{ paddingTop: "2rem" }}>
+            <Col
+              lg={4}
+              sm={12}
+              style={{ paddingTop: "2rem", paddingRight: "5rem" }}
+            >
               <div className="switch" data-ison={isOn} onClick={toggleSwitch}>
                 <motion.div className="handle" layout transition={spring} />
               </div>
@@ -179,7 +188,7 @@ export const SearchFor = () => {
           {isOn ? (
             <div className="tvs people">
               {users.length > 0 ? (
-                <h3>People</h3>
+                <h3>People: ({users.length})</h3>
               ) : (
                 <h3>No users with the name "{title}"</h3>
               )}
@@ -214,7 +223,7 @@ export const SearchFor = () => {
             <div>
               {tvshows.length > 0 ? (
                 <div className="tvs">
-                  <h3>Shows</h3>
+                  <h3>Shows: ({tvshows.length})</h3>
                   <Row>
                     <Slider {...settings}>
                       {tvshows.map((tvshow) => {
@@ -240,7 +249,7 @@ export const SearchFor = () => {
               <br />
               {movies.length > 0 ? (
                 <div className="movies">
-                  <h3>Movies</h3>
+                  <h3>Movies: ({movies.length})</h3>
                   <Row>
                     <Slider {...settings}>
                       {movies.map((movie) => {
@@ -267,7 +276,7 @@ export const SearchFor = () => {
 
               {books.length > 0 ? (
                 <div className="books">
-                  <h3>Books</h3>
+                  <h3>Books: ({books.length})</h3>
                   <Row>
                     <Slider {...settings}>
                       {books.map((book) => {

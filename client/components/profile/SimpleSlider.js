@@ -8,6 +8,7 @@ const SimpleSlider = (props) => {
 
   let settings = {
     infinite: items.length > 10,
+    dots: true,
     speed: 500,
     slidesToShow: 10,
     slidesToScroll: 10,
@@ -28,6 +29,7 @@ const SimpleSlider = (props) => {
         settings: {
           slidesToShow: 5,
           slidesToScroll: 5,
+          dots: false,
           infinite: items.length > 5,
         },
       },
@@ -36,6 +38,7 @@ const SimpleSlider = (props) => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
+          dots: false,
           infinite: items.length > 3,
         },
       },
@@ -44,6 +47,7 @@ const SimpleSlider = (props) => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
+          dots: false,
           infinite: items.length > 2,
         },
       },
@@ -92,7 +96,7 @@ const SimpleSlider = (props) => {
             </div>
           ))
         ) : (
-          <div>No featured</div>
+          <div>Nothing featured</div>
         )}
       </Slider>
     </div>

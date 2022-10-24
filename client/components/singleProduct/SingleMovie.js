@@ -33,6 +33,7 @@ const SingleMovie = () => {
   let status = userMovie ? userMovie.status : null;
 
   const settings = {
+    dots: true,
     className: "center",
     centerMode: true,
     infinite: reviews.length > 3,
@@ -41,6 +42,7 @@ const SingleMovie = () => {
     speed: 500,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    responsive: [{ breakpoint: 1500, settings: { dots: false } }],
   };
 
   function SampleNextArrow(props) {

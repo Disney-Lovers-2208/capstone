@@ -7,10 +7,12 @@ import { DropdownButton, Dropdown } from "react-bootstrap";
 import { fetchCreateBook } from "../../store/books";
 import { fetchCreateMovie } from "../../store/movies";
 import { fetchCreateTv } from "../../store/tvshows";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const [selectedOption, setSelectedOption] = useState("book");
   const count = useSelector((state) => state.count);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = (evt) => {
@@ -24,14 +26,21 @@ const AddProduct = () => {
     if (selectedOption === "book") {
       const author = evt.target.author.value;
       dispatch(
-        fetchCreateBook({ title, author, description, genre, imageUrl })
+        fetchCreateBook(
+          { title, author, description, genre, imageUrl },
+          navigate
+        )
       );
     }
     if (selectedOption === "movie") {
-      dispatch(fetchCreateMovie({ title, description, genre, imageUrl }));
+      dispatch(
+        fetchCreateMovie({ title, description, genre, imageUrl }, navigate)
+      );
     }
     if (selectedOption === "tv") {
-      dispatch(fetchCreateTv({ title, description, genre, imageUrl }));
+      dispatch(
+        fetchCreateTv({ title, description, genre, imageUrl }, navigate)
+      );
     }
   };
 
