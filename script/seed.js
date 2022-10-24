@@ -1,5 +1,13 @@
 "use strict";
-const { randPhrase, randQuote, randUser } = require("@ngneat/falso");
+const {
+  randPhrase,
+  randSentence,
+  randColor,
+  randQuote,
+  randEmail,
+  randFirstName,
+  randLastName,
+} = require("@ngneat/falso");
 
 const {
   db,
@@ -233,6 +241,20 @@ async function seed() {
       bio: "Currently loving American Horror Story!",
     }),
   ]);
+
+  for (let i = 4; i < 100; i++) {
+    await Promise.all([
+      User.create({
+        id: i,
+        firstName: randFirstName(),
+        lastName: randLastName(),
+        username: randColor() + Math.floor(Math.random() * 1000),
+        password: "123",
+        email: randEmail(),
+        bio: randSentence(),
+      }),
+    ]);
+  }
 
   const reviews = await Promise.all([
     Review.create({
