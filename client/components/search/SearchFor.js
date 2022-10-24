@@ -95,6 +95,10 @@ export const SearchFor = () => {
             </Col>
           </Row>
 
+          <div className='toggle-users'>
+            <p>Looking for other users?</p>
+          </div>
+
           <Row>
             <Col>
               <div className="switch" data-ison={isOn} onClick={toggleSwitch}>
