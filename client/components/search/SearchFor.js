@@ -160,13 +160,6 @@ export const SearchFor = () => {
                 </h3>
               </Row>
             </Col>
-          </Row>
-
-          <div className='toggle-users'>
-            <p>Looking for other users?</p>
-          </div>
-
-          <Row>
             <Col lg={4} sm={12}>
               {!isOn ? (
                 <Row className="add-button" style={{ textAlign: "center" }}>
