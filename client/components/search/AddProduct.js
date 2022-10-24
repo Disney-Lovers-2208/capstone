@@ -55,6 +55,10 @@ const AddProduct = () => {
     if(!author) {
       return alert(`Author must be included`);
     }
+
+    if(!imageUrl) {
+      return alert(`Image must be included`);
+    }
   };
 
   return (

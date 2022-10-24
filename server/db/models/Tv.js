@@ -21,6 +21,10 @@ const Tv = db.define("tv", {
   imageUrl: {
     type: Sequelize.STRING,
     defaultValue: "",
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    }
   },
   productType: {
     type: Sequelize.STRING,
