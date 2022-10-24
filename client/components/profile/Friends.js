@@ -3,14 +3,15 @@ import { connect } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import Banner from "./Banner";
 import { Link } from "react-router-dom";
-import UserCard from "../productCards/UserCard";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import Divider from "@mui/material/Divider";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
+import {
+  List,
+  ListItem,
+  Divider,
+  ListItemText,
+  ListItemAvatar,
+  Typography,
+  ListItemButton,
+} from "@mui/material";
 
 export class Friends extends React.Component {
   render() {
@@ -36,15 +37,16 @@ export class Friends extends React.Component {
               {friends
                 ? friends.map((friend) => {
                     return (
-                      <Link
-                        to={`/users/${friend.id}`}
-                        style={{ textDecoration: "none", color: "#03045e" }}
-                      >
+                      <>
                         <ListItem>
                           <ListItemAvatar>
                             <img
                               src={friend.image}
-                              style={{ width: "100px" }}
+                              style={{
+                                width: "100px",
+                                borderRadius: "100%",
+                                padding: "15px",
+                              }}
                             />
                           </ListItemAvatar>
                           <ListItemText
@@ -71,29 +73,21 @@ export class Friends extends React.Component {
                               </React.Fragment>
                             }
                           />
+                          <ListItemButton>
+                            <ListItemText
+                              primary="Spam"
+                              color="yellow"
+                              width="2rem "
+                            />
+                          </ListItemButton>
                         </ListItem>
                         <Divider variant="inset" component="li" />
-                      </Link>
+                      </>
                     );
                   })
                 : null}
             </List>
           </Col>
-          {/* <Col className="friends-list">
-            {friends
-              ? friends.map((friend) => {
-                  return (
-                    <Link
-                      to={`/friend/${friend.id}`}
-                      key={friend.id}
-                      style={{ textDecoration: "none", color: "#023E8A" }}
-                    >
-                      <UserCard friend={friend} />
-                    </Link>
-                  );
-                })
-              : null}
-          </Col> */}
         </Row>
       </Container>
     );

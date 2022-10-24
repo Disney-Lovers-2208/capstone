@@ -4,6 +4,14 @@ import { Link, useParams } from "react-router-dom";
 import { Button, Row, Col, Card } from "react-bootstrap";
 import Slider from "react-slick";
 import { AnimatePresence, motion } from "framer-motion";
+import {
+  List,
+  ListItem,
+  Divider,
+  ListItemText,
+  ListItemAvatar,
+  Typography,
+} from "@mui/material";
 
 export const SearchFor = () => {
   const { title } = useParams();
@@ -36,7 +44,7 @@ export const SearchFor = () => {
   // carousel for search results
   const settings = {
     dots: movies.length < 30,
-    infinite: movies.length > 3,
+    infinite: books.length > 3,
     centerPadding: "80px",
     slidesToShow: 5,
     speed: 500,
@@ -49,7 +57,6 @@ export const SearchFor = () => {
           slidesToShow: 4,
           dots: movies.length < 30,
           slidesToScroll: 1,
-          infinite: users.length > 1,
         },
       },
       {
@@ -58,7 +65,6 @@ export const SearchFor = () => {
           slidesToShow: 3,
           dots: false,
           slidesToScroll: 1,
-          infinite: users.length > 1,
         },
       },
       {
@@ -67,7 +73,6 @@ export const SearchFor = () => {
           slidesToShow: 2,
           slidesToScroll: 1,
           dots: false,
-          infinite: users.length > 1,
         },
       },
       {
@@ -76,7 +81,6 @@ export const SearchFor = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
           dots: false,
-          infinite: users.length > 1,
         },
       },
     ],
@@ -159,20 +163,22 @@ export const SearchFor = () => {
               </Row>
             </Col>
             <Col lg={4} sm={12}>
-              <Row className="add-button" style={{ textAlign: "center" }}>
-                <h3>Don't see your favorite?</h3>
-                <Button
-                  style={{
-                    backgroundColor: "#023E8A",
-                    color: "#dcdf00",
-                  }}
-                  className="add-button-button"
-                  as={Link}
-                  to={"/add"}
-                >
-                  Add it!
-                </Button>
-              </Row>
+              {!isOn ? (
+                <Row className="add-button" style={{ textAlign: "center" }}>
+                  <h3>Don't see your favorite?</h3>
+                  <Button
+                    style={{
+                      backgroundColor: "#023E8A",
+                      color: "#dcdf00",
+                    }}
+                    className="add-button-button"
+                    as={Link}
+                    to={"/add"}
+                  >
+                    Add it!
+                  </Button>
+                </Row>
+              ) : null}
             </Col>
             <Col
               lg={4}
@@ -188,34 +194,61 @@ export const SearchFor = () => {
           {isOn ? (
             <div className="tvs people">
               {users.length > 0 ? (
-                <h3>People: ({users.length})</h3>
+                <h3 style={{ paddingTop: "2rem" }}>People: ({users.length})</h3>
               ) : (
                 <h3>No users with the name "{title}"</h3>
               )}
               {
                 <Row>
-                  <Slider {...settings}>
+                  <List>
                     {users.map((user) => {
                       return (
-                        <Col className="search-for-user-card" key={user.id}>
-                          <Link to={`/users/${user.id}`}>
-                            <img src={user.image} alt="user-image" />
-                            <Card.Title style={{ paddingTop: "1rem" }}>
-                              <h2>
-                                {user.firstName} {user.lastName}
-                              </h2>
-                            </Card.Title>
-                            <Card.Title style={{ paddingTop: "1rem" }}>
-                              {user.username}
-                            </Card.Title>
-                            <button style={{ marginTop: "1rem" }}>
-                              Add Friend
-                            </button>
-                          </Link>
-                        </Col>
+                        <Link
+                          to={`/users/${user.id}`}
+                          key={user.id}
+                          style={{ textDecoration: "none", color: "#03045e" }}
+                        >
+                          <ListItem>
+                            <ListItemAvatar>
+                              <img
+                                src={user.image}
+                                style={{
+                                  width: "100px",
+                                  borderRadius: "100%",
+                                  padding: "15px",
+                                }}
+                              />
+                            </ListItemAvatar>
+                            <ListItemText
+                              primary={
+                                <React.Fragment>
+                                  <Typography
+                                    sx={{ display: "inline" }}
+                                    component="span"
+                                    fontSize="1.8rem"
+                                  >
+                                    {`${user.firstName} ${user.lastName}`}
+                                  </Typography>
+                                </React.Fragment>
+                              }
+                              secondary={
+                                <React.Fragment>
+                                  <Typography
+                                    sx={{ display: "inline" }}
+                                    component="span"
+                                    fontSize="1.2rem"
+                                  >
+                                    {` — ${user.bio}…`}
+                                  </Typography>
+                                </React.Fragment>
+                              }
+                            />
+                          </ListItem>
+                          <Divider variant="inset" component="li" />
+                        </Link>
                       );
                     })}
-                  </Slider>
+                  </List>
                 </Row>
               }
             </div>
