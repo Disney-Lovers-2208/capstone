@@ -25,13 +25,14 @@ export const fetchBooks = () => async (dispatch) => {
   dispatch(setBooks(data));
 };
 
-export const fetchCreateBook = (book) => {
+export const fetchCreateBook = (book, navigate) => {
   return async (dispatch) => {
     try {
       dispatch({ type: "INC" });
       const { data: created } = await axios.post(`/api/books`, book);
       dispatch({ type: "DEC" });
       dispatch(createBook(created));
+      navigate("/books");
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;

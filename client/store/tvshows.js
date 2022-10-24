@@ -19,13 +19,14 @@ const createTv = (tv) => {
 };
 
 //Thunk
-export const fetchCreateTv = (tv) => {
+export const fetchCreateTv = (tv, navigate) => {
   return async (dispatch) => {
     try {
       dispatch({ type: "INC" });
       const { data: created } = await axios.post(`/api/tvs`, tv);
       dispatch({ type: "DEC" });
       dispatch(createTv(created));
+      navigate("/tvshows");
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;

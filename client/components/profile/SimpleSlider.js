@@ -7,8 +7,8 @@ const SimpleSlider = (props) => {
   const items = books || tvs || movies || [];
 
   let settings = {
-    dots: true,
     infinite: items.length > 10,
+    dots: items.length < 50,
     speed: 500,
     slidesToShow: 10,
     slidesToScroll: 10,
@@ -22,7 +22,6 @@ const SimpleSlider = (props) => {
           slidesToShow: 7,
           slidesToScroll: 7,
           infinite: items.length > 7,
-          dots: true,
         },
       },
       {
@@ -30,8 +29,8 @@ const SimpleSlider = (props) => {
         settings: {
           slidesToShow: 5,
           slidesToScroll: 5,
+          dots: false,
           infinite: items.length > 5,
-          dots: true,
         },
       },
       {
@@ -39,8 +38,8 @@ const SimpleSlider = (props) => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
+          dots: false,
           infinite: items.length > 3,
-          dots: true,
         },
       },
       {
@@ -48,8 +47,8 @@ const SimpleSlider = (props) => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
+          dots: false,
           infinite: items.length > 2,
-          dots: true,
         },
       },
     ],
@@ -97,7 +96,7 @@ const SimpleSlider = (props) => {
             </div>
           ))
         ) : (
-          <div>No featured</div>
+          <div>Nothing featured</div>
         )}
       </Slider>
     </div>

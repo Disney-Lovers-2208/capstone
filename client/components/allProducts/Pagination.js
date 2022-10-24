@@ -3,7 +3,7 @@ import { Nav } from "react-bootstrap";
 
 export const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
   const pageNumbers = [];
-
+  console.log(itemsPerPage, totalItems);
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pageNumbers.push(i);
   }

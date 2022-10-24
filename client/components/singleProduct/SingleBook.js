@@ -33,6 +33,7 @@ const SingleBook = () => {
   let status = userBook ? userBook.status : null;
 
   const settings = {
+    dots: reviews.length < 40,
     className: "center",
     centerMode: true,
     infinite: reviews.length > 3,
@@ -41,6 +42,7 @@ const SingleBook = () => {
     speed: 500,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    responsive: [{ breakpoint: 1500, settings: { dots: false } }],
   };
 
   function SampleNextArrow(props) {
