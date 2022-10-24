@@ -183,6 +183,14 @@ export const SearchFor = () => {
               sm={12}
               style={{ paddingTop: "2rem", paddingRight: "5rem" }}
             >
+              {isOn ? (
+                <p style={{ textAlign: "right" }}>
+                  Toggle to search for products
+                </p>
+              ) : (
+                <p style={{ textAlign: "right" }}>Toggle to search for users</p>
+              )}
+
               <div className="switch" data-ison={isOn} onClick={toggleSwitch}>
                 <motion.div className="handle" layout transition={spring} />
               </div>
