@@ -113,7 +113,6 @@ const SingleMovie = () => {
         })
       );
     }
-    window.location.reload(false);
   };
 
   //update favorite Movie
@@ -214,7 +213,6 @@ const SingleMovie = () => {
         }
       }
     }
-    window.location.reload(false);
   };
 
   return (
