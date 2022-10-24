@@ -43,11 +43,14 @@ const Banner = (props) => {
           <p style={{ margin: "2rem" }}>{user.bio} </p>
         </Col>
 
-        <Col sm={1}>
+        <Col sm={1} style={{ textAlign: "right" }}>
           {!isOwnProfile() ? (
             isFriend ? (
               <button
-                style={{ marginTop: "1rem " }}
+                style={{
+                  padding: "1rem",
+                  marginTop: "1rem ",
+                }}
                 onClick={() => dispatch(removeFriend(user.id))}
               >
                 Unfollow
