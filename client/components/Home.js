@@ -24,6 +24,7 @@ export const Home = () => {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  activityLog = activityLog.reverse();
   const currentPosts = activityLog.slice(indexOfFirstPost, indexOfLastPost);
 
   //change page
@@ -48,14 +49,11 @@ export const Home = () => {
               Friend Activity
             </h2>
             {currentPosts.length ? (
-              currentPosts
-                .slice(0)
-                .reverse()
-                .map((activity, index) => (
-                  <div key={index} style={{ textAlign: "center" }}>
-                    <ActivityCard activity={activity} />
-                  </div>
-                ))
+              currentPosts.slice(0).map((activity, index) => (
+                <div key={index} style={{ textAlign: "center" }}>
+                  <ActivityCard activity={activity} />
+                </div>
+              ))
             ) : (
               <div>
                 <h1 style={{ margin: "2rem" }}>
