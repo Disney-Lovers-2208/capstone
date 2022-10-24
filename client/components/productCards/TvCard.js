@@ -9,9 +9,17 @@ export const TvCard = (props) => {
   return (
     <Container fluid className="all-movies">
       {tvShow.map((tv) => (
-        <Card key={tv.id} style={{ width: "15rem", margin: "2rem" }}>
+        <Card
+          key={tv.id}
+          style={{ width: "15rem", margin: "2rem", border: "none" }}
+        >
           <Link to={`/tvshows/${tv.id}`}>
-            <Card.Img className="card-img" variant="top" src={tv.imageUrl} />
+            <Card.Img
+              className="card-img"
+              style={{ borderRadius: "1rem" }}
+              variant="top"
+              src={tv.imageUrl}
+            />
           </Link>
         </Card>
       ))}

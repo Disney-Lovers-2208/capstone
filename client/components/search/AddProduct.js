@@ -1,12 +1,13 @@
 import React from "react";
-import { useDispatch, useSElector } from "react-redux";
-import { Container, InputGroup, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Container, InputGroup, Button, Row, Col } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import { fetchCreateBook } from "../../store/books";
 import { fetchCreateMovie } from "../../store/movies";
 import { fetchCreateTv } from "../../store/tvshows";
+
 const AddProduct = () => {
   const [selectedOption, setSelectedOption] = useState("book");
   const count = useSelector((state) => state.count);
@@ -42,43 +43,58 @@ const AddProduct = () => {
         </div>
       ) : (
         <Container className="add-product-form">
-          <select
-            value={selectedOption}
-            onChange={(e) => {
-              setSelectedOption(e.target.value);
-            }}
-          >
-            <option value="book">Book</option>
-            <option value="movie">Movie</option>
-            <option value="tv">Tv Show</option>
-          </select>
-
+          <h1>Add a new Book, TV Show, or Movie!</h1>
+          <div style={{ paddingLeft: "30%" }}>
+            <select
+              value={selectedOption}
+              onChange={(e) => {
+                setSelectedOption(e.target.value);
+              }}
+            >
+              <option value="book">Book</option>
+              <option value="movie">Movie</option>
+              <option value="tv">Tv Show</option>
+            </select>
+          </div>
           <Form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="title"></label>
-              <input name="title" placeholder="title" type="text" />
-            </div>
-            {selectedOption === "book" ? (
+            <Row>
               <div>
-                <label htmlFor="author"></label>
-                <input name="author" placeholder="Author" type="text" />
+                <label htmlFor="title"></label>
+                <input name="title" placeholder="Title" type="text" />
               </div>
-            ) : null}
-            <div>
-              <label htmlFor="description"></label>
-              <input name="description" placeholder="description" type="text" />
-            </div>
-            <div>
-              <label htmlFor="genre"></label>
-              <input name="genre" placeholder="Genres" type="text" />
-            </div>
-            <div>
-              <label htmlFor="image"></label>
-              <input name="image" placeholder="Cover Image" type="text" />
-            </div>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
+
+              {selectedOption === "book" ? (
+                <div>
+                  <label htmlFor="author"></label>
+                  <input name="author" placeholder="Author" type="text" />
+                </div>
+              ) : null}
+            </Row>
+            <Row>
+              <div>
+                <label htmlFor="description"></label>
+                <input
+                  name="description"
+                  placeholder="Dgiescription"
+                  type="text"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="genre"></label>
+                <input name="genre" placeholder="Genres" type="text" />
+              </div>
+
+              <div>
+                <label htmlFor="image"></label>
+                <input name="image" placeholder="Cover Image" type="text" />
+              </div>
+            </Row>
+            <Row style={{ justifyContent: "center" }}>
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Row>
           </Form>
         </Container>
       )}

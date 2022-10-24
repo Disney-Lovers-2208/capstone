@@ -33,104 +33,95 @@ export const SearchFor = () => {
   };
 
   // carousel for search results
-  let settings = {
-    dots: true,
+  const settings = {
+    className: "center",
+    infinite: users.length > 5,
+    centerPadding: "80px",
+    slidesToShow: 5,
     speed: 500,
-    slidesToShow: 4,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   };
+
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          content: " url(../images/next.png)",
+        }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          content: " url(../images/back.png)",
+        }}
+        onClick={onClick}
+      />
+    );
+  }
 
   return (
     <div className="search-results">
-      <div className="searched-for">
-        <h3>You searched for: {title}</h3>
-      </div>
+      <Row className="searched-for">
+        <Col lg={4} sm={12}>
+          <h3 style={{ padding: "5rem" }}>You searched for: {title}</h3>
+        </Col>
+        <Col lg={4} sm={12}></Col>
+        <Col lg={4} sm={12} style={{ textAlign: "right" }}>
+          <Row className="add-button">
+            <h3>Don't see your fave?</h3>
+            <button className="add-button-button" as={Link} to={"/add"}>
+              Add it!
+            </button>
+          </Row>
+        </Col>
+      </Row>
 
       <Row>
         <Col>
-          <div className="switch" onClick={toggleSwitch}>
+          <div className="switch" data-ison={isOn} onClick={toggleSwitch}>
             <motion.div className="handle" layout transition={spring} />
           </div>
         </Col>
       </Row>
 
-      {/* <Row style={{ marginTop: "2rem" }}>
-        <motion.div layout className="toggle-results">
-          {isOn ? (
-            <Row>
-              {users.map((user) => {
-                 <Col key={user.id}>
-                    <h2>People</h2>
-                    <Link to={`/users/${user.id}`}>
-                      <p>{user.firstName} {user.lastName}</p>
-                      <img src={user.image} alt="user-image" />
-                    </Link>
-                 </Col>
-              })}
-            </Row>
-          ) : null}
-        </motion.div>
-      </Row> */}
-
-      {/* <Row style={{marginTop: "2rem" }}>
-        <motion.div layout className="toggle-results">
-          {filtered.map((item) => {
-            return (
-              <AnimatePresence key={user.id}>
-                <motion.div 
-                  layout 
-                  animate={{ opacity: 1, scale: 1 }} 
-                  initial={{ opacity: 0, scale: 0}} 
-                  exit={{ opacity: 0, scale: 0 }}>
-                  <h2>People</h2>
-                  <Link to={`/users/${user.id}`}>
-                    <img src={user.image} alt="user-image"/>
-                  </Link>
-                  {isOn ? (
-                   <Row>
-                    {users.map((user) => {
-                       <Col key={user.id}>
-                        <h2>People</h2>
-                        <Link to={`/users/${user.id}`}>
-                          <img src={user.image} alt="user-image" />
-                        </Link>
-                       </Col>
-                    })}
-                   </Row>
-                  ) : null}
-                </motion.div>
-              </AnimatePresence>
-            )
-          })}
-        </motion.div>
-      </Row> */}
-
       {isOn ? (
-        <div className="people">
+        <div className="tvs people">
           <h3>People</h3>
           <Row>
-            <motion.div>
-              <Slider {...settings}>
-                {users.map((user) => {
-                  return (
-                    <AnimatePresence>
-                      <Col key={user.id} style={{ margin: "2rem" }}>
-                        <Link to={`/users/${user.id}`}>
-                          <Card.Title>
-                            {user.firstName} {user.lastName}
-                          </Card.Title>
-                          <Card.Img
-                            className="card-img"
-                            variant="top"
-                            src={user.image}
-                            alt="user-image"
-                          />
-                        </Link>
-                      </Col>
-                    </AnimatePresence>
-                  );
-                })}
-              </Slider>
-            </motion.div>
+            <Slider {...settings}>
+              {users.map((user) => {
+                return (
+                  <Col className="search-for-user-card" key={user.id}>
+                    <Link to={`/users/${user.id}`}>
+                      <img src={user.image} alt="user-image" />
+                      <Card.Title style={{ paddingTop: "1rem" }}>
+                        <h2>
+                          {user.firstName} {user.lastName}
+                        </h2>
+                      </Card.Title>
+                      <Card.Title style={{ paddingTop: "1rem" }}>
+                        {user.username}
+                      </Card.Title>
+                      <button style={{ marginTop: "1rem" }}>Add Friend</button>
+                    </Link>
+                  </Col>
+                );
+              })}
+            </Slider>
           </Row>
         </div>
       ) : (
@@ -148,6 +139,7 @@ export const SearchFor = () => {
                           variant="top"
                           src={tvshow.imageUrl}
                           alt="tv-image"
+                          style={{ height: "340px" }}
                         />
                       </Link>
                     </Col>
@@ -172,6 +164,7 @@ export const SearchFor = () => {
                           variant="top"
                           src={movie.imageUrl}
                           alt="movie-image"
+                          style={{ height: "340px" }}
                         />
                       </Link>
                     </Col>
@@ -196,6 +189,7 @@ export const SearchFor = () => {
                           variant="top"
                           src={book.imageUrl}
                           alt="book-image"
+                          style={{ height: "340px" }}
                         />
                       </Link>
                     </Col>
@@ -206,35 +200,6 @@ export const SearchFor = () => {
           </div>
         </div>
       )}
-
-      {/* <div className='people'>
-          <h3>People</h3>
-          <Row>
-            <motion.div>
-            <Slider {...settings}>
-              {users.map(user => {
-                return (
-                  <AnimatePresence>
-                    <Col key={user.id} style={{ margin: '2rem'}}>
-                      <Link to={`/users/${user.id}`}>
-                        <Card.Title>{user.firstName} {user.lastName}</Card.Title>
-                        <Card.Img className="card-img" variant="top" src={user.image} alt="user-image" />
-                      </Link>
-                    </Col>
-                  </AnimatePresence>
-                )
-              })}
-            </Slider>
-            </motion.div>
-          </Row>
-      </div>  */}
-
-      <div className="add-button">
-        <h2>Don't see your fave?</h2>
-        <Button as={Link} to={"/add"}>
-          Add Your Fave!
-        </Button>
-      </div>
     </div>
   );
 };

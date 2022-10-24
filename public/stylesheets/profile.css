@@ -109,6 +109,8 @@ margin-left: 1rem;
 
 .stats-inner-row{
     padding-left: 25px;
+    color:white;
+ 
 }
 .stats-image-icon{
     height: 80px;
@@ -151,14 +153,9 @@ margin-left: 1rem;
 }
 
 .slider {
- margin-left: 2%;
-
+align-items: center;
 }
 
-
-.friends {
-    background-color: rgb(215, 228, 228);
-}
 
 .friends .friends-list{ 
     margin-top: 2%;
@@ -166,6 +163,7 @@ margin-left: 1rem;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    
 }
 
 .friends .friend-card{ 
@@ -177,15 +175,18 @@ margin-left: 1rem;
     0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
     border-radius: 15px;
-    background-color: azure;
+    background-color: #dcdf00;
     padding: 2%;
-    margin: 2%;
-    height: 200px;
-    width: 400px;
+    margin: 2rem;
+    height: 300px;
+    width: 300px;
+    border: none;
+    padding: 1rem;
 }
 
 .friends .friend-card img{
     height: 100px;
     width: 100px;
     border-radius: 100%;
+    margin-bottom: 1rem;;
 }

@@ -25,16 +25,16 @@ export function Edit(props) {
     setEmail(auth.email);
     setUsername(auth.username);
     setBio(auth.bio);
-    setImage(auth.image);
-    setBannerImage(auth.image);
+    // setImage(auth.image);
+    // setBannerImage(auth.image);
   }, [
     auth.firstName,
     auth.lastName,
     auth.email,
     auth.username,
     auth.bio,
-    auth.image,
-    auth.bannerImage,
+    // auth.image,
+    // auth.bannerImage,
   ]);
 
   const handleSubmit = (evt) => {
@@ -43,7 +43,7 @@ export function Edit(props) {
     dispatch(
       updateAuth(
         authId,
-        { firstName, lastName, email, username, bio, image, bannerImage },
+        { firstName, lastName, email, username, bio },
         navigate
       )
     );
@@ -56,24 +56,25 @@ export function Edit(props) {
           <div className="spinner"></div>
         </div>
       ) : (
-        <div className="edit-profile-page">
+        <div className="edit-profile">
           <h1>Edit Profile</h1>
           <div>
-            <Row className="edit-form">
-              <Col lg={4}>
-                <div className="text-center">
+            <Row className="profile-row">
+              <Col lg={4} sm={12}>
+                <div className="edit-image">
                   <img
                     src={auth.image}
-                    style={{ width: "100px", borderRadius: "100%" }}
+                    style={{ width: "250px", borderRadius: "100%" }}
                     alt="image"
                   />
+
                   <h6>Upload a different profile photo...</h6>
                 </div>
               </Col>
-              <Col lg={8}>
-                <form className="edit-form-text" onSubmit={handleSubmit}>
-                  <Row className="edit-name">
-                    <Col>
+              <Col lg={8} sm={12}>
+                <form className="" onSubmit={handleSubmit}>
+                  <Row className="input-row">
+                    <Col lg={4} md={6} sm={6}>
                       <label htmlFor="firstName"> First Name: </label>
                       <input
                         type="text"
@@ -92,8 +93,8 @@ export function Edit(props) {
                       />
                     </Col>
                   </Row>
-                  <Row>
-                    <Col>
+                  <Row className="input-row">
+                    <Col lg={4} md={6} sm={6}>
                       <label htmlFor="email"> Email: </label>
                       <input
                         type="text"
@@ -112,7 +113,7 @@ export function Edit(props) {
                       />
                     </Col>
                   </Row>
-                  <Row>
+                  <Row className="bio-row">
                     <Col>
                       <label htmlFor="bio"> Bio: </label>
                       <textarea
@@ -121,6 +122,7 @@ export function Edit(props) {
                         onChange={(e) => setBio(e.target.value)}
                       />
                     </Col>
+                    <Col></Col>
                   </Row>
                   <Row className="submit">
                     <input

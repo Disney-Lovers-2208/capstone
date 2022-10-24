@@ -52,30 +52,6 @@ export const AllBooks = () => {
           </Row>
         </Container>
       )}
-      <Container fluid className="all-movies">
-        <Row>
-          <Col className="all-movies">
-            <Row>{/* <Genres movies={movies} /> */}</Row>
-            <Row>
-              <Pagination
-                itemsPerPage={booksPerPage}
-                totalItems={books.length}
-                paginate={paginate}
-              />
-            </Row>
-            <Row>
-              <BookCard books={currentBooks} />
-            </Row>
-            <Row>
-              <Pagination
-                itemsPerPage={booksPerPage}
-                totalItems={books.length}
-                paginate={paginate}
-              />
-            </Row>
-          </Col>
-        </Row>
-      </Container>
     </div>
   );
 };
