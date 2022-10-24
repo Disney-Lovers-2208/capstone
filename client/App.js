@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import AuthForm from "./components/AuthForm";
 import PageNotFound from "./components/PageNotFound";
 import Home from "./components/Home";
@@ -48,6 +48,7 @@ const App = () => {
       {isLoggedIn ? (
         <Routes>
           <Route exact path="/" element={<Home />} />
+          <Route exact path="/searchfor/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/profile" element={<UserProfilePage />} />
@@ -75,6 +76,7 @@ const App = () => {
           <Route path="/login" element={<AuthForm />} />
           <Route path="/signup" element={<AuthForm />} />
           <Route path="/home" element={<AuthForm />} />
+          <Route path="/searchfor/" element={<Navigate to="/" />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       )}

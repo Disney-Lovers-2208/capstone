@@ -86,7 +86,7 @@ export const History = () => {
               <Banner user={user} />
             </Col>
           </Row>
-          <h1>History</h1>
+          <h1 style={{ paddingLeft: "1rem" }}>History</h1>
           <Row>
             <Col>
               <Filter
@@ -106,7 +106,7 @@ export const History = () => {
             </Col>
           </Row>
 
-          <Row style={{ marginTop: "2rem" }}>
+          <Row style={{ marginTop: "2rem", marginLeft: "2rem" }}>
             <motion.div layout className="popular-movies">
               {filtered.map((item) => {
                 return (
@@ -117,7 +117,7 @@ export const History = () => {
                       initial={{ opacity: 0, scale: 0 }}
                       exit={{ opacity: 0, scale: 0 }}
                     >
-                      <h2>{item.title}</h2>
+                      {/* <h2>{item.title}</h2> */}
                       <Link to={`/${item.productType}s/${item.id}`}>
                         <img src={item.imageUrl} alt="image" />
                       </Link>
