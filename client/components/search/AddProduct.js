@@ -15,6 +15,10 @@ const AddProduct = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const handleClick = () => {
+    return 'Fields cannot be empty';
+  }
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const title = evt.target.title.value;
@@ -100,7 +104,7 @@ const AddProduct = () => {
               </div>
             </Row>
             <Row style={{ justifyContent: "center" }}>
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" onClick={handleClick}>
                 Submit
               </Button>
             </Row>
