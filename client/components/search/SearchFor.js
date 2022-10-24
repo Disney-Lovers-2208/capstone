@@ -35,8 +35,8 @@ export const SearchFor = () => {
 
   // carousel for search results
   const settings = {
-    dots: true,
-    infinite: users.length > 3,
+    dots: movies.length < 30,
+    infinite: movies.length > 3,
     centerPadding: "80px",
     slidesToShow: 5,
     speed: 500,
@@ -47,7 +47,7 @@ export const SearchFor = () => {
         breakpoint: 1800,
         settings: {
           slidesToShow: 4,
-          dots: true,
+          dots: movies.length < 30,
           slidesToScroll: 1,
           infinite: users.length > 1,
         },

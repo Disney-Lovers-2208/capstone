@@ -33,7 +33,7 @@ const SingleMovie = () => {
   let status = userMovie ? userMovie.status : null;
 
   const settings = {
-    dots: true,
+    dots: reviews.length < 40,
     className: "center",
     centerMode: true,
     infinite: reviews.length > 3,

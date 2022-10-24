@@ -8,7 +8,7 @@ const SimpleSlider = (props) => {
 
   let settings = {
     infinite: items.length > 10,
-    dots: true,
+    dots: items.length < 50,
     speed: 500,
     slidesToShow: 10,
     slidesToScroll: 10,

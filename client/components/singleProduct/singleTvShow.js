@@ -32,7 +32,7 @@ const SingleTvShow = () => {
   let status = userTv ? userTv.status : null;
 
   const settings = {
-    dots: true,
+    dots: reviews.length < 40,
     className: "center",
     centerMode: true,
     infinite: reviews.length > 3,
