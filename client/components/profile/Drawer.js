@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
-import { Link } from "@mui/material";
+// import { Link } from "@mui/material";
 import { Divider } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -14,6 +14,8 @@ import { CgProfile } from "react-icons/cg";
 import { FaUserFriends } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdModeEdit } from "react-icons/md";
+import UserProfilePage from "./UserProfilePage";
+import { Link } from "react-router-dom";
 
 export default function TemporaryDrawer() {
   const [state, setState] = React.useState({
@@ -44,60 +46,50 @@ export default function TemporaryDrawer() {
           },
         }}
       >
-        <Link href={`/profile`} underline="none" color="#03045e">
-          <ListItem key={1}>
-            <ListItemButton>
-              <ListItemIcon>
-                <CgProfile color="black" size={20} />
-              </ListItemIcon>
-              <ListItemText primary="Profile" />
-            </ListItemButton>
-          </ListItem>
-        </Link>
+        <ListItem component={Link} to="/profile" key={1}>
+          <ListItemButton>
+            <ListItemIcon>
+              <CgProfile color="black" size={20} />
+            </ListItemIcon>
+            <ListItemText primary="Profile" />
+          </ListItemButton>
+        </ListItem>
         <Divider />
-        <Link href={`/profile/history`} underline="none" color="#03045e">
-          <ListItem key={2}>
-            <ListItemButton>
-              <ListItemIcon>
-                <AiFillEye color="black" size={20} />
-              </ListItemIcon>
-              <ListItemText primary="History" />
-            </ListItemButton>
-          </ListItem>
-        </Link>
+        <ListItem component={Link} to="/profile/history" key={2}>
+          <ListItemButton>
+            <ListItemIcon>
+              <AiFillEye color="black" size={20} />
+            </ListItemIcon>
+            <ListItemText primary="History" />
+          </ListItemButton>
+        </ListItem>
         <Divider />
-        <Link href={`/profile/saved`} underline="none" color="#03045e">
-          <ListItem key={3}>
-            <ListItemButton>
-              <ListItemIcon>
-                <AiFillHeart color="black" size={20} />
-              </ListItemIcon>
-              <ListItemText primary="Saved" />
-            </ListItemButton>
-          </ListItem>
-        </Link>
+        <ListItem component={Link} to="/profile/saved" key={3}>
+          <ListItemButton>
+            <ListItemIcon>
+              <AiFillHeart color="black" size={20} />
+            </ListItemIcon>
+            <ListItemText primary="Saved" />
+          </ListItemButton>
+        </ListItem>
         <Divider />
-        <Link href={`/profile/friends`} underline="none" color="#03045e">
-          <ListItem key={4}>
-            <ListItemButton>
-              <ListItemIcon>
-                <FaUserFriends color="black" size={20} />
-              </ListItemIcon>
-              <ListItemText primary="Friends" />
-            </ListItemButton>
-          </ListItem>
-        </Link>
+        <ListItem component={Link} to="/profile/friends" key={4}>
+          <ListItemButton>
+            <ListItemIcon>
+              <FaUserFriends color="black" size={20} />
+            </ListItemIcon>
+            <ListItemText primary="Friends" />
+          </ListItemButton>
+        </ListItem>
         <Divider />
-        <Link href={`/profile/edit`} underline="none" color="#03045e">
-          <ListItem key={5}>
-            <ListItemButton>
-              <ListItemIcon>
-                <MdModeEdit color="black" size={20} />
-              </ListItemIcon>
-              <ListItemText primary="Edit" />
-            </ListItemButton>
-          </ListItem>
-        </Link>
+        <ListItem component={Link} to="/profile/edit" key={5}>
+          <ListItemButton>
+            <ListItemIcon>
+              <MdModeEdit color="black" size={20} />
+            </ListItemIcon>
+            <ListItemText primary="Edit" />
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );

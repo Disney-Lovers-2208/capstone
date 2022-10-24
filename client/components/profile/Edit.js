@@ -26,17 +26,7 @@ export function Edit(props) {
     setEmail(auth.email);
     setUsername(auth.username);
     setBio(auth.bio);
-    // setImage(auth.image);
-    // setBannerImage(auth.image);
-  }, [
-    auth.firstName,
-    auth.lastName,
-    auth.email,
-    auth.username,
-    auth.bio,
-    // auth.image,
-    // auth.bannerImage,
-  ]);
+  }, [auth.firstName, auth.lastName, auth.email, auth.username, auth.bio]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

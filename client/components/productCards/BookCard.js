@@ -20,11 +20,6 @@ export const BookCard = (props) => {
                 src={book.imageUrl}
                 style={{ borderRadius: "1rem" }}
               ></Card.Img>
-              {/* <a class="hide-button" href="/jane/">
-                <Button>
-                  <FaHeart />
-                </Button>
-              </a> */}
             </div>
           </Link>
         </Card>
