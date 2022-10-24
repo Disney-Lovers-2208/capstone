@@ -55,7 +55,7 @@ export default function TemporaryDrawer() {
           </ListItem>
         </Link>
         <Divider />
-        <Link href={`/profile`} underline="none" color="#03045e">
+        <Link href={`/profile/history`} underline="none" color="#03045e">
           <ListItem key={2}>
             <ListItemButton>
               <ListItemIcon>
@@ -66,7 +66,7 @@ export default function TemporaryDrawer() {
           </ListItem>
         </Link>
         <Divider />
-        <Link href={`/profile`} underline="none" color="#03045e">
+        <Link href={`/profile/saved`} underline="none" color="#03045e">
           <ListItem key={3}>
             <ListItemButton>
               <ListItemIcon>
