@@ -146,17 +146,19 @@ export const SearchFor = () => {
       ) : (
         <div className="search-results">
           <Row className="searched-for">
-            <Col lg={4} sm={12}>
-              <h3 style={{ paddingLeft: "5rem", paddingTop: "2rem" }}>
-                You searched for: {title}
-              </h3>
-            </Col>
-            <Col lg={4} sm={12}></Col>
-            <Col lg={4} sm={12} style={{ textAlign: "right" }}>
-              <Row className="add-button">
+            <Col lg={6} sm={12}>
+              <Row>
+                <h3 style={{ paddingLeft: "5rem", paddingTop: "2rem" }}>
+                  You searched for: {title}
+                </h3>
+              </Row>
+              <Row className="add-button" style={{ textAlign: "left" }}>
                 <h3>Don't see your fave?</h3>
                 <Button
-                  style={{ backgroundColor: "#023E8A", color: "#dcdf00" }}
+                  style={{
+                    backgroundColor: "#023E8A",
+                    color: "#dcdf00",
+                  }}
                   className="add-button-button"
                   as={Link}
                   to={"/add"}
@@ -165,10 +167,7 @@ export const SearchFor = () => {
                 </Button>
               </Row>
             </Col>
-          </Row>
-
-          <Row>
-            <Col>
+            <Col lg={6} sm={12} style={{ paddingTop: "2rem" }}>
               <div className="switch" data-ison={isOn} onClick={toggleSwitch}>
                 <motion.div className="handle" layout transition={spring} />
               </div>
