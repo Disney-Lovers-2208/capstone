@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import { addFriend, removeFriend } from "../../store/auth";
 import Stats from "./Stats";
+import TemporaryDrawer from "./Drawer";
 
 const Banner = (props) => {
   const { user } = props;
@@ -46,17 +47,6 @@ const Banner = (props) => {
         </Col>
 
         <Col sm={1}>
-          {user.id === auth.id ? (
-            <Row>
-              {location !== "/profile/edit" ? (
-                <Col style={{ marginTop: "1rem ", textAlign: "right" }}>
-                  <Link to="/profile/edit">
-                    <button style={{ padding: "1rem" }}>Edit</button>
-                  </Link>
-                </Col>
-              ) : null}
-            </Row>
-          ) : null}
           {!isOwnProfile() ? (
             isFriend ? (
               <button
@@ -74,48 +64,14 @@ const Banner = (props) => {
               </button>
             )
           ) : null}
+
+          <div style={{ textAlign: "right", paddingTop: "1rem" }}>
+            {user.id === auth.id ? <TemporaryDrawer /> : null}
+          </div>
         </Col>
       </Row>
-
       <Stats user={user} />
 
-      {user.id === auth.id ? (
-        <Row className="buttons">
-          <Col>
-            <Link to="/profile">
-              <button className="">Profile</button>
-            </Link>
-          </Col>
-
-          <Col>
-            <Link to="/profile/history">
-              <button
-                className={
-                  location === "/profile/history" ? "active-button" : ""
-                }
-              >
-                History
-              </button>
-            </Link>
-          </Col>
-
-          <Col>
-            <Link to="/profile/saved">
-              <button
-                className={location === "/profile/saved" ? "active-button" : ""}
-              >
-                Saved
-              </button>
-            </Link>
-          </Col>
-
-          <Col>
-            <Link to="/profile/friends">
-              <button variant="outlined">Friends</button>
-            </Link>
-          </Col>
-        </Row>
-      ) : null}
       <hr />
     </Container>
   );

@@ -22,7 +22,7 @@ export const ActivityCard = (props) => {
             <Col className="card-col" style={{ borderRadius: "15px" }}>
               <Row>
                 <Col lg={3} md={12} sm={12} className="d-none d-sm-block">
-                  <Link to={`/books/${activity.book.id}`}>
+                  <Link to={`/book/${activity.book.id}`}>
                     <img
                       src={activity.book.imageUrl}
                       alt="book-image"
@@ -41,17 +41,15 @@ export const ActivityCard = (props) => {
                       </Link>
                     </Col>
                     <Col lg={11} md={11} sm={11}>
-                      <Row className="post-title">
-                        <h2>
-                          {activity.user.firstName} {activity.user.lastName}{" "}
-                          reviewed {activity.book.title}
-                        </h2>
-                      </Row>
+                      <h3 className="post-title">
+                        {activity.user.firstName} {activity.user.lastName}{" "}
+                        reviewed {activity.book.title}
+                      </h3>
                     </Col>
                   </Row>
                   <Card.Text
                     className="text-left"
-                    style={{ paddingLeft: "1rem" }}
+                    style={{ paddingLeft: "1rem", paddingTop: "1rem" }}
                   >
                     <RatedStars rating={activity.rating} />
                   </Card.Text>
@@ -106,7 +104,7 @@ export const ActivityCard = (props) => {
                   </Row>
                   <Card.Text
                     className="text-left"
-                    style={{ paddingLeft: "1rem" }}
+                    style={{ paddingLeft: "1rem", paddingTop: "1rem" }}
                   >
                     <RatedStars rating={activity.rating} />
                   </Card.Text>
@@ -165,7 +163,7 @@ export const ActivityCard = (props) => {
                   </Row>
                   <Card.Text
                     className="text-left"
-                    style={{ paddingLeft: "1rem" }}
+                    style={{ paddingLeft: "1rem", paddingTop: "1rem" }}
                   >
                     <RatedStars rating={activity.rating} />
                   </Card.Text>
