@@ -26,7 +26,9 @@ const NavigationBar = ({ handleClick, isLoggedIn }) => {
             <Navbar>
               <Row lg={12} className="stats-row">
                 <Col lg={3} sm={12}>
-                  <img src="/images/logo.png" style={{ width: "300px" }} />
+                  <Link to="/home">
+                    <img src="/images/logo.png" style={{ width: "300px" }} />
+                  </Link>
                 </Col>
 
                 <Col lg={6} sm={12} style={{ paddingTop: "1.5rem" }}>

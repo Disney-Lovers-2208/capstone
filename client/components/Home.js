@@ -41,7 +41,12 @@ export const Home = () => {
                   </div>
                 ))
             ) : (
-              <h1>No friend activity sorry</h1>
+              <div>
+                <h1 style={{ margin: "2rem" }}>
+                  Add some frieds to see posts!
+                </h1>
+                <img src="/images/friends.svg" />
+              </div>
             )}
           </div>
         </div>
