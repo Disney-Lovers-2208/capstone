@@ -307,7 +307,7 @@ async function seed() {
   //     let movieIdNum = Math.floor(Math.random() * 252) + 1;
   //     if (done.includes(movieIdNum)) {
   //       while (done.includes(movieIdNum)) {
-  //         movieIdNum = Math.floor(Math.random() * 252);
+  //         movieIdNum = Math.floor(Math.random() * 252) + 1;
   //       }
   //     } else {
   //       done.push(movieIdNum);
@@ -329,7 +329,7 @@ async function seed() {
   //     let bookIdNum = Math.floor(Math.random() * 177) + 1;
   //     if (done.includes(bookIdNum)) {
   //       do {
-  //         bookIdNum = Math.floor(Math.random() * 177);
+  //         bookIdNum = Math.floor(Math.random() * 177) + 1;
   //       } while (done.includes(bookIdNum));
   //     } else {
   //       done.push(bookIdNum);

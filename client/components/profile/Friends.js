@@ -37,7 +37,7 @@ export class Friends extends React.Component {
               {friends
                 ? friends.map((friend) => {
                     return (
-                      <>
+                      <div key={friend.id}>
                         <ListItem>
                           <ListItemAvatar>
                             <img
@@ -82,7 +82,7 @@ export class Friends extends React.Component {
                           </ListItemButton>
                         </ListItem>
                         <Divider variant="inset" component="li" />
-                      </>
+                      </div>
                     );
                   })
                 : null}
