@@ -53,7 +53,6 @@ router.post("/:userId/:friendId", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-  window.location.reload(false);
 });
 
 router.delete("/:userId/:friendId", async (req, res, next) => {
@@ -69,5 +68,4 @@ router.delete("/:userId/:friendId", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-  window.location.reload(false);
 });
