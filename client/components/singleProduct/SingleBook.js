@@ -23,7 +23,7 @@ const SingleBook = () => {
   const book = useSelector((state) => state.book);
   const reviews = useSelector((state) => state.reviews);
   const count = useSelector((state) => state.count);
-  const { imageUrl, title, description, starRating } = book;
+  const { imageUrl, author, title, description, starRating } = book;
   const userBook = useSelector((state) => state.userBook);
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -236,7 +236,9 @@ const SingleBook = () => {
                   allowFraction={true}
                   fillColor="#f1a545"
                 />
-                {reviews.length} Reviews <p>{description}</p>
+                <h5>{author}</h5>
+                {reviews.length} Reviews
+                <p>{description}</p>
                 <SelectDropDown
                   status={status}
                   selectOptions={selectOptions}
