@@ -29,7 +29,7 @@ const NavigationBar = ({ handleClick, isLoggedIn }) => {
           <div>
             <Navbar>
               <Row lg={12} className="stats-row">
-                <Col lg={3} sm={12}>
+                <Col lg={3} className="d-none d-md-block">
                   <Link to="/home">
                     <img src="/images/logo.png" style={{ width: "300px" }} />
                   </Link>
