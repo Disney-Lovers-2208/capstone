@@ -4,10 +4,8 @@ const db = require("../db");
 const Tv = db.define("tv", {
   title: {
     type: Sequelize.STRING,
+
     allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
   },
   description: {
     type: Sequelize.TEXT,
