@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { Button, Row, Col, Card } from "react-bootstrap";
 import Slider from "react-slick";
@@ -10,17 +10,22 @@ import {
   Divider,
   ListItemText,
   ListItemAvatar,
+  ListItemButton,
   Typography,
 } from "@mui/material";
+import { removeFriend, addFriend } from "../../store";
+import ScrollToTop from "react-scroll-to-top";
 
 export const SearchFor = () => {
   const { title } = useParams();
+  const dispatch = useDispatch();
 
   const titleFilter = (item) =>
     item.title.toLowerCase().includes(title.toLowerCase());
   const nameFilter = (user) =>
     user.firstName.toLowerCase().includes(title.toLowerCase());
 
+  const auth = useSelector((state) => state.auth);
   const tvshows = useSelector((state) => state.tvs).filter(titleFilter);
   const movies = useSelector((state) => state.movies).filter(titleFilter);
   const books = useSelector((state) => state.books).filter(titleFilter);
@@ -42,7 +47,7 @@ export const SearchFor = () => {
   // carousel for search results
   const settings = {
     dots: movies.length < 30,
-
+    infinite: false,
     centerPadding: "80px",
     slidesToShow: 5,
     speed: 500,
@@ -205,57 +210,99 @@ export const SearchFor = () => {
                 <h3>No users with the name "{title}"</h3>
               )}
               {
-                <Row>
-                  <List>
-                    {users.map((user) => {
-                      return (
-                        <Link
-                          to={`/users/${user.id}`}
-                          key={user.id}
-                          style={{ textDecoration: "none", color: "#03045e" }}
-                        >
-                          <ListItem>
-                            <ListItemAvatar>
-                              <img
-                                src={user.image}
-                                style={{
-                                  width: "100px",
-                                  borderRadius: "100%",
-                                  padding: "15px",
-                                }}
+                <>
+                  <ScrollToTop smooth color="#6f00ff" />
+                  <Row>
+                    <List>
+                      {users.map((user) => {
+                        const isFriend = auth.friend.find(
+                          (friend) => friend.id === user.id
+                        );
+
+                        return (
+                          <Link
+                            to={`/users/${user.id}`}
+                            key={user.id}
+                            style={{ textDecoration: "none", color: "#03045e" }}
+                          >
+                            <ListItem>
+                              <ListItemAvatar>
+                                <img
+                                  src={user.image}
+                                  style={{
+                                    width: "100px",
+                                    borderRadius: "100%",
+                                    padding: "15px",
+                                  }}
+                                />
+                              </ListItemAvatar>
+                              <ListItemText
+                                primary={
+                                  <React.Fragment>
+                                    <Typography
+                                      sx={{ display: "inline" }}
+                                      component="span"
+                                      fontSize="1.8rem"
+                                    >
+                                      {`${user.firstName} ${user.lastName}`}
+                                    </Typography>
+                                  </React.Fragment>
+                                }
+                                secondary={
+                                  <React.Fragment>
+                                    <Typography
+                                      sx={{ display: "inline" }}
+                                      component="span"
+                                      fontSize="1.2rem"
+                                    >
+                                      {` — ${user.bio}…`}
+                                    </Typography>
+                                  </React.Fragment>
+                                }
                               />
-                            </ListItemAvatar>
-                            <ListItemText
-                              primary={
-                                <React.Fragment>
-                                  <Typography
-                                    sx={{ display: "inline" }}
-                                    component="span"
-                                    fontSize="1.8rem"
+                              <div style={{ textAlign: "right" }}>
+                                {isFriend ? (
+                                  <ListItemButton
+                                    sx={{
+                                      backgroundColor: "#03045e",
+                                      color: "white",
+                                      width: 100,
+                                      justifyContent: "center",
+                                    }}
+                                    onClick={(event) => {
+                                      event.stopPropagation();
+                                      event.preventDefault();
+                                      dispatch(removeFriend(user.id));
+                                    }}
                                   >
-                                    {`${user.firstName} ${user.lastName}`}
-                                  </Typography>
-                                </React.Fragment>
-                              }
-                              secondary={
-                                <React.Fragment>
-                                  <Typography
-                                    sx={{ display: "inline" }}
-                                    component="span"
-                                    fontSize="1.2rem"
+                                    Unfollow
+                                  </ListItemButton>
+                                ) : (
+                                  <ListItemButton
+                                    sx={{
+                                      backgroundColor: "#dcdf00",
+                                      color: "#03045e",
+                                      width: 100,
+                                      justifyContent: "center",
+                                    }}
+                                    onClick={(event) => {
+                                      event.stopPropagation();
+                                      event.preventDefault();
+                                      dispatch(addFriend(user.id));
+                                    }}
                                   >
-                                    {` — ${user.bio}…`}
-                                  </Typography>
-                                </React.Fragment>
-                              }
-                            />
-                          </ListItem>
-                          <Divider variant="inset" component="li" />
-                        </Link>
-                      );
-                    })}
-                  </List>
-                </Row>
+                                    Follow
+                                  </ListItemButton>
+                                )}
+                              </div>
+                            </ListItem>
+                            <Divider variant="inset" component="li" />
+                          </Link>
+                        );
+                      })}
+                    </List>
+                  </Row>
+                </>
               }
             </div>
           ) : (
