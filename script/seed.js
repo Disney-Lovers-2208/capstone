@@ -245,7 +245,6 @@ async function seed() {
   for (let i = 4; i < 100; i++) {
     await Promise.all([
       User.create({
-        id: i,
         firstName: randFirstName(),
         lastName: randLastName(),
         username: randColor() + Math.floor(Math.random() * 1000),
