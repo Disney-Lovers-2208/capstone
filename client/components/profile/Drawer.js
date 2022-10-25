@@ -76,7 +76,7 @@ export default function TemporaryDrawer() {
             <ListItemIcon>
               <FaUserFriends color="black" size={20} />
             </ListItemIcon>
-            <ListItemText primary="Friends" />
+            <ListItemText primary="Following" />
           </ListItemButton>
         </ListItem>
         <Divider />

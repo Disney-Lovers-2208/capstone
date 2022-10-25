@@ -65,7 +65,7 @@ export const Stats = ({ user }) => {
                 </Col>
                 <Col lg={8}>
                   <h2> {user.friend.length} </h2>
-                  <p>Friends</p>
+                  <p>Following</p>
                 </Col>
               </Row>
               {/* </Link> */}
