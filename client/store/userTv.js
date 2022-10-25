@@ -42,6 +42,7 @@ export const fetchUpdateUserTv = (userTv) => {
         userTv
       );
       dispatch(updateUserTv(data));
+      window.reload(false);
       dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });

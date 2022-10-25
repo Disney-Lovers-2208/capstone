@@ -42,6 +42,7 @@ export const fetchUpdateUserMovie = (userMovie) => {
         userMovie
       );
       dispatch(updateUserMovie(data));
+      window.reload(false);
       dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });

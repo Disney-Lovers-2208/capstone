@@ -63,8 +63,9 @@ export const fetchUpdateUserBook = (userBook) => {
         `/api/userBooks/${userId}/${bookId}`,
         userBook
       );
-      dispatch({ type: "DEC" });
       dispatch(updateUserBook(data));
+      window.reload(false);
+      dispatch({ type: "DEC" });
     } catch (error) {
       dispatch({ type: "DEC" });
       return error;
