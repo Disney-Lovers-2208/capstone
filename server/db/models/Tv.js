@@ -11,9 +11,6 @@ const Tv = db.define("tv", {
   },
   description: {
     type: Sequelize.TEXT,
-    validate: {
-      notEmpty: true,
-    },
   },
   genre: {
     type: Sequelize.ARRAY(Sequelize.TEXT),
@@ -21,16 +18,11 @@ const Tv = db.define("tv", {
   imageUrl: {
     type: Sequelize.STRING,
     defaultValue: "",
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    }
   },
   productType: {
     type: Sequelize.STRING,
     defaultValue: "tvshow",
   },
 });
-
 
 module.exports = Tv;
