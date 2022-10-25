@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { Button, Row, Col, Card } from "react-bootstrap";
 import Slider from "react-slick";
@@ -10,17 +10,21 @@ import {
   Divider,
   ListItemText,
   ListItemAvatar,
+  ListItemButton,
   Typography,
 } from "@mui/material";
+import { removeFriend, addFriend } from "../../store";
 
 export const SearchFor = () => {
   const { title } = useParams();
+  const dispatch = useDispatch();
 
   const titleFilter = (item) =>
     item.title.toLowerCase().includes(title.toLowerCase());
   const nameFilter = (user) =>
     user.firstName.toLowerCase().includes(title.toLowerCase());
 
+  const auth = useSelector((state) => state.auth);
   const tvshows = useSelector((state) => state.tvs).filter(titleFilter);
   const movies = useSelector((state) => state.movies).filter(titleFilter);
   const books = useSelector((state) => state.books).filter(titleFilter);
@@ -208,6 +212,10 @@ export const SearchFor = () => {
                 <Row>
                   <List>
                     {users.map((user) => {
+                      const isFriend = auth.friend.find(
+                        (friend) => friend.id === user.id
+                      );
+
                       return (
                         <Link
                           to={`/users/${user.id}`}
@@ -249,6 +257,42 @@ export const SearchFor = () => {
                                 </React.Fragment>
                               }
                             />
+                            <div style={{ textAlign: "right" }}>
+                              {isFriend ? (
+                                <ListItemButton
+                                  sx={{
+                                    backgroundColor: "#03045e",
+                                    color: "white",
+                                    width: 100,
+                                    justifyContent: "center",
+                                    marginLeft: "4rem",
+                                  }}
+                                  onClick={(event) => {
+                                    event.stopPropagation();
+                                    event.preventDefault();
+                                    dispatch(removeFriend(user.id));
+                                  }}
+                                >
+                                  Unfollow
+                                </ListItemButton>
+                              ) : (
+                                <ListItemButton
+                                  sx={{
+                                    backgroundColor: "#dcdf00",
+                                    color: "#03045e",
+                                    width: 100,
+                                    justifyContent: "center",
+                                  }}
+                                  onClick={(event) => {
+                                    event.stopPropagation();
+                                    event.preventDefault();
+                                    dispatch(addFriend(user.id));
+                                  }}
+                                >
+                                  Follow
+                                </ListItemButton>
+                              )}
+                            </div>
                           </ListItem>
                           <Divider variant="inset" component="li" />
                         </Link>

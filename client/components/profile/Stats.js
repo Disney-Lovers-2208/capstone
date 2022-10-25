@@ -58,17 +58,17 @@ export const Stats = ({ user }) => {
               </Row>
             </Col>
             <Col className="stats">
-              {/* <Link to="/profile/friends"> */}
-              <Row className="stats-inner-row">
-                <Col lg={4} className="stats-image-icon d-none d-lg-block">
-                  <FaUserFriends size={80} color="#ffffff" />
-                </Col>
-                <Col lg={8}>
-                  <h2> {user.friend.length} </h2>
-                  <p>Following</p>
-                </Col>
-              </Row>
-              {/* </Link> */}
+              <Link to="/profile/friends" style={{ textDecoration: "none" }}>
+                <Row className="stats-inner-row">
+                  <Col lg={4} className="stats-image-icon d-none d-lg-block">
+                    <FaUserFriends size={80} color="#ffffff" />
+                  </Col>
+                  <Col lg={8}>
+                    <h2> {user.friend.length} </h2>
+                    <p>Following</p>
+                  </Col>
+                </Row>
+              </Link>
             </Col>
           </Row>
         </Col>
