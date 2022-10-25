@@ -75,6 +75,7 @@ export const Saved = () => {
         );
       }
     }
+    window.location.reload(false);
   };
 
   return (

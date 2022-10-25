@@ -70,6 +70,7 @@ const SelectDropDown = ({ selectOptions, selected, status, auth, id }) => {
             );
           }
         }
+        window.location.reload(false);
       }}
     >
       {selectOptions.map((value) => (

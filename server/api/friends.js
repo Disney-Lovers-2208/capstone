@@ -26,6 +26,20 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+router.get("/:userId/:friendId", async (req, res, next) => {
+  try {
+    const friends = await Connection.findAll({
+      where: {
+        userId: req.params.userId,
+        friendId: req.params.friendId,
+      },
+    });
+    res.json(friends);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post("/:userId/:friendId", async (req, res, next) => {
   try {
     const currentUser = await User.findByPk(req.params.userId, {
@@ -39,6 +53,7 @@ router.post("/:userId/:friendId", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+  window.location.reload(false);
 });
 
 router.delete("/:userId/:friendId", async (req, res, next) => {
@@ -54,4 +69,5 @@ router.delete("/:userId/:friendId", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+  window.location.reload(false);
 });
