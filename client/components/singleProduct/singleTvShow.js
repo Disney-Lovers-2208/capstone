@@ -34,8 +34,9 @@ const SingleTvShow = () => {
   const settings = {
     dots: reviews.length < 40,
     className: "center",
-    centerMode: true,
+
     centerPadding: "80px",
+    infinite: false,
     slidesToShow: 3,
     speed: 500,
     nextArrow: <SampleNextArrow />,
@@ -256,6 +257,7 @@ const SingleTvShow = () => {
                     <Row key={review.id}>
                       <Card
                         style={{
+                          padding: "1rem",
                           width: "15rem",
                           height: "17rem",
                           alignItems: "center",

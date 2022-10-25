@@ -3,18 +3,17 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
-// import { Link } from "@mui/material";
 import { Divider } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import Typography from "@mui/material/Typography";
 import { AiFillEye, AiFillHeart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { FaUserFriends } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdModeEdit } from "react-icons/md";
-import UserProfilePage from "./UserProfilePage";
 import { Link } from "react-router-dom";
 
 export default function TemporaryDrawer() {
@@ -51,7 +50,16 @@ export default function TemporaryDrawer() {
             <ListItemIcon>
               <CgProfile color="black" size={20} />
             </ListItemIcon>
-            <ListItemText primary="Profile" />
+            <ListItemText
+              primary={
+                <Typography
+                  type="body2"
+                  style={{ color: "#03045e", fontWeight: 400 }}
+                >
+                  Profile
+                </Typography>
+              }
+            />
           </ListItemButton>
         </ListItem>
         <Divider />
@@ -60,7 +68,16 @@ export default function TemporaryDrawer() {
             <ListItemIcon>
               <AiFillEye color="black" size={20} />
             </ListItemIcon>
-            <ListItemText primary="History" />
+            <ListItemText
+              primary={
+                <Typography
+                  type="body2"
+                  style={{ color: "#03045e", fontWeight: 400 }}
+                >
+                  History
+                </Typography>
+              }
+            />
           </ListItemButton>
         </ListItem>
         <Divider />
@@ -69,7 +86,16 @@ export default function TemporaryDrawer() {
             <ListItemIcon>
               <AiFillHeart color="black" size={20} />
             </ListItemIcon>
-            <ListItemText primary="Saved" />
+            <ListItemText
+              primary={
+                <Typography
+                  type="body2"
+                  style={{ color: "#03045e", fontWeight: 400 }}
+                >
+                  Saved
+                </Typography>
+              }
+            />
           </ListItemButton>
         </ListItem>
         <Divider />
@@ -78,7 +104,16 @@ export default function TemporaryDrawer() {
             <ListItemIcon>
               <FaUserFriends color="black" size={20} />
             </ListItemIcon>
-            <ListItemText primary="Friends" />
+            <ListItemText
+              primary={
+                <Typography
+                  type="body2"
+                  style={{ color: "#03045e", fontWeight: 400 }}
+                >
+                  Following
+                </Typography>
+              }
+            />
           </ListItemButton>
         </ListItem>
         <Divider />
@@ -87,7 +122,16 @@ export default function TemporaryDrawer() {
             <ListItemIcon>
               <MdModeEdit color="black" size={20} />
             </ListItemIcon>
-            <ListItemText primary="Edit" />
+            <ListItemText
+              primary={
+                <Typography
+                  type="body2"
+                  style={{ color: "#03045e", fontWeight: 400 }}
+                >
+                  Edit
+                </Typography>
+              }
+            />
           </ListItemButton>
         </ListItem>
       </List>

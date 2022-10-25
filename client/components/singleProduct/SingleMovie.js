@@ -35,8 +35,7 @@ const SingleMovie = () => {
   const settings = {
     dots: reviews.length < 40,
     className: "center",
-    centerMode: true,
-
+    infinite: false,
     centerPadding: "80px",
     slidesToShow: 3,
     speed: 500,
@@ -271,6 +270,7 @@ const SingleMovie = () => {
                     <Row key={review.id}>
                       <Card
                         style={{
+                          padding: "1rem",
                           width: "15rem",
                           height: "17rem",
                           alignItems: "center",

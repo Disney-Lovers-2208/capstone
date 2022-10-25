@@ -46,6 +46,7 @@ export const AllBooks = () => {
                   itemsPerPage={booksPerPage}
                   totalItems={books.length}
                   paginate={paginate}
+                  currentPage={currentPage}
                 />
               </Row>
             </Col>
