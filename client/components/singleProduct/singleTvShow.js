@@ -34,7 +34,7 @@ const SingleTvShow = () => {
   const settings = {
     dots: reviews.length < 40,
     className: "center",
-    centerMode: true,
+
     centerPadding: "80px",
     infinite: false,
     slidesToShow: 3,

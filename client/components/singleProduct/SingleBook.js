@@ -36,7 +36,6 @@ const SingleBook = () => {
     dots: reviews.length < 40,
     infinite: false,
     className: "center",
-    centerMode: true,
     centerPadding: "80px",
     slidesToShow: 3,
     speed: 500,
@@ -230,13 +229,13 @@ const SingleBook = () => {
             <Col className="single-product-info-right" lg={6} sm={12}>
               <div className="info-container">
                 <h1>{title}</h1>
+                <h5>{author}</h5>
                 <Rating
                   readonly={true}
                   initialValue={starRating}
                   allowFraction={true}
                   fillColor="#f1a545"
                 />
-                <h5>{author}</h5>
                 {reviews.length} Reviews
                 <p>{description}</p>
                 <SelectDropDown
