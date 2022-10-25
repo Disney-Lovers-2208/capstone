@@ -265,7 +265,6 @@ export const SearchFor = () => {
                                     color: "white",
                                     width: 100,
                                     justifyContent: "center",
-                                    marginLeft: "4rem",
                                   }}
                                   onClick={(event) => {
                                     event.stopPropagation();

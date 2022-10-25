@@ -81,6 +81,9 @@ export const Friends = () => {
                             sx={{
                               backgroundColor: "#03045e",
                               color: "white",
+                              width: 100,
+                              justifyContent: "center",
+                              marginRight: "5rem",
                             }}
                             onClick={(event) => {
                               event.stopPropagation();
