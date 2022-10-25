@@ -31,6 +31,11 @@ const AddProduct = () => {
           navigate
         )
       );
+
+      if(!author) {
+        return alert(`Author must be included`);
+      };
+
     }
     if (selectedOption === "movie") {
       dispatch(
@@ -42,6 +47,15 @@ const AddProduct = () => {
         fetchCreateTv({ title, description, genre, imageUrl }, navigate)
       );
     }
+
+    if (!title) {
+      return alert(`Title must be included`);
+    }
+
+    if(!imageUrl) {
+      return alert(`Image must be included`);
+    }
+
   };
 
   return (
