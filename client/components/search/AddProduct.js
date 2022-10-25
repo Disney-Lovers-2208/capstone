@@ -52,14 +52,6 @@ const AddProduct = () => {
       return alert(`Title must be included`);
     }
 
-    // if(!description) {
-    //   return alert(`Description must be included`);
-    // }
-
-    // if(!author) {
-    //   return alert(`Author must be included`);
-    // }
-
     if(!imageUrl) {
       return alert(`Image must be included`);
     }
