@@ -17,7 +17,6 @@ const AddProduct = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-
     const title = evt.target.title.value;
     const description = evt.target.description.value;
     const genrePreSplit = evt.target.genre.value;
@@ -42,22 +41,6 @@ const AddProduct = () => {
       dispatch(
         fetchCreateTv({ title, description, genre, imageUrl }, navigate)
       );
-    }
-
-    if (!title) {
-      return alert(`Title must be included`);
-    }
-
-    if(!description) {
-      return alert(`Description must be included`);
-    }
-
-    if(!author) {
-      return alert(`Author must be included`);
-    }
-
-    if(!imageUrl) {
-      return alert(`Image must be included`);
     }
   };
 

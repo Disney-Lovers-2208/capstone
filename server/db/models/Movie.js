@@ -5,9 +5,6 @@ const Movie = db.define("movie", {
   title: {
     type: Sequelize.STRING,
     allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
   },
   description: {
     type: Sequelize.TEXT,
