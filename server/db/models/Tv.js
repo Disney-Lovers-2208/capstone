@@ -11,9 +11,6 @@ const Tv = db.define("tv", {
   },
   description: {
     type: Sequelize.TEXT,
-    validate: {
-      notEmpty: true,
-    },
   },
   genre: {
     type: Sequelize.ARRAY(Sequelize.TEXT),

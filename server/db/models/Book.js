@@ -18,9 +18,6 @@ const Book = db.define("book", {
   },
   description: {
     type: Sequelize.TEXT,
-    validate: {
-      notEmpty: true,
-    },
   },
   genre: {
     type: Sequelize.ARRAY(Sequelize.TEXT),

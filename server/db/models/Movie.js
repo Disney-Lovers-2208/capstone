@@ -11,9 +11,6 @@ const Movie = db.define("movie", {
   },
   description: {
     type: Sequelize.TEXT,
-    validate: {
-      notEmpty: true,
-    },
   },
   genre: {
     type: Sequelize.ARRAY(Sequelize.TEXT),
