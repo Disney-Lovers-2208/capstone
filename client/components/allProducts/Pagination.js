@@ -7,7 +7,6 @@ export const Pagination = ({
   paginate,
   currentPage,
 }) => {
-  console.log("currentpage : ", currentPage);
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pageNumbers.push(i);
