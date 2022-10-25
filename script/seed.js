@@ -215,30 +215,55 @@ async function seed() {
   // Creating Users
   const users = await Promise.all([
     User.create({
-      firstName: "Wendy",
-      lastName: "Darling",
-      username: "wdflying80",
+      firstName: "Kourtney",
+      lastName: "Smith",
+      username: "ksmith3",
       password: "123",
-      email: "wendyd@yahoo.com",
-      bio: "I love reading books about flying!",
+      email: "ksmith@gmail.com",
+      bio: "I am on a curiosity voyage, and I need my paddles to travel. These books…these books are my paddles.",
+      image:
+        "https://scontent.fewr1-6.fna.fbcdn.net/v/t1.6435-9/41705199_10156778516764914_4234129977605357568_n.jpg?stp=dst-jpg_s552x414&_nc_cat=102&ccb=1-7&_nc_sid=da31f3&_nc_ohc=bCfqyZ_su4IAX831V-q&_nc_ht=scontent.fewr1-6.fna&oh=00_AT-xru0Mzsm-5JZhej-4yuR2EQbMRPdyghuReYKIqyFtjQ&oe=637CA98D",
+      bannerImage:
+        "https://i.pinimg.com/originals/5f/a9/21/5fa9213a984006fe47dbf84acfc0958d.jpg",
     }),
 
     User.create({
-      firstName: "Alice",
-      lastName: "Liddel",
-      username: "alice340",
+      firstName: "Madison",
+      lastName: "Combs",
+      username: "mcombs3",
       password: "123",
-      email: "alicewonderland@gmail.com",
-      bio: "Love anything that has to do with fantasy and wonder!",
+      email: "mcombs@gmail.com",
+      bio: "Hi! I’m Maddy!! I’m a Software Engineer but in my free time I am either exploring Boston or glued to a book or…Right now I love everything by Ali Hazelwood and Sarah J. Maas <3",
+      image:
+        "https://media-exp1.licdn.com/dms/image/C5603AQHafzVhELmXEw/profile-displayphoto-shrink_800_800/0/1584562389352?e=1672272000&v=beta&t=wxgxaJ15TUnH3fFS5n-nl0TuJ_3Isq01MceOJB_oBjg",
+      bannerImage:
+        "https://news.fordham.edu/wp-content/uploads/2018/11/Fallslideshow107811-14-18FUAA_5673.jpg",
     }),
 
     User.create({
-      firstName: "Jennifer",
-      lastName: "Hunt",
-      username: "jhunt12",
+      firstName: "Vanessa",
+      lastName: "Gao",
+      username: "vaniallla",
       password: "123",
-      email: "jhunt@aol.com",
-      bio: "Currently loving American Horror Story!",
+      email: "vgao@gmail.com",
+      bio: "'Humans don't make sense.' - Syl from Words of Radiance",
+      image:
+        "https://media-exp1.licdn.com/dms/image/C5603AQFeNx_u0sQpeQ/profile-displayphoto-shrink_800_800/0/1619640122101?e=1672272000&v=beta&t=Ip93ie_Fxj2b4QRb-e-gRnuyEwp8eYXzvugMnOCeguQ",
+      bannerImage:
+        "https://media-exp1.licdn.com/dms/image/D4E16AQEr_JfGL9N47g/profile-displaybackgroundimage-shrink_350_1400/0/1664849713835?e=1672272000&v=beta&t=Z1dSBVlsRk_vXVKSWbgx1RSb9s1sM9SALcnvpWLDkSY",
+    }),
+
+    User.create({
+      firstName: "Bobby",
+      lastName: "Ton",
+      username: "lilvietboi24",
+      password: "123",
+      email: "lilvietboi24@gmail.com",
+      bio: "I love deep dish pizza and only wears backwards hats because I'm the coolest.",
+      image:
+        "https://media-exp1.licdn.com/dms/image/C4E03AQHkfYMN-3XtBw/profile-displayphoto-shrink_200_200/0/1625891651855?e=1672272000&v=beta&t=ww7JS1VD8tR7pdVN3zC2GVykft8wxyiWj3r-4AcZMeU",
+      bannerImage:
+        "https://media-exp1.licdn.com/dms/image/C5616AQGqnTn1wz9JKw/profile-displaybackgroundimage-shrink_350_1400/0/1525803734057?e=1672272000&v=beta&t=46dmYKeMlaK5VicQZxtRDnL88AHKWJkrrbZrY3Lg9Ck",
     }),
   ]);
 

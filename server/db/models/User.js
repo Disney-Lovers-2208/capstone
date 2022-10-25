@@ -42,12 +42,12 @@ const User = db.define("user", {
     type: Sequelize.TEXT,
   },
   image: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     defaultValue:
       "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg",
   },
   bannerImage: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     defaultValue:
       "https://images.squarespace-cdn.com/content/v1/5189811be4b01dba4e695740/1506188838413-JFFCUPAUQPEZ3ID4OO8C/Autumn-banner.png",
   },
