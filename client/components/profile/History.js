@@ -12,6 +12,7 @@ import { fetchDeleteUserTv } from "../../store/userTvShows";
 export const History = () => {
   const user = useSelector((state) => state.auth);
   const count = useSelector((state) => state.count);
+
   const dispatch = useDispatch();
   const tvs = user?.tvs || [];
   const books = user?.books || [];
@@ -70,6 +71,7 @@ export const History = () => {
         );
       }
     }
+    window.location.reload(false);
   };
 
   return (

@@ -89,6 +89,7 @@ export const Friends = () => {
                               event.stopPropagation();
                               event.preventDefault();
                               dispatch(removeFriend(friend.id));
+                              window.location.reload(false);
                             }}
                           >
                             Unfollow
