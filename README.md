@@ -34,5 +34,5 @@ Deployed link: https://keepsake-2208.herokuapp.com/
 ## Meet the Team
 
 [Madison Combs](https://github.com/mcombs289) <br />
-[Vanessa Gao] (https://github.com/vaniallla)<br />
+[Vanessa Gao](https://github.com/vaniallla)<br />
 [Kourtney Smith](https://github.com/klsmith5370)
