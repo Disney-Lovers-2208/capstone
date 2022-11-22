@@ -36,3 +36,8 @@ Deployed link: https://keepsake-2208.herokuapp.com/
 [Madison Combs](https://github.com/mcombs289) <br />
 [Vanessa Gao](https://github.com/vaniallla)<br />
 [Kourtney Smith](https://github.com/klsmith5370)
+
+## Keepsake Profile Page
+<div align="center">
+  <img alt="Logo" src="https://raw.githubusercontent.com/Disney-Lovers-2208/capstone/main/public/images/keepsake.png" />
+</div>
