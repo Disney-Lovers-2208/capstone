@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="Logo" src="https://keepsake-2208.herokuapp.com/images/logo.png" width="300" />
+  <img alt="Logo" src="https://raw.githubusercontent.com/Disney-Lovers-2208/capstone/main/public/images/logo.png" width="300" />
 </div>
 
 ## Keepsake Deployed Website
