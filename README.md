@@ -6,7 +6,7 @@
 
 This repo is home for the codebase that powers Keepsake, a social media app meant to house general media reviews and recommendations. 
 
-Deployed link: https://keepsake.onrender.com/signup
+Deployed link: https://keepsake.onrender.com/login
 
 ## Project setup
 
