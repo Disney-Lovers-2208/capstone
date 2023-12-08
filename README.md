@@ -30,7 +30,7 @@ Deployed link: https://keepsake.onrender.com/login
 - [React](https://reactjs.org)
 - [Redux](https://redux.js.org)
 - [Render](https://www.render.com/)
-- [bit.io](https://www.bit.io/)
+- [Supabase](https://supabase.com/)
 
 ## Meet the Team
 
